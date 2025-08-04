@@ -1,0 +1,26 @@
+{
+    "id": "1C462EC8",
+    "path": "D:/08-MyProjects/00-MasterStudent/2021-陳柏維/R-packages/dataSDA/R/interval_stats.R",
+    "project_path": "R/interval_stats.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1746015695469.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "5,93",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1746020680,
+    "encoding": "BIG5",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1746020680125,
+    "read_only": false,
+    "read_only_alternatives": []
+}
