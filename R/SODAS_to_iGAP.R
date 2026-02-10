@@ -15,6 +15,8 @@
 #' @export
 
 SODAS_to_iGAP <- function(XMLPath){
+  .check_file_path(XMLPath, "SODAS_to_iGAP")
+  .check_file_exists(XMLPath, "SODAS_to_iGAP")
   data <- RSDA::SODAS.to.RSDA(XMLPath)
   df <- RSDA_to_iGAP(data)
   return(df)

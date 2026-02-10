@@ -12,6 +12,13 @@
 #' @export
 
 RSDA_to_iGAP <- function(data){
+  if (is.null(data)) {
+    stop("RSDA_to_iGAP: 'data' must not be NULL.", call. = FALSE)
+  }
+  if (!inherits(data, "symbolic_tbl")) {
+    stop("RSDA_to_iGAP: 'data' must be a symbolic_tbl object, not ",
+         class(data)[1], ".", call. = FALSE)
+  }
   df <- RSDA_to_MM(data, RSDA = T)
   df.iGAP <- MM_to_iGAP(df)
   return(df.iGAP)

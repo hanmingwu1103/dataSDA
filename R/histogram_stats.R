@@ -16,6 +16,9 @@
 #' @import HistDAWass
 #' @export
 hist_mean <- function(x, var_name, method = "BG", ...){
+  .check_MatH(x, "hist_mean")
+  .check_hist_var_name(var_name, x, "hist_mean")
+  .check_hist_method(method, c("BG", "L2W"), "hist_mean")
   object <- x
   if(method == "BG"){
     ans <- hist_mean_BG(object, var_name)  
@@ -83,7 +86,9 @@ hist_mean_w <- function(object, var){
 #' @rdname histogram_stats
 #' @export  
 hist_var <- function(x, var_name, method = "BG", ...){
-  
+  .check_MatH(x, "hist_var")
+  .check_hist_var_name(var_name, x, "hist_var")
+  .check_hist_method(method, c("BG", "L2W"), "hist_var")
   object <- x
   if(method == "BG"){
     ans <- hist_var_BG(object, var_name)  
@@ -289,6 +294,10 @@ hist_var_w <- function(object, var){
 #' @rdname histogram_stats
 #' @export  
 hist_cov <- function(x, var_name1, var_name2, method = "BG"){
+  .check_MatH(x, "hist_cov")
+  .check_hist_var_name(var_name1, x, "hist_cov")
+  .check_hist_var_name(var_name2, x, "hist_cov")
+  .check_hist_method(method, c("BG", "BD", "B", "L2W"), "hist_cov")
   object <- x
   var1 <- var_name1
   var2 <- var_name2
@@ -429,6 +438,10 @@ hist_cov <- function(x, var_name1, var_name2, method = "BG"){
 #' @rdname histogram_stats
 #' @export  
 hist_cor <- function(x, var_name1, var_name2, method = "BG"){
+  .check_MatH(x, "hist_cor")
+  .check_hist_var_name(var_name1, x, "hist_cor")
+  .check_hist_var_name(var_name2, x, "hist_cor")
+  .check_hist_method(method, c("BG", "BD", "B", "L2W"), "hist_cor")
   object <- x
   var1 <- var_name1
   var2 <- var_name2

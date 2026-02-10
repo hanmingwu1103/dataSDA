@@ -45,18 +45,21 @@ test_that("RSDA_format inserts $S labels", {
   expect_true("$S" %in% names(result))
 })
 
-test_that("RSDA_format returns Error for length mismatch (sym_type1)", {
+test_that("RSDA_format errors for length mismatch (sym_type1)", {
   data(mushroom)
-  result <- RSDA_format(data = mushroom, sym_type1 = c("I", "S"),
-                        location = c(1))
-  expect_equal(result, "Error")
+  expect_error(
+    RSDA_format(data = mushroom, sym_type1 = c("I", "S"), location = c(1)),
+    "length of 'sym_type1'"
+  )
 })
 
-test_that("RSDA_format returns Error for length mismatch (sym_type2)", {
+test_that("RSDA_format errors for length mismatch (sym_type2)", {
   data(mushroom)
-  result <- RSDA_format(data = mushroom, sym_type2 = c("I", "S"),
-                        var = c("Pileus.Cap.Width_min"))
-  expect_equal(result, "Error")
+  expect_error(
+    RSDA_format(data = mushroom, sym_type2 = c("I", "S"),
+                var = c("Pileus.Cap.Width_min")),
+    "length of 'sym_type2'"
+  )
 })
 
 test_that("RSDA_format preserves row count", {

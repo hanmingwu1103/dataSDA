@@ -12,6 +12,7 @@
 #' @export
 
 clean_colnames <- function(data){
+  .check_data_frame(data, "clean_colnames")
   colnames(data) <- gsub("_min|_max|_Min|_Max|.min|.max|.Min|.Max",
                          '', colnames(data))
   return(data)

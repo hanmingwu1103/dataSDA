@@ -13,6 +13,14 @@
 #' @export
 
 RSDA_to_MM <- function(data, RSDA = TRUE){
+  if (is.null(data)) {
+    stop("RSDA_to_MM: 'data' must not be NULL.", call. = FALSE)
+  }
+  if (!inherits(data, "symbolic_tbl") && !is.data.frame(data)) {
+    stop("RSDA_to_MM: 'data' must be a data.frame or symbolic_tbl, not ",
+         class(data)[1], ".", call. = FALSE)
+  }
+  .check_logical(RSDA, "RSDA", "RSDA_to_MM")
   num_int <- 0
   num_chr <- 0
   chr <- c()

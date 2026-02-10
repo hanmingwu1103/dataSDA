@@ -15,6 +15,20 @@
 #' @export
 
 set_variable_format <- function(data, location = NULL, var = NULL){
+  .check_data_frame(data, "set_variable_format")
+  if (!is.null(location)) {
+    .check_location(location, ncol(data), "set_variable_format")
+  }
+  if (!is.null(var)) {
+    if (!is.character(var)) {
+      stop("set_variable_format: 'var' must be a character string.", call. = FALSE)
+    }
+    missing_vars <- setdiff(var, colnames(data))
+    if (length(missing_vars) > 0) {
+      stop("set_variable_format: variable(s) not found in data: ",
+           paste(missing_vars, collapse = ", "), ".", call. = FALSE)
+    }
+  }
   if (is.null(location) != TRUE){
     data.set <- data
     nr <- nrow(data)

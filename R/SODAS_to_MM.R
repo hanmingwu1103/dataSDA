@@ -15,6 +15,8 @@
 #' @export
 
 SODAS_to_MM <- function(XMLPath){
+  .check_file_path(XMLPath, "SODAS_to_MM")
+  .check_file_exists(XMLPath, "SODAS_to_MM")
   data <- RSDA::SODAS.to.RSDA(XMLPath)
   df <- RSDA_to_MM(data, RSDA = T)
   return(df)

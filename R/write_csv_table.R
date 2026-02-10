@@ -21,6 +21,15 @@
 #' @export
 
 write_csv_table <- function(data, file, output = TRUE){
+  .check_data_frame(data, "write_csv_table")
+  .check_file_path(file, "write_csv_table")
+  .check_logical(output, "output", "write_csv_table")
+  if (output == TRUE) {
+    dir_path <- dirname(file)
+    if (nchar(dir_path) > 0 && dir_path != "." && !dir.exists(dir_path)) {
+      stop("write_csv_table: directory does not exist: '", dir_path, "'.", call. = FALSE)
+    }
+  }
   if (output == TRUE){
     utils::write.table(data, file, sep = ";", row.names = T, col.names = T)
   }

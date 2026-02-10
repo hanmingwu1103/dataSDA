@@ -30,7 +30,10 @@ options <- c("CM", "VM", "QM", "SE", "FV", "EJD", "GQ", "SPT")
 #' @importFrom stats var cov lm
 #' @export
 int_mean <- function(x, var_name, method = "CM", ...){
- 
+  .check_symbolic_tbl(x, "int_mean")
+  .check_var_name(var_name, x, "int_mean")
+  .check_interval_method(method, "int_mean")
+
   # x <- bird.int
   # var_name <- "Density"
   # var_name <- c("Density", "Size")
@@ -104,7 +107,10 @@ int_mean <- function(x, var_name, method = "CM", ...){
 #' @rdname interval_stats
 #' @export  
 int_var <- function(x, var_name, method = "CM", ...){
-  
+  .check_symbolic_tbl(x, "int_var")
+  .check_var_name(var_name, x, "int_var")
+  .check_interval_method(method, "int_var")
+
   # x <- bird.int
   # var_name <- "Density"
   # var_name <- c("Density", "Size")
@@ -194,7 +200,11 @@ int_var <- function(x, var_name, method = "CM", ...){
 #' @rdname interval_stats
 #' @export
 int_cov <- function(x, var_name1, var_name2, method = "CM", ...){
-  
+  .check_symbolic_tbl(x, "int_cov")
+  .check_var_name(var_name1, x, "int_cov")
+  .check_var_name(var_name2, x, "int_cov")
+  .check_interval_method(method, "int_cov")
+
   # x <- bird.int
   # var_name1 <- "Density"
   # var_name2 <- "Size"
@@ -336,7 +346,11 @@ int_cov <- function(x, var_name1, var_name2, method = "CM", ...){
 #' @rdname interval_stats
 #' @export
 int_cor <- function(x, var_name1, var_name2, method = "CM", ...){
-  
+  .check_symbolic_tbl(x, "int_cor")
+  .check_var_name(var_name1, x, "int_cor")
+  .check_var_name(var_name2, x, "int_cor")
+  .check_interval_method(method, "int_cor")
+
   # x <- mushroom.int
   # var_name1 <- "Pileus.Cap.Width"
   # var_name2 <- c("Stipe.Length", "Stipe.Thickness")

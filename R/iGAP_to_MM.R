@@ -15,6 +15,8 @@
 #' @export
 
 iGAP_to_MM <- function(data, location = NULL){
+  .check_data_frame(data, "iGAP_to_MM")
+  .check_location(location, ncol(data), "iGAP_to_MM")
   location <- sort(location)
   x <- 0
   for (i in location){

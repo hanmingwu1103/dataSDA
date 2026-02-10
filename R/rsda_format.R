@@ -20,11 +20,27 @@
 
 RSDA_format <- function(data, sym_type1 = NULL, location = NULL,
                         sym_type2 = NULL, var = NULL){
+  .check_data_frame(data, "RSDA_format")
+  if (!is.null(sym_type1) && !is.character(sym_type1)) {
+    stop("RSDA_format: 'sym_type1' must be a character vector.", call. = FALSE)
+  }
+  if (!is.null(location) && !is.numeric(location)) {
+    stop("RSDA_format: 'location' must be numeric.", call. = FALSE)
+  }
+  if (!is.null(sym_type2) && !is.character(sym_type2)) {
+    stop("RSDA_format: 'sym_type2' must be a character vector.", call. = FALSE)
+  }
+  if (!is.null(var) && !is.character(var)) {
+    stop("RSDA_format: 'var' must be a character vector.", call. = FALSE)
+  }
   nc <- ncol(data)
   nr <- nrow(data)
   data.rep <- rep(NA, nr)
   if (is.null(sym_type1) != TRUE && is.null(sym_type2) == TRUE){
-    if(length(sym_type1) != length(location)){return("Error")}
+    if(length(sym_type1) != length(location)){
+      stop("RSDA_format: length of 'sym_type1' (", length(sym_type1),
+           ") must equal length of 'location' (", length(location), ").", call. = FALSE)
+    }
     n <- length(location)
     lc <- c(location, nc)
     gap <- NULL
@@ -65,7 +81,10 @@ RSDA_format <- function(data, sym_type1 = NULL, location = NULL,
       return(x %in% var)
     }
     location_var <- which(apply(matrix(colnames(data), nrow = 1), 1, location_fun))
-    if(length(sym_type2) != length(location_var)){return("Error")}
+    if(length(sym_type2) != length(location_var)){
+      stop("RSDA_format: length of 'sym_type2' (", length(sym_type2),
+           ") must equal number of matched variables (", length(location_var), ").", call. = FALSE)
+    }
     n <- length(location_var)
     lc <- c(location_var, nc)
     gap <- NULL
@@ -106,8 +125,14 @@ RSDA_format <- function(data, sym_type1 = NULL, location = NULL,
       return(x %in% var)
     }
     location_var <- which(apply(matrix(colnames(data), nrow = 1), 1, location_fun))
-    if(length(sym_type1) != length(location)){return("Error")}
-    if(length(sym_type2) != length(location_var)){return("Error")}
+    if(length(sym_type1) != length(location)){
+      stop("RSDA_format: length of 'sym_type1' (", length(sym_type1),
+           ") must equal length of 'location' (", length(location), ").", call. = FALSE)
+    }
+    if(length(sym_type2) != length(location_var)){
+      stop("RSDA_format: length of 'sym_type2' (", length(sym_type2),
+           ") must equal number of matched variables (", length(location_var), ").", call. = FALSE)
+    }
     location_sort <- sort(c(location, location_var), index.return = TRUE)
     location_merge <- location_sort$x
     location_index <- location_sort$ix
