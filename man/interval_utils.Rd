@@ -2,7 +2,7 @@
 % Please edit documentation in R/interval_utils.R
 \name{interval_utils}
 \alias{interval_utils}
-\title{Utility Functions for Interval Data}
+\title{Internal Utility Functions for Interval Data}
 \description{
 Internal functions for interval data transformation.
   These are used by the exported interval statistics functions
@@ -10,6 +10,6 @@ Internal functions for interval data transformation.
   \code{\link{int_cor}}) and are not intended to be called directly.
 }
 \details{
-Utility Functions for Interval Data
+Internal Utility Functions for Interval Data
 }
 \keyword{internal}
