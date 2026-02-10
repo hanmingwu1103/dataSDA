@@ -1,3 +1,7 @@
+# dataSDA 0.1.6
+
+- Development version.
+
 # dataSDA 0.1.5
 
 ## New functions (31 exported)
