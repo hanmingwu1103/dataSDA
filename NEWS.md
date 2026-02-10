@@ -1,5 +1,7 @@
 # dataSDA 0.1.5
 
+- New `int_dist()` and `int_dist_all()`: compute 11 pairwise distance measures for interval-valued data (GD, IY, L1, L2, CB, HD, EHD, nEHD, snEHD, TD, WD).
+- Merged 6 interval conversion files (`RSDA_to_MM.R`, `iGAP_to_MM.R`, `SODAS_to_MM.R`, `MM_to_iGAP.R`, `RSDA_to_iGAP.R`, `SODAS_to_iGAP.R`) into a single `R/interval_format_conversions.R`, organized by target format.
 - Refactored complex functions to extract shared internal helpers, reducing ~454 lines of duplicated code.
 - New `R/utils_histogram.R`: 8 internal helpers for histogram statistics (`.MatH_mean`, `.MatH_sd`, `.hist_Gj`, `.hist_Qj`, `.hist_QQ`, `.hist_get_pvars`, `.hist_get_GQ`, `.hist_get_QQ_vals`).
 - New `R/utils_interval.R`: `.get_interval_transforms` unifying CM/VM/QM/SE/FV dispatch.
