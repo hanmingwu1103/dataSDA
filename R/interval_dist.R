@@ -1,235 +1,231 @@
-#' Interval Data Distance Measures
-#'
-#' @name int_dist
-#' @aliases int_dist
-#' @description Computes pairwise distance matrices for interval-valued symbolic data.
-#' @usage int_dist(x, dist = "snEHD", gamma = 0.5, q = 1)
-#' @param x An array of dimension \code{[n, p, 2]} where \code{x[,,1]} contains the lower
-#'   bounds (min) and \code{x[,,2]} contains the upper bounds (max) for \code{n} concepts
-#'   and \code{p} interval variables.
-#' @param dist Character string specifying the distance measure. One of:
-#'   \describe{
-#'     \item{"GD"}{Gowda-Diday distance (Gowda & Diday, 1991)}
-#'     \item{"IY"}{Ichino-Yaguchi distance (Ichino, 1988)}
-#'     \item{"L1"}{L1 (midpoint) distance}
-#'     \item{"L2"}{L2 (Euclidean midpoint) distance}
-#'     \item{"CB"}{City-Block distance (Souza & de Carvalho, 2004)}
-#'     \item{"HD"}{Hausdorff distance (Chavent & Lechevallier, 2002)}
-#'     \item{"EHD"}{Euclidean Hausdorff distance}
-#'     \item{"nEHD"}{Normalized Euclidean Hausdorff distance}
-#'     \item{"snEHD"}{Span Normalized Euclidean Hausdorff distance}
-#'     \item{"TD"}{Tran-Duckstein distance (Tran & Duckstein, 2002)}
-#'     \item{"WD"}{L2-Wasserstein distance (Verde & Irpino, 2008)}
-#'   }
-#' @param gamma Parameter for the Ichino-Yaguchi distance, \code{0 <= gamma <= 0.5}.
-#'   Default is 0.5.
-#' @param q Parameter for the Ichino-Yaguchi distance (Minkowski exponent).
-#'   Default is 1.
-#' @returns An object of class \code{"dist"} containing the pairwise distances.
+#' @name interval_distance
+#' @title Distance Measures for Interval Data
+#' @description Functions to compute various distance measures between interval-valued observations.
+#' @param x interval-valued data with symbolic_tbl class, or an array of dimension [n, p, 2]
+#' @param method distance method: "GD", "IY", "L1", "L2", "CB", "HD", "EHD", "nEHD", "snEHD", "TD", "WD", "euclidean", "hausdorff", "manhattan", "city_block", "minkowski", "wasserstein", "ichino", "de_carvalho"
+#' @param gamma parameter for the Ichino-Yaguchi distance, 0 <= gamma <= 0.5 (default: 0.5)
+#' @param q parameter for the Ichino-Yaguchi distance (Minkowski exponent) (default: 1)
+#' @param p power parameter for Minkowski distance (default: 2)
+#' @param var_name1 first variable name or column location
+#' @param var_name2 second variable name or column location
+#' @param ... additional parameters
+#' @return A distance matrix (class 'dist') or numeric vector
+#' @details
+#' Available distance methods:
+#' \itemize{
+#'   \item \code{GD}: Gowda-Diday distance (Gowda & Diday, 1991)
+#'   \item \code{IY}: Ichino-Yaguchi distance (Ichino, 1988)
+#'   \item \code{L1}: L1 (midpoint Manhattan) distance
+#'   \item \code{L2}: L2 (Euclidean midpoint) distance
+#'   \item \code{CB}: City-Block distance (Souza & de Carvalho, 2004)
+#'   \item \code{HD}: Hausdorff distance (Chavent & Lechevallier, 2002)
+#'   \item \code{EHD}: Euclidean Hausdorff distance
+#'   \item \code{nEHD}: Normalized Euclidean Hausdorff distance
+#'   \item \code{snEHD}: Span Normalized Euclidean Hausdorff distance
+#'   \item \code{TD}: Tran-Duckstein distance (Tran & Duckstein, 2002)
+#'   \item \code{WD}: L2-Wasserstein distance (Verde & Irpino, 2008)
+#'   \item \code{euclidean}: Euclidean distance on interval centers (same as L2)
+#'   \item \code{hausdorff}: Hausdorff distance (same as HD)
+#'   \item \code{manhattan}: Manhattan distance (same as L1)
+#'   \item \code{city_block}: City-block distance (same as CB)
+#'   \item \code{minkowski}: Minkowski distance with parameter p
+#'   \item \code{wasserstein}: Wasserstein distance (same as WD)
+#'   \item \code{ichino}: Ichino-Yaguchi distance (simplified version)
+#'   \item \code{de_carvalho}: De Carvalho distance
+#' }
 #' @references
-#' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-#'   symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
-#'
-#' Verde, R. & Irpino, A. (2008). A new interval data distance based on the
-#'   Wasserstein metric.
-#' @importFrom stats as.dist
+#' Gowda, K. C., & Diday, E. (1991). Symbolic clustering using a new dissimilarity measure. 
+#' \emph{Pattern Recognition}, 24(6), 567-578.
+#' 
+#' Ichino, M. (1988). General metrics for mixed features. 
+#' \emph{Systems and Computers in Japan}, 19(2), 37-50.
+#' 
+#' Chavent, M., & Lechevallier, Y. (2002). Dynamical clustering of interval data. 
+#' In \emph{Classification, Clustering and Data Analysis} (pp. 53-60). Springer.
+#' 
+#' Tran, L., & Duckstein, L. (2002). Comparison of fuzzy numbers using a fuzzy distance measure.
+#' \emph{Fuzzy Sets and Systems}, 130, 331-341.
+#' 
+#' Verde, R., & Irpino, A. (2008). A new interval data distance based on the Wasserstein metric.
+#' 
+#' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued symbolic data with 
+#' matrix visualization. \emph{CSDA}, 79, 14-29.
+#' @author Han-Ming Wu
+#' @seealso int_dist_matrix int_dist_all int_pairwise_dist
 #' @examples
-#' # Create example interval data: 4 concepts, 3 variables
+#' # Using symbolic_tbl format
+#' data(mushroom.int)
+#' d1 <- int_dist(mushroom.int[, 3:4], method = "euclidean")
+#' d2 <- int_dist(mushroom.int[, 3:4], method = "hausdorff")
+#' d3 <- int_dist(mushroom.int[, 3:4], method = "GD")
+#' 
+#' # Using array format: 4 concepts, 3 variables
 #' x <- array(NA, dim = c(4, 3, 2))
 #' x[,,1] <- matrix(c(1,2,3,4, 5,6,7,8, 9,10,11,12), nrow=4)
 #' x[,,2] <- matrix(c(3,5,6,7, 8,9,10,12, 13,15,16,18), nrow=4)
-#' d <- int_dist(x, dist = "snEHD")
-#' print(d)
+#' d4 <- int_dist(x, method = "snEHD")
+#' d5 <- int_dist(x, method = "IY", gamma = 0.3)
+#' @importFrom stats as.dist
 #' @export
-int_dist <- function(x, dist = "snEHD", gamma = 0.5, q = 1) {
-
-  # --- Input validation ---
-  if (is.null(x)) {
-    stop("int_dist: 'x' must not be NULL.", call. = FALSE)
+int_dist <- function(x, method = "euclidean", gamma = 0.5, q = 1, p = 2, ...) {
+  
+  # Check if x is symbolic_tbl or array
+  is_symbolic <- inherits(x, "symbolic_tbl")
+  
+  if (is_symbolic) {
+    .check_symbolic_tbl(x, "int_dist")
+    idata <- symbolic_tbl_to_idata(x)
+    x_array <- idata
+  } else {
+    if (is.null(x)) {
+      stop("int_dist: 'x' must not be NULL.", call. = FALSE)
+    }
+    if (!is.array(x) || length(dim(x)) != 3 || dim(x)[3] != 2) {
+      stop("int_dist: 'x' must be an array of dimension [n, p, 2] or a symbolic_tbl object.", 
+           call. = FALSE)
+    }
+    x_array <- x
   }
-  if (!is.array(x) || length(dim(x)) != 3 || dim(x)[3] != 2) {
-    stop("int_dist: 'x' must be an array of dimension [n, p, 2].", call. = FALSE)
+  
+  # Method aliases mapping
+  method_aliases <- c(
+    euclidean = "L2",
+    manhattan = "L1",
+    hausdorff = "HD",
+    city_block = "CB",
+    wasserstein = "WD"
+  )
+  
+  if (method %in% names(method_aliases)) {
+    method <- method_aliases[method]
   }
-
-  valid_dists <- c("GD", "IY", "L1", "L2", "CB", "HD", "EHD", "nEHD", "snEHD",
-                    "TD", "WD")
-  if (!is.character(dist) || length(dist) != 1 || !(dist %in% valid_dists)) {
-    stop("int_dist: 'dist' must be one of: ",
-         paste(valid_dists, collapse = ", "), ".", call. = FALSE)
-  }
-
-  n <- dim(x)[1]   # number of concepts
-  p <- dim(x)[2]   # number of interval variables
-
-  a <- x[, , 1, drop = FALSE]  # lower bounds [n, p]
-  b <- x[, , 2, drop = FALSE]  # upper bounds [n, p]
-  dim(a) <- c(n, p)
-  dim(b) <- c(n, p)
-
-  # Check that all lower bounds <= upper bounds
-  if (any(a > b, na.rm = TRUE)) {
-    stop("int_dist: all lower bounds x[,,1] must be <= upper bounds x[,,2].",
+  
+  # Validate method
+  valid_methods <- c("GD", "IY", "L1", "L2", "CB", "HD", "EHD", "nEHD", "snEHD",
+                     "TD", "WD", "minkowski", "ichino", "de_carvalho")
+  
+  if (!method %in% valid_methods) {
+    stop("int_dist: 'method' must be one of: ",
+         paste(c(valid_methods, names(method_aliases)), collapse = ", "), ".", 
          call. = FALSE)
   }
-
-  # Midpoints and radii (half-lengths)
-  mid <- (a + b) / 2   # n x p
-  rad <- (b - a) / 2   # n x p (half-range)
-  len <- b - a          # n x p (full range / length)
-
+  
+  n <- dim(x_array)[1]
+  p <- dim(x_array)[2]
+  
+  a <- x_array[, , 1, drop = FALSE]
+  b <- x_array[, , 2, drop = FALSE]
+  dim(a) <- c(n, p)
+  dim(b) <- c(n, p)
+  
+  if (any(a > b, na.rm = TRUE)) {
+    stop("int_dist: all lower bounds must be <= upper bounds.", call. = FALSE)
+  }
+  
+  mid <- (a + b) / 2
+  rad <- (b - a) / 2
+  len <- b - a
+  
   D <- matrix(0, nrow = n, ncol = n)
-
+  
   # =========================================================================
-  # 1. Gowda-Diday distance (GD)
+  # Compute distances based on method
   # =========================================================================
-  if (dist == "GD") {
-    # Global range for each variable (across all concepts)
+  
+  if (method == "GD") {
     global_max <- apply(b, 2, max, na.rm = TRUE)
     global_min <- apply(a, 2, min, na.rm = TRUE)
-    global_range <- global_max - global_min  # length p
-
+    global_range <- global_max - global_min
+    
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
         d_ij <- 0
         for (r in 1:p) {
-          # Component 1: position difference normalized by global range
-          denom1 <- global_range[r]
-          if (denom1 == 0) denom1 <- 1
-
-          # Component 2 & 3 denominator: range of the union of two intervals
+          denom1 <- ifelse(global_range[r] == 0, 1, global_range[r])
           denom23 <- max(b[i, r], b[j, r]) - min(a[i, r], a[j, r])
-          if (denom23 == 0) denom23 <- 1
-
-          len_i <- len[i, r]
-          len_j <- len[j, r]
-
-          # Ir = |max(a_i, a_j) - min(b_i, b_j)|
+          denom23 <- ifelse(denom23 == 0, 1, denom23)
+          
           Ir <- abs(max(a[i, r], a[j, r]) - min(b[i, r], b[j, r]))
-
+          
           comp1 <- abs(a[i, r] - a[j, r]) / denom1
-          comp2 <- abs(len_i - len_j) / denom23
-          comp3 <- (len_i + len_j - 2 * Ir) / denom23
-
+          comp2 <- abs(len[i, r] - len[j, r]) / denom23
+          comp3 <- (len[i, r] + len[j, r] - 2 * Ir) / denom23
+          
           d_ij <- d_ij + comp1 + comp2 + comp3
         }
-        D[i, j] <- d_ij
-        D[j, i] <- d_ij
+        D[i, j] <- D[j, i] <- d_ij
       }
     }
   }
-
-  # =========================================================================
-  # 2. Ichino-Yaguchi distance (IY)
-  # =========================================================================
-  else if (dist == "IY") {
+  
+  else if (method == "IY") {
     if (gamma < 0 || gamma > 0.5) {
       stop("int_dist: 'gamma' must be between 0 and 0.5.", call. = FALSE)
     }
-
+    
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
         d_ij <- 0
         for (r in 1:p) {
-          # |A union B| = length of convex hull
           union_len <- max(b[i, r], b[j, r]) - min(a[i, r], a[j, r])
-          # |A intersect B| = length of intersection (0 if disjoint)
           inter_len <- max(0, min(b[i, r], b[j, r]) - max(a[i, r], a[j, r]))
-
-          len_i <- len[i, r]
-          len_j <- len[j, r]
-
-          d_r <- (union_len - inter_len) +
-                 gamma * (2 * inter_len - len_i - len_j)
-
+          
+          d_r <- (union_len - inter_len) + gamma * (2 * inter_len - len[i, r] - len[j, r])
+          
           if (q == 1) {
             d_ij <- d_ij + d_r
           } else {
             d_ij <- d_ij + d_r^q
           }
         }
-
-        if (q == 1) {
-          D[i, j] <- d_ij
-        } else {
-          D[i, j] <- d_ij^(1 / q)
-        }
-        D[j, i] <- D[i, j]
+        
+        D[i, j] <- D[j, i] <- ifelse(q == 1, d_ij, d_ij^(1 / q))
       }
     }
   }
-
-  # =========================================================================
-  # 3. L1 distance (midpoint-based Manhattan)
-  # =========================================================================
-  else if (dist == "L1") {
+  
+  else if (method == "L1") {
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
-        d_ij <- sum(abs(mid[i, ] - mid[j, ]))
-        D[i, j] <- d_ij
-        D[j, i] <- d_ij
+        D[i, j] <- D[j, i] <- sum(abs(mid[i, ] - mid[j, ]))
       }
     }
   }
-
-  # =========================================================================
-  # 4. L2 distance (midpoint-based Euclidean)
-  # =========================================================================
-  else if (dist == "L2") {
+  
+  else if (method == "L2") {
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
-        d_ij <- sqrt(sum((mid[i, ] - mid[j, ])^2))
-        D[i, j] <- d_ij
-        D[j, i] <- d_ij
+        D[i, j] <- D[j, i] <- sqrt(sum((mid[i, ] - mid[j, ])^2))
       }
     }
   }
-
-  # =========================================================================
-  # 5. City-Block distance (CB)
-  # =========================================================================
-  else if (dist == "CB") {
+  
+  else if (method == "CB") {
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
-        d_ij <- sum(abs(a[i, ] - a[j, ]) + abs(b[i, ] - b[j, ]))
-        D[i, j] <- d_ij
-        D[j, i] <- d_ij
+        D[i, j] <- D[j, i] <- sum(abs(a[i, ] - a[j, ]) + abs(b[i, ] - b[j, ]))
       }
     }
   }
-
-  # =========================================================================
-  # 6. Hausdorff distance (HD)
-  # =========================================================================
-  else if (dist == "HD") {
+  
+  else if (method == "HD") {
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
-        d_ij <- sum(pmax(abs(a[i, ] - a[j, ]), abs(b[i, ] - b[j, ])))
-        D[i, j] <- d_ij
-        D[j, i] <- d_ij
+        D[i, j] <- D[j, i] <- sum(pmax(abs(a[i, ] - a[j, ]), abs(b[i, ] - b[j, ])))
       }
     }
   }
-
-  # =========================================================================
-  # 7. Euclidean Hausdorff distance (EHD)
-  # =========================================================================
-  else if (dist == "EHD") {
+  
+  else if (method == "EHD") {
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
         d_r <- pmax(abs(a[i, ] - a[j, ]), abs(b[i, ] - b[j, ]))
-        d_ij <- sqrt(sum(d_r^2))
-        D[i, j] <- d_ij
-        D[j, i] <- d_ij
+        D[i, j] <- D[j, i] <- sqrt(sum(d_r^2))
       }
     }
   }
-
-  # =========================================================================
-  # 8. Normalized Euclidean Hausdorff distance (nEHD)
-  # =========================================================================
-  else if (dist == "nEHD") {
-    # Compute normalization factor H_r for each variable
-    # H_r^2 = (1 / (2 * n^2)) * sum_i sum_j D(I_ir, I_jr)^2
+  
+  else if (method == "nEHD") {
     H2 <- numeric(p)
     for (r in 1:p) {
       ss <- 0
@@ -241,102 +237,139 @@ int_dist <- function(x, dist = "snEHD", gamma = 0.5, q = 1) {
       }
       H2[r] <- ss / (2 * n^2)
     }
-    # Replace zero H2 with 1 to avoid division by zero
     H2[H2 == 0] <- 1
-
+    
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
         d_r <- pmax(abs(a[i, ] - a[j, ]), abs(b[i, ] - b[j, ]))
-        d_ij <- sqrt(sum((d_r^2) / H2))
-        D[i, j] <- d_ij
-        D[j, i] <- d_ij
+        D[i, j] <- D[j, i] <- sqrt(sum((d_r^2) / H2))
       }
     }
   }
-
-  # =========================================================================
-  # 9. Span Normalized Euclidean Hausdorff distance (snEHD)
-  # =========================================================================
-  else if (dist == "snEHD") {
-    # |R_r| = max_c b_cr - min_c a_cr (span of variable r across all concepts)
+  
+  else if (method == "snEHD") {
     R_r <- apply(b, 2, max, na.rm = TRUE) - apply(a, 2, min, na.rm = TRUE)
-    R_r[R_r == 0] <- 1  # avoid division by zero
-
+    R_r[R_r == 0] <- 1
+    
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
         d_r <- pmax(abs(a[i, ] - a[j, ]), abs(b[i, ] - b[j, ]))
-        d_ij <- sqrt(sum((d_r / R_r)^2))
-        D[i, j] <- d_ij
-        D[j, i] <- d_ij
+        D[i, j] <- D[j, i] <- sqrt(sum((d_r / R_r)^2))
       }
     }
   }
-
-  # =========================================================================
-  # 10. Tran-Duckstein distance (TD)
-  #     Eq. (1) in Verde & Irpino (2008), extended to multivariate
-  #     dTD^2 = sum_j [ (midA_j - midB_j)^2 + (1/3)(radA_j^2 + radB_j^2) ]
-  # =========================================================================
-  else if (dist == "TD") {
+  
+  else if (method == "TD") {
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
         d2 <- sum((mid[i, ] - mid[j, ])^2 + (1 / 3) * (rad[i, ]^2 + rad[j, ]^2))
-        d_ij <- sqrt(d2)
-        D[i, j] <- d_ij
-        D[j, i] <- d_ij
+        D[i, j] <- D[j, i] <- sqrt(d2)
       }
     }
   }
-
-  # =========================================================================
-  # 11. L2-Wasserstein distance (WD)
-  #     Eq. (13) in Verde & Irpino (2008)
-  #     dW^2 = sum_j [ (midA_j - midB_j)^2 + (1/3)(radA_j - radB_j)^2 ]
-  # =========================================================================
-  else if (dist == "WD") {
+  
+  else if (method == "WD") {
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
         d2 <- sum((mid[i, ] - mid[j, ])^2 + (1 / 3) * (rad[i, ] - rad[j, ])^2)
-        d_ij <- sqrt(d2)
-        D[i, j] <- d_ij
-        D[j, i] <- d_ij
+        D[i, j] <- D[j, i] <- sqrt(d2)
       }
     }
   }
-
-  # --- Return as dist object ---
-  rownames(D) <- rownames(x)
-  colnames(D) <- rownames(x)
-  return(as.dist(D))
+  
+  else if (method == "minkowski") {
+    for (i in 1:(n - 1)) {
+      for (j in (i + 1):n) {
+        D[i, j] <- D[j, i] <- (sum(abs(mid[i, ] - mid[j, ])^p))^(1/p)
+      }
+    }
+  }
+  
+  else if (method == "ichino") {
+    for (i in 1:(n - 1)) {
+      for (j in (i + 1):n) {
+        d <- 0
+        for (r in 1:p) {
+          d <- d + (mid[i, r] - mid[j, r])^2 + (rad[i, r] - rad[j, r])^2 / 3
+        }
+        D[i, j] <- D[j, i] <- sqrt(d)
+      }
+    }
+  }
+  
+  else if (method == "de_carvalho") {
+    for (i in 1:(n - 1)) {
+      for (j in (i + 1):n) {
+        d_pos <- sum((mid[i, ] - mid[j, ])^2)
+        d_span <- sum((len[i, ] - len[j, ])^2)
+        D[i, j] <- D[j, i] <- sqrt(d_pos + d_span)
+      }
+    }
+  }
+  
+  # Set row/column names
+  if (is_symbolic) {
+    rownames(D) <- rownames(x)
+    colnames(D) <- rownames(x)
+  } else if (!is.null(rownames(x_array))) {
+    rownames(D) <- rownames(x_array)
+    colnames(D) <- rownames(x_array)
+  }
+  
+  dist_obj <- as.dist(D)
+  attr(dist_obj, "method") <- method
+  return(dist_obj)
 }
 
 
-#' Compute All 11 Distance Measures for Interval Data
-#'
-#' @name int_dist_all
-#' @aliases int_dist_all
-#' @description A convenience wrapper that computes all 11 distance measures
-#'   at once for interval-valued symbolic data.
-#' @usage int_dist_all(x, gamma = 0.5, q = 1)
-#' @param x An array of dimension \code{[n, p, 2]} of interval data.
-#'   See \code{\link{int_dist}} for details.
-#' @param gamma Parameter for the Ichino-Yaguchi distance.
-#'   Default is 0.5.
-#' @param q Minkowski exponent for the Ichino-Yaguchi distance.
-#'   Default is 1.
-#' @returns A named list of \code{"dist"} objects, one per distance measure.
-#' @seealso \code{\link{int_dist}}
-#' @examples
-#' x <- array(NA, dim = c(4, 3, 2))
-#' x[,,1] <- matrix(c(1,2,3,4, 5,6,7,8, 9,10,11,12), nrow=4)
-#' x[,,2] <- matrix(c(3,5,6,7, 8,9,10,12, 13,15,16,18), nrow=4)
-#' all_d <- int_dist_all(x)
-#' names(all_d)
+#' @rdname interval_distance
+#' @export
+int_dist_matrix <- function(x, method = "euclidean", gamma = 0.5, q = 1, p = 2, ...) {
+  dist_obj <- int_dist(x, method = method, gamma = gamma, q = q, p = p, ...)
+  as.matrix(dist_obj)
+}
+
+
+#' @rdname interval_distance
+#' @export
+int_pairwise_dist <- function(x, var_name1, var_name2, method = "euclidean", ...) {
+  .check_symbolic_tbl(x, "int_pairwise_dist")
+  .check_var_name(var_name1, x, "int_pairwise_dist")
+  .check_var_name(var_name2, x, "int_pairwise_dist")
+  
+  idata <- symbolic_tbl_to_idata(x)
+  n <- nrow(idata)
+  
+  data1 <- idata[, var_name1, , drop = FALSE]
+  data2 <- idata[, var_name2, , drop = FALSE]
+  
+  dist_vec <- numeric(n)
+  
+  for (i in 1:n) {
+    mini_array <- array(0, dim = c(2, ncol(data1), 2))
+    mini_array[1, , ] <- data1[i, , ]
+    mini_array[2, , ] <- data2[i, , ]
+    
+    d <- int_dist(mini_array, method = method, ...)
+    dist_vec[i] <- as.matrix(d)[1, 2]
+  }
+  
+  names(dist_vec) <- rownames(x)
+  return(dist_vec)
+}
+
+
+#' @rdname interval_distance
+#' @description \code{int_dist_all} computes all available distance measures at once.
 #' @export
 int_dist_all <- function(x, gamma = 0.5, q = 1) {
-  dists <- c("GD", "IY", "L1", "L2", "CB", "HD", "EHD", "nEHD", "snEHD",
-              "TD", "WD")
-  result <- lapply(dists, function(d) int_dist(x, dist = d, gamma = gamma, q = q))
-  names(result) <- dists
+  methods <- c("GD", "IY", "L1", "L2", "CB", "HD", "EHD", "nEHD", "snEHD",
+               "TD", "WD")
+  
+  result <- lapply(methods, function(m) {
+    int_dist(x, method = m, gamma = gamma, q = q)
+  })
+  
+  names(result) <- methods
   return(result)
 }
