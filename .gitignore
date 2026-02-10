@@ -6,3 +6,5 @@
 *.Rcheck/
 .claude/
 dataSDA/
+.Rd2pdf*/
+vignettes/*.csv

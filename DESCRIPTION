@@ -1,12 +1,13 @@
 Package: dataSDA
 Type: Package
 Title: Datasets and Basic Statistics for Symbolic Data Analysis
-Version: 0.1.4
+Version: 0.1.5
 Date: 2026-02-10
 Authors@R: c(
     person("Po-Wei", "Chen", email = "randy310162@gmail.com", role = "aut"),
+    person("Chun-houh", "Chen", role = "aut"),
     person("Han-Ming", "Wu", email = "wuhm@g.nccu.edu.tw", role = "cre"))
-Author: Po-Wei Chen [aut], Han-Ming Wu [cre]
+Author: Po-Wei Chen [aut], Chun-houh Chen [aut], Han-Ming Wu [cre]
 Maintainer: Han-Ming Wu <wuhm@g.nccu.edu.tw>
 Description: Collects a diverse range of symbolic data and offers a comprehensive set of functions that facilitate the conversion of traditional data into the symbolic data format.
 License: GPL (>= 2)
@@ -18,4 +19,4 @@ Suggests: testthat (>= 2.1.0), knitr, rmarkdown
 VignetteBuilder: knitr
 Imports: magrittr, tidyr, dplyr, RSDA, HistDAWass
 NeedsCompilation: no
-Packaged: 2025-06-07 14:24:53 UTC; user
+Packaged: 2026-02-10 12:30:00 UTC; user

@@ -17,7 +17,6 @@
 #'                             location = c(25, 31), sym_type2 = c("S", "I", "I"),
 #'                             var = c("Species", "Stipe.Length_min", "Stipe.Thickness_min"))
 #' @export
-
 RSDA_format <- function(data, sym_type1 = NULL, location = NULL,
                         sym_type2 = NULL, var = NULL){
   .check_data_frame(data, "RSDA_format")
@@ -35,46 +34,12 @@ RSDA_format <- function(data, sym_type1 = NULL, location = NULL,
   }
   nc <- ncol(data)
   nr <- nrow(data)
-  data.rep <- rep(NA, nr)
   if (is.null(sym_type1) != TRUE && is.null(sym_type2) == TRUE){
     if(length(sym_type1) != length(location)){
       stop("RSDA_format: length of 'sym_type1' (", length(sym_type1),
            ") must equal length of 'location' (", length(location), ").", call. = FALSE)
     }
-    n <- length(location)
-    lc <- c(location, nc)
-    gap <- NULL
-    for (i in 1:n) {
-      gap[i] <- lc[(i + 1)] - lc[i]
-      gap.data <- data[, lc[i]:(lc[i] + gap[i] - 1)]
-      rep.money <- rep(paste0("$", sym_type1[i]), nr)
-      data.rep <- cbind(data.rep, rep.money, gap.data)
-    }
-    if (location[n] == nc){
-      data.rep <- data.rep[, -c(1, length(data.rep))]
-    } else {
-      data.rep <- data.rep[, -1]
-      data.rep <- cbind(data.rep, data[, nc])
-    }
-    if (length(location) == 1){
-      if (location[1] != 1){
-        data.rep <- cbind(data[, 1:location[1] - 1], data.rep)
-      }
-    } else {
-      if (location[1] != 1){
-        if (location[1] == 2){
-          data.rep <- cbind(data[, 1], data.rep)
-          names(data.rep)[1] <- names(data)[1]
-        } else {
-          data.rep[, 1:location[1] - 1] <- data[, 1:location[1] - 1]
-        }
-      }
-    }
-    index <- lc[1:n] + c(1:n) - 1
-    var.name <- lc[1:n] + c(1:n)
-    names(data.rep)[index] <- c(paste0("$", sym_type1))
-    names(data.rep)[var.name] <- names(data)[location]
-    names(data.rep)[ncol(data.rep)] <- names(data)[nc]
+    data.rep <- .insert_sym_labels(data, location, sym_type1, nr, nc)
   }
   if (is.null(sym_type1) == TRUE && is.null(sym_type2) != TRUE){
     location_fun <- function(x){
@@ -85,40 +50,7 @@ RSDA_format <- function(data, sym_type1 = NULL, location = NULL,
       stop("RSDA_format: length of 'sym_type2' (", length(sym_type2),
            ") must equal number of matched variables (", length(location_var), ").", call. = FALSE)
     }
-    n <- length(location_var)
-    lc <- c(location_var, nc)
-    gap <- NULL
-    for (i in 1:n) {
-      gap[i] <- lc[(i + 1)] - lc[i]
-      gap.data <- data[, lc[i]:(lc[i] + gap[i] - 1)]
-      rep.money <- rep(paste0("$", sym_type2[i]), nr)
-      data.rep <- cbind(data.rep, rep.money, gap.data)
-    }
-    if (location_var[n] == nc){
-      data.rep <- data.rep[, -c(1, length(data.rep))]
-    } else {
-      data.rep <- data.rep[, -1]
-      data.rep <- cbind(data.rep, data[, nc])
-    }
-    if (length(location_var) == 1){
-      if (location_var[1] != 1){
-        data.rep <- cbind(data[, 1:location_var[1] - 1], data.rep)
-      }
-    } else {
-      if (location_var[1] != 1){
-        if (location_var[1] == 2){
-          data.rep <- cbind(data[, 1], data.rep)
-          names(data.rep)[1] <- names(data)[1]
-        } else {
-          data.rep[, 1:location_var[1] - 1] <- data[, 1:location_var[1] - 1]
-        }
-      }
-    }
-    index <- lc[1:n] + c(1:n) - 1
-    var.name <- lc[1:n] + c(1:n)
-    names(data.rep)[index] <- c(paste0("$", sym_type2))
-    names(data.rep)[var.name] <- names(data)[location_var]
-    names(data.rep)[ncol(data.rep)] <- names(data)[nc]
+    data.rep <- .insert_sym_labels(data, location_var, sym_type2, nr, nc)
   }
   if (is.null(sym_type1) != TRUE && is.null(sym_type2) != TRUE){
     location_fun <- function(x){
@@ -138,41 +70,48 @@ RSDA_format <- function(data, sym_type1 = NULL, location = NULL,
     location_index <- location_sort$ix
     sym_type_merge <- c(sym_type1, sym_type2)
     sym_type <- sym_type_merge[location_index]
-    n <- length(location_merge)
-    lc <- c(location_merge, nc)
-    gap <- NULL
-    for (i in 1:n) {
-      gap[i] <- lc[(i + 1)] - lc[i]
-      gap.data <- data[, lc[i]:(lc[i] + gap[i] - 1)]
-      rep.money <- rep(paste0("$", sym_type[i]), nr)
-      data.rep <- cbind(data.rep, rep.money, gap.data)
-    }
-    if (location_merge[n] == nc){
-      data.rep <- data.rep[, -c(1, length(data.rep))]
-    } else {
-      data.rep <- data.rep[, -1]
-      data.rep <- cbind(data.rep, data[, nc])
-    }
-    if (length(location_merge) == 1){
-      if (location_merge[1] != 1){
-        data.rep <- cbind(data[, 1:location_merge[1] - 1], data.rep)
-      }
-    } else {
-      if (location_merge[1] != 1){
-        if (location_merge[1] == 2){
-          data.rep <- cbind(data[, 1], data.rep)
-          names(data.rep)[1] <- names(data)[1]
-        } else {
-          data.rep[, 1:location_merge[1] - 1] <- data[, 1:location_merge[1] - 1]
-        }
-      }
-    }
-    index <- lc[1:n] + c(1:n) - 1
-    var.name <- lc[1:n] + c(1:n)
-    names(data.rep)[index] <- c(paste0("$", sym_type))
-    names(data.rep)[var.name] <- names(data)[location_merge]
-    names(data.rep)[ncol(data.rep)] <- names(data)[nc]
+    data.rep <- .insert_sym_labels(data, location_merge, sym_type, nr, nc)
   }
   return(data.rep)
 }
 
+
+# Internal helper: insert sym_type labels and rebuild data.rep
+.insert_sym_labels <- function(data, locations, sym_types, nr, nc) {
+  n <- length(locations)
+  lc <- c(locations, nc)
+  data.rep <- rep(NA, nr)
+  gap <- NULL
+  for (i in 1:n) {
+    gap[i] <- lc[(i + 1)] - lc[i]
+    gap.data <- data[, lc[i]:(lc[i] + gap[i] - 1)]
+    rep.money <- rep(paste0("$", sym_types[i]), nr)
+    data.rep <- cbind(data.rep, rep.money, gap.data)
+  }
+  if (locations[n] == nc){
+    data.rep <- data.rep[, -c(1, length(data.rep))]
+  } else {
+    data.rep <- data.rep[, -1]
+    data.rep <- cbind(data.rep, data[, nc])
+  }
+  if (length(locations) == 1){
+    if (locations[1] != 1){
+      data.rep <- cbind(data[, 1:locations[1] - 1], data.rep)
+    }
+  } else {
+    if (locations[1] != 1){
+      if (locations[1] == 2){
+        data.rep <- cbind(data[, 1], data.rep)
+        names(data.rep)[1] <- names(data)[1]
+      } else {
+        data.rep[, 1:locations[1] - 1] <- data[, 1:locations[1] - 1]
+      }
+    }
+  }
+  index <- lc[1:n] + c(1:n) - 1
+  var.name <- lc[1:n] + c(1:n)
+  names(data.rep)[index] <- c(paste0("$", sym_types))
+  names(data.rep)[var.name] <- names(data)[locations]
+  names(data.rep)[ncol(data.rep)] <- names(data)[nc]
+  data.rep
+}

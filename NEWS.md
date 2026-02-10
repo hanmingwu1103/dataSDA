@@ -1,3 +1,14 @@
+# dataSDA 0.1.5
+
+- Refactored complex functions to extract shared internal helpers, reducing ~454 lines of duplicated code.
+- New `R/utils_histogram.R`: 8 internal helpers for histogram statistics (`.MatH_mean`, `.MatH_sd`, `.hist_Gj`, `.hist_Qj`, `.hist_QQ`, `.hist_get_pvars`, `.hist_get_GQ`, `.hist_get_QQ_vals`).
+- New `R/utils_interval.R`: `.get_interval_transforms` unifying CM/VM/QM/SE/FV dispatch.
+- `rsda_format.R`: extracted `.insert_sym_labels` from 3 near-identical code blocks.
+- `set_variable_format.R`: extracted `.one_hot_at` from 2 duplicated blocks.
+- `RSDA_to_MM.R`: extracted `.process_chr_col` and `.process_int_cols` helpers.
+- No changes to exported function signatures or behavior.
+- All 399 tests pass, `R CMD check`: 0 errors.
+
 # dataSDA 0.1.4
 
 - Input validation for all 18 exported functions: every function now validates its inputs at entry, producing clear error messages instead of cryptic R internals errors.

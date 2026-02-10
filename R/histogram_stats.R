@@ -9,7 +9,7 @@
 #' @param ... additional parameters.
 #' @return A numeric value: the mean, variance, covariance, or correlation.
 #' @details ...
-#' @author Po-Wei Chen, Han-Ming Wu 
+#' @author Po-Wei Chen, Han-Ming Wu
 #' @seealso int_mean int_var int_cov int_cor
 #' @examples
 #' library(HistDAWass)
@@ -21,7 +21,7 @@ hist_mean <- function(x, var_name, method = "BG", ...){
   .check_hist_method(method, c("BG", "L2W"), "hist_mean")
   object <- x
   if(method == "BG"){
-    ans <- hist_mean_BG(object, var_name)  
+    ans <- hist_mean_BG(object, var_name)
   }
   if(method == "L2W"){
     ans <- hist_mean_w(object, var_name)
@@ -60,22 +60,8 @@ hist_mean_BG <- function(object, var){
 }
 
 hist_mean_w <- function(object, var){
-  MatH.mean <- function(object){
-    nr <- nrow(object@M)
-    nc <- ncol(object@M)
-    MAT <- matrix(NA, nr, nc,
-                  dimnames = list(rownames(object@M), colnames(object@M)))
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        if (length(object@M[i, j][[1]]@x) > 0) {
-          MAT[i, j] <- object@M[i, j][[1]]@m
-        }
-      }
-    }
-    return(mat = MAT)
-  }
   location_var <- which(colnames(object@M) == var)
-  Mean <- apply(MatH.mean(object), 2, mean)
+  Mean <- apply(.MatH_mean(object), 2, mean)
   mean.df <- t(data.frame(Mean))
   row.names(mean.df) <- 'mean'
   colnames(mean.df) <- colnames(object@M)
@@ -84,14 +70,14 @@ hist_mean_w <- function(object, var){
 }
 
 #' @rdname histogram_stats
-#' @export  
+#' @export
 hist_var <- function(x, var_name, method = "BG", ...){
   .check_MatH(x, "hist_var")
   .check_hist_var_name(var_name, x, "hist_var")
   .check_hist_method(method, c("BG", "L2W"), "hist_var")
   object <- x
   if(method == "BG"){
-    ans <- hist_var_BG(object, var_name)  
+    ans <- hist_var_BG(object, var_name)
   }
   if(method == "L2W"){
     ans <- hist_var_w(object, var_name)
@@ -105,7 +91,7 @@ hist_var_BG <- function(object, var){
   nc <- ncol(object@M)
   b1 <- c()
   b3 <- c()
-  
+
   for (i in 1:nr){
     for (j in 1:nc){
       p1 <- object@M[i, j][[1]]@p[2:length(object@M[i, j][[1]]@p)]
@@ -125,16 +111,16 @@ hist_var_BG <- function(object, var){
       b3 <- c(b3, b2)
     }
   }
-  
+
   B <- matrix(b1, nrow = nrow(object@M), byrow = T,
               dimnames = list(rownames(object@M), colnames(object@M)))
   C <- matrix(b3, nrow = nrow(object@M), byrow = T,
               dimnames = list(rownames(object@M), colnames(object@M)))
-  
+
   squarefun <- function(x){
     x <- sum(x)^2
   }
-  
+
   S2 <- apply(B, 2, sum)/(3 * nr) - apply(C, 2, squarefun)/(4 * nr^2)
   var.df <- t(data.frame(S2))
   row.names(var.df) <- 'variance'
@@ -148,26 +134,15 @@ Sd.Wass <- function(object, var){
   location_var <- which(colnames(object@M) == var)
   nr <- nrow(object@M)
   nc <- ncol(object@M)
-  MatH.sd <- function(object) {
-    MAT <- matrix(NA, nr, nc,
-                  dimnames = list(rownames(object@M), colnames(object@M)))
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        if (length(object@M[i, j][[1]]@x) > 0) {
-          MAT[i, j] <- object@M[i, j][[1]]@s
-        }
-      }
-    }
-    return(mat = MAT)
-  }
-  
+  sd_mat <- .MatH_sd(object)
+
   myfun <- function(x){
     sum(x^2)
   }
-  
-  Sigma <- apply(MatH.sd(object), 2, myfun)/(nr)^2
+
+  Sigma <- apply(sd_mat, 2, myfun)/(nr)^2
   R_list <- list()
-  
+
   for(k in 1:nc){
     Correlaiton_table <- matrix(0, nr, nr)
     Sigma_table <- matrix(0, nr, nr)
@@ -175,7 +150,7 @@ Sd.Wass <- function(object, var){
     for(i in 1:nr){
       for(j in 1:nr){
         Correlaiton_table[i, j] <- rQQ(object@M[i, k][[1]], object@M[j, k][[1]])
-        Sigma_table[i, j] <- MatH.sd(object)[i, k] * MatH.sd(object)[j, k]
+        Sigma_table[i, j] <- sd_mat[i, k] * sd_mat[j, k]
       }
     }
     R_table <- Correlaiton_table * Sigma_table
@@ -183,18 +158,18 @@ Sd.Wass <- function(object, var){
     assign(paste("R_table", k, sep = ""), R_table)
     R_list[[k]] <- R_table
   }
-  
+
   names(R_list) <- paste0("R_table", 1:nc)
-  
+
   upper_triangle <- function(mat) {
     n <- nrow(mat)
     mat[upper.tri(mat, diag = FALSE)]
   }
-  
+
   sum_upper_triangle <- function(mat) {
     sum(upper_triangle(mat))
   }
-  
+
   sums <- sapply(R_list, sum_upper_triangle)
   Sd <- t(data.frame(sqrt(sums*2/(nr^2) + Sigma)))
   colnames(Sd) <- colnames(object@M)
@@ -205,28 +180,15 @@ Sd.Wass <- function(object, var){
 
 SM2.Wass <- function(object, var){
   location_var <- which(colnames(object@M) == var)
-  MatH.mean <- function(object) {
-    nr <- nrow(object@M)
-    nc <- ncol(object@M)
-    MAT <- matrix(NA, nr, nc,
-                  dimnames = list(rownames(object@M), colnames(object@M)))
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        if (length(object@M[i, j][[1]]@x) > 0) {
-          MAT[i, j] <- object@M[i, j][[1]]@m
-        }
-      }
-    }
-    return(mat = MAT)
-  }
-  
-  Mean.MW <- apply(MatH.mean(object), 2, mean)
-  
+  mean_mat <- .MatH_mean(object)
+
+  Mean.MW <- apply(mean_mat, 2, mean)
+
   myfun <- function(x){
     sum(x^2)
   }
-  
-  SM2.W <- apply(MatH.mean(object), 2, myfun)/nrow(MatH.mean(object)) - Mean.MW ^ 2
+
+  SM2.W <- apply(mean_mat, 2, myfun)/nrow(mean_mat) - Mean.MW ^ 2
   SM2.W.df <- t(data.frame(SM2.W))
   colnames(SM2.W.df) <- colnames(object@M)
   rownames(SM2.W.df) <- 'variance'
@@ -239,26 +201,15 @@ SV2.Wass <- function(object, var){
   location_var <- which(colnames(object@M) == var)
   nr <- nrow(object@M)
   nc <- ncol(object@M)
-  MatH.sd <- function(object) {
-    MAT <- matrix(NA, nr, nc,
-                  dimnames = list(rownames(object@M), colnames(object@M)))
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        if (length(object@M[i, j][[1]]@x) > 0) {
-          MAT[i, j] <- object@M[i, j][[1]]@s
-        }
-      }
-    }
-    return(mat = MAT)
-  }
-  
+  sd_mat <- .MatH_sd(object)
+
   myfun <- function(x){
     sum(x^2)
   }
-  
-  H <- apply(MatH.sd(object), 2, myfun)/nr
+
+  H <- apply(sd_mat, 2, myfun)/nr
   R_list <- list()
-  
+
   for(k in 1:nc){
     Correlaiton_table <- matrix(0, nr, nr)
     Sigma_table <- matrix(0, nr, nr)
@@ -266,7 +217,7 @@ SV2.Wass <- function(object, var){
     for(i in 1:nr){
       for(j in 1:nr){
         Correlaiton_table[i, j] <- rQQ(object@M[i, k][[1]], object@M[j, k][[1]])
-        Sigma_table[i, j] <- MatH.sd(object)[i, k] * MatH.sd(object)[j, k]
+        Sigma_table[i, j] <- sd_mat[i, k] * sd_mat[j, k]
       }
     }
     R_table <- Correlaiton_table * Sigma_table
@@ -274,7 +225,7 @@ SV2.Wass <- function(object, var){
     assign(paste("R_table", k, sep = ""), R_table)
     R_list[[k]] <- R_table
   }
-  
+
   names(R_list) <- paste0("R_table", 1:nc)
   sums <- sapply(R_list, sum)
   SV2 <- t(data.frame(H - sums/(nr^2)))
@@ -292,7 +243,7 @@ hist_var_w <- function(object, var){
 
 
 #' @rdname histogram_stats
-#' @export  
+#' @export
 hist_cov <- function(x, var_name1, var_name2, method = "BG"){
   .check_MatH(x, "hist_cov")
   .check_hist_var_name(var_name1, x, "hist_cov")
@@ -305,127 +256,50 @@ hist_cov <- function(x, var_name1, var_name2, method = "BG"){
   location_var2 <- which(colnames(object@M) == var2)
   nr <- nrow(object@M)
   nc <- ncol(object@M)
-  MatH.mean <- function(object) {
-    MAT <- matrix(NA, nr, nc)
-    rownames(MAT) <- rownames(object@M)
-    colnames(MAT) <- colnames(object@M)
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        if (length(object@M[i, j][[1]]@x) > 0) {
-          MAT[i, j] <- object@M[i, j][[1]]@m
-        }
-      }
-    }
-    return(mat = MAT)
-  }
-  
-  MatH.sd <- function(object) {
-    MAT <- matrix(NA, nr, nc,
-                  dimnames = list(rownames(object@M), colnames(object@M)))
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        if (length(object@M[i, j][[1]]@x) > 0) {
-          MAT[i, j] <- object@M[i, j][[1]]@s
-        }
-      }
-    }
-    return(mat = MAT)
-  }
-  
-  Gj <- function(a, b, p, hmean){
-    if (sum((a + b) * p) / 2 <= hmean){
-      return(-1)
-    } else {
-      return(1)
-    }
-  }
-  
-  Qj <- function(a, b, hmean){
-    return((a - hmean)^2 + (a - hmean) * (b - hmean) + (b - hmean)^2)
-  }
-  
-  QQ <- function(a, b, hmean1, hmean2){
-    return(outer((a - hmean1), (b - hmean2)))
-  }
-  
-  get_pvars <- function(i){
-    object1 <- object@M[i, location_var1][[1]]
-    object2 <- object@M[i, location_var2][[1]]
-    p1 <- object1@p[2:length(object1@p)]
-    p2 <- object1@p[1:(length(object1@p) - 1)]
-    p3 <- object2@p[2:length(object2@p)]
-    p4 <- object2@p[1:(length(object2@p) - 1)]
-    pvar1 <- p1 - p2
-    pvar2 <- p3 - p4
-    return(list(pvar1 = pvar1, pvar2 = pvar2))
-  }
-  
-  get_GQ <- function(i){
-    object1 <- object@M[i, location_var1][[1]]
-    object2 <- object@M[i, location_var2][[1]]
-    lenx1 <- length(object1@x)
-    lenx2 <- length(object2@x)
-    p <- get_pvars(i)
-    Q1 <- Qj(object1@x[1:(lenx1 - 1)], object1@x[2:lenx1], hist_mean_BG(object, var1))
-    Q2 <- Qj(object2@x[1:(lenx2 - 1)], object2@x[2:lenx2], hist_mean_BG(object, var2))
-    G1 <- Gj(object1@x[1:(lenx1 - 1)], object1@x[2:lenx1], p$pvar1, hist_mean_BG(object, var1))
-    G2 <- Gj(object2@x[1:(lenx2 - 1)], object2@x[2:lenx2], p$pvar2, hist_mean_BG(object, var2))
-    return(list(Q1 = Q1, Q2 = Q2, G1 = G1, G2 = G2))
-  }
-  
-  get_QQ <- function(i){
-    object1 <- object@M[i, location_var1][[1]]
-    object2 <- object@M[i, location_var2][[1]]
-    lenx1 <- length(object1@x)
-    lenx2 <- length(object2@x)
-    Q1 <- QQ(object1@x[2:lenx1], object2@x[2:lenx2],
-             hist_mean_BG(object, var1), hist_mean_BG(object, var2))
-    Q2 <- QQ(object1@x[2:lenx1], object2@x[1:(lenx2 - 1)],
-             hist_mean_BG(object, var1), hist_mean_BG(object, var2))
-    Q3 <- QQ(object1@x[1:(lenx1 - 1)], object2@x[2:lenx2],
-             hist_mean_BG(object, var1), hist_mean_BG(object, var2))
-    Q4 <- QQ(object1@x[1:(lenx1 - 1)], object2@x[1:(lenx2 - 1)],
-             hist_mean_BG(object, var1), hist_mean_BG(object, var2))
-    return(list(Q1 = Q1, Q2 = Q2, Q3 = Q3, Q4 = Q4))
-  }
-  
+  mean_mat <- .MatH_mean(object)
+  sd_mat <- .MatH_sd(object)
+
   if (method == 'BG'){
-    result <- sum(MatH.mean(object)[, location_var1] *
-                    MatH.mean(object)[, location_var2])/nrow(object@M) -
+    result <- sum(mean_mat[, location_var1] *
+                    mean_mat[, location_var2])/nrow(object@M) -
       hist_mean_BG(object, var1) * hist_mean_BG(object, var2)
     return(result)
   } else if (method == 'BD'){
     ss <- 0
     for (i in 1:nr){
-      ss <- ss + sum(get_GQ(i)$G1 * get_GQ(i)$G2 *
-                       outer(get_pvars(i)$pvar1, get_pvars(i)$pvar2) *
-                       outer(get_GQ(i)$Q1, get_GQ(i)$Q2)^0.5)
+      gq <- .hist_get_GQ(object, i, location_var1, location_var2, var1, var2)
+      pv <- .hist_get_pvars(object, i, location_var1, location_var2)
+      ss <- ss + sum(gq$G1 * gq$G2 *
+                       outer(pv$pvar1, pv$pvar2) *
+                       outer(gq$Q1, gq$Q2)^0.5)
     }
     return(ss / (3 * nrow(object@M)))
   } else if (method == 'B'){
     ss <- 0
     for (i in 1:nr){
-      ss <- ss + sum((2 * get_QQ(i)$Q1 + get_QQ(i)$Q2 + get_QQ(i)$Q3 + 2 * get_QQ(i)$Q4) *
-                       outer(get_pvars(i)$pvar1, get_pvars(i)$pvar2))
+      qq <- .hist_get_QQ_vals(object, i, location_var1, location_var2, var1, var2)
+      pv <- .hist_get_pvars(object, i, location_var1, location_var2)
+      ss <- ss + sum((2 * qq$Q1 + qq$Q2 + qq$Q3 + 2 * qq$Q4) *
+                       outer(pv$pvar1, pv$pvar2))
     }
     return(ss / (6 * nrow(object@M)))
   } else if (method == 'L2W'){
-    CM <- sum(MatH.mean(object)[, location_var1] *
-                MatH.mean(object)[, location_var2])/nrow(object@M) -
+    CM <- sum(mean_mat[, location_var1] *
+                mean_mat[, location_var2])/nrow(object@M) -
       hist_mean_w(object, var1) * hist_mean_w(object, var2)
-    
+
     s1 <- 0
     s2 <- 0
     for (i in 1:nr){
       s1 <- s1 + sum(rQQ(object@M[i, location_var1][[1]], object@M[i, location_var2][[1]]) *
-                       MatH.sd(object)[i, location_var1] *
-                       MatH.sd(object)[i, location_var2]) / nrow(object@M)
+                       sd_mat[i, location_var1] *
+                       sd_mat[i, location_var2]) / nrow(object@M)
     }
     for (i in 1:nr){
       for (j in 1:nr){
         s2 <- s2 + sum(rQQ(object@M[i, location_var1][[1]], object@M[j, location_var2][[1]]) *
-                         MatH.sd(object)[i, location_var1] *
-                         MatH.sd(object)[j, location_var2]) / nrow(object@M)^2
+                         sd_mat[i, location_var1] *
+                         sd_mat[j, location_var2]) / nrow(object@M)^2
       }
     }
     CV <- s1 - s2
@@ -436,7 +310,7 @@ hist_cov <- function(x, var_name1, var_name2, method = "BG"){
 
 
 #' @rdname histogram_stats
-#' @export  
+#' @export
 hist_cor <- function(x, var_name1, var_name2, method = "BG"){
   .check_MatH(x, "hist_cor")
   .check_hist_var_name(var_name1, x, "hist_cor")
@@ -459,48 +333,14 @@ hist_cor <- function(x, var_name1, var_name2, method = "BG"){
 Cov_BD <- function(object, var1, var2){
   location_var1 <- which(colnames(object@M) == var1)
   location_var2 <- which(colnames(object@M) == var2)
-  
-  Gj <- function(a, b, p, hmean){
-    if (sum((a + b) * p) / 2 <= hmean){
-      return(-1)
-    } else {
-      return(1)
-    }
-  }
-  
-  Qj <- function(a, b, hmean){
-    return((a - hmean)^2 + (a - hmean) * (b - hmean) + (b - hmean)^2)
-  }
-  
-  get_pvars <- function(i){
-    object1 <- object@M[i, location_var1][[1]]
-    object2 <- object@M[i, location_var2][[1]]
-    p1 <- object1@p[2:length(object1@p)]
-    p2 <- object1@p[1:(length(object1@p) - 1)]
-    p3 <- object2@p[2:length(object2@p)]
-    p4 <- object2@p[1:(length(object2@p) - 1)]
-    pvar1 <- p1 - p2
-    pvar2 <- p3 - p4
-    return(list(pvar1 = pvar1, pvar2 = pvar2))
-  }
-  
-  get_GQ <- function(i){
-    object1 <- object@M[i, location_var1][[1]]
-    object2 <- object@M[i, location_var2][[1]]
-    lenx1 <- length(object1@x)
-    lenx2 <- length(object2@x)
-    p <- get_pvars(i)
-    Q1 <- Qj(object1@x[1:(lenx1 - 1)], object1@x[2:lenx1], hist_mean_BG(object, var1))
-    Q2 <- Qj(object2@x[1:(lenx2 - 1)], object2@x[2:lenx2], hist_mean_BG(object, var2))
-    G1 <- Gj(object1@x[1:(lenx1 - 1)], object1@x[2:lenx1], p$pvar1, hist_mean_BG(object, var1))
-    G2 <- Gj(object2@x[1:(lenx2 - 1)], object2@x[2:lenx2], p$pvar2, hist_mean_BG(object, var2))
-    return(list(Q1 = Q1, Q2 = Q2, G1 = G1, G2 = G2))
-  }
+
   ss <- 0
   for (i in 1:nrow(object@M)){
-    ss <- ss + sum(get_GQ(i)$G1 * get_GQ(i)$G2 *
-                     outer(get_pvars(i)$pvar1, get_pvars(i)$pvar2) *
-                     outer(get_GQ(i)$Q1, get_GQ(i)$Q2)^0.5)
+    gq <- .hist_get_GQ(object, i, location_var1, location_var2, var1, var2)
+    pv <- .hist_get_pvars(object, i, location_var1, location_var2)
+    ss <- ss + sum(gq$G1 * gq$G2 *
+                     outer(pv$pvar1, pv$pvar2) *
+                     outer(gq$Q1, gq$Q2)^0.5)
   }
   return(ss / (3 * nrow(object@M)))
 }
@@ -509,43 +349,13 @@ Cov_BD <- function(object, var1, var2){
 Cov_B <- function(object, var1, var2){
   location_var1 <- which(colnames(object@M) == var1)
   location_var2 <- which(colnames(object@M) == var2)
-  
-  QQ <- function(a, b, hmean1, hmean2){
-    return(outer((a - hmean1), (b - hmean2)))
-  }
-  
-  get_pvars <- function(i){
-    object1 <- object@M[i, location_var1][[1]]
-    object2 <- object@M[i, location_var2][[1]]
-    p1 <- object1@p[2:length(object1@p)]
-    p2 <- object1@p[1:(length(object1@p) - 1)]
-    p3 <- object2@p[2:length(object2@p)]
-    p4 <- object2@p[1:(length(object2@p) - 1)]
-    pvar1 <- p1 - p2
-    pvar2 <- p3 - p4
-    return(list(pvar1 = pvar1, pvar2 = pvar2))
-  }
-  
-  get_QQ <- function(i){
-    object1 <- object@M[i, location_var1][[1]]
-    object2 <- object@M[i, location_var2][[1]]
-    lenx1 <- length(object1@x)
-    lenx2 <- length(object2@x)
-    Q1 <- QQ(object1@x[2:lenx1], object2@x[2:lenx2],
-             hist_mean_BG(object, var1), hist_mean_BG(object, var2))
-    Q2 <- QQ(object1@x[2:lenx1], object2@x[1:(lenx2 - 1)],
-             hist_mean_BG(object, var1), hist_mean_BG(object, var2))
-    Q3 <- QQ(object1@x[1:(lenx1 - 1)], object2@x[2:lenx2],
-             hist_mean_BG(object, var1), hist_mean_BG(object, var2))
-    Q4 <- QQ(object1@x[1:(lenx1 - 1)], object2@x[1:(lenx2 - 1)],
-             hist_mean_BG(object, var1), hist_mean_BG(object, var2))
-    return(list(Q1 = Q1, Q2 = Q2, Q3 = Q3, Q4 = Q4))
-  }
-  
+
   ss <- 0
   for (i in 1:nrow(object@M)){
-    ss <- ss + sum((2 * get_QQ(i)$Q1 + get_QQ(i)$Q2 + get_QQ(i)$Q3 + 2 * get_QQ(i)$Q4) *
-                     outer(get_pvars(i)$pvar1, get_pvars(i)$pvar2))
+    qq <- .hist_get_QQ_vals(object, i, location_var1, location_var2, var1, var2)
+    pv <- .hist_get_pvars(object, i, location_var1, location_var2)
+    ss <- ss + sum((2 * qq$Q1 + qq$Q2 + qq$Q3 + 2 * qq$Q4) *
+                     outer(pv$pvar1, pv$pvar2))
   }
   return(ss / (6 * nrow(object@M)))
 }
@@ -555,27 +365,12 @@ Cov_B <- function(object, var1, var2){
 CM_W <- function(object, var1, var2){
   location_var1 <- which(colnames(object@M) == var1)
   location_var2 <- which(colnames(object@M) == var2)
-  MatH.mean <- function(object) {
-    r <- nrow(object@M)
-    c <- ncol(object@M)
-    MAT <- matrix(NA, nrow(object@M), ncol(object@M))
-    rownames(MAT) <- rownames(object@M)
-    colnames(MAT) <- colnames(object@M)
-    for (i in 1:r) {
-      for (j in 1:c) {
-        if (length(object@M[i, j][[1]]@x) > 0) {
-          MAT[i, j] <- object@M[i, j][[1]]@m
-        }
-      }
-    }
-    return(mat = MAT)
-  }
-  
-  result <- sum(MatH.mean(object)[, location_var1] *
-                  MatH.mean(object)[, location_var2])/nrow(object@M) -
+  mean_mat <- .MatH_mean(object)
+
+  result <- sum(mean_mat[, location_var1] *
+                  mean_mat[, location_var2])/nrow(object@M) -
     hist_mean_w(object, var1) * hist_mean_w(object, var2)
   return(result)
-  
 }
 
 
@@ -583,31 +378,20 @@ CV_M <- function(object, var1, var2){
   location_var1 <- which(colnames(object@M) == var1)
   location_var2 <- which(colnames(object@M) == var2)
   nr <- nrow(object@M)
-  nc <- ncol(object@M)
-  MatH.sd <- function(object) {
-    MAT <- matrix(NA, nr, nc,
-                  dimnames = list(rownames(object@M), colnames(object@M)))
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        if (length(object@M[i, j][[1]]@x) > 0) {
-          MAT[i, j] <- object@M[i, j][[1]]@s
-        }
-      }
-    }
-    return(mat = MAT)
-  }
+  sd_mat <- .MatH_sd(object)
+
   s1 <- 0
   s2 <- 0
   for (i in 1:nrow(object@M)){
     s1 <- s1 + sum(rQQ(object@M[i, location_var1][[1]], object@M[i, location_var2][[1]]) *
-                     MatH.sd(object)[i, location_var1] *
-                     MatH.sd(object)[i, location_var2]) / nrow(object@M)
+                     sd_mat[i, location_var1] *
+                     sd_mat[i, location_var2]) / nrow(object@M)
   }
   for (i in 1:nrow(object@M)){
     for (j in 1:nrow(object@M)){
       s2 <- s2 + sum(rQQ(object@M[i, location_var1][[1]], object@M[j, location_var2][[1]]) *
-                       MatH.sd(object)[i, location_var1] *
-                       MatH.sd(object)[j, location_var2]) / nrow(object@M)^2
+                       sd_mat[i, location_var1] *
+                       sd_mat[j, location_var2]) / nrow(object@M)^2
     }
   }
   result <- s1 - s2
@@ -627,55 +411,28 @@ Cov_W <- function(object, var1, var2){
   location_var1 <- which(colnames(object@M) == var1)
   location_var2 <- which(colnames(object@M) == var2)
   nr <- nrow(object@M)
-  nc <- ncol(object@M)
-  MatH.mean <- function(object) {
-    MAT <- matrix(NA, nr, nc)
-    rownames(MAT) <- rownames(object@M)
-    colnames(MAT) <- colnames(object@M)
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        if (length(object@M[i, j][[1]]@x) > 0) {
-          MAT[i, j] <- object@M[i, j][[1]]@m
-        }
-      }
-    }
-    return(mat = MAT)
-  }
-  
-  MatH.sd <- function(object) {
-    MAT <- matrix(NA, nr, nc,
-                  dimnames = list(rownames(object@M), colnames(object@M)))
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        if (length(object@M[i, j][[1]]@x) > 0) {
-          MAT[i, j] <- object@M[i, j][[1]]@s
-        }
-      }
-    }
-    return(mat = MAT)
-  }
-  
-  CM <- sum(MatH.mean(object)[, location_var1] *
-              MatH.mean(object)[, location_var2])/nrow(object@M) -
+  mean_mat <- .MatH_mean(object)
+  sd_mat <- .MatH_sd(object)
+
+  CM <- sum(mean_mat[, location_var1] *
+              mean_mat[, location_var2])/nrow(object@M) -
     hist_mean_w(object, var1) * hist_mean_w(object, var2)
-  
+
   s1 <- 0
   s2 <- 0
   for (i in 1:nr){
     s1 <- s1 + sum(rQQ(object@M[i, location_var1][[1]], object@M[i, location_var2][[1]]) *
-                     MatH.sd(object)[i, location_var1] *
-                     MatH.sd(object)[i, location_var2]) / nrow(object@M)
+                     sd_mat[i, location_var1] *
+                     sd_mat[i, location_var2]) / nrow(object@M)
   }
   for (i in 1:nr){
     for (j in 1:nr){
       s2 <- s2 + sum(rQQ(object@M[i, location_var1][[1]], object@M[j, location_var2][[1]]) *
-                       MatH.sd(object)[i, location_var1] *
-                       MatH.sd(object)[j, location_var2]) / nrow(object@M)^2
+                       sd_mat[i, location_var1] *
+                       sd_mat[j, location_var2]) / nrow(object@M)^2
     }
   }
   CV <- s1 - s2
   result <- CM + CV
   return(result)
 }
-
-

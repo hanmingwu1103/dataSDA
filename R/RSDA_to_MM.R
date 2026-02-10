@@ -11,7 +11,6 @@
 #' data(mushroom.int)
 #' RSDA_to_MM(mushroom.int, RSDA = FALSE)
 #' @export
-
 RSDA_to_MM <- function(data, RSDA = TRUE){
   if (is.null(data)) {
     stop("RSDA_to_MM: 'data' must not be NULL.", call. = FALSE)
@@ -38,7 +37,6 @@ RSDA_to_MM <- function(data, RSDA = TRUE){
   }
   num <- num_chr + 2 * num_int
   df <- as.data.frame(matrix(nrow = nrow(data), ncol = num))
-  df1 <- as.data.frame(matrix(nrow = nrow(data), ncol = 1))
   gsubfun <- function(x){
     x <- gsub("[{.*}]", "", x)
   }
@@ -46,61 +44,30 @@ RSDA_to_MM <- function(data, RSDA = TRUE){
     if (length(chr) != 0){
       for (i in 1:length(chr)){
         if (index[i] == 1){
-          df[index[i]] <- data.frame(data[index[i]])
-          A <- lapply(format(df[index[i]])[[1]], gsubfun)
-          for (k in 1:nrow(df1)){
-            df1[k, 1] <- A[[k]]
-          }
-          df[index[i]] <- df1
+          df[index[i]] <- .process_chr_col(data, index[i], gsubfun, nrow(data), TRUE)
           names(df)[index[i]] <- colnames(data)[index[i]]
         } else{
           j <- 2 * (index[i] - index[i - 1])
-          df[j] <- data.frame(data[index[i]])
-          A <- lapply(format(df[j])[[1]], gsubfun)
-          for (k in 1:nrow(df1)){
-            df1[k, 1] <- A[[k]]
-          }
-          df[j] <- df1
+          df[j] <- .process_chr_col(data, index[i], gsubfun, nrow(data), TRUE)
           names(df)[j] <- colnames(data)[index[i]]
         }
       }
-      x <- 0
-      for (i in 1:length(int)){
-        df[index[length(chr) + i] + x] <- data.frame(data[[index[length(chr) + i]]])[1]
-        df[index[length(chr) + i] + x + 1] <- data.frame(data[[index[length(chr) + i]]])[2]
-        names(df)[index[length(chr) + i] + x] <- paste(names(data[index[length(chr) + i]]), '_min', sep = '')
-        names(df)[index[length(chr) + i] + x + 1] <- paste(names(data[index[length(chr) + i]]), '_max', sep = '')
-        x <- x + 1
-      }
+      df <- .process_int_cols(data, df, int, length(chr), index, FALSE)
     } else{
-      x <- 0
-      for (i in 1:length(int)){
-        df[index[i] + x] <- data.frame(data[[index[i]]])[1]
-        df[index[i] + x + 1] <- data.frame(data[[index[i]]])[2]
-        names(df)[index[i] + x] <- paste(names(data[index[i]]), '_min', sep = '')
-        names(df)[index[i] + x + 1] <- paste(names(data[index[i]]), '_max', sep = '')
-        x <- x + 1
-      }
+      df <- .process_int_cols(data, df, int, 0, index, FALSE)
     }
   } else{
     for (i in 1:length(chr)){
       if (index[i] == 1){
-        df[index[i]] <- data.frame(data[index[i]])
+        df[index[i]] <- .process_chr_col(data, index[i], gsubfun, nrow(data), FALSE)
         names(df)[index[i]] <- colnames(data)[index[i]]
       } else{
         j <- 2 * (index[i] - index[i - 1])
-        df[j] <- data.frame(data[index[i]])
+        df[j] <- .process_chr_col(data, index[i], gsubfun, nrow(data), FALSE)
         names(df)[j] <- colnames(data)[index[i]]
       }
     }
-    x <- 0
-    for (i in 1:length(int)){
-      df[index[length(chr) + i] + x] <- lapply(data.frame(data[[index[length(chr) + i]]]), Re)
-      df[index[length(chr) + i] + x + 1] <- lapply(data.frame(data[[index[length(chr) + i]]]), Im)
-      names(df)[index[length(chr) + i] + x] <- paste(names(data[index[length(chr) + i]]), '_min', sep = '')
-      names(df)[index[length(chr) + i] + x + 1] <- paste(names(data[index[length(chr) + i]]), '_max', sep = '')
-      x <- x + 1
-    }
+    df <- .process_int_cols(data, df, int, length(chr), index, TRUE)
     for (i in 1:length(df)){
       if (sapply(df, class)[i] != 'character'){
         attributes(df[[i]])$class <- 'numeric'
@@ -108,4 +75,39 @@ RSDA_to_MM <- function(data, RSDA = TRUE){
     }
   }
   return(df)
+}
+
+
+# Internal helper: process a character column (strip {.*} formatting)
+.process_chr_col <- function(data, col_idx, gsubfun, nrow_data, use_format) {
+  if (use_format) {
+    col_data <- data.frame(data[col_idx])
+    A <- lapply(format(col_data)[[1]], gsubfun)
+    df1 <- as.data.frame(matrix(nrow = nrow_data, ncol = 1))
+    for (k in 1:nrow_data){
+      df1[k, 1] <- A[[k]]
+    }
+    df1[[1]]
+  } else {
+    data.frame(data[col_idx])[[1]]
+  }
+}
+
+# Internal helper: process interval columns into min/max pairs
+.process_int_cols <- function(data, df, int_indices, chr_len, index, use_Re_Im) {
+  x <- 0
+  for (i in 1:length(int_indices)) {
+    col_pos <- index[chr_len + i]
+    if (use_Re_Im) {
+      df[col_pos + x] <- lapply(data.frame(data[[col_pos]]), Re)
+      df[col_pos + x + 1] <- lapply(data.frame(data[[col_pos]]), Im)
+    } else {
+      df[col_pos + x] <- data.frame(data[[col_pos]])[1]
+      df[col_pos + x + 1] <- data.frame(data[[col_pos]])[2]
+    }
+    names(df)[col_pos + x] <- paste(names(data[col_pos]), '_min', sep = '')
+    names(df)[col_pos + x + 1] <- paste(names(data[col_pos]), '_max', sep = '')
+    x <- x + 1
+  }
+  df
 }

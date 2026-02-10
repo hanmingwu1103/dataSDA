@@ -38,8 +38,8 @@ $$\\[0.5in]$$
 
 The primary aim of `dataSDA` package is to gather various symbolic data tailored to different research themes, and to execute the reading, writing, and conversion of symbolic data in diverse formats, as well as compute the descriptive statistics of symbolic variables. The \pkg{dataSDA} package is currently available on the Comprehensive R Archive Network (CRAN) at https://CRAN.R-project.org/package=dataSDA and https://hmwu.idv.tw/dataSDA/.
 
-**Current version**  (build on June 7, 2025): 
-[dataSDA_0.1.2.zip](https://hmwu.idv.tw/dataSDA/dataSDA_0.1.2.zip)
+**Current version**  (build on February 10, 2026):
+[dataSDA_0.1.5.zip](https://hmwu.idv.tw/dataSDA/dataSDA_0.1.5.zip)
 $$\\[0.5in]$$
 
 # Symbolic data formats conversion
