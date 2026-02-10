@@ -5,7 +5,7 @@ Version: 0.1.5
 Date: 2026-02-10
 Authors@R: c(
     person("Po-Wei", "Chen", email = "randy310162@gmail.com", role = "aut"),
-    person("Chun-houh", "Chen", role = "aut"),
+    person("Chun-houh", "Chen", email = "cchen@stat.sinica.edu.tw", role = "aut"),
     person("Han-Ming", "Wu", email = "wuhm@g.nccu.edu.tw", role = "cre"))
 Author: Po-Wei Chen [aut], Chun-houh Chen [aut], Han-Ming Wu [cre]
 Maintainer: Han-Ming Wu <wuhm@g.nccu.edu.tw>
