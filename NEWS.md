@@ -1,14 +1,21 @@
 # dataSDA 0.1.4
 
-- Added input validation to all 18 exported functions with clear error messages.
-- Created `R/utils_validation.R` with 11 internal validation helpers.
-- Fixed `RSDA_format()`: replaced 4 `return("Error")` with proper `stop()` calls.
-- Added 62 new input validation tests (399 total).
+- Input validation for all 18 exported functions: every function now validates its inputs at entry, producing clear error messages instead of cryptic R internals errors.
+- New `R/utils_validation.R`: 11 internal validation helpers centralizing all checks.
+- `RSDA_format` fix: replaced 4 `return("Error")` with proper `stop()` calls.
+- 62 new regression tests for input validation (399 total, all passing).
+- `R CMD check`: 0 errors, 0 warnings.
+- Added `NEWS.md` with changelog for all versions.
 
 # dataSDA 0.1.3
 
-- Added testthat framework with 337 tests covering all exported functions.
+- Added testthat framework with 337 tests covering all 18 exported functions.
+- 0 failures, 0 warnings, 0 skips.
 
 # dataSDA 0.1.2
 
-- Initial release with 18 exported functions and 32 datasets for symbolic data analysis.
+- 18 exported functions for symbolic data format conversion and statistics.
+- 32 datasets (interval-valued and histogram-valued) for symbolic data analysis.
+- Support for MM, iGAP, RSDA, and SODAS data formats.
+- Interval statistics: `int_mean`, `int_var`, `int_cov`, `int_cor` (8 methods).
+- Histogram statistics: `hist_mean`, `hist_var`, `hist_cov`, `hist_cor`.
