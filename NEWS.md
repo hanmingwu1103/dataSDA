@@ -1,15 +1,23 @@
 # dataSDA 0.1.5
 
-- New `int_dist()` and `int_dist_all()`: compute 11 pairwise distance measures for interval-valued data (GD, IY, L1, L2, CB, HD, EHD, nEHD, snEHD, TD, WD).
-- Merged 6 interval conversion files (`RSDA_to_MM.R`, `iGAP_to_MM.R`, `SODAS_to_MM.R`, `MM_to_iGAP.R`, `RSDA_to_iGAP.R`, `SODAS_to_iGAP.R`) into a single `R/interval_format_conversions.R`, organized by target format.
-- Refactored complex functions to extract shared internal helpers, reducing ~454 lines of duplicated code.
-- New `R/utils_histogram.R`: 8 internal helpers for histogram statistics (`.MatH_mean`, `.MatH_sd`, `.hist_Gj`, `.hist_Qj`, `.hist_QQ`, `.hist_get_pvars`, `.hist_get_GQ`, `.hist_get_QQ_vals`).
-- New `R/interval_utils.R`: moved 7 internal interval helpers (`symbolic_tbl_to_idata`, `Interval_to_Center/Midrange/Vertices/Quantiles/SE/FV`) and `.get_interval_transforms` out of `interval_stats.R`; `interval_stats.R` now contains only the 4 exported functions.
-- `rsda_format.R`: extracted `.insert_sym_labels` from 3 near-identical code blocks.
-- `set_variable_format.R`: extracted `.one_hot_at` from 2 duplicated blocks.
-- `RSDA_to_MM.R`: extracted `.process_chr_col` and `.process_int_cols` helpers.
-- No changes to exported function signatures or behavior.
-- All 399 tests pass, `R CMD check`: 0 errors.
+## New functions (31 exported)
+
+- **Interval distances** (`interval_dist.R`): `int_dist()`, `int_dist_matrix()`, `int_pairwise_dist()`, `int_dist_all()` — 14 distance measures (GD, IY, L1, L2, CB, HD, EHD, nEHD, snEHD, TD, WD, minkowski, ichino, de_carvalho) with method aliases (euclidean, hausdorff, manhattan, city_block, wasserstein).
+- **Interval geometry** (`interval_geometry.R`): `int_width()`, `int_radius()`, `int_center()`, `int_overlap()`, `int_containment()`, `int_midrange()`.
+- **Position and scale** (`interval_position.R`): `int_median()`, `int_quantile()`, `int_range()`, `int_iqr()`, `int_mad()`, `int_mode()` — all support 8 methods (CM, VM, QM, SE, FV, EJD, GQ, SPT).
+- **Robust statistics** (`interval_robust.R`): `int_trimmed_mean()`, `int_winsorized_mean()`, `int_trimmed_var()`, `int_winsorized_var()`.
+- **Distribution shape** (`interval_shape.R`): `int_skewness()`, `int_kurtosis()`, `int_symmetry()`, `int_tailedness()`.
+- **Similarity measures** (`interval_similarity.R`): `int_jaccard()`, `int_dice()`, `int_cosine()`, `int_overlap_coefficient()`, `int_tanimoto()`, `int_similarity_matrix()`.
+- **Uncertainty and variability** (`interval_uncertainty.R`): `int_entropy()`, `int_cv()`, `int_dispersion()`, `int_imprecision()`, `int_granularity()`, `int_uniformity()`, `int_information_content()`.
+
+## Refactoring
+
+- Merged 6 interval conversion files into a single `R/interval_format_conversions.R`, organized by target format.
+- Extracted shared internal helpers, reducing ~454 lines of duplicated code.
+- `R/interval_utils.R`: consolidated 7 internal interval helpers, format-preparation functions (`RSDA_format`, `set_variable_format`, `clean_colnames`), and their internal helpers.
+- `R/histogram_utils.R`: 8 internal helpers for histogram statistics.
+- Renamed `utils_validation.R` to `validation.R`.
+- `R CMD check`: 0 errors, 0 warnings, 0 notes. All 399 tests pass.
 
 # dataSDA 0.1.4
 
