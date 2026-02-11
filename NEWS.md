@@ -1,5 +1,10 @@
 # dataSDA 0.1.8
 
+## Vignette
+
+- Comprehensive rewrite covering all 51 exported functions (was 18), organized into 14 sections: format detection/conversion, core stats, geometry, position, robust, shape, similarity, uncertainty, distance, histogram stats, and utilities.
+- Fixed garbled characters, stale dataset references, and broken histogram example code.
+
 # dataSDA 0.1.7
 
 ## New functions (2 exported)
