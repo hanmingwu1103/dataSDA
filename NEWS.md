@@ -25,9 +25,17 @@ Adopted snake_case naming with type suffixes (`.int`, `.hist`, `.mix`, `.distr`,
 - `energy_consumption.distr` (distribution-valued)
 - `bank_rates`, `mushroom_fuzzy` (other)
 
+## New functions (3 exported)
+
+- **Format detection and conversion** (`interval_format_conversions.R`):
+  - `int_detect_format()` — automatically detect interval data format (RSDA, MM, iGAP, SODAS).
+  - `int_list_conversions()` — list available format conversion functions, with optional filtering by source/target format.
+  - `int_convert_format()` — unified interface for all interval format conversions with auto-detection.
+
 ## Other changes
 
 - Updated vignette, examples, and tests to use new dataset names.
+- 70 new tests for format detection and conversion helpers (468 total, all passing).
 - `R CMD check`: 0 errors, 0 warnings, 0 notes.
 
 # dataSDA 0.1.5
