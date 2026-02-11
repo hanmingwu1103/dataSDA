@@ -36,10 +36,9 @@ $$\\[0.5in]$$
 
 # Introduction
 
-The primary aim of `dataSDA` package is to gather various symbolic data tailored to different research themes, and to execute the reading, writing, and conversion of symbolic data in diverse formats, as well as compute the descriptive statistics of symbolic variables. The \pkg{dataSDA} package is currently available on the Comprehensive R Archive Network (CRAN) at https://CRAN.R-project.org/package=dataSDA and https://hmwu.idv.tw/dataSDA/.
+The primary aim of `dataSDA` package is to gather various symbolic data tailored to different research themes, and to execute the reading, writing, and conversion of symbolic data in diverse formats, as well as compute the descriptive statistics of symbolic variables. The \pkg{dataSDA} package is currently available on the Comprehensive R Archive Network (CRAN) at https://CRAN.R-project.org/package=dataSDA and https://github.com/hanmingwu1103/dataSDA.
 
 **Current version**  (build on February 10, 2026):
-[dataSDA_0.1.5.zip](https://hmwu.idv.tw/dataSDA/dataSDA_0.1.5.zip)
 $$\\[0.5in]$$
 
 # Symbolic data formats conversion
@@ -121,7 +120,7 @@ class(mushroom_int)
 
 ## Example: the conversion of histogram-valued datasets into the `MatH` class
 
-To demonstrate the process of converting a dataset into a matrix of histogram-valued data class — specifically, the `MatH` class — we utilize two datasets: `BLOOD` and `Weight`. This class is facilitated by the `HistDAWass` package.
+To demonstrate the process of converting a dataset into a matrix of histogram-valued data class ?�? specifically, the `MatH` class ?�? we utilize two datasets: `BLOOD` and `Weight`. This class is facilitated by the `HistDAWass` package.
 
 The `BLOOD` dataset is a `MatH` object, supplied by the `HistDAWass` package, and it encompasses 14 groups of patients, each characterized by three distributional variables. Each distribution within a cell is depicted by its mean and standard deviation.
 
@@ -209,10 +208,40 @@ head(Face.MM)
 ```
 
 Convert MM format interval dataframe to iGAP format.
-```{r prompt = TRUE} 
+```{r prompt = TRUE}
 Face.iGAP_trans <- MM_to_iGAP(Face.MM)
 head(Face.iGAP_trans)
 ```
+
+
+## Example: convert MM and iGAP formats directly to RSDA format.
+
+The `MM_to_RSDA` function converts MM format (paired `_min`/`_max` columns) directly to RSDA format (`symbolic_tbl` with complex-encoded intervals), without requiring the intermediate steps of `RSDA_format`, `clean_colnames`, `write_csv_table`, and `read.sym.table`.
+
+```{r prompt = TRUE}
+data(mushroom.int)
+mushroom.MM <- RSDA_to_MM(mushroom.int, RSDA = FALSE)
+head(mushroom.MM)
+mushroom.RSDA <- MM_to_RSDA(mushroom.MM)
+head(mushroom.RSDA)
+class(mushroom.RSDA)
+```
+
+The `iGAP_to_RSDA` function converts iGAP format directly to RSDA format in one step.
+```{r prompt = TRUE}
+data(abalone.iGAP)
+abalone.RSDA <- iGAP_to_RSDA(abalone.iGAP, location = 1:7)
+head(abalone.RSDA)
+class(abalone.RSDA)
+```
+
+The unified `int_convert_format` function can also be used with `to = "RSDA"` for auto-detected conversions.
+```{r prompt = TRUE}
+data(face.iGAP)
+Face.RSDA <- int_convert_format(face.iGAP, to = "RSDA")
+head(Face.RSDA)
+```
+
 $$\\[0.5in]$$
 
 # Descriptive statistics 
@@ -268,7 +297,7 @@ We welcome contributions of high-quality datasets for symbolic data analysis. Su
    | **Dataset Descriptions**        | Data descriptive                                                    | See 'README' |
    | **Sample Size**         | Number of instances/rows.                                                      | 27 |
    | **Number of Variables**  | Total features/columns (categorical/numeric).                                  | 6 (interval) |
-   | **Missing Values**       | Indicate if missing values exist and how they’re handled.                      | "None" / "Yes, marked as NA" |
+   | **Missing Values**       | Indicate if missing values exist and how they?��re handled.                      | "None" / "Yes, marked as NA" |
    | **Variable Descriptions**| Detailed description of each column (name, type, units, range).               | See 'README' |
    | **Source**              | Original data source (if applicable).                                          | "Leroy et al. (1996)" |
    | **References**          | Citations for prior work using the dataset.                                    | "Douzal-Chouakria, Billard, and Diday (2011)" |
