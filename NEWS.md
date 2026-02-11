@@ -1,7 +1,5 @@
 # dataSDA 0.1.7
 
-*(in development)*
-
 ## New functions (2 exported)
 
 - `MM_to_RSDA()` — convert MM format (`_min`/`_max` columns) to RSDA format (`symbolic_tbl` with complex-encoded intervals).
