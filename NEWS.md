@@ -1,6 +1,34 @@
 # dataSDA 0.1.6
 
-- Development version.
+## Dataset naming convention
+
+Adopted snake_case naming with type suffixes (`.int`, `.hist`, `.mix`, `.distr`, `.iGAP`) for all datasets. Renamed 10 existing datasets:
+
+| Old name | New name |
+|---|---|
+| `Abalone` | `abalone.int` |
+| `Abalone.iGAP` | `abalone.iGAP` |
+| `Cars.int` | `cars.int` |
+| `ChinaTemp.int` | `china_temp.int` |
+| `Face.iGAP` | `face.iGAP` |
+| `LoansbyPurpose.int` | `loans_by_purpose.int` |
+| `bird.int` | `bird.mix` |
+| `soccer.bivar.int` | `soccer_bivar.int` |
+| `airline_flights` | `airline_flights.hist` |
+| `health_insurance` | `health_insurance.mix` |
+
+## New datasets (16 added, 48 total)
+
+- `acid_rain.int`, `bats.int`, `credit_card.int`, `employment.int`, `oils.int`, `teams.int`, `tennis.int`, `temperature_city.int`, `trivial_intervals.int`, `world_cup.int` (interval-valued)
+- `bird_species.mix`, `bird_species_extended.mix`, `town_services.mix` (mixed symbolic)
+- `lung_cancer.hist` (histogram-valued)
+- `energy_consumption.distr` (distribution-valued)
+- `bank_rates`, `mushroom_fuzzy` (other)
+
+## Other changes
+
+- Updated vignette, examples, and tests to use new dataset names.
+- `R CMD check`: 0 errors, 0 warnings, 0 notes.
 
 # dataSDA 0.1.5
 
