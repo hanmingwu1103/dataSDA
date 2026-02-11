@@ -1,7 +1,7 @@
 Package: dataSDA
 Type: Package
 Title: Datasets and Basic Statistics for Symbolic Data Analysis
-Version: 0.1.6
+Version: 0.1.7
 Date: 2026-02-11
 Authors@R: c(
     person("Po-Wei", "Chen", email = "randy310162@gmail.com", role = "aut"),
