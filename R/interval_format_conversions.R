@@ -6,6 +6,324 @@
 # ============================================================================
 
 
+# --- Format Detection --------------------------------------------------------
+
+#' Detect Interval Data Format
+#'
+#' @name int_detect_format
+#' @aliases int_detect_format
+#' @description Automatically detect the format of interval data.
+#' @usage int_detect_format(x)
+#' @param x interval data in unknown format
+#' @returns A character string indicating the detected format: "RSDA", "MM", "iGAP", "SODAS", or "unknown"
+#' @details
+#' Detection rules:
+#' \itemize{
+#'   \item \code{RSDA}: has class "symbolic_tbl" and contains complex columns
+#'   \item \code{MM}: data.frame with paired "_min" and "_max" columns
+#'   \item \code{iGAP}: data.frame with columns containing comma-separated values (e.g., "1.2,3.4")
+#'   \item \code{SODAS}: character string ending with ".xml" (file path)
+#'   \item \code{SDS}: alias for SODAS
+#' }
+#' @examples
+#' data(mushroom.int)
+#' int_detect_format(mushroom.int)  # Should return "RSDA"
+#' 
+#' data(abalone.iGAP)
+#' int_detect_format(abalone.iGAP)  # Should return "iGAP"
+#' @export
+int_detect_format <- function(x) {
+  
+  # Check for NULL
+  if (is.null(x)) {
+    return("unknown")
+  }
+  
+  # Check for SODAS/SDS (XML file path)
+  if (is.character(x) && length(x) == 1) {
+    if (grepl("\\.xml$", tolower(x))) {
+      return("SODAS")
+    }
+  }
+  
+  # Check for RSDA format (symbolic_tbl with complex columns)
+  if (inherits(x, "symbolic_tbl")) {
+    # Check if it has complex mode columns (interval columns)
+    has_complex <- any(sapply(x, mode) == "complex")
+    if (has_complex) {
+      return("RSDA")
+    }
+  }
+  
+  # Check for data.frame formats (MM or iGAP)
+  if (is.data.frame(x)) {
+    col_names <- names(x)
+    
+    # Check for MM format (paired _min/_max columns)
+    has_min <- any(grepl("_min|_Min", col_names))
+    has_max <- any(grepl("_max|_Max", col_names))
+    
+    if (has_min && has_max) {
+      # Further verify: count min/max pairs
+      min_cols <- grep("_min|_Min", col_names, value = TRUE)
+      max_cols <- grep("_max|_Max", col_names, value = TRUE)
+      
+      if (length(min_cols) == length(max_cols) && length(min_cols) > 0) {
+        return("MM")
+      }
+    }
+    
+    # Check for iGAP format (comma-separated values in character columns)
+    # Sample a few rows to check for comma-separated pattern
+    if (ncol(x) > 0 && nrow(x) > 0) {
+      # Check first few character columns
+      char_cols <- which(sapply(x, is.character))
+      
+      if (length(char_cols) > 0) {
+        # Check if values contain comma pattern like "1.2,3.4"
+        sample_size <- min(10, nrow(x))
+        sample_rows <- head(x, sample_size)
+        
+        has_comma_pattern <- FALSE
+        for (col_idx in char_cols) {
+          values <- as.character(sample_rows[[col_idx]])
+          # Check if values match interval pattern: "number,number"
+          pattern_match <- grepl("^[0-9.-]+,[0-9.-]+$", values)
+          if (sum(pattern_match, na.rm = TRUE) > 0) {
+            has_comma_pattern <- TRUE
+            break
+          }
+        }
+        
+        if (has_comma_pattern) {
+          return("iGAP")
+        }
+      }
+    }
+  }
+  
+  return("unknown")
+}
+
+
+#' List Available Format Conversions
+#'
+#' @name int_list_conversions
+#' @aliases int_list_conversions
+#' @description List all available format conversion functions.
+#' @usage int_list_conversions(from = NULL, to = NULL)
+#' @param from source format (optional): "RSDA", "MM", "iGAP", "SODAS"
+#' @param to target format (optional): "RSDA", "MM", "iGAP", "SODAS"
+#' @returns A data.frame showing available conversions
+#' @examples
+#' # List all conversions
+#' int_list_conversions()
+#' 
+#' # List conversions from RSDA
+#' int_list_conversions(from = "RSDA")
+#' 
+#' # List conversions to MM
+#' int_list_conversions(to = "MM")
+#' @export
+int_list_conversions <- function(from = NULL, to = NULL) {
+  
+  # Define all available conversions
+  conversions <- data.frame(
+    from = c("RSDA", "RSDA", "iGAP", "SODAS", "SODAS", "MM"),
+    to = c("MM", "iGAP", "MM", "MM", "iGAP", "iGAP"),
+    function_name = c("RSDA_to_MM", "RSDA_to_iGAP", "iGAP_to_MM", 
+                      "SODAS_to_MM", "SODAS_to_iGAP", "MM_to_iGAP"),
+    stringsAsFactors = FALSE
+  )
+  
+  # Filter by 'from' if specified (case-insensitive)
+  if (!is.null(from)) {
+    from <- toupper(from)
+    conversions <- conversions[toupper(conversions$from) == from, ]
+  }
+
+  # Filter by 'to' if specified (case-insensitive)
+  if (!is.null(to)) {
+    to <- toupper(to)
+    conversions <- conversions[toupper(conversions$to) == to, ]
+  }
+  
+  return(conversions)
+}
+
+
+#' Convert Interval Data Format
+#'
+#' @name int_convert_format
+#' @aliases int_convert_format
+#' @description Automatically detect the format of interval data and convert it to the target format.
+#' @usage int_convert_format(x, to = "MM", from = NULL, ...)
+#' @param x interval data in one of the supported formats
+#' @param to target format: "MM", "iGAP", "RSDA", "SODAS" (default: "MM")
+#' @param from source format (optional): "MM", "iGAP", "RSDA", "SODAS". If NULL, will auto-detect.
+#' @param ... additional parameters passed to specific conversion functions
+#' @returns Interval data in the target format
+#' @details
+#' This function provides a unified interface for all interval format conversions.
+#' It automatically detects the source format (unless specified) and applies the
+#' appropriate conversion function.
+#' 
+#' Supported conversions:
+#' \itemize{
+#'   \item RSDA → MM (via \code{RSDA_to_MM})
+#'   \item RSDA → iGAP (via \code{RSDA_to_iGAP})
+#'   \item iGAP → MM (via \code{iGAP_to_MM})
+#'   \item SODAS → MM (via \code{SODAS_to_MM})
+#'   \item SODAS → iGAP (via \code{SODAS_to_iGAP})
+#'   \item MM → iGAP (via \code{MM_to_iGAP})
+#' }
+#' 
+#' Note: Direct conversion to RSDA format is not yet supported. Convert to MM first,
+#' then manually convert to RSDA if needed.
+#' @author Han-Ming Wu
+#' @seealso int_detect_format int_list_conversions RSDA_to_MM iGAP_to_MM MM_to_iGAP
+#' @examples
+#' # Auto-detect and convert to MM
+#' data(mushroom.int)
+#' data_mm <- int_convert_format(mushroom.int, to = "MM")
+#' 
+#' # Explicitly specify source format
+#' data(abalone.iGAP)
+#' data_mm <- int_convert_format(abalone.iGAP, from = "iGAP", to = "MM")
+#' 
+#' # Convert MM to iGAP
+#' data_igap <- int_convert_format(data_mm, to = "iGAP")
+#' 
+#'  # Convert multiple datasets to MM
+#' datasets <- list(mushroom.int, abalone.int, face.int)
+#' mm_datasets <- lapply(datasets, int_convert_format, to = "MM")
+#'
+#' # Check what conversions are available
+#' int_list_conversions()
+#' @export
+int_convert_format <- function(x, to = "MM", from = NULL, ...) {
+  
+  # Normalize target format
+  to <- toupper(to)
+  valid_targets <- c("MM", "IGAP", "RSDA", "SODAS", "SDS")
+  
+  if (!to %in% valid_targets) {
+    stop("int_convert_format: 'to' must be one of: ", 
+         paste(valid_targets, collapse = ", "), call. = FALSE)
+  }
+  
+  # Normalize aliases
+  if (to == "SDS") to <- "SODAS"
+  
+  # Detect source format if not specified
+  if (is.null(from)) {
+    detected <- int_detect_format(x)
+    message("Detected source format: ", detected)
+    from <- toupper(detected)
+  } else {
+    from <- toupper(from)
+  }
+  if (from == "SDS") from <- "SODAS"
+  
+  # Check if format was detected
+  if (from == "UNKNOWN") {
+    stop("int_convert_format: Could not detect source format. ",
+         "Please specify 'from' parameter explicitly.", call. = FALSE)
+  }
+  
+  # Check if conversion is needed
+  if (from == to) {
+    message("Source and target formats are the same. Returning original data.")
+    return(x)
+  }
+  
+  # Check if conversion to RSDA is requested
+  if (to == "RSDA") {
+    stop("int_convert_format: Direct conversion to RSDA format is not supported. ",
+         "Please convert to MM format first, then use RSDA package functions.", 
+         call. = FALSE)
+  }
+  
+  # Determine conversion path and execute
+  conversion_key <- paste(from, to, sep = "_to_")
+  
+  result <- switch(conversion_key,
+    # To MM format
+    "RSDA_to_MM" = {
+      RSDA_to_MM(x, ...)
+    },
+    "IGAP_to_MM" = {
+      # Need to provide location parameter for iGAP_to_MM
+      args <- list(...)
+      if (is.null(args$location)) {
+        # Auto-detect interval columns (character columns with comma pattern)
+        if (is.data.frame(x)) {
+          char_cols <- which(sapply(x, is.character))
+          if (length(char_cols) > 0) {
+            # Check which columns have comma-separated values
+            interval_cols <- c()
+            for (col_idx in char_cols) {
+              values <- as.character(x[[col_idx]])
+              if (any(grepl(",", values), na.rm = TRUE)) {
+                interval_cols <- c(interval_cols, col_idx)
+              }
+            }
+            if (length(interval_cols) > 0) {
+              message("Auto-detected interval columns: ", paste(interval_cols, collapse = ", "))
+              iGAP_to_MM(x, location = interval_cols)
+            } else {
+              stop("int_convert_format: No interval columns detected in iGAP data. ",
+                   "Please specify 'location' parameter.", call. = FALSE)
+            }
+          } else {
+            stop("int_convert_format: No character columns found in iGAP data.", 
+                 call. = FALSE)
+          }
+        } else {
+          stop("int_convert_format: iGAP data must be a data.frame.", call. = FALSE)
+        }
+      } else {
+        iGAP_to_MM(x, location = args$location)
+      }
+    },
+    "SODAS_to_MM" = {
+      SODAS_to_MM(x)
+    },
+    
+    # To iGAP format
+    "RSDA_to_IGAP" = {
+      RSDA_to_iGAP(x)
+    },
+    "MM_to_IGAP" = {
+      MM_to_iGAP(x)
+    },
+    "SODAS_to_IGAP" = {
+      SODAS_to_iGAP(x)
+    },
+    
+    # Unsupported conversion
+    {
+      # Check if indirect conversion is possible via MM
+      if (from != "MM" && to == "IGAP") {
+        message("No direct conversion from ", from, " to ", to, ". ",
+                "Converting via MM format...")
+        # Two-step conversion: from -> MM -> iGAP
+        temp_mm <- int_convert_format(x, to = "MM", from = from, ...)
+        int_convert_format(temp_mm, to = "IGAP", from = "MM")
+      } else {
+        stop("int_convert_format: Conversion from ", from, " to ", to, 
+             " is not supported.\n",
+             "Available conversions:\n",
+             paste(capture.output(print(int_list_conversions())), collapse = "\n"),
+             call. = FALSE)
+      }
+    }
+  )
+  
+  return(result)
+}
+
+
 # --- Conversions to MM format ------------------------------------------------
 
 #' RSDA to MM
