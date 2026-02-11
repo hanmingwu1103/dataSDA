@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Po-Wei Chen, Chun-houh Chen and Han-Ming Wu*" />
+
+<meta name="date" content="2026-02-11" />
+
+<title>Introduction to dataSDA</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to dataSDA</h1>
+<h3 class="subtitle">Datasets and Basic Statistics for Symbolic Data
+Analysis</h3>
+<h4 class="author">Po-Wei Chen, Chun-houh Chen and Han-Ming Wu*</h4>
+<h4 class="date">February 11, 2026</h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#data-formats-and-conversion" id="toc-data-formats-and-conversion"><span class="toc-section-number">2</span> Data Formats and Conversion</a>
+<ul>
+<li><a href="#interval-data-formats-overview" id="toc-interval-data-formats-overview"><span class="toc-section-number">2.1</span> Interval data formats
+overview</a></li>
+<li><a href="#unified-format-conversion" id="toc-unified-format-conversion"><span class="toc-section-number">2.2</span> Unified format conversion</a></li>
+<li><a href="#direct-conversion-functions" id="toc-direct-conversion-functions"><span class="toc-section-number">2.3</span> Direct conversion
+functions</a></li>
+<li><a href="#legacy-workflow-creating-symbolic_tbl-from-raw-data" id="toc-legacy-workflow-creating-symbolic_tbl-from-raw-data"><span class="toc-section-number">2.4</span> Legacy workflow: creating
+symbolic_tbl from raw data</a></li>
+<li><a href="#histogram-data-the-math-class" id="toc-histogram-data-the-math-class"><span class="toc-section-number">2.5</span> Histogram data: the MatH
+class</a></li>
+</ul></li>
+<li><a href="#the-eight-interval-methods" id="toc-the-eight-interval-methods"><span class="toc-section-number">3</span> The Eight Interval Methods</a></li>
+<li><a href="#descriptive-statistics-for-interval-valued-data" id="toc-descriptive-statistics-for-interval-valued-data"><span class="toc-section-number">4</span> Descriptive Statistics for
+Interval-Valued Data</a>
+<ul>
+<li><a href="#mean-and-variance" id="toc-mean-and-variance"><span class="toc-section-number">4.1</span> Mean and variance</a></li>
+<li><a href="#covariance-and-correlation" id="toc-covariance-and-correlation"><span class="toc-section-number">4.2</span> Covariance and
+correlation</a></li>
+</ul></li>
+<li><a href="#geometric-properties" id="toc-geometric-properties"><span class="toc-section-number">5</span> Geometric Properties</a>
+<ul>
+<li><a href="#width-radius-center-and-midrange" id="toc-width-radius-center-and-midrange"><span class="toc-section-number">5.1</span> Width, radius, center, and
+midrange</a></li>
+<li><a href="#overlap-and-containment" id="toc-overlap-and-containment"><span class="toc-section-number">5.2</span> Overlap and containment</a></li>
+</ul></li>
+<li><a href="#position-and-scale-measures" id="toc-position-and-scale-measures"><span class="toc-section-number">6</span> Position and Scale Measures</a>
+<ul>
+<li><a href="#median-and-quantiles" id="toc-median-and-quantiles"><span class="toc-section-number">6.1</span> Median and quantiles</a></li>
+<li><a href="#range-iqr-mad-and-mode" id="toc-range-iqr-mad-and-mode"><span class="toc-section-number">6.2</span> Range, IQR, MAD, and mode</a></li>
+</ul></li>
+<li><a href="#robust-statistics" id="toc-robust-statistics"><span class="toc-section-number">7</span> Robust Statistics</a>
+<ul>
+<li><a href="#trimmed-and-winsorized-means" id="toc-trimmed-and-winsorized-means"><span class="toc-section-number">7.1</span> Trimmed and winsorized
+means</a></li>
+<li><a href="#trimmed-and-winsorized-variances" id="toc-trimmed-and-winsorized-variances"><span class="toc-section-number">7.2</span> Trimmed and winsorized
+variances</a></li>
+</ul></li>
+<li><a href="#distribution-shape" id="toc-distribution-shape"><span class="toc-section-number">8</span> Distribution Shape</a></li>
+<li><a href="#similarity-measures" id="toc-similarity-measures"><span class="toc-section-number">9</span> Similarity Measures</a></li>
+<li><a href="#uncertainty-and-variability" id="toc-uncertainty-and-variability"><span class="toc-section-number">10</span> Uncertainty and Variability</a>
+<ul>
+<li><a href="#entropy-cv-and-dispersion" id="toc-entropy-cv-and-dispersion"><span class="toc-section-number">10.1</span> Entropy, CV, and
+dispersion</a></li>
+<li><a href="#imprecision-granularity-uniformity-and-information-content" id="toc-imprecision-granularity-uniformity-and-information-content"><span class="toc-section-number">10.2</span> Imprecision, granularity,
+uniformity, and information content</a></li>
+</ul></li>
+<li><a href="#distance-measures" id="toc-distance-measures"><span class="toc-section-number">11</span> Distance Measures</a>
+<ul>
+<li><a href="#single-distance-method" id="toc-single-distance-method"><span class="toc-section-number">11.1</span> Single distance method</a></li>
+<li><a href="#distance-matrix" id="toc-distance-matrix"><span class="toc-section-number">11.2</span> Distance matrix</a></li>
+<li><a href="#pairwise-distance-between-variables" id="toc-pairwise-distance-between-variables"><span class="toc-section-number">11.3</span> Pairwise distance between
+variables</a></li>
+<li><a href="#all-distance-methods-at-once" id="toc-all-distance-methods-at-once"><span class="toc-section-number">11.4</span> All distance methods at
+once</a></li>
+</ul></li>
+<li><a href="#descriptive-statistics-for-histogram-valued-data" id="toc-descriptive-statistics-for-histogram-valued-data"><span class="toc-section-number">12</span> Descriptive Statistics for
+Histogram-Valued Data</a></li>
+<li><a href="#symbolic-dataset-donationsubmission-guidelines" id="toc-symbolic-dataset-donationsubmission-guidelines"><span class="toc-section-number">13</span> Symbolic Dataset
+Donation/Submission Guidelines</a></li>
+<li><a href="#citation" id="toc-citation"><span class="toc-section-number">14</span> Citation</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>The <code>dataSDA</code> package (v0.1.8) gathers various symbolic
+data tailored to different research themes and provides a comprehensive
+set of functions for reading, writing, converting, and analyzing
+symbolic data. The package is available on CRAN at <a href="https://CRAN.R-project.org/package=dataSDA" class="uri">https://CRAN.R-project.org/package=dataSDA</a> and on GitHub
+at <a href="https://github.com/hanmingwu1103/dataSDA" class="uri">https://github.com/hanmingwu1103/dataSDA</a>.</p>
+<p>The package provides functions organized into the following
+categories:</p>
+<table>
+<colgroup>
+<col width="35%" />
+<col width="39%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Category</th>
+<th align="left">Functions</th>
+<th align="right">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Format detection &amp; conversion</td>
+<td align="left"><code>int_detect_format</code>,
+<code>int_list_conversions</code>, <code>int_convert_format</code>,
+<code>RSDA_to_MM</code>, <code>iGAP_to_MM</code>,
+<code>SODAS_to_MM</code>, <code>MM_to_iGAP</code>,
+<code>RSDA_to_iGAP</code>, <code>SODAS_to_iGAP</code>,
+<code>MM_to_RSDA</code>, <code>iGAP_to_RSDA</code></td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">Core statistics</td>
+<td align="left"><code>int_mean</code>, <code>int_var</code>,
+<code>int_cov</code>, <code>int_cor</code></td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Geometric properties</td>
+<td align="left"><code>int_width</code>, <code>int_radius</code>,
+<code>int_center</code>, <code>int_midrange</code>,
+<code>int_overlap</code>, <code>int_containment</code></td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">Position &amp; scale</td>
+<td align="left"><code>int_median</code>, <code>int_quantile</code>,
+<code>int_range</code>, <code>int_iqr</code>, <code>int_mad</code>,
+<code>int_mode</code></td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">Robust statistics</td>
+<td align="left"><code>int_trimmed_mean</code>,
+<code>int_winsorized_mean</code>, <code>int_trimmed_var</code>,
+<code>int_winsorized_var</code></td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Distribution shape</td>
+<td align="left"><code>int_skewness</code>, <code>int_kurtosis</code>,
+<code>int_symmetry</code>, <code>int_tailedness</code></td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Similarity measures</td>
+<td align="left"><code>int_jaccard</code>, <code>int_dice</code>,
+<code>int_cosine</code>, <code>int_overlap_coefficient</code>,
+<code>int_tanimoto</code>, <code>int_similarity_matrix</code></td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">Uncertainty &amp; variability</td>
+<td align="left"><code>int_entropy</code>, <code>int_cv</code>,
+<code>int_dispersion</code>, <code>int_imprecision</code>,
+<code>int_granularity</code>, <code>int_uniformity</code>,
+<code>int_information_content</code></td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Distance measures</td>
+<td align="left"><code>int_dist</code>, <code>int_dist_matrix</code>,
+<code>int_pairwise_dist</code>, <code>int_dist_all</code></td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Histogram statistics</td>
+<td align="left"><code>hist_mean</code>, <code>hist_var</code>,
+<code>hist_cov</code>, <code>hist_cor</code></td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Utilities</td>
+<td align="left"><code>clean_colnames</code>, <code>RSDA_format</code>,
+<code>set_variable_format</code>, <code>write_csv_table</code></td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="data-formats-and-conversion" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Data Formats and
+Conversion</h1>
+<div id="interval-data-formats-overview" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Interval data formats
+overview</h2>
+<p>The <code>dataSDA</code> package works with three primary formats for
+interval-valued data:</p>
+<ul>
+<li><strong>RSDA format</strong>: <code>symbolic_tbl</code> objects
+where intervals are encoded as complex numbers
+(<code>min + max*i</code>). Used by the <code>RSDA</code> package.</li>
+<li><strong>MM format</strong>: Standard data frames with paired
+<code>_min</code> / <code>_max</code> columns for each variable.</li>
+<li><strong>iGAP format</strong>: Data frames where each interval is a
+comma-separated string (e.g., <code>&quot;2.5,4.0&quot;</code>).</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">data</span>(mushroom.int)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">head</span>(mushroom.int, <span class="dv">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 5</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt;   Species Pileus.Cap.Width   Stipe.Length Stipe.Thickness Edibility</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;symblc_n&gt;     &lt;symblc_n&gt;      &lt;symblc_n&gt; &lt;chr&gt;    </span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt; 1 arorae     [3.00 : 8.00]  [4.00 : 9.00]   [0.50 : 2.50] U        </span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt; 2 arvenis   [6.00 : 21.00] [4.00 : 14.00]   [1.00 : 3.50] Y        </span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt; 3 benesi     [4.00 : 8.00] [5.00 : 11.00]   [1.00 : 2.00] Y</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">class</span>(mushroom.int)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt; [1] &quot;symbolic_tbl&quot; &quot;tbl_df&quot;       &quot;tbl&quot;          &quot;data.frame&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">data</span>(abalone.int)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">head</span>(abalone.int, <span class="dv">3</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt;         Length_min Length_max Diameter_min Diameter_max Height_min Height_max</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt; F-10-12     0.1275     0.9975        0.075        0.815    -0.0175     0.3125</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; F-13-15     0.1775     1.0275        0.125        0.825      0.025      0.325</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; F-16-18       0.22       0.92       0.1725       0.7425     0.0375     0.3075</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt;         Whole_min Whole_max Shucked_min Shucked_max Viscera_min Viscera_max</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; F-10-12    -1.021     3.883     -0.6322      2.1948     -0.2077      0.7712</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; F-13-15   -0.8567    3.6303     -0.4548      1.7942     -0.1905      0.7555</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; F-16-18   -0.5725    3.1235      -0.244       1.206     -0.1037      0.6752</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;         Shell_min Shell_max</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; F-10-12    -0.258     1.054</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; F-13-15    -0.269     1.153</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; F-16-18   -0.3233    1.4477</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">class</span>(abalone.int)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; [1] &quot;data.frame&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">data</span>(abalone.iGAP)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">head</span>(abalone.iGAP, <span class="dv">3</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt;                 Length       Diameter          Height           Whole</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; F-10-12  0.1275,0.9975   0.075, 0.815 -0.0175, 0.3125   -1.021, 3.883</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt; F-13-15  0.1775,1.0275    0.125,0.825    0.025, 0.325 -0.8567, 3.6303</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt; F-16-18      0.22,0.92 0.1725, 0.7425  0.0375, 0.3075 -0.5725, 3.1235</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt;                 Shucked         Viscera           Shell</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt; F-10-12 -0.6322, 2.1948 -0.2077, 0.7712   -0.258, 1.054</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt; F-13-15 -0.4548, 1.7942 -0.1905, 0.7555   -0.269, 1.153</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; F-16-18   -0.244, 1.206 -0.1037, 0.6752 -0.3233, 1.4477</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="fu">class</span>(abalone.iGAP)</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; [1] &quot;data.frame&quot;</span></span></code></pre></div>
+<p>The <code>int_detect_format()</code> function automatically
+identifies the format of a dataset:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">int_detect_format</span>(mushroom.int)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;RSDA&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">int_detect_format</span>(abalone.int)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;MM&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">int_detect_format</span>(abalone.iGAP)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;iGAP&quot;</span></span></code></pre></div>
+<p>Use <code>int_list_conversions()</code> to see all available format
+conversion paths:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">int_list_conversions</span>()</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt;    from   to function_name</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; 1  RSDA   MM    RSDA_to_MM</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt; 2  RSDA iGAP  RSDA_to_iGAP</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt; 3  iGAP   MM    iGAP_to_MM</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 4 SODAS   MM   SODAS_to_MM</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 5 SODAS iGAP SODAS_to_iGAP</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 6    MM iGAP    MM_to_iGAP</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 7    MM RSDA    MM_to_RSDA</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 8  iGAP RSDA  iGAP_to_RSDA</span></span></code></pre></div>
+</div>
+<div id="unified-format-conversion" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Unified format
+conversion</h2>
+<p>The <code>int_convert_format()</code> function provides a unified
+interface for converting between formats. It auto-detects the source
+format and applies the appropriate conversion:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># RSDA to MM</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>mushroom.MM <span class="ot">&lt;-</span> <span class="fu">int_convert_format</span>(mushroom.int, <span class="at">to =</span> <span class="st">&quot;MM&quot;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">head</span>(mushroom.MM, <span class="dv">3</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt;   Species Pileus.Cap.Width_min Pileus.Cap.Width_max Stipe.Length_min</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; 1  arorae                    3                    8                4</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; 2 arvenis                    6                   21                4</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; 3  benesi                    4                    8                5</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt;   Stipe.Length_max Stipe.Thickness_min Stipe.Thickness_max Edibility</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 1                9                 0.5                 2.5         U</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 2               14                 1.0                 3.5         Y</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 3               11                 1.0                 2.0         Y</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># iGAP to MM</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>abalone.MM <span class="ot">&lt;-</span> <span class="fu">int_convert_format</span>(abalone.iGAP, <span class="at">to =</span> <span class="st">&quot;MM&quot;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">head</span>(abalone.MM, <span class="dv">3</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt;         Length_min Length_max Diameter_min Diameter_max Height_min Height_max</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; F-10-12     0.1275     0.9975        0.075        0.815    -0.0175     0.3125</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; F-13-15     0.1775     1.0275        0.125        0.825      0.025      0.325</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; F-16-18       0.22       0.92       0.1725       0.7425     0.0375     0.3075</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt;         Whole_min Whole_max Shucked_min Shucked_max Viscera_min Viscera_max</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; F-10-12    -1.021     3.883     -0.6322      2.1948     -0.2077      0.7712</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; F-13-15   -0.8567    3.6303     -0.4548      1.7942     -0.1905      0.7555</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; F-16-18   -0.5725    3.1235      -0.244       1.206     -0.1037      0.6752</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt;         Shell_min Shell_max</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; F-10-12    -0.258     1.054</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; F-13-15    -0.269     1.153</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; F-16-18   -0.3233    1.4477</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># iGAP to RSDA</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">data</span>(face.iGAP)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>face.RSDA <span class="ot">&lt;-</span> <span class="fu">int_convert_format</span>(face.iGAP, <span class="at">to =</span> <span class="st">&quot;RSDA&quot;</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">head</span>(face.RSDA, <span class="dv">3</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co">#&gt;               AD        BC             AH             DH           EH</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#&gt; 1 155.00+157.00i 58+61.01i 100.45+103.28i 105.00+107.30i 61.40+65.73i</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#&gt; 2 154.00+160.01i 57+64.00i 101.98+105.55i 104.35+107.30i 60.88+63.03i</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; 3 154.01+161.00i 57+63.00i  99.36+105.65i 101.04+109.04i 60.95+65.60i</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt;             GH</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt; 1 64.20+67.80i</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt; 2 62.94+66.47i</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt; 3 60.42+66.40i</span></span></code></pre></div>
+</div>
+<div id="direct-conversion-functions" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Direct conversion
+functions</h2>
+<p>For explicit control, direct conversion functions are available:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># RSDA to MM</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>mushroom.MM <span class="ot">&lt;-</span> <span class="fu">RSDA_to_MM</span>(mushroom.int, <span class="at">RSDA =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">head</span>(mushroom.MM, <span class="dv">3</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#&gt;   Species Pileus.Cap.Width_min Pileus.Cap.Width_max Stipe.Length_min</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt; 1  arorae                    3                    8                4</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt; 2 arvenis                    6                   21                4</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; 3  benesi                    4                    8                5</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt;   Stipe.Length_max Stipe.Thickness_min Stipe.Thickness_max Edibility</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; 1                9                 0.5                 2.5         U</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; 2               14                 1.0                 3.5         Y</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; 3               11                 1.0                 2.0         Y</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># MM to iGAP</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>mushroom.iGAP <span class="ot">&lt;-</span> <span class="fu">MM_to_iGAP</span>(mushroom.MM)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="fu">head</span>(mushroom.iGAP, <span class="dv">3</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt;   Species Pileus.Cap.Width Stipe.Length Stipe.Thickness Edibility</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt; 1  arorae              3,8          4,9         0.5,2.5         U</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt; 2 arvenis             6,21         4,14           1,3.5         Y</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt; 3  benesi              4,8         5,11             1,2         Y</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># iGAP to MM</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">data</span>(face.iGAP)</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>face.MM <span class="ot">&lt;-</span> <span class="fu">iGAP_to_MM</span>(face.iGAP, <span class="at">location =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">head</span>(face.MM, <span class="dv">3</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt;      AD_min AD_max BC_min BC_max AH_min AH_max DH_min DH_max EH_min EH_max</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt; FRA1 155.00 157.00  58.00  61.01 100.45 103.28 105.00 107.30  61.40  65.73</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; FRA2 154.00 160.01  57.00  64.00 101.98 105.55 104.35 107.30  60.88  63.03</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; FRA3 154.01 161.00  57.00  63.00  99.36 105.65 101.04 109.04  60.95  65.60</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt;      GH_min GH_max</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; FRA1  64.20  67.80</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt; FRA2  62.94  66.47</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt; FRA3  60.42  66.40</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># MM to RSDA</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>face.RSDA <span class="ot">&lt;-</span> <span class="fu">MM_to_RSDA</span>(face.MM)</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="fu">head</span>(face.RSDA, <span class="dv">3</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co">#&gt;               AD        BC             AH             DH           EH</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#&gt; 1 155.00+157.00i 58+61.01i 100.45+103.28i 105.00+107.30i 61.40+65.73i</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt; 2 154.00+160.01i 57+64.00i 101.98+105.55i 104.35+107.30i 60.88+63.03i</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt; 3 154.01+161.00i 57+63.00i  99.36+105.65i 101.04+109.04i 60.95+65.60i</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt;             GH</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt; 1 64.20+67.80i</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt; 2 62.94+66.47i</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt; 3 60.42+66.40i</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="fu">class</span>(face.RSDA)</span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt; [1] &quot;symbolic_tbl&quot; &quot;data.frame&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># iGAP to RSDA (direct, one-step)</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>abalone.RSDA <span class="ot">&lt;-</span> <span class="fu">iGAP_to_RSDA</span>(abalone.iGAP, <span class="at">location =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">head</span>(abalone.RSDA, <span class="dv">3</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">#&gt;           Length       Diameter          Height           Whole         Shucked</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co">#&gt; 1 0.1275+0.9975i 0.0750+0.8150i -0.0175+0.3125i -1.0210+3.8830i -0.6322+2.1948i</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co">#&gt; 2 0.1775+1.0275i 0.1250+0.8250i  0.0250+0.3250i -0.8567+3.6303i -0.4548+1.7942i</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co">#&gt; 3 0.2200+0.9200i 0.1725+0.7425i  0.0375+0.3075i -0.5725+3.1235i -0.2440+1.2060i</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co">#&gt;           Viscera           Shell</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co">#&gt; 1 -0.2077+0.7712i -0.2580+1.0540i</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co">#&gt; 2 -0.1905+0.7555i -0.2690+1.1530i</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co">#&gt; 3 -0.1037+0.6752i -0.3233+1.4477i</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="fu">class</span>(abalone.RSDA)</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="co">#&gt; [1] &quot;symbolic_tbl&quot; &quot;data.frame&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># RSDA to iGAP</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>mushroom.iGAP2 <span class="ot">&lt;-</span> <span class="fu">RSDA_to_iGAP</span>(mushroom.int)</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="fu">head</span>(mushroom.iGAP2, <span class="dv">3</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co">#&gt;   Species Pileus.Cap.Width Stipe.Length Stipe.Thickness Edibility</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="co">#&gt; 1  arorae              3,8          4,9         0.5,2.5         U</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co">#&gt; 2 arvenis             6,21         4,14           1,3.5         Y</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="co">#&gt; 3  benesi              4,8         5,11             1,2         Y</span></span></code></pre></div>
+<p>The <code>SODAS_to_MM()</code> and <code>SODAS_to_iGAP()</code>
+functions convert SODAS XML files but require an XML file path and are
+not demonstrated here.</p>
+</div>
+<div id="legacy-workflow-creating-symbolic_tbl-from-raw-data" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Legacy workflow:
+creating symbolic_tbl from raw data</h2>
+<p>The traditional workflow for converting a raw data frame into the
+<code>symbolic_tbl</code> class used by <code>RSDA</code> involves
+several steps. We illustrate with the <code>mushroom</code> dataset,
+which contains 23 species described by 3 interval-valued variables and 2
+categorical variables.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">data</span>(mushroom)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">head</span>(mushroom, <span class="dv">3</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co">#&gt;   Species Pileus.Cap.Width_min Pileus.Cap.Width_max Stipe.Length_min</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co">#&gt; 1  arorae                    3                    8                4</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="co">#&gt; 2 arvenis                    6                   21                4</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co">#&gt; 3  benesi                    4                    8                5</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co">#&gt;   Stipe.Length_max Stipe.Thickness_min Stipe.Thickness_max Edibility</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="co">#&gt; 1                9                 0.5                 2.5         U</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="co">#&gt; 2               14                 1.0                 3.5         Y</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co">#&gt; 3               11                 1.0                 2.0         Y</span></span></code></pre></div>
+<p>First, use <code>set_variable_format()</code> to create
+pseudo-variables for each category using one-hot encoding:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>mushroom_set <span class="ot">&lt;-</span> <span class="fu">set_variable_format</span>(<span class="at">data =</span> mushroom, <span class="at">location =</span> <span class="dv">8</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>                                    <span class="at">var =</span> <span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">head</span>(mushroom_set, <span class="dv">3</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="co">#&gt;   Species arorae arvenis benesi bernardii bisporus bitorquis califorinus</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="co">#&gt; 1      23      1       0      0         0        0         0           0</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="co">#&gt; 2      23      0       1      0         0        0         0           0</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="co">#&gt; 3      23      0       0      1         0        0         0           0</span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="co">#&gt;   campestris comtulus cupreo-brunneus diminutives fuseo-fibrillosus</span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="co">#&gt; 1          0        0               0           0                 0</span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="co">#&gt; 2          0        0               0           0                 0</span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="co">#&gt; 3          0        0               0           0                 0</span></span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="co">#&gt;   fuscovelatus hondensis lilaceps micromegathus praeclaresquamosus pattersonae</span></span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a><span class="co">#&gt; 1            0         0        0             0                  0           0</span></span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="co">#&gt; 2            0         0        0             0                  0           0</span></span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a><span class="co">#&gt; 3            0         0        0             0                  0           0</span></span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a><span class="co">#&gt;   perobscurus semotus silvicola subrutilescens xanthodermus</span></span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a><span class="co">#&gt; 1           0       0         0              0            0</span></span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a><span class="co">#&gt; 2           0       0         0              0            0</span></span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a><span class="co">#&gt; 3           0       0         0              0            0</span></span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a><span class="co">#&gt;   Pileus.Cap.Width_min Pileus.Cap.Width_max Stipe.Length_min Stipe.Length_max</span></span>
+<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a><span class="co">#&gt; 1                    3                    8                4                9</span></span>
+<span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a><span class="co">#&gt; 2                    6                   21                4               14</span></span>
+<span id="cb16-23"><a href="#cb16-23" tabindex="-1"></a><span class="co">#&gt; 3                    4                    8                5               11</span></span>
+<span id="cb16-24"><a href="#cb16-24" tabindex="-1"></a><span class="co">#&gt;   Stipe.Thickness_min Stipe.Thickness_max Edibility U Y T</span></span>
+<span id="cb16-25"><a href="#cb16-25" tabindex="-1"></a><span class="co">#&gt; 1                 0.5                 2.5         3 1 0 0</span></span>
+<span id="cb16-26"><a href="#cb16-26" tabindex="-1"></a><span class="co">#&gt; 2                 1.0                 3.5         3 0 1 0</span></span>
+<span id="cb16-27"><a href="#cb16-27" tabindex="-1"></a><span class="co">#&gt; 3                 1.0                 2.0         3 0 1 0</span></span></code></pre></div>
+<p>Next, apply <code>RSDA_format()</code> to prefix each variable with
+<code>$I</code> (interval) or <code>$S</code> (set) tags:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>mushroom_tmp <span class="ot">&lt;-</span> <span class="fu">RSDA_format</span>(<span class="at">data =</span> mushroom_set,</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>                            <span class="at">sym_type1 =</span> <span class="fu">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;I&quot;</span>, <span class="st">&quot;I&quot;</span>, <span class="st">&quot;S&quot;</span>),</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>                            <span class="at">location =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">29</span>, <span class="dv">31</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>                            <span class="at">sym_type2 =</span> <span class="fu">c</span>(<span class="st">&quot;S&quot;</span>),</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>                            <span class="at">var =</span> <span class="fu">c</span>(<span class="st">&quot;Species&quot;</span>))</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="fu">head</span>(mushroom_tmp, <span class="dv">3</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="co">#&gt;   $S Species arorae arvenis benesi bernardii bisporus bitorquis califorinus</span></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="co">#&gt; 1 $S      23      1       0      0         0        0         0           0</span></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="co">#&gt; 2 $S      23      0       1      0         0        0         0           0</span></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="co">#&gt; 3 $S      23      0       0      1         0        0         0           0</span></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="co">#&gt;   campestris comtulus cupreo-brunneus diminutives fuseo-fibrillosus</span></span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a><span class="co">#&gt; 1          0        0               0           0                 0</span></span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a><span class="co">#&gt; 2          0        0               0           0                 0</span></span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="co">#&gt; 3          0        0               0           0                 0</span></span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a><span class="co">#&gt;   fuscovelatus hondensis lilaceps micromegathus praeclaresquamosus pattersonae</span></span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a><span class="co">#&gt; 1            0         0        0             0                  0           0</span></span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a><span class="co">#&gt; 2            0         0        0             0                  0           0</span></span>
+<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a><span class="co">#&gt; 3            0         0        0             0                  0           0</span></span>
+<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a><span class="co">#&gt;   perobscurus semotus silvicola subrutilescens xanthodermus $I</span></span>
+<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a><span class="co">#&gt; 1           0       0         0              0            0 $I</span></span>
+<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a><span class="co">#&gt; 2           0       0         0              0            0 $I</span></span>
+<span id="cb17-22"><a href="#cb17-22" tabindex="-1"></a><span class="co">#&gt; 3           0       0         0              0            0 $I</span></span>
+<span id="cb17-23"><a href="#cb17-23" tabindex="-1"></a><span class="co">#&gt;   Pileus.Cap.Width_min Pileus.Cap.Width_max $I Stipe.Length_min</span></span>
+<span id="cb17-24"><a href="#cb17-24" tabindex="-1"></a><span class="co">#&gt; 1                    3                    8 $I                4</span></span>
+<span id="cb17-25"><a href="#cb17-25" tabindex="-1"></a><span class="co">#&gt; 2                    6                   21 $I                4</span></span>
+<span id="cb17-26"><a href="#cb17-26" tabindex="-1"></a><span class="co">#&gt; 3                    4                    8 $I                5</span></span>
+<span id="cb17-27"><a href="#cb17-27" tabindex="-1"></a><span class="co">#&gt;   Stipe.Length_max $I Stipe.Thickness_min Stipe.Thickness_max $S Edibility U Y</span></span>
+<span id="cb17-28"><a href="#cb17-28" tabindex="-1"></a><span class="co">#&gt; 1                9 $I                 0.5                 2.5 $S         3 1 0</span></span>
+<span id="cb17-29"><a href="#cb17-29" tabindex="-1"></a><span class="co">#&gt; 2               14 $I                 1.0                 3.5 $S         3 0 1</span></span>
+<span id="cb17-30"><a href="#cb17-30" tabindex="-1"></a><span class="co">#&gt; 3               11 $I                 1.0                 2.0 $S         3 0 1</span></span>
+<span id="cb17-31"><a href="#cb17-31" tabindex="-1"></a><span class="co">#&gt;   T</span></span>
+<span id="cb17-32"><a href="#cb17-32" tabindex="-1"></a><span class="co">#&gt; 1 0</span></span>
+<span id="cb17-33"><a href="#cb17-33" tabindex="-1"></a><span class="co">#&gt; 2 0</span></span>
+<span id="cb17-34"><a href="#cb17-34" tabindex="-1"></a><span class="co">#&gt; 3 0</span></span></code></pre></div>
+<p>Clean up variable names with <code>clean_colnames()</code> and write
+to CSV with <code>write_csv_table()</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>mushroom_clean <span class="ot">&lt;-</span> <span class="fu">clean_colnames</span>(<span class="at">data =</span> mushroom_tmp)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">head</span>(mushroom_clean, <span class="dv">3</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="co">#&gt;   $S Species arorae arvenis benesi bernardii bisporus bitorquis califorinus</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="co">#&gt; 1 $S      23      1       0      0         0        0         0           0</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="co">#&gt; 2 $S      23      0       1      0         0        0         0           0</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="co">#&gt; 3 $S      23      0       0      1         0        0         0           0</span></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="co">#&gt;   campestris comtulus cupreo-brunneus dutives fuseo-fibrillosus fuscovelatus</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="co">#&gt; 1          0        0               0       0                 0            0</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="co">#&gt; 2          0        0               0       0                 0            0</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="co">#&gt; 3          0        0               0       0                 0            0</span></span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a><span class="co">#&gt;   hondensis lilaceps micromegathus praeclaresquamosus pattersonae perobscurus</span></span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a><span class="co">#&gt; 1         0        0             0                  0           0           0</span></span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a><span class="co">#&gt; 2         0        0             0                  0           0           0</span></span>
+<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a><span class="co">#&gt; 3         0        0             0                  0           0           0</span></span>
+<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a><span class="co">#&gt;   semotus silvicola subrutilescens xanthodermus $I Pileus.Cap.Width</span></span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a><span class="co">#&gt; 1       0         0              0            0 $I                3</span></span>
+<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a><span class="co">#&gt; 2       0         0              0            0 $I                6</span></span>
+<span id="cb18-18"><a href="#cb18-18" tabindex="-1"></a><span class="co">#&gt; 3       0         0              0            0 $I                4</span></span>
+<span id="cb18-19"><a href="#cb18-19" tabindex="-1"></a><span class="co">#&gt;   Pileus.Cap.Width $I Stipe.Length Stipe.Length $I Stipe.Thickness</span></span>
+<span id="cb18-20"><a href="#cb18-20" tabindex="-1"></a><span class="co">#&gt; 1                8 $I            4            9 $I             0.5</span></span>
+<span id="cb18-21"><a href="#cb18-21" tabindex="-1"></a><span class="co">#&gt; 2               21 $I            4           14 $I             1.0</span></span>
+<span id="cb18-22"><a href="#cb18-22" tabindex="-1"></a><span class="co">#&gt; 3                8 $I            5           11 $I             1.0</span></span>
+<span id="cb18-23"><a href="#cb18-23" tabindex="-1"></a><span class="co">#&gt;   Stipe.Thickness $S Edibility U Y T</span></span>
+<span id="cb18-24"><a href="#cb18-24" tabindex="-1"></a><span class="co">#&gt; 1             2.5 $S         3 1 0 0</span></span>
+<span id="cb18-25"><a href="#cb18-25" tabindex="-1"></a><span class="co">#&gt; 2             3.5 $S         3 0 1 0</span></span>
+<span id="cb18-26"><a href="#cb18-26" tabindex="-1"></a><span class="co">#&gt; 3             2.0 $S         3 0 1 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">write_csv_table</span>(<span class="at">data =</span> mushroom_clean, <span class="at">file =</span> <span class="st">&quot;mushroom_interval.csv&quot;</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>mushroom_int <span class="ot">&lt;-</span> <span class="fu">read.sym.table</span>(<span class="at">file =</span> <span class="st">&quot;mushroom_interval.csv&quot;</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>                               <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>                               <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="fu">head</span>(mushroom_int, <span class="dv">3</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 5</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="co">#&gt;      Species Pileus.Cap.Width   Stipe.Length Stipe.Thickness  Edibility</span></span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a><span class="co">#&gt;   &lt;symblc_s&gt;       &lt;symblc_n&gt;     &lt;symblc_n&gt;      &lt;symblc_n&gt; &lt;symblc_s&gt;</span></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="co">#&gt; 1   {arorae}    [3.00 : 8.00]  [4.00 : 9.00]   [0.50 : 2.50]        {U}</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a><span class="co">#&gt; 2  {arvenis}   [6.00 : 21.00] [4.00 : 14.00]   [1.00 : 3.50]        {Y}</span></span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a><span class="co">#&gt; 3   {benesi}    [4.00 : 8.00] [5.00 : 11.00]   [1.00 : 2.00]        {Y}</span></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="fu">class</span>(mushroom_int)</span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a><span class="co">#&gt; [1] &quot;symbolic_tbl&quot; &quot;tbl_df&quot;       &quot;tbl&quot;          &quot;data.frame&quot;</span></span></code></pre></div>
+<p>Note: The <code>MM_to_RSDA()</code> function provides a simpler
+one-step alternative to this workflow.</p>
+</div>
+<div id="histogram-data-the-math-class" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Histogram data: the
+MatH class</h2>
+<p>Histogram-valued data uses the <code>MatH</code> class from the
+<code>HistDAWass</code> package. The built-in <code>BLOOD</code> dataset
+is a <code>MatH</code> object with 14 patient groups and 3
+distributional variables:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>BLOOD[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="co">#&gt; a matrix of distributions </span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="co">#&gt;  2  variables  3  rows </span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="co">#&gt;  each distibution in the cell is represented by the mean and the standard deviation </span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="co">#&gt;                  Cholesterol               Hemoglobin        </span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="co">#&gt; u1: F-20  [m= 150.1  ,s= 26.336 ]  [m= 13.695  ,s= 0.55031 ]</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="co">#&gt; u2: F-30 [m= 150.71  ,s= 25.284 ]  [m= 12.158  ,s= 0.52834 ]</span></span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="co">#&gt; u3: F-40 [m= 164.96  ,s= 25.334 ]  [m= 12.134  ,s= 0.50739 ]</span></span></code></pre></div>
+<p>Below we illustrate constructing a <code>MatH</code> object from raw
+histogram data:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>A1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">110</span>, <span class="dv">120</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>B1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.00</span>, <span class="fl">0.02</span>, <span class="fl">0.08</span>, <span class="fl">0.32</span>, <span class="fl">0.62</span>, <span class="fl">0.86</span>, <span class="fl">0.92</span>, <span class="fl">1.00</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">110</span>, <span class="dv">120</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>B2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.00</span>, <span class="fl">0.05</span>, <span class="fl">0.12</span>, <span class="fl">0.42</span>, <span class="fl">0.68</span>, <span class="fl">0.88</span>, <span class="fl">0.94</span>, <span class="fl">1.00</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>A3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">110</span>, <span class="dv">120</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>B3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.00</span>, <span class="fl">0.03</span>, <span class="fl">0.24</span>, <span class="fl">0.36</span>, <span class="fl">0.75</span>, <span class="fl">0.85</span>, <span class="fl">0.98</span>, <span class="fl">1.00</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>ListOfWeight <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>  <span class="fu">distributionH</span>(A1, B1),</span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>  <span class="fu">distributionH</span>(A2, B2),</span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>  <span class="fu">distributionH</span>(A3, B3)</span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a>)</span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>Weight <span class="ot">&lt;-</span> methods<span class="sc">::</span><span class="fu">new</span>(<span class="st">&quot;MatH&quot;</span>,</span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a>                       <span class="at">nrows =</span> <span class="dv">3</span>, <span class="at">ncols =</span> <span class="dv">1</span>, <span class="at">ListOfDist =</span> ListOfWeight,</span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a>                       <span class="at">names.rows =</span> <span class="fu">c</span>(<span class="st">&quot;20s&quot;</span>, <span class="st">&quot;30s&quot;</span>, <span class="st">&quot;40s&quot;</span>),</span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a>                       <span class="at">names.cols =</span> <span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>), <span class="at">by.row =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a>Weight</span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a><span class="co">#&gt; a matrix of distributions </span></span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a><span class="co">#&gt;  1  variables  3  rows </span></span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a><span class="co">#&gt;  each distibution in the cell is represented by the mean and the standard deviation </span></span>
+<span id="cb21-22"><a href="#cb21-22" tabindex="-1"></a><span class="co">#&gt;              weight        </span></span>
+<span id="cb21-23"><a href="#cb21-23" tabindex="-1"></a><span class="co">#&gt; 20s [m= 86.8  ,s= 13.824 ]</span></span>
+<span id="cb21-24"><a href="#cb21-24" tabindex="-1"></a><span class="co">#&gt; 30s [m= 84.1  ,s= 14.44 ] </span></span>
+<span id="cb21-25"><a href="#cb21-25" tabindex="-1"></a><span class="co">#&gt; 40s [m= 82.9  ,s= 14.385 ]</span></span></code></pre></div>
+</div>
+</div>
+<div id="the-eight-interval-methods" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> The Eight Interval
+Methods</h1>
+<p>Many <code>dataSDA</code> functions accept a <code>method</code>
+parameter that determines how interval boundaries are used in
+computations. The eight available methods (Wu, Kao and Chen, 2020)
+are:</p>
+<table>
+<colgroup>
+<col width="29%" />
+<col width="22%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Method</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>CM</strong></td>
+<td align="left">Center Method</td>
+<td align="left">Uses the midpoint (center) of each interval</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>VM</strong></td>
+<td align="left">Vertices Method</td>
+<td align="left">Uses both endpoints of the intervals</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>QM</strong></td>
+<td align="left">Quantile Method</td>
+<td align="left">Uses a quantile-based representation</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>SE</strong></td>
+<td align="left">Stacked Endpoints Method</td>
+<td align="left">Stacks the lower and upper values of an interval</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>FV</strong></td>
+<td align="left">Fitted Values Method</td>
+<td align="left">Fits a linear regression model</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>EJD</strong></td>
+<td align="left">Empirical Joint Density Method</td>
+<td align="left">Joint distribution of lower and upper bounds</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>GQ</strong></td>
+<td align="left">Symbolic Covariance Method</td>
+<td align="left">Alternative expression of the symbolic sample
+variance</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>SPT</strong></td>
+<td align="left">Total Sum of Products</td>
+<td align="left">Decomposition of the SPT</td>
+</tr>
+</tbody>
+</table>
+<p>Quick demonstration:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">data</span>(mushroom.int)</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>var_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Stipe.Length&quot;</span>, <span class="st">&quot;Stipe.Thickness&quot;</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">int_mean</span>(mushroom.int, var_name, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;CM&quot;</span>, <span class="st">&quot;FV&quot;</span>, <span class="st">&quot;EJD&quot;</span>))</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a><span class="co">#&gt;     Stipe.Length Stipe.Thickness</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a><span class="co">#&gt; CM      7.391304        1.823913</span></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a><span class="co">#&gt; FV     10.304348        2.371739</span></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a><span class="co">#&gt; EJD     7.391304        1.823913</span></span></code></pre></div>
+</div>
+<div id="descriptive-statistics-for-interval-valued-data" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Descriptive Statistics
+for Interval-Valued Data</h1>
+<p>The core statistical functions <code>int_mean</code>,
+<code>int_var</code>, <code>int_cov</code>, and <code>int_cor</code>
+compute descriptive statistics for interval-valued data across any
+combination of the eight methods.</p>
+<div id="mean-and-variance" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Mean and
+variance</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">data</span>(mushroom.int)</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="co"># Mean of a single variable (default method = &quot;CM&quot;)</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="fu">int_mean</span>(mushroom.int, <span class="at">var_name =</span> <span class="st">&quot;Pileus.Cap.Width&quot;</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="co">#&gt;    Pileus.Cap.Width</span></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a><span class="co">#&gt; CM         7.978261</span></span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a><span class="co"># Mean with multiple variables and methods</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>var_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Stipe.Length&quot;</span>, <span class="st">&quot;Stipe.Thickness&quot;</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CM&quot;</span>, <span class="st">&quot;FV&quot;</span>, <span class="st">&quot;EJD&quot;</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a><span class="fu">int_mean</span>(mushroom.int, var_name, method)</span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a><span class="co">#&gt;     Stipe.Length Stipe.Thickness</span></span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a><span class="co">#&gt; CM      7.391304        1.823913</span></span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a><span class="co">#&gt; FV     10.304348        2.371739</span></span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a><span class="co">#&gt; EJD     7.391304        1.823913</span></span>
+<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a><span class="co"># Variance</span></span>
+<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a><span class="fu">int_var</span>(mushroom.int, var_name, method)</span>
+<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a><span class="co">#&gt;     Stipe.Length Stipe.Thickness</span></span>
+<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a><span class="co">#&gt; CM      9.544466       0.9872431</span></span>
+<span id="cb23-21"><a href="#cb23-21" tabindex="-1"></a><span class="co">#&gt; FV     13.858573       1.1729910</span></span>
+<span id="cb23-22"><a href="#cb23-22" tabindex="-1"></a><span class="co">#&gt; EJD    12.651229       1.0836673</span></span></code></pre></div>
+</div>
+<div id="covariance-and-correlation" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Covariance and
+correlation</h2>
+<p>Note: EJD, GQ, and SPT methods require character variable names (not
+numeric indices).</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>var_name1 <span class="ot">&lt;-</span> <span class="st">&quot;Pileus.Cap.Width&quot;</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>var_name2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Stipe.Length&quot;</span>, <span class="st">&quot;Stipe.Thickness&quot;</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CM&quot;</span>, <span class="st">&quot;VM&quot;</span>, <span class="st">&quot;QM&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;FV&quot;</span>, <span class="st">&quot;EJD&quot;</span>, <span class="st">&quot;GQ&quot;</span>, <span class="st">&quot;SPT&quot;</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a><span class="fu">int_cov</span>(mushroom.int, var_name1, var_name2, method)</span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a><span class="co">#&gt; $CM</span></span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width     8.417984        2.480657</span></span>
+<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a><span class="co">#&gt; $VM</span></span>
+<span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-12"><a href="#cb24-12" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width     8.095985        2.385769</span></span>
+<span id="cb24-13"><a href="#cb24-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-14"><a href="#cb24-14" tabindex="-1"></a><span class="co">#&gt; $QM</span></span>
+<span id="cb24-15"><a href="#cb24-15" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-16"><a href="#cb24-16" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width     14.02174        3.523277</span></span>
+<span id="cb24-17"><a href="#cb24-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-18"><a href="#cb24-18" tabindex="-1"></a><span class="co">#&gt; $SE</span></span>
+<span id="cb24-19"><a href="#cb24-19" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-20"><a href="#cb24-20" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width     20.18647        4.714976</span></span>
+<span id="cb24-21"><a href="#cb24-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-22"><a href="#cb24-22" tabindex="-1"></a><span class="co">#&gt; $FV</span></span>
+<span id="cb24-23"><a href="#cb24-23" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-24"><a href="#cb24-24" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width     10.37204        2.994745</span></span>
+<span id="cb24-25"><a href="#cb24-25" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-26"><a href="#cb24-26" tabindex="-1"></a><span class="co">#&gt; $EJD</span></span>
+<span id="cb24-27"><a href="#cb24-27" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-28"><a href="#cb24-28" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width     8.051985        2.372802</span></span>
+<span id="cb24-29"><a href="#cb24-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-30"><a href="#cb24-30" tabindex="-1"></a><span class="co">#&gt; $GQ</span></span>
+<span id="cb24-31"><a href="#cb24-31" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-32"><a href="#cb24-32" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width     11.46091        3.243229</span></span>
+<span id="cb24-33"><a href="#cb24-33" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-34"><a href="#cb24-34" tabindex="-1"></a><span class="co">#&gt; $SPT</span></span>
+<span id="cb24-35"><a href="#cb24-35" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-36"><a href="#cb24-36" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width     11.95054         3.11936</span></span>
+<span id="cb24-37"><a href="#cb24-37" tabindex="-1"></a><span class="fu">int_cor</span>(mushroom.int, var_name1, var_name2, method)</span>
+<span id="cb24-38"><a href="#cb24-38" tabindex="-1"></a><span class="co">#&gt; $CM</span></span>
+<span id="cb24-39"><a href="#cb24-39" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-40"><a href="#cb24-40" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width    0.8047063       0.7373264</span></span>
+<span id="cb24-41"><a href="#cb24-41" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-42"><a href="#cb24-42" tabindex="-1"></a><span class="co">#&gt; $VM</span></span>
+<span id="cb24-43"><a href="#cb24-43" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-44"><a href="#cb24-44" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width    0.3555993       0.3984261</span></span>
+<span id="cb24-45"><a href="#cb24-45" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-46"><a href="#cb24-46" tabindex="-1"></a><span class="co">#&gt; $QM</span></span>
+<span id="cb24-47"><a href="#cb24-47" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-48"><a href="#cb24-48" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width     0.857843       0.7619691</span></span>
+<span id="cb24-49"><a href="#cb24-49" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-50"><a href="#cb24-50" tabindex="-1"></a><span class="co">#&gt; $SE</span></span>
+<span id="cb24-51"><a href="#cb24-51" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-52"><a href="#cb24-52" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width    0.8817636       0.7830681</span></span>
+<span id="cb24-53"><a href="#cb24-53" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-54"><a href="#cb24-54" tabindex="-1"></a><span class="co">#&gt; $FV</span></span>
+<span id="cb24-55"><a href="#cb24-55" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-56"><a href="#cb24-56" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width    0.7496622       0.7440004</span></span>
+<span id="cb24-57"><a href="#cb24-57" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-58"><a href="#cb24-58" tabindex="-1"></a><span class="co">#&gt; $EJD</span></span>
+<span id="cb24-59"><a href="#cb24-59" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-60"><a href="#cb24-60" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width    0.5695142       0.5734316</span></span>
+<span id="cb24-61"><a href="#cb24-61" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-62"><a href="#cb24-62" tabindex="-1"></a><span class="co">#&gt; $GQ</span></span>
+<span id="cb24-63"><a href="#cb24-63" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-64"><a href="#cb24-64" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width    0.8106262       0.7837862</span></span>
+<span id="cb24-65"><a href="#cb24-65" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-66"><a href="#cb24-66" tabindex="-1"></a><span class="co">#&gt; $SPT</span></span>
+<span id="cb24-67"><a href="#cb24-67" tabindex="-1"></a><span class="co">#&gt;                  Stipe.Length Stipe.Thickness</span></span>
+<span id="cb24-68"><a href="#cb24-68" tabindex="-1"></a><span class="co">#&gt; Pileus.Cap.Width    0.8452575       0.7538511</span></span></code></pre></div>
+</div>
+</div>
+<div id="geometric-properties" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Geometric
+Properties</h1>
+<p>Geometric functions characterize the shape and spatial properties of
+individual intervals and relationships between interval variables.</p>
+<div id="width-radius-center-and-midrange" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Width, radius,
+center, and midrange</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">data</span>(mushroom.int)</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="co"># Width = upper - lower</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">int_width</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>))</span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="co">#&gt;   Stipe.Length</span></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="co">#&gt; 1            5</span></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a><span class="co">#&gt; 2           10</span></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="co">#&gt; 3            6</span></span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a><span class="co">#&gt; 4            3</span></span>
+<span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a><span class="co">#&gt; 5            3</span></span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a><span class="co">#&gt; 6            6</span></span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a><span class="co"># Radius = width / 2</span></span>
+<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">int_radius</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>))</span>
+<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a><span class="co">#&gt;   Stipe.Length</span></span>
+<span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a><span class="co">#&gt; 1          2.5</span></span>
+<span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a><span class="co">#&gt; 2          5.0</span></span>
+<span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a><span class="co">#&gt; 3          3.0</span></span>
+<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a><span class="co">#&gt; 4          1.5</span></span>
+<span id="cb25-20"><a href="#cb25-20" tabindex="-1"></a><span class="co">#&gt; 5          1.5</span></span>
+<span id="cb25-21"><a href="#cb25-21" tabindex="-1"></a><span class="co">#&gt; 6          3.0</span></span>
+<span id="cb25-22"><a href="#cb25-22" tabindex="-1"></a></span>
+<span id="cb25-23"><a href="#cb25-23" tabindex="-1"></a><span class="co"># Center = (lower + upper) / 2</span></span>
+<span id="cb25-24"><a href="#cb25-24" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">int_center</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>))</span>
+<span id="cb25-25"><a href="#cb25-25" tabindex="-1"></a><span class="co">#&gt;   Stipe.Length</span></span>
+<span id="cb25-26"><a href="#cb25-26" tabindex="-1"></a><span class="co">#&gt; 1          6.5</span></span>
+<span id="cb25-27"><a href="#cb25-27" tabindex="-1"></a><span class="co">#&gt; 2          9.0</span></span>
+<span id="cb25-28"><a href="#cb25-28" tabindex="-1"></a><span class="co">#&gt; 3          8.0</span></span>
+<span id="cb25-29"><a href="#cb25-29" tabindex="-1"></a><span class="co">#&gt; 4          5.5</span></span>
+<span id="cb25-30"><a href="#cb25-30" tabindex="-1"></a><span class="co">#&gt; 5          3.5</span></span>
+<span id="cb25-31"><a href="#cb25-31" tabindex="-1"></a><span class="co">#&gt; 6          7.0</span></span>
+<span id="cb25-32"><a href="#cb25-32" tabindex="-1"></a></span>
+<span id="cb25-33"><a href="#cb25-33" tabindex="-1"></a><span class="co"># Midrange</span></span>
+<span id="cb25-34"><a href="#cb25-34" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">int_midrange</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>))</span>
+<span id="cb25-35"><a href="#cb25-35" tabindex="-1"></a><span class="co">#&gt;   Stipe.Length</span></span>
+<span id="cb25-36"><a href="#cb25-36" tabindex="-1"></a><span class="co">#&gt; 1          2.5</span></span>
+<span id="cb25-37"><a href="#cb25-37" tabindex="-1"></a><span class="co">#&gt; 2          5.0</span></span>
+<span id="cb25-38"><a href="#cb25-38" tabindex="-1"></a><span class="co">#&gt; 3          3.0</span></span>
+<span id="cb25-39"><a href="#cb25-39" tabindex="-1"></a><span class="co">#&gt; 4          1.5</span></span>
+<span id="cb25-40"><a href="#cb25-40" tabindex="-1"></a><span class="co">#&gt; 5          1.5</span></span>
+<span id="cb25-41"><a href="#cb25-41" tabindex="-1"></a><span class="co">#&gt; 6          3.0</span></span></code></pre></div>
+</div>
+<div id="overlap-and-containment" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Overlap and
+containment</h2>
+<p>These functions measure the degree to which intervals from two
+variables overlap or contain each other, observation by observation:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># Overlap between two interval variables</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">int_overlap</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="st">&quot;Stipe.Thickness&quot;</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="co">#&gt;   Stipe.Length_Stipe.Thickness</span></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="co">#&gt; 1                    0.0000000</span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="co">#&gt; 2                    0.0000000</span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="co">#&gt; 3                    0.0000000</span></span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a><span class="co">#&gt; 4                    0.1250000</span></span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a><span class="co">#&gt; 5                    0.1428571</span></span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a><span class="co">#&gt; 6                    0.0000000</span></span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a><span class="co"># Containment: proportion of var_name2 contained within var_name1</span></span>
+<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">int_containment</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="st">&quot;Stipe.Thickness&quot;</span>))</span>
+<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a><span class="co">#&gt;   Stipe.Length_in_Stipe.Thickness</span></span>
+<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a><span class="co">#&gt; 1                           FALSE</span></span>
+<span id="cb26-15"><a href="#cb26-15" tabindex="-1"></a><span class="co">#&gt; 2                           FALSE</span></span>
+<span id="cb26-16"><a href="#cb26-16" tabindex="-1"></a><span class="co">#&gt; 3                           FALSE</span></span>
+<span id="cb26-17"><a href="#cb26-17" tabindex="-1"></a><span class="co">#&gt; 4                           FALSE</span></span>
+<span id="cb26-18"><a href="#cb26-18" tabindex="-1"></a><span class="co">#&gt; 5                           FALSE</span></span>
+<span id="cb26-19"><a href="#cb26-19" tabindex="-1"></a><span class="co">#&gt; 6                           FALSE</span></span></code></pre></div>
+</div>
+</div>
+<div id="position-and-scale-measures" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Position and Scale
+Measures</h1>
+<div id="median-and-quantiles" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Median and
+quantiles</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">data</span>(mushroom.int)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="co"># Median (default method = &quot;CM&quot;)</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="fu">int_median</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a><span class="co">#&gt; CM            7</span></span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a><span class="co"># Quantiles</span></span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a><span class="fu">int_quantile</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</span>
+<span id="cb27-10"><a href="#cb27-10" tabindex="-1"></a><span class="co">#&gt; $CM</span></span>
+<span id="cb27-11"><a href="#cb27-11" tabindex="-1"></a><span class="co">#&gt;     Stipe.Length</span></span>
+<span id="cb27-12"><a href="#cb27-12" tabindex="-1"></a><span class="co">#&gt; 25%         4.75</span></span>
+<span id="cb27-13"><a href="#cb27-13" tabindex="-1"></a><span class="co">#&gt; 50%         7.00</span></span>
+<span id="cb27-14"><a href="#cb27-14" tabindex="-1"></a><span class="co">#&gt; 75%         9.25</span></span>
+<span id="cb27-15"><a href="#cb27-15" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" tabindex="-1"></a><span class="co"># Compare median across methods</span></span>
+<span id="cb27-17"><a href="#cb27-17" tabindex="-1"></a><span class="fu">int_median</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;CM&quot;</span>, <span class="st">&quot;FV&quot;</span>))</span>
+<span id="cb27-18"><a href="#cb27-18" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb27-19"><a href="#cb27-19" tabindex="-1"></a><span class="co">#&gt; CM     7.000000</span></span>
+<span id="cb27-20"><a href="#cb27-20" tabindex="-1"></a><span class="co">#&gt; FV     9.405092</span></span></code></pre></div>
+</div>
+<div id="range-iqr-mad-and-mode" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Range, IQR, MAD, and
+mode</h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="co"># Range (max - min)</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">int_range</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="co">#&gt; CM         11.5</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="co"># Interquartile range (Q3 - Q1)</span></span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="fu">int_iqr</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="co">#&gt;     Stipe.Length</span></span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a><span class="co">#&gt; IQR          4.5</span></span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a><span class="co"># Median absolute deviation</span></span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="fu">int_mad</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>)</span>
+<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a><span class="co">#&gt; CM          2.5</span></span>
+<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a></span>
+<span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a><span class="co"># Mode (histogram-based estimation)</span></span>
+<span id="cb28-17"><a href="#cb28-17" tabindex="-1"></a><span class="fu">int_mode</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>)</span>
+<span id="cb28-18"><a href="#cb28-18" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb28-19"><a href="#cb28-19" tabindex="-1"></a><span class="co">#&gt; CM         8.75</span></span></code></pre></div>
+</div>
+</div>
+<div id="robust-statistics" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Robust Statistics</h1>
+<p>Robust statistics reduce the influence of outliers by trimming or
+winsorizing extreme values.</p>
+<div id="trimmed-and-winsorized-means" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Trimmed and
+winsorized means</h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="fu">data</span>(mushroom.int)</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="co"># Compare standard mean vs trimmed mean (10% trim)</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="fu">int_mean</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a><span class="co">#&gt; CM     7.391304</span></span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="fu">int_trimmed_mean</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">trim =</span> <span class="fl">0.1</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a><span class="co">#&gt; CM     7.289474</span></span>
+<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a><span class="co"># Winsorized mean: extreme values are replaced (not removed)</span></span>
+<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a><span class="fu">int_winsorized_mean</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">trim =</span> <span class="fl">0.1</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a><span class="co">#&gt; CM     7.282609</span></span></code></pre></div>
+</div>
+<div id="trimmed-and-winsorized-variances" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Trimmed and
+winsorized variances</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">int_var</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a><span class="co">#&gt; CM     9.544466</span></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a><span class="fu">int_trimmed_var</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">trim =</span> <span class="fl">0.1</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a><span class="co">#&gt; CM     6.119883</span></span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a><span class="fu">int_winsorized_var</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">trim =</span> <span class="fl">0.1</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb30-9"><a href="#cb30-9" tabindex="-1"></a><span class="co">#&gt; CM     7.564229</span></span></code></pre></div>
+</div>
+</div>
+<div id="distribution-shape" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Distribution Shape</h1>
+<p>Shape functions characterize the distribution of interval-valued
+data.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="fu">data</span>(mushroom.int)</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="co"># Skewness: asymmetry of the distribution</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="fu">int_skewness</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a><span class="co">#&gt; CM    0.2228348</span></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="co"># Kurtosis: tail heaviness</span></span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a><span class="fu">int_kurtosis</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a><span class="co">#&gt; CM    -1.065302</span></span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a><span class="co"># Symmetry coefficient</span></span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a><span class="fu">int_symmetry</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a><span class="co">#&gt; CM     0.800247</span></span>
+<span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a></span>
+<span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a><span class="co"># Tailedness (related to kurtosis)</span></span>
+<span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a><span class="fu">int_tailedness</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a><span class="co">#&gt; CM    -1.065302</span></span></code></pre></div>
+</div>
+<div id="similarity-measures" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Similarity
+Measures</h1>
+<p>Similarity functions quantify how alike two interval variables are
+across all observations. Available measures include Jaccard, Dice,
+cosine, and overlap coefficient.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">data</span>(mushroom.int)</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a><span class="fu">int_jaccard</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="st">&quot;Stipe.Thickness&quot;</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length_Stipe.Thickness</span></span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a><span class="co">#&gt; 1                     0.0000000</span></span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a><span class="co">#&gt; 2                     0.0000000</span></span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a><span class="co">#&gt; 3                     0.0000000</span></span>
+<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a><span class="co">#&gt; 4                     0.1250000</span></span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a><span class="co">#&gt; 5                     0.1428571</span></span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="co">#&gt; 6                     0.0000000</span></span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="co">#&gt; 7                     0.0000000</span></span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="co">#&gt; 8                     0.0000000</span></span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="co">#&gt; 9                     0.0000000</span></span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a><span class="co">#&gt; 10                    0.0000000</span></span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a><span class="co">#&gt; 11                    0.0000000</span></span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="co">#&gt; 12                    0.0000000</span></span>
+<span id="cb32-17"><a href="#cb32-17" tabindex="-1"></a><span class="co">#&gt; 13                    0.0000000</span></span>
+<span id="cb32-18"><a href="#cb32-18" tabindex="-1"></a><span class="co">#&gt; 14                    0.0000000</span></span>
+<span id="cb32-19"><a href="#cb32-19" tabindex="-1"></a><span class="co">#&gt; 15                    0.0000000</span></span>
+<span id="cb32-20"><a href="#cb32-20" tabindex="-1"></a><span class="co">#&gt; 16                    0.0000000</span></span>
+<span id="cb32-21"><a href="#cb32-21" tabindex="-1"></a><span class="co">#&gt; 17                    0.0000000</span></span>
+<span id="cb32-22"><a href="#cb32-22" tabindex="-1"></a><span class="co">#&gt; 18                    0.0000000</span></span>
+<span id="cb32-23"><a href="#cb32-23" tabindex="-1"></a><span class="co">#&gt; 19                    0.0000000</span></span>
+<span id="cb32-24"><a href="#cb32-24" tabindex="-1"></a><span class="co">#&gt; 20                    0.0000000</span></span>
+<span id="cb32-25"><a href="#cb32-25" tabindex="-1"></a><span class="co">#&gt; 21                    0.0000000</span></span>
+<span id="cb32-26"><a href="#cb32-26" tabindex="-1"></a><span class="co">#&gt; 22                    0.0000000</span></span>
+<span id="cb32-27"><a href="#cb32-27" tabindex="-1"></a><span class="co">#&gt; 23                    0.0000000</span></span>
+<span id="cb32-28"><a href="#cb32-28" tabindex="-1"></a><span class="fu">int_dice</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="st">&quot;Stipe.Thickness&quot;</span>)</span>
+<span id="cb32-29"><a href="#cb32-29" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length_Stipe.Thickness</span></span>
+<span id="cb32-30"><a href="#cb32-30" tabindex="-1"></a><span class="co">#&gt; 1                     0.0000000</span></span>
+<span id="cb32-31"><a href="#cb32-31" tabindex="-1"></a><span class="co">#&gt; 2                     0.0000000</span></span>
+<span id="cb32-32"><a href="#cb32-32" tabindex="-1"></a><span class="co">#&gt; 3                     0.0000000</span></span>
+<span id="cb32-33"><a href="#cb32-33" tabindex="-1"></a><span class="co">#&gt; 4                     0.2222222</span></span>
+<span id="cb32-34"><a href="#cb32-34" tabindex="-1"></a><span class="co">#&gt; 5                     0.2500000</span></span>
+<span id="cb32-35"><a href="#cb32-35" tabindex="-1"></a><span class="co">#&gt; 6                     0.0000000</span></span>
+<span id="cb32-36"><a href="#cb32-36" tabindex="-1"></a><span class="co">#&gt; 7                     0.0000000</span></span>
+<span id="cb32-37"><a href="#cb32-37" tabindex="-1"></a><span class="co">#&gt; 8                     0.0000000</span></span>
+<span id="cb32-38"><a href="#cb32-38" tabindex="-1"></a><span class="co">#&gt; 9                     0.0000000</span></span>
+<span id="cb32-39"><a href="#cb32-39" tabindex="-1"></a><span class="co">#&gt; 10                    0.0000000</span></span>
+<span id="cb32-40"><a href="#cb32-40" tabindex="-1"></a><span class="co">#&gt; 11                    0.0000000</span></span>
+<span id="cb32-41"><a href="#cb32-41" tabindex="-1"></a><span class="co">#&gt; 12                    0.0000000</span></span>
+<span id="cb32-42"><a href="#cb32-42" tabindex="-1"></a><span class="co">#&gt; 13                    0.0000000</span></span>
+<span id="cb32-43"><a href="#cb32-43" tabindex="-1"></a><span class="co">#&gt; 14                    0.0000000</span></span>
+<span id="cb32-44"><a href="#cb32-44" tabindex="-1"></a><span class="co">#&gt; 15                    0.0000000</span></span>
+<span id="cb32-45"><a href="#cb32-45" tabindex="-1"></a><span class="co">#&gt; 16                    0.0000000</span></span>
+<span id="cb32-46"><a href="#cb32-46" tabindex="-1"></a><span class="co">#&gt; 17                    0.0000000</span></span>
+<span id="cb32-47"><a href="#cb32-47" tabindex="-1"></a><span class="co">#&gt; 18                    0.0000000</span></span>
+<span id="cb32-48"><a href="#cb32-48" tabindex="-1"></a><span class="co">#&gt; 19                    0.0000000</span></span>
+<span id="cb32-49"><a href="#cb32-49" tabindex="-1"></a><span class="co">#&gt; 20                    0.0000000</span></span>
+<span id="cb32-50"><a href="#cb32-50" tabindex="-1"></a><span class="co">#&gt; 21                    0.0000000</span></span>
+<span id="cb32-51"><a href="#cb32-51" tabindex="-1"></a><span class="co">#&gt; 22                    0.0000000</span></span>
+<span id="cb32-52"><a href="#cb32-52" tabindex="-1"></a><span class="co">#&gt; 23                    0.0000000</span></span>
+<span id="cb32-53"><a href="#cb32-53" tabindex="-1"></a><span class="fu">int_cosine</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="st">&quot;Stipe.Thickness&quot;</span>)</span>
+<span id="cb32-54"><a href="#cb32-54" tabindex="-1"></a><span class="co">#&gt;        Stipe.Length_Stipe.Thickness</span></span>
+<span id="cb32-55"><a href="#cb32-55" tabindex="-1"></a><span class="co">#&gt; Cosine                    0.9257023</span></span>
+<span id="cb32-56"><a href="#cb32-56" tabindex="-1"></a><span class="fu">int_overlap_coefficient</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="st">&quot;Stipe.Thickness&quot;</span>)</span>
+<span id="cb32-57"><a href="#cb32-57" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length_Stipe.Thickness</span></span>
+<span id="cb32-58"><a href="#cb32-58" tabindex="-1"></a><span class="co">#&gt; 1                     0.0000000</span></span>
+<span id="cb32-59"><a href="#cb32-59" tabindex="-1"></a><span class="co">#&gt; 2                     0.0000000</span></span>
+<span id="cb32-60"><a href="#cb32-60" tabindex="-1"></a><span class="co">#&gt; 3                     0.0000000</span></span>
+<span id="cb32-61"><a href="#cb32-61" tabindex="-1"></a><span class="co">#&gt; 4                     0.3333333</span></span>
+<span id="cb32-62"><a href="#cb32-62" tabindex="-1"></a><span class="co">#&gt; 5                     0.5000000</span></span>
+<span id="cb32-63"><a href="#cb32-63" tabindex="-1"></a><span class="co">#&gt; 6                     0.0000000</span></span>
+<span id="cb32-64"><a href="#cb32-64" tabindex="-1"></a><span class="co">#&gt; 7                     0.0000000</span></span>
+<span id="cb32-65"><a href="#cb32-65" tabindex="-1"></a><span class="co">#&gt; 8                     0.0000000</span></span>
+<span id="cb32-66"><a href="#cb32-66" tabindex="-1"></a><span class="co">#&gt; 9                     0.0000000</span></span>
+<span id="cb32-67"><a href="#cb32-67" tabindex="-1"></a><span class="co">#&gt; 10                    0.0000000</span></span>
+<span id="cb32-68"><a href="#cb32-68" tabindex="-1"></a><span class="co">#&gt; 11                    0.0000000</span></span>
+<span id="cb32-69"><a href="#cb32-69" tabindex="-1"></a><span class="co">#&gt; 12                    0.0000000</span></span>
+<span id="cb32-70"><a href="#cb32-70" tabindex="-1"></a><span class="co">#&gt; 13                    0.0000000</span></span>
+<span id="cb32-71"><a href="#cb32-71" tabindex="-1"></a><span class="co">#&gt; 14                    0.0000000</span></span>
+<span id="cb32-72"><a href="#cb32-72" tabindex="-1"></a><span class="co">#&gt; 15                    0.0000000</span></span>
+<span id="cb32-73"><a href="#cb32-73" tabindex="-1"></a><span class="co">#&gt; 16                    0.0000000</span></span>
+<span id="cb32-74"><a href="#cb32-74" tabindex="-1"></a><span class="co">#&gt; 17                    0.0000000</span></span>
+<span id="cb32-75"><a href="#cb32-75" tabindex="-1"></a><span class="co">#&gt; 18                    0.0000000</span></span>
+<span id="cb32-76"><a href="#cb32-76" tabindex="-1"></a><span class="co">#&gt; 19                    0.0000000</span></span>
+<span id="cb32-77"><a href="#cb32-77" tabindex="-1"></a><span class="co">#&gt; 20                    0.0000000</span></span>
+<span id="cb32-78"><a href="#cb32-78" tabindex="-1"></a><span class="co">#&gt; 21                    0.0000000</span></span>
+<span id="cb32-79"><a href="#cb32-79" tabindex="-1"></a><span class="co">#&gt; 22                    0.0000000</span></span>
+<span id="cb32-80"><a href="#cb32-80" tabindex="-1"></a><span class="co">#&gt; 23                    0.0000000</span></span></code></pre></div>
+<p>Note: <code>int_tanimoto()</code> is equivalent to
+<code>int_jaccard()</code> for interval-valued data:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">int_tanimoto</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="st">&quot;Stipe.Thickness&quot;</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length_Stipe.Thickness</span></span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a><span class="co">#&gt; 1                     0.0000000</span></span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a><span class="co">#&gt; 2                     0.0000000</span></span>
+<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a><span class="co">#&gt; 3                     0.0000000</span></span>
+<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a><span class="co">#&gt; 4                     0.1250000</span></span>
+<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a><span class="co">#&gt; 5                     0.1428571</span></span>
+<span id="cb33-8"><a href="#cb33-8" tabindex="-1"></a><span class="co">#&gt; 6                     0.0000000</span></span>
+<span id="cb33-9"><a href="#cb33-9" tabindex="-1"></a><span class="co">#&gt; 7                     0.0000000</span></span>
+<span id="cb33-10"><a href="#cb33-10" tabindex="-1"></a><span class="co">#&gt; 8                     0.0000000</span></span>
+<span id="cb33-11"><a href="#cb33-11" tabindex="-1"></a><span class="co">#&gt; 9                     0.0000000</span></span>
+<span id="cb33-12"><a href="#cb33-12" tabindex="-1"></a><span class="co">#&gt; 10                    0.0000000</span></span>
+<span id="cb33-13"><a href="#cb33-13" tabindex="-1"></a><span class="co">#&gt; 11                    0.0000000</span></span>
+<span id="cb33-14"><a href="#cb33-14" tabindex="-1"></a><span class="co">#&gt; 12                    0.0000000</span></span>
+<span id="cb33-15"><a href="#cb33-15" tabindex="-1"></a><span class="co">#&gt; 13                    0.0000000</span></span>
+<span id="cb33-16"><a href="#cb33-16" tabindex="-1"></a><span class="co">#&gt; 14                    0.0000000</span></span>
+<span id="cb33-17"><a href="#cb33-17" tabindex="-1"></a><span class="co">#&gt; 15                    0.0000000</span></span>
+<span id="cb33-18"><a href="#cb33-18" tabindex="-1"></a><span class="co">#&gt; 16                    0.0000000</span></span>
+<span id="cb33-19"><a href="#cb33-19" tabindex="-1"></a><span class="co">#&gt; 17                    0.0000000</span></span>
+<span id="cb33-20"><a href="#cb33-20" tabindex="-1"></a><span class="co">#&gt; 18                    0.0000000</span></span>
+<span id="cb33-21"><a href="#cb33-21" tabindex="-1"></a><span class="co">#&gt; 19                    0.0000000</span></span>
+<span id="cb33-22"><a href="#cb33-22" tabindex="-1"></a><span class="co">#&gt; 20                    0.0000000</span></span>
+<span id="cb33-23"><a href="#cb33-23" tabindex="-1"></a><span class="co">#&gt; 21                    0.0000000</span></span>
+<span id="cb33-24"><a href="#cb33-24" tabindex="-1"></a><span class="co">#&gt; 22                    0.0000000</span></span>
+<span id="cb33-25"><a href="#cb33-25" tabindex="-1"></a><span class="co">#&gt; 23                    0.0000000</span></span></code></pre></div>
+<p>The <code>int_similarity_matrix()</code> function computes a pairwise
+similarity matrix across all interval variables:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">int_similarity_matrix</span>(mushroom.int, <span class="at">method =</span> <span class="st">&quot;jaccard&quot;</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="co">#&gt;            1          2          3          4          5          6          7</span></span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="co">#&gt; 1  1.0000000 0.37037037 0.62380952 0.20000000 0.32539683 0.40873016 0.41269841</span></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a><span class="co">#&gt; 2  0.3703704 1.00000000 0.37254902 0.14761905 0.28611111 0.55416667 0.18894831</span></span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a><span class="co">#&gt; 3  0.6238095 0.37254902 1.00000000 0.09523810 0.23611111 0.32900433 0.27380952</span></span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a><span class="co">#&gt; 4  0.2000000 0.14761905 0.09523810 1.00000000 0.06666667 0.30000000 0.25000000</span></span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a><span class="co">#&gt; 5  0.3253968 0.28611111 0.23611111 0.06666667 1.00000000 0.34166667 0.38333333</span></span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a><span class="co">#&gt; 6  0.4087302 0.55416667 0.32900433 0.30000000 0.34166667 1.00000000 0.32467532</span></span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a><span class="co">#&gt; 7  0.4126984 0.18894831 0.27380952 0.25000000 0.38333333 0.32467532 1.00000000</span></span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a><span class="co">#&gt; 8  0.4206349 0.27727273 0.54166667 0.16666667 0.51587302 0.26190476 0.48809524</span></span>
+<span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a><span class="co">#&gt; 9  0.1479076 0.03030303 0.00000000 0.08333333 0.22222222 0.04761905 0.33333333</span></span>
+<span id="cb34-12"><a href="#cb34-12" tabindex="-1"></a><span class="co">#&gt; 10 0.2651515 0.06666667 0.28787879 0.00000000 0.17794486 0.02666667 0.10873440</span></span>
+<span id="cb34-13"><a href="#cb34-13" tabindex="-1"></a><span class="co">#&gt; 11 0.1111111 0.06060606 0.04166667 0.16666667 0.16666667 0.09523810 0.25000000</span></span>
+<span id="cb34-14"><a href="#cb34-14" tabindex="-1"></a><span class="co">#&gt; 12 0.4292929 0.61283422 0.41414141 0.09090909 0.57109557 0.55151515 0.29545455</span></span>
+<span id="cb34-15"><a href="#cb34-15" tabindex="-1"></a><span class="co">#&gt; 13 0.7444444 0.37142857 0.86772487 0.16666667 0.27042484 0.42028986 0.32063492</span></span>
+<span id="cb34-16"><a href="#cb34-16" tabindex="-1"></a><span class="co">#&gt; 14 0.2303030 0.48888889 0.25555556 0.00000000 0.51851852 0.36666667 0.13333333</span></span>
+<span id="cb34-17"><a href="#cb34-17" tabindex="-1"></a><span class="co">#&gt; 15 0.0000000 0.41944444 0.04761905 0.25000000 0.08888889 0.28888889 0.06250000</span></span>
+<span id="cb34-18"><a href="#cb34-18" tabindex="-1"></a><span class="co">#&gt; 16 0.1179931 0.01449275 0.00000000 0.03703704 0.22222222 0.02222222 0.27777778</span></span>
+<span id="cb34-19"><a href="#cb34-19" tabindex="-1"></a><span class="co">#&gt; 17 0.1066919 0.64848485 0.12222222 0.06666667 0.20238095 0.50108225 0.08888889</span></span>
+<span id="cb34-20"><a href="#cb34-20" tabindex="-1"></a><span class="co">#&gt; 18 0.1742424 0.56325758 0.25757576 0.11363636 0.23333333 0.62121212 0.20959596</span></span>
+<span id="cb34-21"><a href="#cb34-21" tabindex="-1"></a><span class="co">#&gt; 19 0.2083333 0.35555556 0.40476190 0.04166667 0.35714286 0.30000000 0.16203704</span></span>
+<span id="cb34-22"><a href="#cb34-22" tabindex="-1"></a><span class="co">#&gt; 20 0.3809524 0.09090909 0.19444444 0.25000000 0.16666667 0.16849817 0.62962963</span></span>
+<span id="cb34-23"><a href="#cb34-23" tabindex="-1"></a><span class="co">#&gt; 21 0.2824074 0.40000000 0.48809524 0.04166667 0.45238095 0.36666667 0.24537037</span></span>
+<span id="cb34-24"><a href="#cb34-24" tabindex="-1"></a><span class="co">#&gt; 22 0.3240741 0.48888889 0.56818182 0.02777778 0.39682540 0.31111111 0.23397436</span></span>
+<span id="cb34-25"><a href="#cb34-25" tabindex="-1"></a><span class="co">#&gt; 23 0.4047619 0.89583333 0.41025641 0.14761905 0.35555556 0.64444444 0.24475524</span></span>
+<span id="cb34-26"><a href="#cb34-26" tabindex="-1"></a><span class="co">#&gt;             8          9         10         11         12         13        14</span></span>
+<span id="cb34-27"><a href="#cb34-27" tabindex="-1"></a><span class="co">#&gt; 1  0.42063492 0.14790765 0.26515152 0.11111111 0.42929293 0.74444444 0.2303030</span></span>
+<span id="cb34-28"><a href="#cb34-28" tabindex="-1"></a><span class="co">#&gt; 2  0.27727273 0.03030303 0.06666667 0.06060606 0.61283422 0.37142857 0.4888889</span></span>
+<span id="cb34-29"><a href="#cb34-29" tabindex="-1"></a><span class="co">#&gt; 3  0.54166667 0.00000000 0.28787879 0.04166667 0.41414141 0.86772487 0.2555556</span></span>
+<span id="cb34-30"><a href="#cb34-30" tabindex="-1"></a><span class="co">#&gt; 4  0.16666667 0.08333333 0.00000000 0.16666667 0.09090909 0.16666667 0.0000000</span></span>
+<span id="cb34-31"><a href="#cb34-31" tabindex="-1"></a><span class="co">#&gt; 5  0.51587302 0.22222222 0.17794486 0.16666667 0.57109557 0.27042484 0.5185185</span></span>
+<span id="cb34-32"><a href="#cb34-32" tabindex="-1"></a><span class="co">#&gt; 6  0.26190476 0.04761905 0.02666667 0.09523810 0.55151515 0.42028986 0.3666667</span></span>
+<span id="cb34-33"><a href="#cb34-33" tabindex="-1"></a><span class="co">#&gt; 7  0.48809524 0.33333333 0.10873440 0.25000000 0.29545455 0.32063492 0.1333333</span></span>
+<span id="cb34-34"><a href="#cb34-34" tabindex="-1"></a><span class="co">#&gt; 8  1.00000000 0.22222222 0.24814815 0.33333333 0.31818182 0.58241758 0.2222222</span></span>
+<span id="cb34-35"><a href="#cb34-35" tabindex="-1"></a><span class="co">#&gt; 9  0.22222222 1.00000000 0.19047619 0.22222222 0.02777778 0.07792208 0.0000000</span></span>
+<span id="cb34-36"><a href="#cb34-36" tabindex="-1"></a><span class="co">#&gt; 10 0.24814815 0.19047619 1.00000000 0.03703704 0.05333333 0.31818182 0.0000000</span></span>
+<span id="cb34-37"><a href="#cb34-37" tabindex="-1"></a><span class="co">#&gt; 11 0.33333333 0.22222222 0.03703704 1.00000000 0.05555556 0.09523810 0.0000000</span></span>
+<span id="cb34-38"><a href="#cb34-38" tabindex="-1"></a><span class="co">#&gt; 12 0.31818182 0.02777778 0.05333333 0.05555556 1.00000000 0.40887132 0.7272727</span></span>
+<span id="cb34-39"><a href="#cb34-39" tabindex="-1"></a><span class="co">#&gt; 13 0.58241758 0.07792208 0.31818182 0.09523810 0.40887132 1.00000000 0.2095238</span></span>
+<span id="cb34-40"><a href="#cb34-40" tabindex="-1"></a><span class="co">#&gt; 14 0.22222222 0.00000000 0.00000000 0.00000000 0.72727273 0.20952381 1.0000000</span></span>
+<span id="cb34-41"><a href="#cb34-41" tabindex="-1"></a><span class="co">#&gt; 15 0.04444444 0.00000000 0.00000000 0.00000000 0.27916667 0.02222222 0.3053613</span></span>
+<span id="cb34-42"><a href="#cb34-42" tabindex="-1"></a><span class="co">#&gt; 16 0.14285714 0.86666667 0.25396825 0.14285714 0.01333333 0.05252525 0.0000000</span></span>
+<span id="cb34-43"><a href="#cb34-43" tabindex="-1"></a><span class="co">#&gt; 17 0.07142857 0.00000000 0.00000000 0.00000000 0.47323232 0.08211144 0.5634921</span></span>
+<span id="cb34-44"><a href="#cb34-44" tabindex="-1"></a><span class="co">#&gt; 18 0.16666667 0.00000000 0.02666667 0.00000000 0.57575758 0.20816864 0.4555556</span></span>
+<span id="cb34-45"><a href="#cb34-45" tabindex="-1"></a><span class="co">#&gt; 19 0.26190476 0.00000000 0.00000000 0.00000000 0.46969697 0.33333333 0.5238095</span></span>
+<span id="cb34-46"><a href="#cb34-46" tabindex="-1"></a><span class="co">#&gt; 20 0.29166667 0.54166667 0.32196970 0.28703704 0.13461538 0.28174603 0.0000000</span></span>
+<span id="cb34-47"><a href="#cb34-47" tabindex="-1"></a><span class="co">#&gt; 21 0.35714286 0.00000000 0.00000000 0.00000000 0.53030303 0.41176471 0.5416667</span></span>
+<span id="cb34-48"><a href="#cb34-48" tabindex="-1"></a><span class="co">#&gt; 22 0.52380952 0.00000000 0.16666667 0.00000000 0.54292929 0.52287582 0.5194444</span></span>
+<span id="cb34-49"><a href="#cb34-49" tabindex="-1"></a><span class="co">#&gt; 23 0.33282828 0.03030303 0.08965517 0.06060606 0.69277389 0.40740741 0.5277778</span></span>
+<span id="cb34-50"><a href="#cb34-50" tabindex="-1"></a><span class="co">#&gt;            15         16         17         18         19         20         21</span></span>
+<span id="cb34-51"><a href="#cb34-51" tabindex="-1"></a><span class="co">#&gt; 1  0.00000000 0.11799312 0.10669192 0.17424242 0.20833333 0.38095238 0.28240741</span></span>
+<span id="cb34-52"><a href="#cb34-52" tabindex="-1"></a><span class="co">#&gt; 2  0.41944444 0.01449275 0.64848485 0.56325758 0.35555556 0.09090909 0.40000000</span></span>
+<span id="cb34-53"><a href="#cb34-53" tabindex="-1"></a><span class="co">#&gt; 3  0.04761905 0.00000000 0.12222222 0.25757576 0.40476190 0.19444444 0.48809524</span></span>
+<span id="cb34-54"><a href="#cb34-54" tabindex="-1"></a><span class="co">#&gt; 4  0.25000000 0.03703704 0.06666667 0.11363636 0.04166667 0.25000000 0.04166667</span></span>
+<span id="cb34-55"><a href="#cb34-55" tabindex="-1"></a><span class="co">#&gt; 5  0.08888889 0.22222222 0.20238095 0.23333333 0.35714286 0.16666667 0.45238095</span></span>
+<span id="cb34-56"><a href="#cb34-56" tabindex="-1"></a><span class="co">#&gt; 6  0.28888889 0.02222222 0.50108225 0.62121212 0.30000000 0.16849817 0.36666667</span></span>
+<span id="cb34-57"><a href="#cb34-57" tabindex="-1"></a><span class="co">#&gt; 7  0.06250000 0.27777778 0.08888889 0.20959596 0.16203704 0.62962963 0.24537037</span></span>
+<span id="cb34-58"><a href="#cb34-58" tabindex="-1"></a><span class="co">#&gt; 8  0.04444444 0.14285714 0.07142857 0.16666667 0.26190476 0.29166667 0.35714286</span></span>
+<span id="cb34-59"><a href="#cb34-59" tabindex="-1"></a><span class="co">#&gt; 9  0.00000000 0.86666667 0.00000000 0.00000000 0.00000000 0.54166667 0.00000000</span></span>
+<span id="cb34-60"><a href="#cb34-60" tabindex="-1"></a><span class="co">#&gt; 10 0.00000000 0.25396825 0.00000000 0.02666667 0.00000000 0.32196970 0.00000000</span></span>
+<span id="cb34-61"><a href="#cb34-61" tabindex="-1"></a><span class="co">#&gt; 11 0.00000000 0.14285714 0.00000000 0.00000000 0.00000000 0.28703704 0.00000000</span></span>
+<span id="cb34-62"><a href="#cb34-62" tabindex="-1"></a><span class="co">#&gt; 12 0.27916667 0.01333333 0.47323232 0.57575758 0.46969697 0.13461538 0.53030303</span></span>
+<span id="cb34-63"><a href="#cb34-63" tabindex="-1"></a><span class="co">#&gt; 13 0.02222222 0.05252525 0.08211144 0.20816864 0.33333333 0.28174603 0.41176471</span></span>
+<span id="cb34-64"><a href="#cb34-64" tabindex="-1"></a><span class="co">#&gt; 14 0.30536131 0.00000000 0.56349206 0.45555556 0.52380952 0.00000000 0.54166667</span></span>
+<span id="cb34-65"><a href="#cb34-65" tabindex="-1"></a><span class="co">#&gt; 15 1.00000000 0.00000000 0.51942502 0.37606838 0.18803419 0.00000000 0.17216117</span></span>
+<span id="cb34-66"><a href="#cb34-66" tabindex="-1"></a><span class="co">#&gt; 16 0.00000000 1.00000000 0.00000000 0.00000000 0.00000000 0.48611111 0.00000000</span></span>
+<span id="cb34-67"><a href="#cb34-67" tabindex="-1"></a><span class="co">#&gt; 17 0.51942502 0.00000000 1.00000000 0.67195767 0.25925926 0.00000000 0.27635328</span></span>
+<span id="cb34-68"><a href="#cb34-68" tabindex="-1"></a><span class="co">#&gt; 18 0.37606838 0.00000000 0.67195767 1.00000000 0.35555556 0.05341880 0.42222222</span></span>
+<span id="cb34-69"><a href="#cb34-69" tabindex="-1"></a><span class="co">#&gt; 19 0.18803419 0.00000000 0.25925926 0.35555556 1.00000000 0.03703704 0.88888889</span></span>
+<span id="cb34-70"><a href="#cb34-70" tabindex="-1"></a><span class="co">#&gt; 20 0.00000000 0.48611111 0.00000000 0.05341880 0.03703704 1.00000000 0.03703704</span></span>
+<span id="cb34-71"><a href="#cb34-71" tabindex="-1"></a><span class="co">#&gt; 21 0.17216117 0.00000000 0.27635328 0.42222222 0.88888889 0.03703704 1.00000000</span></span>
+<span id="cb34-72"><a href="#cb34-72" tabindex="-1"></a><span class="co">#&gt; 22 0.27472527 0.00000000 0.36153846 0.50000000 0.58888889 0.02564103 0.70000000</span></span>
+<span id="cb34-73"><a href="#cb34-73" tabindex="-1"></a><span class="co">#&gt; 23 0.35277778 0.01449275 0.61991342 0.65353535 0.37777778 0.11313131 0.43333333</span></span>
+<span id="cb34-74"><a href="#cb34-74" tabindex="-1"></a><span class="co">#&gt;            22         23</span></span>
+<span id="cb34-75"><a href="#cb34-75" tabindex="-1"></a><span class="co">#&gt; 1  0.32407407 0.40476190</span></span>
+<span id="cb34-76"><a href="#cb34-76" tabindex="-1"></a><span class="co">#&gt; 2  0.48888889 0.89583333</span></span>
+<span id="cb34-77"><a href="#cb34-77" tabindex="-1"></a><span class="co">#&gt; 3  0.56818182 0.41025641</span></span>
+<span id="cb34-78"><a href="#cb34-78" tabindex="-1"></a><span class="co">#&gt; 4  0.02777778 0.14761905</span></span>
+<span id="cb34-79"><a href="#cb34-79" tabindex="-1"></a><span class="co">#&gt; 5  0.39682540 0.35555556</span></span>
+<span id="cb34-80"><a href="#cb34-80" tabindex="-1"></a><span class="co">#&gt; 6  0.31111111 0.64444444</span></span>
+<span id="cb34-81"><a href="#cb34-81" tabindex="-1"></a><span class="co">#&gt; 7  0.23397436 0.24475524</span></span>
+<span id="cb34-82"><a href="#cb34-82" tabindex="-1"></a><span class="co">#&gt; 8  0.52380952 0.33282828</span></span>
+<span id="cb34-83"><a href="#cb34-83" tabindex="-1"></a><span class="co">#&gt; 9  0.00000000 0.03030303</span></span>
+<span id="cb34-84"><a href="#cb34-84" tabindex="-1"></a><span class="co">#&gt; 10 0.16666667 0.08965517</span></span>
+<span id="cb34-85"><a href="#cb34-85" tabindex="-1"></a><span class="co">#&gt; 11 0.00000000 0.06060606</span></span>
+<span id="cb34-86"><a href="#cb34-86" tabindex="-1"></a><span class="co">#&gt; 12 0.54292929 0.69277389</span></span>
+<span id="cb34-87"><a href="#cb34-87" tabindex="-1"></a><span class="co">#&gt; 13 0.52287582 0.40740741</span></span>
+<span id="cb34-88"><a href="#cb34-88" tabindex="-1"></a><span class="co">#&gt; 14 0.51944444 0.52777778</span></span>
+<span id="cb34-89"><a href="#cb34-89" tabindex="-1"></a><span class="co">#&gt; 15 0.27472527 0.35277778</span></span>
+<span id="cb34-90"><a href="#cb34-90" tabindex="-1"></a><span class="co">#&gt; 16 0.00000000 0.01449275</span></span>
+<span id="cb34-91"><a href="#cb34-91" tabindex="-1"></a><span class="co">#&gt; 17 0.36153846 0.61991342</span></span>
+<span id="cb34-92"><a href="#cb34-92" tabindex="-1"></a><span class="co">#&gt; 18 0.50000000 0.65353535</span></span>
+<span id="cb34-93"><a href="#cb34-93" tabindex="-1"></a><span class="co">#&gt; 19 0.58888889 0.37777778</span></span>
+<span id="cb34-94"><a href="#cb34-94" tabindex="-1"></a><span class="co">#&gt; 20 0.02564103 0.11313131</span></span>
+<span id="cb34-95"><a href="#cb34-95" tabindex="-1"></a><span class="co">#&gt; 21 0.70000000 0.43333333</span></span>
+<span id="cb34-96"><a href="#cb34-96" tabindex="-1"></a><span class="co">#&gt; 22 1.00000000 0.52222222</span></span>
+<span id="cb34-97"><a href="#cb34-97" tabindex="-1"></a><span class="co">#&gt; 23 0.52222222 1.00000000</span></span></code></pre></div>
+</div>
+<div id="uncertainty-and-variability" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Uncertainty and
+Variability</h1>
+<p>These functions measure the uncertainty, variability, and information
+content of interval-valued data.</p>
+<div id="entropy-cv-and-dispersion" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Entropy, CV, and
+dispersion</h2>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">data</span>(mushroom.int)</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="co"># Shannon entropy (higher = more uncertainty)</span></span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a><span class="fu">int_entropy</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a><span class="co">#&gt; CM     3.740953</span></span>
+<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a><span class="co"># Coefficient of variation (SD / mean)</span></span>
+<span id="cb35-9"><a href="#cb35-9" tabindex="-1"></a><span class="fu">int_cv</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb35-11"><a href="#cb35-11" tabindex="-1"></a><span class="co">#&gt; CM    0.4179793</span></span>
+<span id="cb35-12"><a href="#cb35-12" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="#cb35-13" tabindex="-1"></a><span class="co"># Dispersion index</span></span>
+<span id="cb35-14"><a href="#cb35-14" tabindex="-1"></a><span class="fu">int_dispersion</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb35-15"><a href="#cb35-15" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb35-16"><a href="#cb35-16" tabindex="-1"></a><span class="co">#&gt; CM     2.608696</span></span></code></pre></div>
+</div>
+<div id="imprecision-granularity-uniformity-and-information-content" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Imprecision,
+granularity, uniformity, and information content</h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># Imprecision: based on interval widths</span></span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="fu">int_imprecision</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a><span class="co">#&gt;             Stipe.Length</span></span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a><span class="co">#&gt; Imprecision    0.7882353</span></span>
+<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a><span class="co"># Granularity: variability in interval sizes</span></span>
+<span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a><span class="fu">int_granularity</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>)</span>
+<span id="cb36-8"><a href="#cb36-8" tabindex="-1"></a><span class="co">#&gt;             Stipe.Length</span></span>
+<span id="cb36-9"><a href="#cb36-9" tabindex="-1"></a><span class="co">#&gt; Granularity     0.506144</span></span>
+<span id="cb36-10"><a href="#cb36-10" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" tabindex="-1"></a><span class="co"># Uniformity: inverse of granularity (higher = more uniform)</span></span>
+<span id="cb36-12"><a href="#cb36-12" tabindex="-1"></a><span class="fu">int_uniformity</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>)</span>
+<span id="cb36-13"><a href="#cb36-13" tabindex="-1"></a><span class="co">#&gt;            Stipe.Length</span></span>
+<span id="cb36-14"><a href="#cb36-14" tabindex="-1"></a><span class="co">#&gt; Uniformity    0.6639471</span></span>
+<span id="cb36-15"><a href="#cb36-15" tabindex="-1"></a></span>
+<span id="cb36-16"><a href="#cb36-16" tabindex="-1"></a><span class="co"># Normalized information content (between 0 and 1)</span></span>
+<span id="cb36-17"><a href="#cb36-17" tabindex="-1"></a><span class="fu">int_information_content</span>(mushroom.int, <span class="st">&quot;Stipe.Length&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CM&quot;</span>)</span>
+<span id="cb36-18"><a href="#cb36-18" tabindex="-1"></a><span class="co">#&gt;    Stipe.Length</span></span>
+<span id="cb36-19"><a href="#cb36-19" tabindex="-1"></a><span class="co">#&gt; CM    0.8269928</span></span></code></pre></div>
+</div>
+</div>
+<div id="distance-measures" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Distance Measures</h1>
+<p>Distance functions compute dissimilarity between observations in
+interval-valued datasets. Available methods include: euclidean,
+hausdorff, ichino, de_carvalho, and others.</p>
+<p>We use the interval columns of <code>car.int</code> for distance
+examples (excluding the character <code>Car</code> column):</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">data</span>(car.int)</span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>car_num <span class="ot">&lt;-</span> car.int[, <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a><span class="fu">head</span>(car_num, <span class="dv">3</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a><span class="co">#&gt;               Price      Max_Velocity      Accn_Time     Cylinder_Capacity</span></span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a><span class="co">#&gt;          &lt;symblc_n&gt;        &lt;symblc_n&gt;     &lt;symblc_n&gt;            &lt;symblc_n&gt;</span></span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a><span class="co">#&gt; 1 [260.50 : 460.00] [298.00 : 306.00]  [4.70 : 5.00] [5,935.00 : 5,935.00]</span></span>
+<span id="cb37-8"><a href="#cb37-8" tabindex="-1"></a><span class="co">#&gt; 2  [68.20 : 140.30] [216.00 : 250.00]  [6.70 : 9.70] [1,781.00 : 4,172.00]</span></span>
+<span id="cb37-9"><a href="#cb37-9" tabindex="-1"></a><span class="co">#&gt; 3 [123.80 : 171.40] [232.00 : 250.00] [5.40 : 10.10] [2,771.00 : 4,172.00]</span></span></code></pre></div>
+<div id="single-distance-method" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> Single distance
+method</h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="co"># Euclidean distance between observations</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a><span class="fu">int_dist</span>(car_num, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a><span class="co">#&gt;            1          2          3          4          5          6          7</span></span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a><span class="co">#&gt; 2 2970.35864                                                                  </span></span>
+<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a><span class="co">#&gt; 3 2473.41498  496.95918                                                       </span></span>
+<span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a><span class="co">#&gt; 4 1849.03463 1121.84802  625.03745                                            </span></span>
+<span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a><span class="co">#&gt; 5 1405.70741 1569.15384 1073.25182  456.94909                                 </span></span>
+<span id="cb38-8"><a href="#cb38-8" tabindex="-1"></a><span class="co">#&gt; 6 2861.17713  150.18676  399.17381 1017.65776 1456.19073                      </span></span>
+<span id="cb38-9"><a href="#cb38-9" tabindex="-1"></a><span class="co">#&gt; 7 3348.56490  378.47417  875.27157 1500.20546 1946.33817  496.67582           </span></span>
+<span id="cb38-10"><a href="#cb38-10" tabindex="-1"></a><span class="co">#&gt; 8 2446.96685  528.63346   74.77202  604.37782 1043.31078  416.61899  904.08797</span></span></code></pre></div>
+</div>
+<div id="distance-matrix" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> Distance matrix</h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co"># Return as a full matrix</span></span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>dm <span class="ot">&lt;-</span> <span class="fu">int_dist_matrix</span>(car_num, <span class="at">method =</span> <span class="st">&quot;hausdorff&quot;</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>dm[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a><span class="co">#&gt;        1      2      3      4      5</span></span>
+<span id="cb39-5"><a href="#cb39-5" tabindex="-1"></a><span class="co">#&gt; 1    0.0 4560.4 3523.7 3398.8 2425.5</span></span>
+<span id="cb39-6"><a href="#cb39-6" tabindex="-1"></a><span class="co">#&gt; 2 4560.4    0.0 1062.9 1374.6 2139.9</span></span>
+<span id="cb39-7"><a href="#cb39-7" tabindex="-1"></a><span class="co">#&gt; 3 3523.7 1062.9    0.0 1342.0 1590.2</span></span>
+<span id="cb39-8"><a href="#cb39-8" tabindex="-1"></a><span class="co">#&gt; 4 3398.8 1374.6 1342.0    0.0  998.8</span></span>
+<span id="cb39-9"><a href="#cb39-9" tabindex="-1"></a><span class="co">#&gt; 5 2425.5 2139.9 1590.2  998.8    0.0</span></span></code></pre></div>
+</div>
+<div id="pairwise-distance-between-variables" class="section level2" number="11.3">
+<h2><span class="header-section-number">11.3</span> Pairwise distance
+between variables</h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">int_pairwise_dist</span>(car_num, <span class="st">&quot;Price&quot;</span>, <span class="st">&quot;Max_Velocity&quot;</span>, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="co">#&gt;      1      2      3      4      5      6      7      8 </span></span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a><span class="co">#&gt;  58.25 128.75  93.40  43.15  19.50  54.80 144.45  95.45</span></span></code></pre></div>
+</div>
+<div id="all-distance-methods-at-once" class="section level2" number="11.4">
+<h2><span class="header-section-number">11.4</span> All distance methods
+at once</h2>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>all_dists <span class="ot">&lt;-</span> <span class="fu">int_dist_all</span>(car_num)</span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">names</span>(all_dists)</span>
+<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;GD&quot;    &quot;IY&quot;    &quot;L1&quot;    &quot;L2&quot;    &quot;CB&quot;    &quot;HD&quot;    &quot;EHD&quot;   &quot;nEHD&quot;  &quot;snEHD&quot;</span></span>
+<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a><span class="co">#&gt; [10] &quot;TD&quot;    &quot;WD&quot;</span></span></code></pre></div>
+</div>
+</div>
+<div id="descriptive-statistics-for-histogram-valued-data" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Descriptive Statistics
+for Histogram-Valued Data</h1>
+<p>The <code>hist_mean</code>, <code>hist_var</code>,
+<code>hist_cov</code>, and <code>hist_cor</code> functions compute
+descriptive statistics for histogram-valued data (<code>MatH</code>
+objects).</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="co"># Mean and variance with BG method (default)</span></span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="fu">hist_mean</span>(BLOOD, <span class="st">&quot;Cholesterol&quot;</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a><span class="co">#&gt; [1] 180.677</span></span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a><span class="fu">hist_var</span>(BLOOD, <span class="st">&quot;Cholesterol&quot;</span>)</span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a><span class="co">#&gt; [1] 1002.339</span></span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a><span class="co"># L2W method</span></span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a><span class="fu">hist_mean</span>(BLOOD, <span class="st">&quot;Cholesterol&quot;</span>, <span class="at">method =</span> <span class="st">&quot;L2W&quot;</span>)</span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a><span class="co">#&gt; [1] 180.677</span></span>
+<span id="cb42-10"><a href="#cb42-10" tabindex="-1"></a><span class="fu">hist_var</span>(BLOOD, <span class="st">&quot;Cholesterol&quot;</span>, <span class="at">method =</span> <span class="st">&quot;L2W&quot;</span>)</span>
+<span id="cb42-11"><a href="#cb42-11" tabindex="-1"></a><span class="co">#&gt; [1] 388.1376</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="co"># Covariance and correlation</span></span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="fu">hist_cov</span>(BLOOD, <span class="st">&quot;Cholesterol&quot;</span>, <span class="st">&quot;Hemoglobin&quot;</span>, <span class="at">method =</span> <span class="st">&quot;B&quot;</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a><span class="co">#&gt; [1] -4.692686</span></span>
+<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a><span class="fu">hist_cor</span>(BLOOD, <span class="st">&quot;Cholesterol&quot;</span>, <span class="st">&quot;Hemoglobin&quot;</span>, <span class="at">method =</span> <span class="st">&quot;L2W&quot;</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a><span class="co">#&gt; [1] -0.4794806</span></span></code></pre></div>
+</div>
+<div id="symbolic-dataset-donationsubmission-guidelines" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Symbolic Dataset
+Donation/Submission Guidelines</h1>
+<p>We welcome contributions of high-quality datasets for symbolic data
+analysis. Submitted datasets will be made publicly available (or under
+specified constraints) to support research in machine learning,
+statistics, and related fields. You can submit the related files via
+email to <a href="mailto:wuhm@g.nccu.edu.tw">wuhm@g.nccu.edu.tw</a> or
+through the Google Form at <a href="https://forms.gle/AB6UCsNkrTzqDTp97">Symbolic Dataset Submission
+Form</a>. The submission requirements are as follows.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Dataset Format</strong>:</p>
+<ul>
+<li>Preferred formats: <code>.csv</code>, <code>.xlsx</code>, or any
+symbolic format in plain text.</li>
+<li>Compressed (<code>.zip</code> or <code>.gz</code>) if multiple files
+are included.</li>
+</ul></li>
+<li><p><strong>Required Metadata</strong>: Contributors must provide the
+following details:</p>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="68%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Field</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Dataset Name</strong></td>
+<td>A clear, descriptive title.</td>
+<td>“face recognition data”</td>
+</tr>
+<tr class="even">
+<td><strong>Dataset Short Name</strong></td>
+<td>A clear,abbreviation title.</td>
+<td>“face data”</td>
+</tr>
+<tr class="odd">
+<td><strong>Authors</strong></td>
+<td>Full names of donator.</td>
+<td>“First name, Last name”</td>
+</tr>
+<tr class="even">
+<td><strong>E-mail</strong></td>
+<td>Contact email.</td>
+<td>“<a href="mailto:abc123@gmail.com" class="email">abc123@gmail.com</a>”</td>
+</tr>
+<tr class="odd">
+<td><strong>Institutes</strong></td>
+<td>Affiliated organizations.</td>
+<td>“-”</td>
+</tr>
+<tr class="even">
+<td><strong>Country</strong></td>
+<td>Origin of the dataset.</td>
+<td>“France”</td>
+</tr>
+<tr class="odd">
+<td><strong>Dataset Descriptions</strong></td>
+<td>Data descriptive</td>
+<td>See ‘README’</td>
+</tr>
+<tr class="even">
+<td><strong>Sample Size</strong></td>
+<td>Number of instances/rows.</td>
+<td>27</td>
+</tr>
+<tr class="odd">
+<td><strong>Number of Variables</strong></td>
+<td>Total features/columns (categorical/numeric).</td>
+<td>6 (interval)</td>
+</tr>
+<tr class="even">
+<td><strong>Missing Values</strong></td>
+<td>Indicate if missing values exist and how they are handled.</td>
+<td>“None” / “Yes, marked as NA”</td>
+</tr>
+<tr class="odd">
+<td><strong>Variable Descriptions</strong></td>
+<td>Detailed description of each column (name, type, units, range).</td>
+<td>See ‘README’</td>
+</tr>
+<tr class="even">
+<td><strong>Source</strong></td>
+<td>Original data source (if applicable).</td>
+<td>“Leroy et al. (1996)”</td>
+</tr>
+<tr class="odd">
+<td><strong>References</strong></td>
+<td>Citations for prior work using the dataset.</td>
+<td>“Douzal-Chouakria, Billard, and Diday (2011)”</td>
+</tr>
+<tr class="even">
+<td><strong>Applied Areas</strong></td>
+<td>Relevant fields (e.g., biology, finance).</td>
+<td>“Machine Learning”</td>
+</tr>
+<tr class="odd">
+<td><strong>Usage Constraints</strong></td>
+<td>Licensing (CC-BY, MIT) or restrictions.</td>
+<td>“Public domain”</td>
+</tr>
+<tr class="even">
+<td><strong>Data Link</strong></td>
+<td>URL to download the dataset (Google Drive, GitHub, etc.).</td>
+<td>“(https)”</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>Quality Assurance</strong>:</p>
+<ul>
+<li>Datasets should be <strong>clean</strong> (no sensitive/private
+data).</li>
+</ul></li>
+<li><p><strong>Optional (Recommended)</strong>:</p>
+<ul>
+<li>A companion <code>README</code> file with:
+<ul>
+<li>Dataset background.</li>
+<li>Suggested use cases.</li>
+<li>Known limitations.</li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+<div id="citation" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Citation</h1>
+<p>Po-Wei Chen, Chun-houh Chen, Han-Ming Wu (2026), dataSDA: datasets
+and basic statistics for symbolic data analysis in R (v0.1.8). Technical
+report.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

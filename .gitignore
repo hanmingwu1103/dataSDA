@@ -8,3 +8,5 @@
 dataSDA/
 .Rd2pdf*/
 vignettes/*.csv
+/doc/
+/Meta/
