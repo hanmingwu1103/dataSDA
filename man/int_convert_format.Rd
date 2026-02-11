@@ -51,7 +51,7 @@ data_mm <- int_convert_format(abalone.iGAP, from = "iGAP", to = "MM")
 data_igap <- int_convert_format(data_mm, to = "iGAP")
 
  # Convert multiple datasets to MM
-datasets <- list(mushroom.int, abalone.int, face.int)
+datasets <- list(mushroom.int, abalone.int, car.int)
 mm_datasets <- lapply(datasets, int_convert_format, to = "MM")
 
 # Check what conversions are available

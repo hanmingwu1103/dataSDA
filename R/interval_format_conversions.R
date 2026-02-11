@@ -182,20 +182,21 @@ int_list_conversions <- function(from = NULL, to = NULL) {
 #' }
 #' @author Han-Ming Wu
 #' @seealso int_detect_format int_list_conversions RSDA_to_MM iGAP_to_MM MM_to_iGAP MM_to_RSDA iGAP_to_RSDA
+#' @importFrom utils capture.output head
 #' @examples
 #' # Auto-detect and convert to MM
 #' data(mushroom.int)
 #' data_mm <- int_convert_format(mushroom.int, to = "MM")
-#' 
+#'
 #' # Explicitly specify source format
 #' data(abalone.iGAP)
 #' data_mm <- int_convert_format(abalone.iGAP, from = "iGAP", to = "MM")
-#' 
+#'
 #' # Convert MM to iGAP
 #' data_igap <- int_convert_format(data_mm, to = "iGAP")
-#' 
+#'
 #'  # Convert multiple datasets to MM
-#' datasets <- list(mushroom.int, abalone.int, face.int)
+#' datasets <- list(mushroom.int, abalone.int, car.int)
 #' mm_datasets <- lapply(datasets, int_convert_format, to = "MM")
 #'
 #' # Check what conversions are available
