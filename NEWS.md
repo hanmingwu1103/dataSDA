@@ -2,6 +2,20 @@
 
 *(in development)*
 
+## New functions (2 exported)
+
+- `MM_to_RSDA()` — convert MM format (`_min`/`_max` columns) to RSDA format (`symbolic_tbl` with complex-encoded intervals).
+- `iGAP_to_RSDA()` — convert iGAP format to RSDA format via `iGAP_to_MM` → `MM_to_RSDA`.
+
+## Updated functions
+
+- `int_list_conversions()` now returns 8 conversions (was 6), including `MM_to_RSDA` and `iGAP_to_RSDA`.
+- `int_convert_format()` now supports `to = "RSDA"` for MM and iGAP sources with auto-detection.
+
+## Tests
+
+- 49 new tests for the new conversion functions and updated conversion registry (517 total, all passing).
+
 # dataSDA 0.1.6
 
 ## Dataset naming convention
