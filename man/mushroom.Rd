@@ -3,35 +3,37 @@
 \docType{data}
 \name{mushroom}
 \alias{mushroom}
-\title{Mushroom Data Set}
+\title{Mushroom Species Dataset (Original Format)}
 \format{
-A data frame with 23 observations and 5 variables named Species, Pileus Cap
-Width, Stipe Length, Stipe Thickness, and Edibility.
-
+A data frame with 23 observations and 5 variables:
 \itemize{
-    \item \code{Species}: The class of mushroom.
-    \item \code{Pileus Cap Width}: The pileus cap width of the mushroom.
-    \item \code{Stipe Length}: The stipe length of the mushroom.
-    \item \code{Stipe Thickness}: The stipe thickness of the mushroom.
-    \item \code{Edibility}: The edibility of mushroom (U: unknown, Y:  Yes, N: No, T: Toxic).
+    \item \code{Species}: Mushroom species name.
+    \item \code{Pileus.Cap.Width}: Pileus cap width range (cm).
+    \item \code{Stipe.Length}: Stipe length range (cm).
+    \item \code{Stipe.Thickness}: Stipe thickness range (cm).
+    \item \code{Edibility}: Edibility code (U/Y/N/T).
 }
 }
 \source{
-Billard, L. and Diday, E. (2006) Symbolic Data Analysis: Conceptual Statistics and Data Mining John Wiley & Sons, Ltd.
+Billard, L. and Diday, E. (2006), Table 3.2.
 }
 \usage{
 data(mushroom)
 }
 \description{
-The mushroom data set consists of a set of 23 species described by 3 interval variables.
-These mushroom species are members of the genus Agaricies.
-The specific variables and their values are extracted from the Fungi of California Species.
+Interval-valued data for 23 mushroom species of the genus Agaricus
+with 3 morphological measurements from the Fungi of California Species.
+}
+\details{
+Classic SDA dataset used for descriptive statistics, histogram
+construction, and clustering of interval-valued data.
 }
 \examples{
 data(mushroom)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 3.2.
 }
 \keyword{datasets}
+\keyword{interval}

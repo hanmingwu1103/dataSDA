@@ -16,7 +16,7 @@ Return a dataframe with the iGAP format.
 To convert MM format to iGAP format.
 }
 \examples{
-data(Face.iGAP)
-Face <- iGAP_to_MM(Face.iGAP, 1:6)
-MM_to_iGAP(Face)
+data(face.iGAP)
+face <- iGAP_to_MM(face.iGAP, 1:6)
+MM_to_iGAP(face)
 }

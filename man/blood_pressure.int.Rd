@@ -3,7 +3,7 @@
 \docType{data}
 \name{blood_pressure.int}
 \alias{blood_pressure.int}
-\title{Blood Pressure Interval-Valued Dataset}
+\title{Blood Pressure Interval Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 15 rows and 3 columns.
 }
@@ -11,13 +11,13 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(blood_pressure.int)
 }
 \description{
-blood pressure Interval-Valued Dataset.
+Interval-valued blood pressure measurements by patient groups.
 }
 \examples{
 data(blood_pressure.int)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
+\keyword{interval}

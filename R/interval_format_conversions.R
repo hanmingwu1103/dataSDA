@@ -134,8 +134,8 @@ RSDA_to_MM <- function(data, RSDA = TRUE){
 #' @importFrom tidyr separate
 #' @importFrom magrittr %>%
 #' @examples
-#' data(Abalone.iGAP)
-#' Abalone <- iGAP_to_MM(Abalone.iGAP, 1:7)
+#' data(abalone.iGAP)
+#' abalone <- iGAP_to_MM(abalone.iGAP, 1:7)
 #' @export
 
 iGAP_to_MM <- function(data, location = NULL){
@@ -167,7 +167,7 @@ iGAP_to_MM <- function(data, location = NULL){
 #' ## Not run:
 #  # We can read the file directly from the SODAS XML file as follows:
 #  # abalone <- SODAS_to_MM('C:/Users/user/AppData/abalone.xml)
-#' data(Abalone)
+#' data(abalone.int)
 #' @export
 
 SODAS_to_MM <- function(XMLPath){
@@ -193,9 +193,9 @@ SODAS_to_MM <- function(XMLPath){
 #' @importFrom tidyr unite
 #' @importFrom magrittr %>%
 #' @examples
-#' data(Face.iGAP)
-#' Face <- iGAP_to_MM(Face.iGAP, 1:6)
-#' MM_to_iGAP(Face)
+#' data(face.iGAP)
+#' face <- iGAP_to_MM(face.iGAP, 1:6)
+#' MM_to_iGAP(face)
 #' @export
 
 MM_to_iGAP <- function(data){
@@ -255,7 +255,7 @@ RSDA_to_iGAP <- function(data){
 #' ## Not run:
 #  # We can read the file directly from the SODAS XML file as follows:
 #  # abalone <- SODAS_to_MM('C:/Users/user/AppData/abalone.xml)
-#' data(Abalone)
+#' data(abalone.int)
 #' @export
 
 SODAS_to_iGAP <- function(XMLPath){

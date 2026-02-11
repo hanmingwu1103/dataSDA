@@ -3,7 +3,7 @@
 \docType{data}
 \name{age_cholesterol_weight.int}
 \alias{age_cholesterol_weight.int}
-\title{Age-cholesterol-weight Interval-Valued Dataset}
+\title{Age-Cholesterol-Weight Interval Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 7 rows and 4 columns.
 }
@@ -11,13 +11,13 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(age_cholesterol_weight.int)
 }
 \description{
-Age-cholesterol-weight Interval-Valued Dataset.
+Interval-valued dataset relating age, cholesterol, and weight measurements.
 }
 \examples{
 data(age_cholesterol_weight.int)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
+\keyword{interval}

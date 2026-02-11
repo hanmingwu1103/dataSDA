@@ -3,7 +3,7 @@
 \docType{data}
 \name{hierarchy.int}
 \alias{hierarchy.int}
-\title{Hierarchy Interval-Valued Dataset}
+\title{Hierarchy Interval Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 20 rows and 6 columns.
 }
@@ -11,13 +11,13 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(hierarchy.int)
 }
 \description{
-Hierarchy Interval-Valued Dataset.
+Interval-valued version of the hierarchy dataset.
 }
 \examples{
 data(hierarchy.int)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.15.
 }
 \keyword{datasets}
+\keyword{interval}

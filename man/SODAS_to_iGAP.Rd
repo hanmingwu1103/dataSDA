@@ -17,5 +17,5 @@ To convert SODAS format interval dataframe to the iGAP format.
 }
 \examples{
 ## Not run:
-data(Abalone)
+data(abalone.int)
 }

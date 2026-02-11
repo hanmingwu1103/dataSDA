@@ -3,7 +3,7 @@
 \docType{data}
 \name{baseball.int}
 \alias{baseball.int}
-\title{Baseball Interval-Valued Dataset}
+\title{Baseball Teams Interval Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 19 rows and 3 columns.
 }
@@ -11,13 +11,13 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(baseball.int)
 }
 \description{
-Baseball Interval-Valued Dataset.
+Interval-valued data for baseball teams with player statistics.
 }
 \examples{
 data(baseball.int)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
+\keyword{interval}

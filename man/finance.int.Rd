@@ -3,7 +3,7 @@
 \docType{data}
 \name{finance.int}
 \alias{finance.int}
-\title{Finance Interval-Valued Dataset}
+\title{Finance Sector Interval Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 14 rows and 7 columns.
 }
@@ -11,13 +11,16 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(finance.int)
 }
 \description{
-Finance Interval-Valued Dataset.
+Interval-valued data for 14 business sectors described by job-related
+financial variables (job cost codes, activity codes, budgets).
+Used for PCA demonstrations.
 }
 \examples{
 data(finance.int)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 5.2.
 }
+\keyword{PCA}
 \keyword{datasets}
+\keyword{interval}

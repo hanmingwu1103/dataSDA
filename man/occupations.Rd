@@ -11,13 +11,13 @@ An object of class \code{data.frame} with 9 rows and 11 columns.
 data(occupations)
 }
 \description{
-Occupation Salaries Dataset.
+Salary ranges for different occupations.
 }
 \examples{
 data(occupations)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
+\keyword{interval}

@@ -3,7 +3,7 @@
 \docType{data}
 \name{crime2}
 \alias{crime2}
-\title{Crime demographics Modal-Valued Dataset}
+\title{Crime Demographics Modal-Valued Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 15 rows and 3 columns.
 }
@@ -11,13 +11,13 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(crime2)
 }
 \description{
-Crime demographics Modal-Valued Dataset.
+Modal-valued version of the crime demographics dataset.
 }
 \examples{
 data(crime2)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
+\keyword{modal}

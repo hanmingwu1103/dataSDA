@@ -12,11 +12,11 @@ test_that("iGAP_to_MM rejects non-data.frame", {
 })
 
 test_that("iGAP_to_MM rejects bad location", {
-  data(Abalone.iGAP)
-  expect_error(iGAP_to_MM(Abalone.iGAP, NULL), "must not be NULL")
-  expect_error(iGAP_to_MM(Abalone.iGAP, "a"), "must be numeric")
-  expect_error(iGAP_to_MM(Abalone.iGAP, 0), "must be between 1 and")
-  expect_error(iGAP_to_MM(Abalone.iGAP, 999), "must be between 1 and")
+  data(abalone.iGAP)
+  expect_error(iGAP_to_MM(abalone.iGAP, NULL), "must not be NULL")
+  expect_error(iGAP_to_MM(abalone.iGAP, "a"), "must be numeric")
+  expect_error(iGAP_to_MM(abalone.iGAP, 0), "must be between 1 and")
+  expect_error(iGAP_to_MM(abalone.iGAP, 999), "must be between 1 and")
 })
 
 # ---------- MM_to_iGAP ----------

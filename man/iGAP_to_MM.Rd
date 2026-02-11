@@ -18,6 +18,6 @@ Return a dataframe with the MM format.
 To convert iGAP format to MM format.
 }
 \examples{
-data(Abalone.iGAP)
-Abalone <- iGAP_to_MM(Abalone.iGAP, 1:7)
+data(abalone.iGAP)
+abalone <- iGAP_to_MM(abalone.iGAP, 1:7)
 }

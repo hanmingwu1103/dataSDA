@@ -3,7 +3,7 @@
 \docType{data}
 \name{profession.int}
 \alias{profession.int}
-\title{Profession Work Salary Time Interval-Valued Dataset}
+\title{Profession Work Salary Time Interval Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 15 rows and 4 columns.
 }
@@ -11,13 +11,13 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(profession.int)
 }
 \description{
-Profession Work Salary Time Interval-Valued Dataset.
+Interval-valued data for professional categories by salary and working time.
 }
 \examples{
 data(profession.int)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
+\keyword{interval}

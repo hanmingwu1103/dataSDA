@@ -3,21 +3,28 @@
 \docType{data}
 \name{horses.int}
 \alias{horses.int}
-\title{Horses Interval-Valued Dataset}
+\title{Horse Breeds Interval Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 8 rows and 7 columns.
+A data frame with 8 observations and 6 interval-valued variables.
 }
 \usage{
 data(horses.int)
 }
 \description{
-Horses Interval-Valued Dataset.
+Interval-valued data for 8 horse breeds (CES, CMA, PEN, TES, CEN,
+LES, PES, PAM) described by 6 variables: minimum/maximum weight,
+minimum/maximum height, cost of mares, cost of fillies.
+}
+\details{
+Extensively used in SDA for demonstrating divisive clustering, distance
+computation, hierarchy/pyramid construction, and complete objects.
 }
 \examples{
 data(horses.int)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 7.14.
 }
+\keyword{clustering}
 \keyword{datasets}
+\keyword{interval}

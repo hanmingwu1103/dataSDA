@@ -3,7 +3,7 @@
 \docType{data}
 \name{car.int}
 \alias{car.int}
-\title{Car Interval-Valued Dataset}
+\title{Car Models Interval Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 8 rows and 5 columns.
 }
@@ -11,13 +11,13 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(car.int)
 }
 \description{
-Car Interval-Valued Dataset.
+Interval-valued data for car models with price, engine, speed, acceleration.
 }
 \examples{
 data(car.int)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
+\keyword{interval}

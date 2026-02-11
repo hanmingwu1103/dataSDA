@@ -3,7 +3,7 @@
 \docType{data}
 \name{airline_flights2}
 \alias{airline_flights2}
-\title{Airline Flights Modal-Valued Dataset}
+\title{JFK Airport Airline Flights Modal-Valued Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 16 rows and 6 columns.
 }
@@ -11,13 +11,14 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(airline_flights2)
 }
 \description{
-Airline Flights Modal-Valued Dataset.
+Modal-valued version of the airline flights dataset.
+See \code{\link{airline_flights.hist}}.
 }
 \examples{
 data(airline_flights2)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.7.
 }
 \keyword{datasets}
+\keyword{modal}

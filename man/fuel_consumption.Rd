@@ -3,7 +3,7 @@
 \docType{data}
 \name{fuel_consumption}
 \alias{fuel_consumption}
-\title{Fuel Consumption Dataset}
+\title{Fuel Consumption by Region Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 10 rows and 3 columns.
 }
@@ -11,13 +11,16 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(fuel_consumption)
 }
 \description{
-Fuel Consumption Dataset.
+Modal-valued dataset describing fuel consumption patterns across 10
+regions by proportions of heating fuel types (gas, oil, electricity,
+coal, none) and central heating presence.
 }
 \examples{
 data(fuel_consumption)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 3.7.
 }
 \keyword{datasets}
+\keyword{modal}
+\keyword{regression}

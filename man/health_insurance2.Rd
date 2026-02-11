@@ -11,13 +11,13 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(health_insurance2)
 }
 \description{
-Health Insurance Modal-Valued Dataset.
+Modal-valued version of the health insurance dataset.
 }
 \examples{
 data(health_insurance2)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.2b.
 }
 \keyword{datasets}
+\keyword{modal}

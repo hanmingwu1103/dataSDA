@@ -1,16 +1,16 @@
 dataset_names <- c(
-  "Abalone", "Abalone.iGAP", "Face.iGAP",
+  "abalone.int", "abalone.iGAP", "face.iGAP",
   "mushroom", "mushroom.int",
-  "bird.int", "baseball.int", "blood_pressure.int",
-  "car.int", "Cars.int", "ChinaTemp.int",
+  "bird.mix", "baseball.int", "blood_pressure.int",
+  "car.int", "cars.int", "china_temp.int",
   "finance.int", "hierarchy.int", "horses.int",
-  "lackinfo.int", "LoansbyPurpose.int",
+  "lackinfo.int", "loans_by_purpose.int",
   "nycflights.int", "ohtemp.int", "profession.int",
-  "soccer.bivar.int", "veterinary.int",
+  "soccer_bivar.int", "veterinary.int",
   "age_cholesterol_weight.int",
   "hierarchy",
-  "fuel_consumption", "health_insurance", "health_insurance2",
-  "airline_flights", "airline_flights2",
+  "fuel_consumption", "health_insurance.mix", "health_insurance2",
+  "airline_flights.hist", "airline_flights2",
   "crime", "crime2",
   "occupations", "occupations2"
 )
@@ -32,12 +32,12 @@ test_that("all datasets have rows and columns > 0", {
 })
 
 int_datasets <- c(
-  "mushroom.int", "bird.int", "baseball.int", "blood_pressure.int",
-  "car.int", "Cars.int", "ChinaTemp.int",
+  "mushroom.int", "baseball.int", "blood_pressure.int",
+  "car.int", "cars.int", "china_temp.int",
   "finance.int", "hierarchy.int", "horses.int",
-  "lackinfo.int", "LoansbyPurpose.int",
+  "lackinfo.int", "loans_by_purpose.int",
   "nycflights.int", "ohtemp.int", "profession.int",
-  "soccer.bivar.int", "veterinary.int",
+  "soccer_bivar.int", "veterinary.int",
   "age_cholesterol_weight.int"
 )
 
@@ -50,7 +50,7 @@ test_that(".int datasets have symbolic_tbl class", {
   }
 })
 
-igap_datasets <- c("Abalone.iGAP", "Face.iGAP")
+igap_datasets <- c("abalone.iGAP", "face.iGAP")
 
 test_that(".iGAP datasets are data.frames", {
   for (ds in igap_datasets) {
@@ -74,31 +74,31 @@ test_that("mushroom.int has complex columns", {
               info = "mushroom.int should have complex-mode columns for intervals")
 })
 
-test_that("Abalone.iGAP contains comma-separated interval values", {
-  data(Abalone.iGAP)
-  first_col <- Abalone.iGAP[[1]]
+test_that("abalone.iGAP contains comma-separated interval values", {
+  data(abalone.iGAP)
+  first_col <- abalone.iGAP[[1]]
   expect_true(any(grepl(",", first_col)),
               info = "iGAP data should contain comma-separated values")
 })
 
-test_that("Face.iGAP contains comma-separated interval values", {
-  data(Face.iGAP)
-  first_col <- Face.iGAP[[1]]
+test_that("face.iGAP contains comma-separated interval values", {
+  data(face.iGAP)
+  first_col <- face.iGAP[[1]]
   expect_true(any(grepl(",", first_col)),
               info = "iGAP data should contain comma-separated values")
 })
 
-test_that("bird.int has expected structure", {
-  data(bird.int)
-  expect_true(ncol(bird.int) >= 2)
-  expect_true(nrow(bird.int) >= 2)
+test_that("bird.mix has expected structure", {
+  data(bird.mix)
+  expect_true(ncol(bird.mix) >= 2)
+  expect_true(nrow(bird.mix) >= 2)
 })
 
-test_that("Abalone dataset is a data.frame with positive dimensions", {
-  data(Abalone)
-  expect_true(is.data.frame(Abalone))
-  expect_true(nrow(Abalone) > 0)
-  expect_true(ncol(Abalone) > 0)
+test_that("abalone.int dataset is a data.frame with positive dimensions", {
+  data(abalone.int)
+  expect_true(is.data.frame(abalone.int))
+  expect_true(nrow(abalone.int) > 0)
+  expect_true(ncol(abalone.int) > 0)
 })
 
 test_that("hierarchy dataset loads correctly", {

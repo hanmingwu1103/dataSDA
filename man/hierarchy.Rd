@@ -11,13 +11,13 @@ An object of class \code{data.frame} with 20 rows and 6 columns.
 data(hierarchy)
 }
 \description{
-Hierarchy Dataset.
+Classical dataset illustrating hierarchical data structures.
 }
 \examples{
 data(hierarchy)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.15.
 }
 \keyword{datasets}
+\keyword{hierarchical}

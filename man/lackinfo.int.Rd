@@ -3,18 +3,18 @@
 \docType{data}
 \name{lackinfo.int}
 \alias{lackinfo.int}
-\title{Lack of information questionnaire interval dataset.}
+\title{Lack of Information Questionnaire Interval Dataset}
 \format{
-A data frame with 50 observations of the following 8 variables:
+A data frame with 50 observations and 8 variables:
 \itemize{
-    \item \code{id}: identification number.
-    \item \code{sex}: sex of the respondent (\code{male} or \code{female}).
-    \item \code{age}: respondent's age (in years).
-    \item \code{item1}: respondent's interval-valued answer to item 1.
-    \item \code{item2}: respondent's interval-valued answer to item 2.
-    \item \code{item3}: respondent's interval-valued answer to item 3.
-    \item \code{item4}: respondent's interval-valued answer to item 4.
-    \item \code{item5}: respondent's interval-valued answer to item 5.
+    \item \code{id}: Identification number.
+    \item \code{sex}: Sex of the respondent (\code{male} or \code{female}).
+    \item \code{age}: Respondent's age (in years).
+    \item \code{item1}: Interval-valued answer to item 1.
+    \item \code{item2}: Interval-valued answer to item 2.
+    \item \code{item3}: Interval-valued answer to item 3.
+    \item \code{item4}: Interval-valued answer to item 4.
+    \item \code{item5}: Interval-valued answer to item 5.
 }
 }
 \source{
@@ -24,23 +24,20 @@ A data frame with 50 observations of the following 8 variables:
 data(lackinfo.int)
 }
 \description{
-Lack of information questionnaire interval dataset generated from lackinfo dataset.
-A dataset containing some biographical data and the responses
-to 5 items measuring the perception of lack of information in
-a questionnaire.
+Interval-valued dataset from a lack-of-information questionnaire.
+Contains biographical data and responses to 5 items measuring perception
+of lack of information, collected via an interval-valued Likert scale.
 }
 \details{
 An educational innovation project was carried out for improving
 teaching-learning processes at the University of Oviedo (Spain)
-for the 2020/2021 academic year. A total of 50 students have been
-requested to answer an online questionnaire about some biographical
-data (sex and age) and their perception of lack of information by selecting the
-interval that best represents their level of agreement to the
-statements proposed in a interval-valued scale bounded between 1 and 7,
-where 1 represents the option 'strongly disagree' and 7 represents the option
-'strongly agree'.
+for the 2020/2021 academic year. A total of 50 students answered
+an online questionnaire about biographical data (sex and age) and
+their perception of lack of information by selecting the interval
+that best represents their level of agreement on a scale bounded
+between 1 (strongly disagree) and 7 (strongly agree).
 
-These are the 5 items used to measure the perception of lack of information:
+The 5 items measuring perception of lack of information are:
 \itemize{
     \item I1: I receive too little information from my classmates.
     \item I2: It is difficult to receive relevant information from my classmates.
@@ -53,3 +50,4 @@ These are the 5 items used to measure the perception of lack of information:
 data(lackinfo.int)
 }
 \keyword{datasets}
+\keyword{interval}

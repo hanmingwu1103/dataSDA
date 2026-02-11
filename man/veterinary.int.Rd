@@ -3,7 +3,7 @@
 \docType{data}
 \name{veterinary.int}
 \alias{veterinary.int}
-\title{Veterinary Interval-Valued Dataset}
+\title{Veterinary Interval Dataset}
 \format{
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 10 rows and 3 columns.
 }
@@ -11,13 +11,13 @@ An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl},
 data(veterinary.int)
 }
 \description{
-Veterinary Interval-Valued Dataset.
+Interval-valued veterinary dataset with animal measurements.
 }
 \examples{
 data(veterinary.int)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
+\keyword{interval}

@@ -8,16 +8,16 @@
 An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 9 rows and 4 columns.
 }
 \usage{
-data(occupations)
+data(occupations2)
 }
 \description{
-Occupation Salaries Modal-Valued Dataset.
+Modal-valued version of the occupation salaries dataset.
 }
 \examples{
 data(occupations2)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
+\keyword{modal}

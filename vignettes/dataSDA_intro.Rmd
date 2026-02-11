@@ -45,18 +45,18 @@ $$\\[0.5in]$$
 # Symbolic data formats conversion
 ## Example: convert interval-valued datasets into the `symbolic_tbl` class
 
-For the purpose of illustrating two distinct class of interval-valued dataset in `R`, we will utilize two of these datasets: `Abalone` and `mushroom`. The `Abalone` dataset includes 24 observations, each featuring 7 interval-valued variables. It is categorized as an object of the `symbolic_tbl` class, and each variable within it belongs the `symbolic_n` class. Both of these classes are defined by the `RSDA` package. Positioning the dataset object within the `symbolic_tbl` class facilitates the more straightforward application of symbolic data methods provided by `RSDA`. The `Abalone` dataset is integrated as a built-in dataset in the `RSDA` package. A copy of it is also included in the `dataSDA` package and is renamed as `Abalone.int`.  
+For the purpose of illustrating two distinct class of interval-valued dataset in `R`, we will utilize two of these datasets: `abalone.int` and `mushroom`. The `abalone.int` dataset includes 24 observations, each featuring 7 interval-valued variables. It is categorized as an object of the `symbolic_tbl` class, and each variable within it belongs the `symbolic_n` class. Both of these classes are defined by the `RSDA` package. Positioning the dataset object within the `symbolic_tbl` class facilitates the more straightforward application of symbolic data methods provided by `RSDA`. The `Abalone` dataset is integrated as a built-in dataset in the `RSDA` package. A copy of it is also included in the `dataSDA` package and is renamed as `abalone.int`.
 
 
 
-```{r prompt=TRUE} 
+```{r prompt=TRUE}
 library(dataSDA)
-data(Abalone.iGAP)
-head(Abalone.iGAP)
-class(Abalone.iGAP)
-data(Abalone)
-head(Abalone)
-class(Abalone)
+data(abalone.iGAP)
+head(abalone.iGAP)
+class(abalone.iGAP)
+data(abalone.int)
+head(abalone.int)
+class(abalone.int)
 ``` 
 
 The `mushroom` dataset consists of a set of 23 species described by 3 interval-valued variables: stipe length, stipe thickness and pileus cap width. 
@@ -166,11 +166,11 @@ Weight
 ## Example: convert iGAP format to MM format and RSDA format.
 
 To convert iGAP files to MM format:
-```{r prompt = TRUE} 
-data(Face.iGAP)
-class(Face.iGAP)
-head(Face.iGAP)
-Face <- iGAP_to_MM(data = Face.iGAP, location = 1:6)
+```{r prompt = TRUE}
+data(face.iGAP)
+class(face.iGAP)
+head(face.iGAP)
+Face <- iGAP_to_MM(data = face.iGAP, location = 1:6)
 head(Face)
 ```
 

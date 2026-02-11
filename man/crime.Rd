@@ -3,7 +3,7 @@
 \docType{data}
 \name{crime}
 \alias{crime}
-\title{Crime demographics Dataset}
+\title{Crime Demographics Dataset}
 \format{
 An object of class \code{data.frame} with 15 rows and 7 columns.
 }
@@ -11,13 +11,13 @@ An object of class \code{data.frame} with 15 rows and 7 columns.
 data(crime)
 }
 \description{
-Crime demographics Dataset.
+Crime-related demographic variables with symbolic data types.
 }
 \examples{
 data(crime)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
+\keyword{symbolic}

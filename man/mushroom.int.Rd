@@ -3,36 +3,21 @@
 \docType{data}
 \name{mushroom.int}
 \alias{mushroom.int}
-\title{Mushroom Interval Dataset}
+\title{Mushroom Species Interval Dataset}
 \format{
-A data frame with 23 observations and 5 variables named Species, Pileus Cap
-Width, Stipe Length, Stipe Thickness, and Edibility.
-
-\itemize{
-    \item \code{Species}: The class of mushroom.
-    \item \code{Pileus Cap Width}: The pileus cap width of the mushroom.
-    \item \code{Stipe Length}: The stipe length of the mushroom.
-    \item \code{Stipe Thickness}: The stipe thickness of the mushroom.
-    \item \code{Edibility}: The edibility of mushroom (U: unknown, Y:  Yes, N: No, T: Toxic).
-}
-}
-\source{
-Billard, L. and Diday, E. (2006) Symbolic Data Analysis: Conceptual Statistics and Data Mining John Wiley & Sons, Ltd.
+A data frame with 23 observations and interval-valued variables.
 }
 \usage{
 data(mushroom.int)
 }
 \description{
-Mushroom interval dataset generated from mushroom dataset.
-The mushroom data set consists of a set of 23 species described by 3 interval variables.
-These mushroom species are members of the genus Agaricies.
-The specific variables and their values are extracted from the Fungi of California Species.
+Interval-valued version of the mushroom dataset. See \code{\link{mushroom}}.
 }
 \examples{
 data(mushroom.int)
 }
 \references{
-Billard L. and  Diday E. (2006).Symbolic data analysis:
-Conceptual statistics and data mining. Wiley, Chichester.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 3.2.
 }
 \keyword{datasets}
+\keyword{interval}
