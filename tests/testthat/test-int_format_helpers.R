@@ -77,10 +77,10 @@ test_that("int_detect_format returns unknown for non-XML string", {
 
 # ---------- int_list_conversions ---------------------------------------------
 
-test_that("int_list_conversions returns all 6 conversions", {
+test_that("int_list_conversions returns all 8 conversions", {
   result <- int_list_conversions()
   expect_s3_class(result, "data.frame")
-  expect_equal(nrow(result), 6)
+  expect_equal(nrow(result), 8)
   expect_true(all(c("from", "to", "function_name") %in% names(result)))
 })
 
@@ -95,7 +95,7 @@ test_that("int_list_conversions filters by from", {
 
   mm <- int_list_conversions(from = "MM")
   expect_true(all(toupper(mm$from) == "MM"))
-  expect_equal(nrow(mm), 1)
+  expect_equal(nrow(mm), 2)
 })
 
 test_that("int_list_conversions filters by to", {
@@ -106,6 +106,10 @@ test_that("int_list_conversions filters by to", {
   to_igap <- int_list_conversions(to = "iGAP")
   expect_true(all(toupper(to_igap$to) == "IGAP"))
   expect_equal(nrow(to_igap), 3)
+
+  to_rsda <- int_list_conversions(to = "RSDA")
+  expect_true(all(toupper(to_rsda$to) == "RSDA"))
+  expect_equal(nrow(to_rsda), 2)
 })
 
 test_that("int_list_conversions filters by from and to", {
@@ -114,9 +118,10 @@ test_that("int_list_conversions filters by from and to", {
   expect_equal(result$function_name, "RSDA_to_MM")
 })
 
-test_that("int_list_conversions returns empty for non-existent conversion", {
+test_that("int_list_conversions finds MM to RSDA conversion", {
   result <- int_list_conversions(from = "MM", to = "RSDA")
-  expect_equal(nrow(result), 0)
+  expect_equal(nrow(result), 1)
+  expect_equal(result$function_name, "MM_to_RSDA")
 })
 
 test_that("int_list_conversions is case-insensitive for from", {
@@ -203,11 +208,12 @@ test_that("int_convert_format errors on unknown source format", {
                "Could not detect source format")
 })
 
-test_that("int_convert_format errors when converting to RSDA", {
+test_that("int_convert_format converts MM to RSDA with auto-detect", {
   data(mushroom.int)
   mm <- suppressMessages(int_convert_format(mushroom.int, to = "MM"))
-  expect_error(suppressMessages(int_convert_format(mm, to = "RSDA")),
-               "not supported")
+  result <- suppressMessages(int_convert_format(mm, to = "RSDA"))
+  expect_s3_class(result, "symbolic_tbl")
+  expect_equal(nrow(result), nrow(mushroom.int))
 })
 
 test_that("int_convert_format prints detection message", {
@@ -251,4 +257,124 @@ test_that("int_convert_format with explicit from=iGAP works", {
   result <- suppressMessages(int_convert_format(abalone.iGAP, to = "MM", from = "iGAP"))
   expect_s3_class(result, "data.frame")
   expect_true(any(grepl("_min$", names(result))))
+})
+
+# ---------- MM_to_RSDA -------------------------------------------------------
+
+test_that("MM_to_RSDA returns symbolic_tbl with correct class", {
+  data(mushroom.int)
+  mm <- suppressWarnings(RSDA_to_MM(mushroom.int, RSDA = FALSE))
+  result <- MM_to_RSDA(mm)
+  expect_s3_class(result, "symbolic_tbl")
+  expect_true(inherits(result, "data.frame"))
+})
+
+test_that("MM_to_RSDA complex columns encode min/max correctly", {
+  data(mushroom.int)
+  mm <- suppressWarnings(RSDA_to_MM(mushroom.int, RSDA = FALSE))
+  result <- MM_to_RSDA(mm)
+  # Find a complex column
+  complex_cols <- which(sapply(result, mode) == "complex")
+  expect_true(length(complex_cols) > 0)
+  # Verify Re() gives min and Im() gives max
+  col <- complex_cols[1]
+  col_name <- names(result)[col]
+  min_col <- paste0(col_name, "_min")
+  max_col <- paste0(col_name, "_max")
+  expect_equal(Re(result[[col]]), as.numeric(mm[[min_col]]))
+  expect_equal(Im(result[[col]]), as.numeric(mm[[max_col]]))
+})
+
+test_that("MM_to_RSDA preserves non-interval columns", {
+  # Create a test data.frame with both interval and non-interval columns
+  df <- data.frame(
+    name = c("a", "b", "c"),
+    x_min = c(1, 2, 3),
+    x_max = c(4, 5, 6),
+    stringsAsFactors = FALSE
+  )
+  result <- MM_to_RSDA(df)
+  expect_true("name" %in% names(result))
+  expect_equal(result$name, c("a", "b", "c"))
+})
+
+test_that("MM_to_RSDA preserves row count", {
+  data(mushroom.int)
+  mm <- suppressWarnings(RSDA_to_MM(mushroom.int, RSDA = FALSE))
+  result <- MM_to_RSDA(mm)
+  expect_equal(nrow(result), nrow(mm))
+})
+
+test_that("MM_to_RSDA round-trip preserves data", {
+  # Create a known MM data.frame and verify round-trip
+  mm <- data.frame(
+    name = c("a", "b", "c"),
+    x_min = c(1.0, 2.0, 3.0),
+    x_max = c(4.0, 5.0, 6.0),
+    y_min = c(10.0, 20.0, 30.0),
+    y_max = c(40.0, 50.0, 60.0),
+    stringsAsFactors = FALSE
+  )
+  rsda <- MM_to_RSDA(mm)
+  mm_back <- suppressWarnings(RSDA_to_MM(rsda, RSDA = FALSE))
+  expect_equal(as.numeric(mm_back$x_min), mm$x_min)
+  expect_equal(as.numeric(mm_back$x_max), mm$x_max)
+  expect_equal(as.numeric(mm_back$y_min), mm$y_min)
+  expect_equal(as.numeric(mm_back$y_max), mm$y_max)
+  expect_equal(mm_back$name, mm$name)
+})
+
+test_that("MM_to_RSDA warns on no _min/_max columns", {
+  df <- data.frame(a = 1:3, b = 4:6)
+  expect_warning(MM_to_RSDA(df), "no _min/_max columns")
+})
+
+# ---------- iGAP_to_RSDA -----------------------------------------------------
+
+test_that("iGAP_to_RSDA returns symbolic_tbl", {
+  data(abalone.iGAP)
+  result <- iGAP_to_RSDA(abalone.iGAP, 1:7)
+  expect_s3_class(result, "symbolic_tbl")
+  expect_equal(nrow(result), nrow(abalone.iGAP))
+})
+
+test_that("iGAP_to_RSDA has complex columns for interval data", {
+  data(abalone.iGAP)
+  result <- iGAP_to_RSDA(abalone.iGAP, 1:7)
+  complex_cols <- which(sapply(result, mode) == "complex")
+  expect_equal(length(complex_cols), 7)
+})
+
+test_that("iGAP_to_RSDA round-trip preserves structure", {
+  data(abalone.iGAP)
+  rsda <- iGAP_to_RSDA(abalone.iGAP, 1:7)
+  # Verify structure: 7 complex columns for the 7 interval variables
+  complex_cols <- which(sapply(rsda, mode) == "complex")
+  expect_equal(length(complex_cols), 7)
+  expect_equal(nrow(rsda), nrow(abalone.iGAP))
+  # Verify first interval column's min/max match original parsed values
+  orig_vals <- strsplit(as.character(abalone.iGAP[[1]]), ",")
+  expect_equal(Re(rsda[[1]])[1], as.numeric(orig_vals[[1]][1]))
+  expect_equal(Im(rsda[[1]])[1], as.numeric(orig_vals[[1]][2]))
+})
+
+test_that("int_convert_format converts iGAP to RSDA with auto-detect", {
+  data(abalone.iGAP)
+  result <- suppressMessages(int_convert_format(abalone.iGAP, to = "RSDA"))
+  expect_s3_class(result, "symbolic_tbl")
+  expect_equal(nrow(result), nrow(abalone.iGAP))
+})
+
+test_that("int_list_conversions includes MM_to_RSDA and iGAP_to_RSDA", {
+  result <- int_list_conversions()
+  expect_true("MM_to_RSDA" %in% result$function_name)
+  expect_true("iGAP_to_RSDA" %in% result$function_name)
+})
+
+test_that("int_list_conversions function_name column includes new functions", {
+  result <- int_list_conversions()
+  for (fn in result$function_name) {
+    expect_true(is.function(get(fn)),
+                info = paste(fn, "should be an exported function"))
+  }
 })

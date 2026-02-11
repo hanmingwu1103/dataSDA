@@ -34,10 +34,9 @@ Supported conversions:
   \item SODAS → MM (via \code{SODAS_to_MM})
   \item SODAS → iGAP (via \code{SODAS_to_iGAP})
   \item MM → iGAP (via \code{MM_to_iGAP})
+  \item MM → RSDA (via \code{MM_to_RSDA})
+  \item iGAP → RSDA (via \code{iGAP_to_RSDA})
 }
-
-Note: Direct conversion to RSDA format is not yet supported. Convert to MM first,
-then manually convert to RSDA if needed.
 }
 \examples{
 # Auto-detect and convert to MM
@@ -59,7 +58,7 @@ mm_datasets <- lapply(datasets, int_convert_format, to = "MM")
 int_list_conversions()
 }
 \seealso{
-int_detect_format int_list_conversions RSDA_to_MM iGAP_to_MM MM_to_iGAP
+int_detect_format int_list_conversions RSDA_to_MM iGAP_to_MM MM_to_iGAP MM_to_RSDA iGAP_to_RSDA
 }
 \author{
 Han-Ming Wu

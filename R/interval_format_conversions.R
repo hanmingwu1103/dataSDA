@@ -129,10 +129,11 @@ int_list_conversions <- function(from = NULL, to = NULL) {
   
   # Define all available conversions
   conversions <- data.frame(
-    from = c("RSDA", "RSDA", "iGAP", "SODAS", "SODAS", "MM"),
-    to = c("MM", "iGAP", "MM", "MM", "iGAP", "iGAP"),
-    function_name = c("RSDA_to_MM", "RSDA_to_iGAP", "iGAP_to_MM", 
-                      "SODAS_to_MM", "SODAS_to_iGAP", "MM_to_iGAP"),
+    from = c("RSDA", "RSDA", "iGAP", "SODAS", "SODAS", "MM", "MM", "iGAP"),
+    to = c("MM", "iGAP", "MM", "MM", "iGAP", "iGAP", "RSDA", "RSDA"),
+    function_name = c("RSDA_to_MM", "RSDA_to_iGAP", "iGAP_to_MM",
+                      "SODAS_to_MM", "SODAS_to_iGAP", "MM_to_iGAP",
+                      "MM_to_RSDA", "iGAP_to_RSDA"),
     stringsAsFactors = FALSE
   )
   
@@ -176,12 +177,11 @@ int_list_conversions <- function(from = NULL, to = NULL) {
 #'   \item SODAS → MM (via \code{SODAS_to_MM})
 #'   \item SODAS → iGAP (via \code{SODAS_to_iGAP})
 #'   \item MM → iGAP (via \code{MM_to_iGAP})
+#'   \item MM → RSDA (via \code{MM_to_RSDA})
+#'   \item iGAP → RSDA (via \code{iGAP_to_RSDA})
 #' }
-#' 
-#' Note: Direct conversion to RSDA format is not yet supported. Convert to MM first,
-#' then manually convert to RSDA if needed.
 #' @author Han-Ming Wu
-#' @seealso int_detect_format int_list_conversions RSDA_to_MM iGAP_to_MM MM_to_iGAP
+#' @seealso int_detect_format int_list_conversions RSDA_to_MM iGAP_to_MM MM_to_iGAP MM_to_RSDA iGAP_to_RSDA
 #' @examples
 #' # Auto-detect and convert to MM
 #' data(mushroom.int)
@@ -235,13 +235,6 @@ int_convert_format <- function(x, to = "MM", from = NULL, ...) {
   if (from == to) {
     message("Source and target formats are the same. Returning original data.")
     return(x)
-  }
-  
-  # Check if conversion to RSDA is requested
-  if (to == "RSDA") {
-    stop("int_convert_format: Direct conversion to RSDA format is not supported. ",
-         "Please convert to MM format first, then use RSDA package functions.", 
-         call. = FALSE)
   }
   
   # Determine conversion path and execute
@@ -300,7 +293,44 @@ int_convert_format <- function(x, to = "MM", from = NULL, ...) {
     "SODAS_to_IGAP" = {
       SODAS_to_iGAP(x)
     },
-    
+
+    # To RSDA format
+    "MM_to_RSDA" = {
+      MM_to_RSDA(x)
+    },
+    "IGAP_to_RSDA" = {
+      args <- list(...)
+      if (is.null(args$location)) {
+        # Auto-detect interval columns (character columns with comma pattern)
+        if (is.data.frame(x)) {
+          char_cols <- which(sapply(x, is.character))
+          if (length(char_cols) > 0) {
+            interval_cols <- c()
+            for (col_idx in char_cols) {
+              values <- as.character(x[[col_idx]])
+              if (any(grepl(",", values), na.rm = TRUE)) {
+                interval_cols <- c(interval_cols, col_idx)
+              }
+            }
+            if (length(interval_cols) > 0) {
+              message("Auto-detected interval columns: ", paste(interval_cols, collapse = ", "))
+              iGAP_to_RSDA(x, location = interval_cols)
+            } else {
+              stop("int_convert_format: No interval columns detected in iGAP data. ",
+                   "Please specify 'location' parameter.", call. = FALSE)
+            }
+          } else {
+            stop("int_convert_format: No character columns found in iGAP data.",
+                 call. = FALSE)
+          }
+        } else {
+          stop("int_convert_format: iGAP data must be a data.frame.", call. = FALSE)
+        }
+      } else {
+        iGAP_to_RSDA(x, location = args$location)
+      }
+    },
+
     # Unsupported conversion
     {
       # Check if indirect conversion is possible via MM
@@ -582,4 +612,97 @@ SODAS_to_iGAP <- function(XMLPath){
   data <- RSDA::SODAS.to.RSDA(XMLPath)
   df <- RSDA_to_iGAP(data)
   return(df)
+}
+
+
+# --- Conversions to RSDA format ----------------------------------------------
+
+#' MM to RSDA
+#'
+#' @name MM_to_RSDA
+#' @aliases MM_to_RSDA
+#' @description To convert MM format interval dataframe to RSDA format (symbolic_tbl).
+#' @usage MM_to_RSDA(data)
+#' @param data The dataframe with the MM format (paired _min/_max columns).
+#' @returns Return a symbolic_tbl dataframe with complex-encoded interval columns.
+#' @examples
+#' data(mushroom.int)
+#' mm <- RSDA_to_MM(mushroom.int, RSDA = FALSE)
+#' rsda <- MM_to_RSDA(mm)
+#' @export
+MM_to_RSDA <- function(data){
+  .check_data_frame(data, "MM_to_RSDA")
+  col_names <- names(data)
+  if (!any(grepl("_min|_max|_Min|_Max", col_names))) {
+    warning("MM_to_RSDA: no _min/_max columns detected in 'data'. ",
+            "Result may not be meaningful.", call. = FALSE)
+  }
+
+  # Find _min columns and extract base names
+  min_cols <- grep("_[Mm]in$", col_names, value = TRUE)
+  base_names <- sub("_[Mm]in$", "", min_cols)
+
+  # Build the result data.frame column by column in original order
+  result_cols <- list()
+  result_names <- c()
+  used <- character(0)
+
+  for (col in col_names) {
+    if (col %in% used) next
+
+    # Check if this is a _min column
+    if (grepl("_[Mm]in$", col)) {
+      base <- sub("_[Mm]in$", "", col)
+      max_col <- col_names[grepl(paste0("^", base, "_[Mm]ax$"), col_names)]
+      if (length(max_col) == 1) {
+        # Combine into complex column: min + max*i
+        mins <- as.numeric(data[[col]])
+        maxs <- as.numeric(data[[max_col]])
+        result_cols[[length(result_cols) + 1]] <- mins + maxs * 1i
+        result_names <- c(result_names, base)
+        used <- c(used, col, max_col)
+      } else {
+        # No matching _max, keep as-is
+        result_cols[[length(result_cols) + 1]] <- data[[col]]
+        result_names <- c(result_names, col)
+        used <- c(used, col)
+      }
+    } else if (grepl("_[Mm]ax$", col)) {
+      # _max column without matching _min already processed — skip if used
+      next
+    } else {
+      # Non-interval column, keep as-is
+      result_cols[[length(result_cols) + 1]] <- data[[col]]
+      result_names <- c(result_names, col)
+      used <- c(used, col)
+    }
+  }
+
+  result <- as.data.frame(result_cols, stringsAsFactors = FALSE)
+  names(result) <- result_names
+  rownames(result) <- rownames(data)
+  class(result) <- c("symbolic_tbl", "data.frame")
+  return(result)
+}
+
+
+#' iGAP to RSDA
+#'
+#' @name iGAP_to_RSDA
+#' @aliases iGAP_to_RSDA
+#' @description To convert iGAP format interval dataframe to RSDA format (symbolic_tbl).
+#' @usage iGAP_to_RSDA(data, location)
+#' @param data The dataframe with the iGAP format.
+#' @param location The location of the symbolic variable in the data.
+#' @returns Return a symbolic_tbl dataframe with complex-encoded interval columns.
+#' @examples
+#' data(abalone.iGAP)
+#' rsda <- iGAP_to_RSDA(abalone.iGAP, 1:7)
+#' @export
+iGAP_to_RSDA <- function(data, location = NULL){
+  .check_data_frame(data, "iGAP_to_RSDA")
+  .check_location(location, ncol(data), "iGAP_to_RSDA")
+  mm <- iGAP_to_MM(data, location)
+  result <- MM_to_RSDA(mm)
+  return(result)
 }

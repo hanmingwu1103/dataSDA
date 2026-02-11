@@ -191,6 +191,32 @@ test_that("hist_cor rejects non-MatH", {
   expect_error(hist_cor(NULL, "x", "y"), "must not be NULL")
 })
 
+# ---------- MM_to_RSDA ----------
+test_that("MM_to_RSDA rejects non-data.frame", {
+  expect_error(MM_to_RSDA(NULL), "must not be NULL")
+  expect_error(MM_to_RSDA("text"), "must be a data.frame")
+  expect_error(MM_to_RSDA(1:5), "must be a data.frame")
+})
+
+test_that("MM_to_RSDA warns when no _min/_max columns", {
+  df <- data.frame(a = 1:3, b = 4:6)
+  expect_warning(MM_to_RSDA(df), "no _min/_max columns")
+})
+
+# ---------- iGAP_to_RSDA ----------
+test_that("iGAP_to_RSDA rejects non-data.frame", {
+  expect_error(iGAP_to_RSDA(NULL, 1), "must not be NULL")
+  expect_error(iGAP_to_RSDA("text", 1), "must be a data.frame")
+})
+
+test_that("iGAP_to_RSDA rejects bad location", {
+  data(abalone.iGAP)
+  expect_error(iGAP_to_RSDA(abalone.iGAP, NULL), "must not be NULL")
+  expect_error(iGAP_to_RSDA(abalone.iGAP, "a"), "must be numeric")
+  expect_error(iGAP_to_RSDA(abalone.iGAP, 0), "must be between 1 and")
+  expect_error(iGAP_to_RSDA(abalone.iGAP, 999), "must be between 1 and")
+})
+
 # ---------- SODAS_to_MM / SODAS_to_iGAP ----------
 test_that("SODAS_to_MM rejects bad path", {
   expect_error(SODAS_to_MM(NULL), "must be a non-empty character")
