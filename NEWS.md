@@ -1,3 +1,7 @@
+# dataSDA 0.1.7
+
+*(in development)*
+
 # dataSDA 0.1.6
 
 ## Dataset naming convention
