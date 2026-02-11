@@ -10,6 +10,11 @@
 - `int_list_conversions()` now returns 8 conversions (was 6), including `MM_to_RSDA` and `iGAP_to_RSDA`.
 - `int_convert_format()` now supports `to = "RSDA"` for MM and iGAP sources with auto-detection.
 
+## Vignette
+
+- Comprehensive rewrite covering all 51 exported functions (was 18), organized into 14 sections: format detection/conversion, core stats, geometry, position, robust, shape, similarity, uncertainty, distance, histogram stats, and utilities.
+- Fixed garbled characters, stale dataset references, and broken histogram example code.
+
 ## Tests
 
 - 49 new tests for the new conversion functions and updated conversion registry (517 total, all passing).
