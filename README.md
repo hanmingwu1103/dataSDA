@@ -104,7 +104,7 @@ The package includes 32 built-in datasets for symbolic data analysis:
 
 ## Authors
 
-- **Po-Wei Chen** (Author) **Chun-houh Chen** (Author) 
+- **Po-Wei Chen** (Author), **Chun-houh Chen** (Author) 
 - **Han-Ming Wu** (Creator, Maintainer) - [wuhm@g.nccu.edu.tw](mailto:wuhm@g.nccu.edu.tw)
 
 ## License
