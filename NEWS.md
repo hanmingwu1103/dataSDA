@@ -1,3 +1,26 @@
+# dataSDA 0.2.0
+
+## New datasets (13 added, 69 total)
+
+Thirteen new datasets extracted from R packages and the Billard & Diday (2006) textbook:
+
+### From R packages
+- `cardiological.int` — 44 patients with 5 interval-valued physiological measurements (from RSDA).
+- `prostate.int` — 97 prostate cancer patients with 9 clinical interval variables (from RSDA).
+- `uscrime.int` — 46 US states with 102 interval-valued crime statistics (from RSDA).
+- `hardwood.hist` — 5 hardwood tree species with 4 histogram-valued climate variables (from RSDA).
+- `synthetic_clusters.int` — 125 observations in 5 clusters with 6 interval variables (from symbolicDA).
+- `environment.mix` — 14 EPA state groups with mixed interval/modal environmental data (from ggESDA).
+
+### From Billard & Diday (2006) textbook tables
+- `weight_age.hist` — 7 age groups with histogram-valued weight distributions (Table 3.10).
+- `hospital.hist` — 15 hospitals with histogram-valued cost distributions (Table 3.12).
+- `cholesterol.hist` — 14 gender-age groups with cholesterol histograms (Table 4.5).
+- `hemoglobin.hist` — 14 gender-age groups with hemoglobin histograms (Table 4.6).
+- `hematocrit.hist` — 14 gender-age groups with hematocrit histograms (Table 4.14).
+- `hematocrit_hemoglobin.hist` — 10 observations with bivariate 2-bin histograms (Table 6.8).
+- `energy_usage.distr` — 10 towns with categorical fuel/heating distributions (Table 3.7).
+
 # dataSDA 0.1.9
 
 ## New datasets (7 added, 55 total)

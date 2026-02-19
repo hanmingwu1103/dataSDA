@@ -1251,3 +1251,373 @@
 #' @keywords datasets interval ordinal
 #' @source \url{https://github.com/aleixalcacer/OCFIVD}
 "hdi_gender.int"
+
+## ===========================================================================
+## SECTION 6: Datasets extracted from R packages and textbooks (2025 addition)
+## ===========================================================================
+
+## ---------------------------------------------------------------------------
+## 6.1 cardiological.int
+## ---------------------------------------------------------------------------
+
+#' @name cardiological.int
+#' @title Cardiological Examination Interval Dataset
+#' @description
+#' Interval-valued data from cardiological examinations of 44 patients.
+#' Each patient is described by 5 interval-valued physiological
+#' measurements.
+#'
+#' @format A data frame with 44 observations and 5 interval-valued variables:
+#' \itemize{
+#'     \item \code{pulse}: Pulse rate range (beats per minute).
+#'     \item \code{systolic}: Systolic blood pressure range (mmHg).
+#'     \item \code{diastolic}: Diastolic blood pressure range (mmHg).
+#'     \item \code{arterial1}: First arterial measurement range.
+#'     \item \code{arterial2}: Second arterial measurement range.
+#' }
+#'
+#' @usage data(cardiological.int)
+#' @references
+#' Rodriguez, O. (2000). Classification et modeles lineaires en analyse
+#' des donnees symboliques. Doctoral Thesis, Universite Paris IX-Dauphine.
+#' @examples
+#' data(cardiological.int)
+#' @keywords datasets interval
+#' @source Extracted from RSDA package (\code{cardiologicalv2}).
+"cardiological.int"
+
+## ---------------------------------------------------------------------------
+## 6.2 prostate.int
+## ---------------------------------------------------------------------------
+
+#' @name prostate.int
+#' @title Prostate Cancer Clinical Interval Dataset
+#' @description
+#' Interval-valued clinical measurements for 97 prostate cancer patients
+#' (training and test sets combined). Contains 9 interval-valued variables
+#' from log-transformed cancer volume, weight, age, and other clinical
+#' predictors.
+#'
+#' @format A data frame with 97 observations and 9 interval-valued variables:
+#' \itemize{
+#'     \item \code{lcavol}: Log cancer volume range.
+#'     \item \code{lweight}: Log prostate weight range.
+#'     \item \code{age}: Patient age range.
+#'     \item \code{lbph}: Log benign prostatic hyperplasia amount range.
+#'     \item \code{svi}: Seminal vesicle invasion range.
+#'     \item \code{lcp}: Log capsular penetration range.
+#'     \item \code{gleason}: Gleason score range.
+#'     \item \code{pgg45}: Percentage Gleason scores 4 or 5 range.
+#'     \item \code{lpsa}: Log prostate specific antigen range.
+#' }
+#'
+#' @usage data(prostate.int)
+#' @references
+#' Stamey, T. et al. (1989). Prostate specific antigen in the diagnosis and
+#' treatment of adenocarcinoma of the prostate. II. Radical prostatectomy
+#' treated patients. \emph{J. Urology}, 141(5), 1076-1083.
+#' @examples
+#' data(prostate.int)
+#' @keywords datasets interval medical
+#' @source Extracted from RSDA package (\code{int_prost_train}, \code{int_prost_test}).
+"prostate.int"
+
+## ---------------------------------------------------------------------------
+## 6.3 uscrime.int
+## ---------------------------------------------------------------------------
+
+#' @name uscrime.int
+#' @title US Crime Statistics Interval Dataset
+#' @description
+#' Interval-valued crime statistics for 46 US states, containing 102
+#' interval-valued variables covering various crime types and rates.
+#' Originally from the RSDA package.
+#'
+#' @format A data frame with 46 observations and 102 interval-valued variables.
+#'
+#' @usage data(uscrime.int)
+#' @references
+#' Rodriguez, O. (2000). Classification et modeles lineaires en analyse
+#' des donnees symboliques. Doctoral Thesis, Universite Paris IX-Dauphine.
+#' @examples
+#' data(uscrime.int)
+#' @keywords datasets interval crime
+#' @source Extracted from RSDA package (\code{uscrime_int}).
+"uscrime.int"
+
+## ---------------------------------------------------------------------------
+## 6.4 hardwood.hist
+## ---------------------------------------------------------------------------
+
+#' @name hardwood.hist
+#' @title Hardwood Tree Species Histogram-Valued Dataset
+#' @description
+#' Histogram-valued climate data for 5 hardwood tree species in the
+#' southeastern United States. Each observation represents a species with
+#' 4 histogram-valued climate variables.
+#'
+#' @format A data frame with 5 observations and 4 histogram-valued variables:
+#' \itemize{
+#'     \item \code{ANNT}: Annual temperature histogram (degrees C).
+#'     \item \code{JULT}: July temperature histogram (degrees C).
+#'     \item \code{ANNP}: Annual precipitation histogram (mm).
+#'     \item \code{MITM}: Moisture index histogram.
+#' }
+#'
+#' @usage data(hardwood.hist)
+#' @references
+#' Brito, P. (2007). Modelling and Analysing Interval Data.
+#' In V. Esposito Vinzi et al. (Eds.), \emph{New Developments in Classification
+#' and Data Analysis}, pp. 197-208. Springer.
+#' @examples
+#' data(hardwood.hist)
+#' @keywords datasets histogram
+#' @source Extracted from RSDA package (\code{hardwoodBrito}).
+"hardwood.hist"
+
+## ---------------------------------------------------------------------------
+## 6.5 synthetic_clusters.int
+## ---------------------------------------------------------------------------
+
+#' @name synthetic_clusters.int
+#' @title Synthetic Interval Clusters Dataset
+#' @description
+#' Synthetic interval-valued dataset with 125 observations in 5 groups of
+#' 25 each, described by 6 interval-valued variables and a cluster label.
+#' Designed for benchmarking interval data clustering algorithms.
+#'
+#' @format A data frame with 125 observations and 7 variables:
+#' \itemize{
+#'     \item \code{X1} through \code{X6}: Six interval-valued variables.
+#'     \item \code{cluster}: Cluster membership (1-5).
+#' }
+#'
+#' @usage data(synthetic_clusters.int)
+#' @references
+#' Dudek, A. and Pelka, M. (2022). \emph{symbolicDA}: Analysis of Symbolic
+#' Data. R package.
+#' @examples
+#' data(synthetic_clusters.int)
+#' @keywords datasets interval clustering synthetic
+#' @source Extracted from symbolicDA package (\code{data_symbolic}).
+"synthetic_clusters.int"
+
+## ---------------------------------------------------------------------------
+## 6.6 environment.mix
+## ---------------------------------------------------------------------------
+
+#' @name environment.mix
+#' @title EPA Environmental Data Mixed Symbolic Dataset
+#' @description
+#' Mixed symbolic dataset from the US EPA with 14 state-group observations
+#' and 17 variables of mixed types: interval-valued environmental measurements
+#' and modal-valued (distributional) categorical variables.
+#'
+#' @format A data frame with 14 observations and 17 variables. Modal-valued
+#' columns (URBANICITY, INCOMELEVEL, EDUCATION, REGIONDEVELOPME, etc.) contain
+#' distribution strings. Interval-valued columns (CONTROL, PM2.5, PM10, etc.)
+#' contain complex-encoded intervals.
+#'
+#' @usage data(environment.mix)
+#' @references
+#' Sun, Y. and Billard, L. (2020). Symbolic data analysis with the
+#' ggESDA package. \emph{Journal of Statistical Software}.
+#' @examples
+#' data(environment.mix)
+#' @keywords datasets mixed interval modal
+#' @source Extracted from ggESDA package (\code{Environment}).
+"environment.mix"
+
+## ---------------------------------------------------------------------------
+## 6.7 weight_age.hist
+## ---------------------------------------------------------------------------
+
+#' @name weight_age.hist
+#' @title Weight by Age Group Histogram-Valued Dataset
+#' @description
+#' Histogram-valued weight distributions for 7 age groups (20s through 80s).
+#' Each observation represents an age decade with a 7-bin histogram of
+#' weight values (pounds).
+#'
+#' @format A data frame with 7 observations and 1 histogram-valued variable:
+#' \itemize{
+#'     \item \code{weight}: Histogram-valued weight distribution (pounds).
+#' }
+#' Row names indicate age groups (20s, 30s, 40s, 50s, 60s, 70s, 80s).
+#'
+#' @usage data(weight_age.hist)
+#' @references
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 3.10.
+#' @examples
+#' data(weight_age.hist)
+#' @keywords datasets histogram
+#' @source Billard, L. and Diday, E. (2006), Table 3.10.
+"weight_age.hist"
+
+## ---------------------------------------------------------------------------
+## 6.8 hospital.hist
+## ---------------------------------------------------------------------------
+
+#' @name hospital.hist
+#' @title Hospital Costs Histogram-Valued Dataset
+#' @description
+#' Histogram-valued cost distributions for 15 hospitals. Each observation
+#' is a hospital with a 10-bin histogram of patient costs.
+#'
+#' @format A data frame with 15 observations and 1 histogram-valued variable:
+#' \itemize{
+#'     \item \code{cost}: Histogram-valued cost distribution (currency units).
+#' }
+#' Row names are H1 through H15.
+#'
+#' @usage data(hospital.hist)
+#' @references
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 3.12.
+#' @examples
+#' data(hospital.hist)
+#' @keywords datasets histogram
+#' @source Billard, L. and Diday, E. (2006), Table 3.12.
+"hospital.hist"
+
+## ---------------------------------------------------------------------------
+## 6.9 cholesterol.hist
+## ---------------------------------------------------------------------------
+
+#' @name cholesterol.hist
+#' @title Cholesterol by Gender and Age Histogram-Valued Dataset
+#' @description
+#' Histogram-valued cholesterol distributions for 14 gender-age groups
+#' (7 female + 7 male age groups from 20s to 80+). Each observation has
+#' a 10-bin histogram of cholesterol levels.
+#'
+#' @format A data frame with 14 observations and 3 variables:
+#' \itemize{
+#'     \item \code{gender}: Gender (Female or Male).
+#'     \item \code{age}: Age group (20s, 30s, 40s, 50s, 60s, 70s, 80+).
+#'     \item \code{cholesterol}: Histogram-valued cholesterol distribution.
+#' }
+#'
+#' @usage data(cholesterol.hist)
+#' @references
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 4.5.
+#' @examples
+#' data(cholesterol.hist)
+#' @keywords datasets histogram medical
+#' @source Billard, L. and Diday, E. (2006), Table 4.5.
+"cholesterol.hist"
+
+## ---------------------------------------------------------------------------
+## 6.10 hemoglobin.hist
+## ---------------------------------------------------------------------------
+
+#' @name hemoglobin.hist
+#' @title Hemoglobin by Gender and Age Histogram-Valued Dataset
+#' @description
+#' Histogram-valued hemoglobin distributions for 14 gender-age groups
+#' (7 female + 7 male age groups from 20s to 80+). Each observation has
+#' a 10-bin histogram of hemoglobin levels (g/dL).
+#'
+#' @format A data frame with 14 observations and 3 variables:
+#' \itemize{
+#'     \item \code{gender}: Gender (Female or Male).
+#'     \item \code{age}: Age group (20s, 30s, 40s, 50s, 60s, 70s, 80+).
+#'     \item \code{hemoglobin}: Histogram-valued hemoglobin distribution (g/dL).
+#' }
+#'
+#' @usage data(hemoglobin.hist)
+#' @references
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 4.6.
+#' @examples
+#' data(hemoglobin.hist)
+#' @keywords datasets histogram medical
+#' @source Billard, L. and Diday, E. (2006), Table 4.6.
+"hemoglobin.hist"
+
+## ---------------------------------------------------------------------------
+## 6.11 hematocrit.hist
+## ---------------------------------------------------------------------------
+
+#' @name hematocrit.hist
+#' @title Hematocrit by Gender and Age Histogram-Valued Dataset
+#' @description
+#' Histogram-valued hematocrit distributions for 14 gender-age groups
+#' (7 female + 7 male age groups from 20s to 80+). Each observation has
+#' a 10-bin histogram of hematocrit percentages.
+#'
+#' @format A data frame with 14 observations and 3 variables:
+#' \itemize{
+#'     \item \code{gender}: Gender (Female or Male).
+#'     \item \code{age}: Age group (20s, 30s, 40s, 50s, 60s, 70s, 80+).
+#'     \item \code{hematocrit}: Histogram-valued hematocrit distribution (\%).
+#' }
+#'
+#' @usage data(hematocrit.hist)
+#' @references
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 4.14.
+#' @examples
+#' data(hematocrit.hist)
+#' @keywords datasets histogram medical
+#' @source Billard, L. and Diday, E. (2006), Table 4.14.
+"hematocrit.hist"
+
+## ---------------------------------------------------------------------------
+## 6.12 hematocrit_hemoglobin.hist
+## ---------------------------------------------------------------------------
+
+#' @name hematocrit_hemoglobin.hist
+#' @title Hematocrit and Hemoglobin Bivariate Histogram-Valued Dataset
+#' @description
+#' Bivariate histogram-valued dataset with 10 observations, each described
+#' by a 2-bin hematocrit histogram and a 2-bin hemoglobin histogram.
+#' Used for bivariate symbolic regression demonstrations.
+#'
+#' @format A data frame with 10 observations and 2 histogram-valued variables:
+#' \itemize{
+#'     \item \code{hematocrit}: Histogram-valued hematocrit distribution (\%).
+#'     \item \code{hemoglobin}: Histogram-valued hemoglobin distribution (g/dL).
+#' }
+#'
+#' @usage data(hematocrit_hemoglobin.hist)
+#' @references
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 6.8.
+#' @examples
+#' data(hematocrit_hemoglobin.hist)
+#' @keywords datasets histogram medical regression
+#' @source Billard, L. and Diday, E. (2006), Table 6.8.
+"hematocrit_hemoglobin.hist"
+
+## ---------------------------------------------------------------------------
+## 6.13 energy_usage.distr
+## ---------------------------------------------------------------------------
+
+#' @name energy_usage.distr
+#' @title Energy Usage Distribution-Valued Dataset
+#' @description
+#' Distribution-valued dataset for 10 towns (geographic areas) with
+#' categorical probability distributions for fuel type and central heating.
+#' Each observation has two distribution-valued variables.
+#'
+#' @format A data frame with 10 observations and 2 distribution-valued variables:
+#' \itemize{
+#'     \item \code{fuel_type}: Distribution over fuel types
+#'           (None, Gas, Oil, Electricity, Coal).
+#'     \item \code{central_heating}: Distribution over central heating
+#'           (No, Yes).
+#' }
+#' Row names are Town_1 through Town_10.
+#'
+#' @usage data(energy_usage.distr)
+#' @references
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 3.7.
+#' @examples
+#' data(energy_usage.distr)
+#' @keywords datasets distribution
+#' @source Billard, L. and Diday, E. (2006), Table 3.7.
+"energy_usage.distr"
