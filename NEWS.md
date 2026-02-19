@@ -1,3 +1,34 @@
+# dataSDA 0.2.2
+
+## New datasets (17 added, 105 total)
+
+Seventeen new datasets from R packages (intkrige, RSDA, MAINT.Data, GPCSIV, HistDAWass, symbolicDA), the Billard & Diday (2007) textbook, and the QualAr Portuguese air quality network:
+
+### Interval-valued (12)
+- `utsnow.int` — 415 Utah weather stations with snow load prediction intervals plus coordinates/elevation (from intkrige).
+- `lynne1.int` — 10 observations with pulse rate, systolic, and diastolic pressure intervals (from RSDA).
+- `loans_by_risk_quantile.int` — 35 Lending Club loan groups (A1-G5) with 4 quantile-based financial intervals (from MAINT.Data).
+- `judge1.int` — 6 regions rated by Judge 1 on 4 interval variables (from GPCSIV).
+- `judge2.int` — 6 regions rated by Judge 2 on 4 interval variables (from GPCSIV).
+- `judge3.int` — 6 regions rated by Judge 3 on 4 interval variables (from GPCSIV).
+- `video1.int` — 10 user groups with 5 video engagement interval metrics (from GPCSIV).
+- `video2.int` — 10 user groups with 5 video engagement interval metrics (from GPCSIV).
+- `video3.int` — 10 user groups with 5 video engagement interval metrics (from GPCSIV).
+- `lisbon_air_quality.int` — 1096 daily observations of 8 pollutant concentration intervals from Lisbon (QualAr).
+
+### Histogram-valued (4)
+- `blood.hist` — 14 gender-age groups with cholesterol, hemoglobin, and hematocrit histograms (from HistDAWass).
+- `china_climate_month.hist` — 60 Chinese weather stations with 168 monthly climate histograms (from HistDAWass).
+- `china_climate_season.hist` — 60 Chinese stations with 56 seasonal climate histograms (from HistDAWass).
+- `exchange_rate_returns.hist` — 108 monthly exchange rate return histograms (from HistDAWass).
+
+### Mixed symbolic (1)
+- `polish_cars.mix` — 30 Polish car models with 9 interval + 3 multinomial variables (from symbolicDA).
+
+### From Billard & Diday (2007) textbook (2)
+- `hierarchy.hist` — 10 observations with hierarchical categories, conditional histograms, and cholesterol interval (Table 6.20).
+- `bird_color_taxonomy.hist` — 20 birds with density/size histograms, tone, and fuzzy shade taxonomy (Tables 6.9/6.14).
+
 # dataSDA 0.2.1
 
 ## New datasets (19 added, 88 total)

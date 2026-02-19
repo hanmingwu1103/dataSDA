@@ -2242,3 +2242,533 @@
 #' @keywords datasets mixed interval modal
 #' @source ggESDA R package (\code{mtcars.i} dataset).
 "mtcars.mix"
+
+## ---------------------------------------------------------------------------
+## SECTION 8: Additional datasets from R packages and SDA literature (2026)
+## ---------------------------------------------------------------------------
+
+## ---------------------------------------------------------------------------
+## 8.1 utsnow.int
+## ---------------------------------------------------------------------------
+
+#' @name utsnow.int
+#' @title Utah Snow Load Interval Dataset
+#' @description
+#' Interval-valued ground snow load data from 415 weather stations in Utah
+#' and surrounding states. Each observation is a station with a 50-year
+#' ground snow load interval (lower and upper bounds of the prediction
+#' interval in kPa) plus the point estimate, geographic coordinates, and
+#' elevation.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 415 observations
+#' and 5 variables:
+#' \itemize{
+#'     \item \code{snow_load}: Interval-valued 50-year ground snow load (kPa).
+#'     \item \code{point_estimate}: Numeric point estimate (kPa).
+#'     \item \code{latitude}: Numeric latitude (degrees).
+#'     \item \code{longitude}: Numeric longitude (degrees).
+#'     \item \code{elevation}: Numeric elevation (meters).
+#' }
+#'
+#' @usage data(utsnow.int)
+#' @references
+#' Schmoyer, R. L. (1993). Permutation tests for correlation in regression
+#' errors. \emph{Journal of the American Statistical Association}, 89(428),
+#' 1507--1516.
+#'
+#' Bean, B., Sun, Y., and Maguire, M. (2022). Interval-valued kriging models
+#' for geostatistical mapping with uncertain inputs.
+#'
+#' Original data from the intkrige R package (\code{utsnow} dataset).
+#' @examples
+#' data(utsnow.int)
+#' @keywords datasets interval
+#' @source intkrige R package (\code{utsnow} dataset).
+"utsnow.int"
+
+## ---------------------------------------------------------------------------
+## 8.2 lynne1.int
+## ---------------------------------------------------------------------------
+
+#' @name lynne1.int
+#' @title Lynne1 Blood Pressure Interval Dataset
+#' @description
+#' Interval-valued dataset of 10 observations with pulse rate, systolic
+#' pressure, and diastolic pressure intervals.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 10 observations
+#' and 4 variables:
+#' \itemize{
+#'     \item \code{concept}: Character concept label.
+#'     \item \code{Pulse Rate}: Interval-valued pulse rate (beats/min).
+#'     \item \code{Systolic Pressure}: Interval-valued systolic pressure (mmHg).
+#'     \item \code{Diastolic Pressure}: Interval-valued diastolic pressure (mmHg).
+#' }
+#'
+#' @usage data(lynne1.int)
+#' @references
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis: Conceptual
+#' Statistics and Data Mining}. Wiley, Chichester.
+#'
+#' Original data from the RSDA R package (\code{Lynne1} dataset).
+#' @examples
+#' data(lynne1.int)
+#' @keywords datasets interval
+#' @source RSDA R package (\code{Lynne1} dataset).
+"lynne1.int"
+
+## ---------------------------------------------------------------------------
+## 8.3 loans_by_risk_quantile.int
+## ---------------------------------------------------------------------------
+
+#' @name loans_by_risk_quantile.int
+#' @title Lending Club Loans by Risk Level (Quantile-Based Intervals)
+#' @description
+#' Interval-valued dataset of 35 Lending Club loan groups stratified by risk
+#' level (A1--G5). Intervals represent the 10th to 90th percentile range of
+#' each financial variable within each risk subgrade.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 35 observations
+#' and 4 variables:
+#' \itemize{
+#'     \item \code{ln-inc}: Interval-valued log income.
+#'     \item \code{int-rate}: Interval-valued interest rate.
+#'     \item \code{open-acc}: Interval-valued number of open accounts.
+#'     \item \code{total-acc}: Interval-valued total accounts.
+#' }
+#'
+#' @usage data(loans_by_risk_quantile.int)
+#' @references
+#' Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
+#' Normal and Skew-Normal distributions. \emph{Journal of Applied Statistics},
+#' 39(1), 3--20.
+#'
+#' Original data from the MAINT.Data R package
+#' (\code{LoansbyRiskLvs_qntlDt} dataset).
+#' @examples
+#' data(loans_by_risk_quantile.int)
+#' @keywords datasets interval
+#' @source MAINT.Data R package (\code{LoansbyRiskLvs_qntlDt} dataset).
+"loans_by_risk_quantile.int"
+
+## ---------------------------------------------------------------------------
+## 8.4 judge1.int, judge2.int, judge3.int
+## ---------------------------------------------------------------------------
+
+#' @name judge1.int
+#' @title Judge 1 Interval-Valued Ratings
+#' @description
+#' Interval-valued ratings from Judge 1 for 6 regions on 4 variables.
+#' From a study of generalized principal component analysis for
+#' interval-valued data (GPCSIV).
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 6 observations
+#' and 4 interval-valued variables (V1--V4).
+#'
+#' @usage data(judge1.int)
+#' @references
+#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
+#' to symbolic histogram variables. \emph{Advances in Data Analysis and
+#' Classification}, 6(2), 147--159.
+#'
+#' Original data from the GPCSIV R package (\code{Judge1} dataset).
+#' @examples
+#' data(judge1.int)
+#' @keywords datasets interval
+#' @source GPCSIV R package (\code{Judge1} dataset).
+"judge1.int"
+
+#' @name judge2.int
+#' @title Judge 2 Interval-Valued Ratings
+#' @description
+#' Interval-valued ratings from Judge 2 for 6 regions on 4 variables.
+#' From a study of generalized principal component analysis for
+#' interval-valued data (GPCSIV).
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 6 observations
+#' and 4 interval-valued variables (V1--V4).
+#'
+#' @usage data(judge2.int)
+#' @references
+#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
+#' to symbolic histogram variables. \emph{Advances in Data Analysis and
+#' Classification}, 6(2), 147--159.
+#'
+#' Original data from the GPCSIV R package (\code{Judge2} dataset).
+#' @examples
+#' data(judge2.int)
+#' @keywords datasets interval
+#' @source GPCSIV R package (\code{Judge2} dataset).
+"judge2.int"
+
+#' @name judge3.int
+#' @title Judge 3 Interval-Valued Ratings
+#' @description
+#' Interval-valued ratings from Judge 3 for 6 regions on 4 variables.
+#' From a study of generalized principal component analysis for
+#' interval-valued data (GPCSIV).
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 6 observations
+#' and 4 interval-valued variables (V1--V4).
+#'
+#' @usage data(judge3.int)
+#' @references
+#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
+#' to symbolic histogram variables. \emph{Advances in Data Analysis and
+#' Classification}, 6(2), 147--159.
+#'
+#' Original data from the GPCSIV R package (\code{Judge3} dataset).
+#' @examples
+#' data(judge3.int)
+#' @keywords datasets interval
+#' @source GPCSIV R package (\code{Judge3} dataset).
+"judge3.int"
+
+## ---------------------------------------------------------------------------
+## 8.5 video1.int, video2.int, video3.int
+## ---------------------------------------------------------------------------
+
+#' @name video1.int
+#' @title Video Platform User Engagement Intervals (Dataset 1)
+#' @description
+#' Interval-valued engagement metrics for 10 user groups on a video
+#' platform. Variables represent ranges of visit, watch, like, comment,
+#' and share counts.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 10 observations
+#' and 5 interval-valued variables (V1--V5): number of visits, watches,
+#' likes, comments, and shares.
+#'
+#' @usage data(video1.int)
+#' @references
+#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
+#' to symbolic histogram variables. \emph{Advances in Data Analysis and
+#' Classification}, 6(2), 147--159.
+#'
+#' Original data from the GPCSIV R package (\code{video1} dataset).
+#' @examples
+#' data(video1.int)
+#' @keywords datasets interval
+#' @source GPCSIV R package (\code{video1} dataset).
+"video1.int"
+
+#' @name video2.int
+#' @title Video Platform User Engagement Intervals (Dataset 2)
+#' @description
+#' Interval-valued engagement metrics for 10 user groups on a video
+#' platform. Variables represent ranges of visit, watch, like, comment,
+#' and share counts.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 10 observations
+#' and 5 interval-valued variables (V1--V5): number of visits, watches,
+#' likes, comments, and shares.
+#'
+#' @usage data(video2.int)
+#' @references
+#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
+#' to symbolic histogram variables. \emph{Advances in Data Analysis and
+#' Classification}, 6(2), 147--159.
+#'
+#' Original data from the GPCSIV R package (\code{video2} dataset).
+#' @examples
+#' data(video2.int)
+#' @keywords datasets interval
+#' @source GPCSIV R package (\code{video2} dataset).
+"video2.int"
+
+#' @name video3.int
+#' @title Video Platform User Engagement Intervals (Dataset 3)
+#' @description
+#' Interval-valued engagement metrics for 10 user groups on a video
+#' platform. Variables represent ranges of visit, watch, like, comment,
+#' and share counts.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 10 observations
+#' and 5 interval-valued variables (V1--V5): number of visits, watches,
+#' likes, comments, and shares.
+#'
+#' @usage data(video3.int)
+#' @references
+#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
+#' to symbolic histogram variables. \emph{Advances in Data Analysis and
+#' Classification}, 6(2), 147--159.
+#'
+#' Original data from the GPCSIV R package (\code{video3} dataset).
+#' @examples
+#' data(video3.int)
+#' @keywords datasets interval
+#' @source GPCSIV R package (\code{video3} dataset).
+"video3.int"
+
+## ---------------------------------------------------------------------------
+## 8.6 lisbon_air_quality.int
+## ---------------------------------------------------------------------------
+
+#' @name lisbon_air_quality.int
+#' @title Lisbon Air Quality Daily Interval Dataset
+#' @description
+#' Interval-valued daily air quality data from the Entrecampos monitoring
+#' station in Lisbon, Portugal, covering 2019--2021 (1096 days). Each day's
+#' pollutant concentration is represented as a \eqn{[\min, \max]} interval
+#' from hourly measurements. Missing days are imputed via linear
+#' interpolation.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 1096 observations
+#' (daily) and 8 interval-valued pollutant variables:
+#' \itemize{
+#'     \item \code{so2}: Sulphur dioxide (ug/m3).
+#'     \item \code{pm10}: Particulate matter < 10 um (ug/m3).
+#'     \item \code{o3}: Ozone (ug/m3).
+#'     \item \code{no2}: Nitrogen dioxide (ug/m3).
+#'     \item \code{co}: Carbon monoxide (ug/m3).
+#'     \item \code{pm25}: Particulate matter < 2.5 um (ug/m3).
+#'     \item \code{nox}: Nitrogen oxides (ug/m3).
+#'     \item \code{no}: Nitric oxide (ug/m3).
+#' }
+#'
+#' @usage data(lisbon_air_quality.int)
+#' @references
+#' Dias, S. and Brito, P. (2017). Off the beaten track: A new linear model
+#' for interval data. \emph{European Journal of Operational Research},
+#' 258(3), 1118--1130.
+#'
+#' Data from the QualAr Portuguese air quality monitoring network
+#' (\url{https://qualar.apambiente.pt/}).
+#' @examples
+#' data(lisbon_air_quality.int)
+#' @keywords datasets interval
+#' @source QualAr, Entrecampos station, Lisbon, Portugal.
+"lisbon_air_quality.int"
+
+## ---------------------------------------------------------------------------
+## 8.7 polish_cars.mix
+## ---------------------------------------------------------------------------
+
+#' @name polish_cars.mix
+#' @title Polish Car Models Mixed Symbolic Dataset
+#' @description
+#' Mixed symbolic dataset of 30 car models sold in Poland, with 9
+#' interval-valued technical specification variables and 3 multinomial-valued
+#' categorical variables.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 30 observations
+#' and 12 variables:
+#' \itemize{
+#'     \item \code{price}: Interval-valued price (PLN).
+#'     \item \code{body}: Multinomial body types (e.g., hatchback, sedan, combi).
+#'     \item \code{wheelbase}: Interval-valued wheelbase (mm).
+#'     \item \code{chassis_length}: Interval-valued chassis length (mm).
+#'     \item \code{chassis_width}: Interval-valued chassis width (mm).
+#'     \item \code{chassis_height}: Interval-valued chassis height (mm).
+#'     \item \code{engine_capacity}: Multinomial engine displacement categories (litres).
+#'     \item \code{engine_power}: Interval-valued engine power (HP).
+#'     \item \code{maximum_speed}: Interval-valued maximum speed (km/h).
+#'     \item \code{acceleration}: Interval-valued 0--100 km/h time (seconds).
+#'     \item \code{fuel_type}: Multinomial fuel types (petrol, diesel, LPG).
+#'     \item \code{fuel_consumption}: Interval-valued fuel consumption (L/100km).
+#' }
+#'
+#' @usage data(polish_cars.mix)
+#' @references
+#' Dudek, A. and Pelka, M. (2012). \emph{symbolicDA: Analysis of Symbolic
+#' Data}. R package.
+#' @examples
+#' data(polish_cars.mix)
+#' @keywords datasets mixed interval multinomial
+#' @source symbolicDA R package (\code{cars} dataset).
+"polish_cars.mix"
+
+## ---------------------------------------------------------------------------
+## 8.8 blood.hist
+## ---------------------------------------------------------------------------
+
+#' @name blood.hist
+#' @title Blood Test Histogram Dataset
+#' @description
+#' Histogram-valued blood test results for 14 gender-age groups (e.g.,
+#' Female-20, Male-50). Each observation contains histograms for
+#' cholesterol, hemoglobin, and hematocrit, represented as multi-bin
+#' distributions.
+#'
+#' @format A data frame with 14 observations and 3 histogram-valued
+#' variables:
+#' \itemize{
+#'     \item \code{Cholesterol}: Histogram of cholesterol levels (mg/dL).
+#'     \item \code{Hemoglobin}: Histogram of hemoglobin levels (g/dL).
+#'     \item \code{Hematocrit}: Histogram of hematocrit levels (\%).
+#' }
+#'
+#' @usage data(blood.hist)
+#' @references
+#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
+#' symbolic variables: a new metric-based approach. \emph{Advances in
+#' Data Analysis and Classification}, 9(2), 143--175.
+#'
+#' Original data from the HistDAWass R package (\code{BLOOD} dataset).
+#' @examples
+#' data(blood.hist)
+#' @keywords datasets histogram
+#' @source HistDAWass R package (\code{BLOOD} dataset).
+"blood.hist"
+
+## ---------------------------------------------------------------------------
+## 8.9 china_climate_month.hist
+## ---------------------------------------------------------------------------
+
+#' @name china_climate_month.hist
+#' @title Chinese Climate Monthly Histogram Dataset
+#' @description
+#' Histogram-valued monthly climate data for 60 Chinese weather stations.
+#' Each station has 14 climate variables measured across 12 months
+#' (168 histogram columns total). Histograms are reduced to 10 decile
+#' bins from the original HistDAWass distributions.
+#'
+#' @format A data frame with 60 observations (stations) and 168
+#' histogram-valued variables. Variables follow the pattern
+#' \code{variable_Month} (e.g., \code{mean.temp_Jan}). The 14 climate
+#' variables are: mean pressure, mean temperature, mean max/min
+#' temperature, total precipitation, sunshine duration, mean cloud amount,
+#' mean relative humidity, snow days, dominant wind direction, mean wind
+#' speed, dominant wind frequency, extreme max/min temperature.
+#'
+#' @usage data(china_climate_month.hist)
+#' @references
+#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
+#' symbolic variables: a new metric-based approach. \emph{Advances in
+#' Data Analysis and Classification}, 9(2), 143--175.
+#'
+#' Original data from the HistDAWass R package (\code{China_Month} dataset).
+#' @examples
+#' data(china_climate_month.hist)
+#' @keywords datasets histogram
+#' @source HistDAWass R package (\code{China_Month} dataset).
+"china_climate_month.hist"
+
+## ---------------------------------------------------------------------------
+## 8.10 china_climate_season.hist
+## ---------------------------------------------------------------------------
+
+#' @name china_climate_season.hist
+#' @title Chinese Climate Seasonal Histogram Dataset
+#' @description
+#' Histogram-valued seasonal climate data for 60 Chinese weather stations.
+#' Each station has 14 climate variables measured across 4 seasons
+#' (56 histogram columns total). Histograms are reduced to 10 decile
+#' bins from the original HistDAWass distributions.
+#'
+#' @format A data frame with 60 observations (stations) and 56
+#' histogram-valued variables. Variables follow the pattern
+#' \code{variable_Season} (e.g., \code{mean.temp_Spring}). The 14 climate
+#' variables are: mean pressure, mean temperature, mean max/min
+#' temperature, total precipitation, sunshine duration, mean cloud amount,
+#' mean relative humidity, snow days, dominant wind direction, mean wind
+#' speed, dominant wind frequency, extreme max/min temperature.
+#'
+#' @usage data(china_climate_season.hist)
+#' @references
+#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
+#' symbolic variables: a new metric-based approach. \emph{Advances in
+#' Data Analysis and Classification}, 9(2), 143--175.
+#'
+#' Original data from the HistDAWass R package (\code{China_Seas} dataset).
+#' @examples
+#' data(china_climate_season.hist)
+#' @keywords datasets histogram
+#' @source HistDAWass R package (\code{China_Seas} dataset).
+"china_climate_season.hist"
+
+## ---------------------------------------------------------------------------
+## 8.11 exchange_rate_returns.hist
+## ---------------------------------------------------------------------------
+
+#' @name exchange_rate_returns.hist
+#' @title Exchange Rate Returns Histogram Time Series
+#' @description
+#' Histogram-valued time series of 108 monthly observations of daily
+#' exchange rate returns. Each observation is a histogram distribution
+#' of intra-month daily returns.
+#'
+#' @format A data frame with 108 observations and 1 histogram-valued
+#' variable:
+#' \itemize{
+#'     \item \code{returns}: Histogram of daily exchange rate returns
+#'     within each month.
+#' }
+#'
+#' @usage data(exchange_rate_returns.hist)
+#' @references
+#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
+#' symbolic variables: a new metric-based approach. \emph{Advances in
+#' Data Analysis and Classification}, 9(2), 143--175.
+#'
+#' Original data from the HistDAWass R package (\code{RetHTS} dataset).
+#' @examples
+#' data(exchange_rate_returns.hist)
+#' @keywords datasets histogram
+#' @source HistDAWass R package (\code{RetHTS} dataset).
+"exchange_rate_returns.hist"
+
+## ---------------------------------------------------------------------------
+## 8.12 hierarchy.hist
+## ---------------------------------------------------------------------------
+
+#' @name hierarchy.hist
+#' @title Hierarchical Symbolic Dataset with Mixed Types
+#' @description
+#' Mixed symbolic dataset of 10 observations with hierarchical categorical
+#' variables, conditional histogram variables, and an interval-valued
+#' variable. From Table 6.20 of Billard and Diday (2007).
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 10 observations
+#' and 7 variables:
+#' \itemize{
+#'     \item \code{duration_time}: Histogram-valued duration (2-bin).
+#'     \item \code{hierarchy_1}: Categorical hierarchy level 1 (a/b/c).
+#'     \item \code{hierarchy_2}: Categorical hierarchy level 2 (a1/a2), conditional on hierarchy_1 = a.
+#'     \item \code{hierarchy_3}: Categorical hierarchy level 3 (a11/a12), conditional on hierarchy_2 = a1.
+#'     \item \code{glucose}: Histogram-valued glucose (2-bin), conditional.
+#'     \item \code{pulse_rate}: Histogram-valued pulse rate (2-bin), conditional.
+#'     \item \code{cholesterol}: Interval-valued cholesterol level.
+#' }
+#'
+#' @usage data(hierarchy.hist)
+#' @references
+#' Billard, L. and Diday, E. (2007). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 6.20.
+#' @examples
+#' data(hierarchy.hist)
+#' @keywords datasets mixed histogram interval
+#' @source Billard, L. and Diday, E. (2007), Table 6.20.
+"hierarchy.hist"
+
+## ---------------------------------------------------------------------------
+## 8.13 bird_color_taxonomy.hist
+## ---------------------------------------------------------------------------
+
+#' @name bird_color_taxonomy.hist
+#' @title Bird Color Taxonomy Histogram Dataset
+#' @description
+#' Mixed symbolic dataset of 20 bird observations with histogram-valued
+#' feather density and body size, categorical tone, and distribution-valued
+#' shade (fuzzy taxonomy). From Tables 6.9 and 6.14 of Billard and Diday
+#' (2007).
+#'
+#' @format A data frame with 20 observations and 4 variables:
+#' \itemize{
+#'     \item \code{density}: Histogram-valued feather density (up to 4 bins).
+#'     \item \code{size}: Histogram-valued body size (2-bin).
+#'     \item \code{tone}: Categorical tone (dark/light).
+#'     \item \code{shade}: Distribution-valued shade (purple/red/white/yellow
+#'     with fuzzy weights).
+#' }
+#'
+#' @usage data(bird_color_taxonomy.hist)
+#' @references
+#' Billard, L. and Diday, E. (2007). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester. Tables 6.9
+#' and 6.14.
+#' @examples
+#' data(bird_color_taxonomy.hist)
+#' @keywords datasets mixed histogram distribution
+#' @source Billard, L. and Diday, E. (2007), Tables 6.9/6.14.
+"bird_color_taxonomy.hist"
