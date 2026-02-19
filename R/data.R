@@ -1621,3 +1621,624 @@
 #' @keywords datasets distribution
 #' @source Billard, L. and Diday, E. (2006), Table 3.7.
 "energy_usage.distr"
+
+## ============================================================================
+## SECTION 7: Datasets from Billard & Diday (2020) and R packages (2026 addition)
+## ============================================================================
+
+## ---------------------------------------------------------------------------
+## 7.1 genome_abundances.int
+## ---------------------------------------------------------------------------
+
+#' @name genome_abundances.int
+#' @title Genome Dinucleotide Abundance Intervals
+#' @description
+#' Interval-valued dataset of dinucleotide relative abundances for 14 genome
+#' classes. Each class aggregates multiple genomes; the intervals represent
+#' the range of observed abundance values within each class for 10 dinucleotide
+#' pairs, plus a count variable.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 14 observations
+#' (genome classes) and 11 variables:
+#' \itemize{
+#'     \item \code{CG}: Interval-valued CG dinucleotide relative abundance.
+#'     \item \code{GC}: Interval-valued GC dinucleotide relative abundance.
+#'     \item \code{TA}: Interval-valued TA dinucleotide relative abundance.
+#'     \item \code{AT}: Interval-valued AT dinucleotide relative abundance.
+#'     \item \code{CC}: Interval-valued CC dinucleotide relative abundance.
+#'     \item \code{AA}: Interval-valued AA dinucleotide relative abundance.
+#'     \item \code{AC}: Interval-valued AC dinucleotide relative abundance.
+#'     \item \code{AG}: Interval-valued AG dinucleotide relative abundance.
+#'     \item \code{CA}: Interval-valued CA dinucleotide relative abundance.
+#'     \item \code{GA}: Interval-valued GA dinucleotide relative abundance.
+#'     \item \code{n}: Number of genomes in the class (integer).
+#' }
+#' Row names are Class_1 through Class_14.
+#'
+#' @usage data(genome_abundances.int)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 3-16.
+#' @examples
+#' data(genome_abundances.int)
+#' @keywords datasets interval genomics
+#' @source Billard, L. and Diday, E. (2020), Table 3-16.
+"genome_abundances.int"
+
+## ---------------------------------------------------------------------------
+## 7.2 china_temp_monthly.int
+## ---------------------------------------------------------------------------
+
+#' @name china_temp_monthly.int
+#' @title China Monthly Temperature Intervals (15 Stations)
+#' @description
+#' Interval-valued dataset of monthly temperature ranges for 15 weather
+#' stations in China. Each station has 12 monthly temperature intervals
+#' (minimum and maximum observed temperatures in degrees Celsius) and
+#' an elevation value in meters.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 15 observations
+#' (weather stations) and 13 variables:
+#' \itemize{
+#'     \item \code{January} through \code{December}: Interval-valued monthly
+#'           temperature ranges (degrees Celsius).
+#'     \item \code{Elevation}: Station elevation above sea level (numeric, meters).
+#' }
+#' Row names are station names (e.g., BoKeTu, Hailaer, LaSa).
+#'
+#' @usage data(china_temp_monthly.int)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 7-9.
+#' @examples
+#' data(china_temp_monthly.int)
+#' @keywords datasets interval temperature climate
+#' @source Billard, L. and Diday, E. (2020), Table 7-9.
+"china_temp_monthly.int"
+
+## ---------------------------------------------------------------------------
+## 7.3 ecoli_routes.int
+## ---------------------------------------------------------------------------
+
+#' @name ecoli_routes.int
+#' @title E. coli Transport Routes Interval Dataset
+#' @description
+#' Interval-valued dataset of 9 E. coli transport routes with 5 interval
+#' variables representing biochemical pathway measurements.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 9 observations
+#' (transport routes) and 5 interval-valued variables:
+#' \itemize{
+#'     \item \code{Y1} through \code{Y5}: Interval-valued biochemical
+#'           pathway measurements.
+#' }
+#' Row names are Route_1 through Route_9.
+#'
+#' @usage data(ecoli_routes.int)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 8-10.
+#' @examples
+#' data(ecoli_routes.int)
+#' @keywords datasets interval biology
+#' @source Billard, L. and Diday, E. (2020), Table 8-10.
+"ecoli_routes.int"
+
+## ---------------------------------------------------------------------------
+## 7.4 loans_by_risk.int
+## ---------------------------------------------------------------------------
+
+#' @name loans_by_risk.int
+#' @title Lending Club Loans by Risk Level
+#' @description
+#' Interval-valued dataset of 35 Lending Club loan groups classified by
+#' risk level (A through G, 5 groups each). Each group is described by
+#' 4 interval-valued financial variables.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 35 observations
+#' and 5 variables:
+#' \itemize{
+#'     \item \code{log_income}: Interval-valued log annual income.
+#'     \item \code{interest_rate}: Interval-valued interest rate (\%).
+#'     \item \code{open_accounts}: Interval-valued number of open credit accounts.
+#'     \item \code{total_accounts}: Interval-valued total number of credit accounts.
+#'     \item \code{risk_level}: Risk grade factor (A, B, C, D, E, F, G).
+#' }
+#' Row names are A1--A5, B1--B5, ..., G1--G5.
+#'
+#' @usage data(loans_by_risk.int)
+#' @references
+#' Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
+#' Normal and Skew-Normal distributions. \emph{Journal of Applied Statistics},
+#' 39(1), 3--20.
+#'
+#' Original data from the MAINT.Data R package.
+#' @examples
+#' data(loans_by_risk.int)
+#' @keywords datasets interval finance
+#' @source MAINT.Data R package (\code{LoansbyRisk_minmax} dataset).
+"loans_by_risk.int"
+
+## ---------------------------------------------------------------------------
+## 7.5 polish_voivodships.int
+## ---------------------------------------------------------------------------
+
+#' @name polish_voivodships.int
+#' @title Polish Voivodships Socio-Economic Intervals
+#' @description
+#' Interval-valued dataset of 18 Polish voivodships (administrative regions)
+#' with 9 socio-economic interval variables describing demographic and
+#' economic characteristics at the county (powiat) level.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 18 observations
+#' (voivodships) and 9 interval-valued variables:
+#' \itemize{
+#'     \item \code{V1} through \code{V9}: Interval-valued socio-economic
+#'           indicators aggregated across counties within each voivodship.
+#' }
+#' Row names are voivodship names (e.g., Dolnoslaskie, Lubelskie).
+#'
+#' @usage data(polish_voivodships.int)
+#' @references
+#' Dudek, A. and Pelka, M. (2022). \emph{symbolicDA: Analysis of Symbolic
+#' Data}. R package.
+#'
+#' Walesiak, M. and Dudek, A. (2020). \emph{clusterSim: Searching for
+#' Optimal Clustering Procedure for a Data Set}. R package.
+#' @examples
+#' data(polish_voivodships.int)
+#' @keywords datasets interval socioeconomic
+#' @source clusterSim R package (\code{data_pathtinger} dataset).
+"polish_voivodships.int"
+
+## ---------------------------------------------------------------------------
+## 7.6 iris_species.hist
+## ---------------------------------------------------------------------------
+
+#' @name iris_species.hist
+#' @title Iris Species Histogram-Valued Dataset
+#' @description
+#' Histogram-valued dataset of 3 iris species (Versicolor, Virginica,
+#' Setosa) with 4 histogram-valued morphological variables and a species
+#' label. Each histogram describes the distribution of measurements
+#' within a species.
+#'
+#' @format A data frame with 3 observations and 5 variables:
+#' \itemize{
+#'     \item \code{species}: Species name (factor: Versicolor, Virginica, Setosa).
+#'     \item \code{sepal_width}: Histogram-valued sepal width distribution.
+#'     \item \code{sepal_length}: Histogram-valued sepal length distribution.
+#'     \item \code{petal_width}: Histogram-valued petal width distribution.
+#'     \item \code{petal_length}: Histogram-valued petal length distribution.
+#' }
+#' Row names are species names.
+#'
+#' @usage data(iris_species.hist)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 4-10.
+#' @examples
+#' data(iris_species.hist)
+#' @keywords datasets histogram iris
+#' @source Billard, L. and Diday, E. (2020), Table 4-10.
+"iris_species.hist"
+
+## ---------------------------------------------------------------------------
+## 7.7 flights_detail.hist
+## ---------------------------------------------------------------------------
+
+#' @name flights_detail.hist
+#' @title Airline Flights Detailed Histogram-Valued Dataset
+#' @description
+#' Histogram-valued dataset of 16 airlines with 5 flight performance
+#' histograms. Each histogram has 12 bins describing the distribution
+#' of a performance metric across flights for that airline.
+#'
+#' @format A data frame with 16 observations (airlines) and 5 histogram-valued
+#' variables:
+#' \itemize{
+#'     \item \code{airtime}: Histogram of air time (minutes).
+#'     \item \code{taxi_in}: Histogram of taxi-in time (minutes).
+#'     \item \code{arrival_delay}: Histogram of arrival delay (minutes).
+#'     \item \code{taxi_out}: Histogram of taxi-out time (minutes).
+#'     \item \code{departure_delay}: Histogram of departure delay (minutes).
+#' }
+#' Row names are Airline_1 through Airline_16.
+#'
+#' @usage data(flights_detail.hist)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 5-1.
+#' @examples
+#' data(flights_detail.hist)
+#' @keywords datasets histogram flights
+#' @source Billard, L. and Diday, E. (2020), Table 5-1.
+"flights_detail.hist"
+
+## ---------------------------------------------------------------------------
+## 7.8 cover_types.hist
+## ---------------------------------------------------------------------------
+
+#' @name cover_types.hist
+#' @title Forest Cover Types Histogram-Valued Dataset
+#' @description
+#' Histogram-valued dataset of 7 forest cover types with 4 topographic
+#' histogram variables. Each histogram describes the distribution of a
+#' terrain feature across locations classified as that cover type.
+#'
+#' @format A data frame with 7 observations (cover types) and 4
+#' histogram-valued variables:
+#' \itemize{
+#'     \item \code{elevation}: Histogram of elevation values (meters).
+#'     \item \code{distance_to_water}: Histogram of horizontal distance
+#'           to nearest water source (meters).
+#'     \item \code{hillshade}: Histogram of hillshade index values.
+#'     \item \code{slope}: Histogram of slope values (degrees).
+#' }
+#' Row names are CoverType_1 through CoverType_7.
+#'
+#' @usage data(cover_types.hist)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 7-21.
+#' @examples
+#' data(cover_types.hist)
+#' @keywords datasets histogram forestry
+#' @source Billard, L. and Diday, E. (2020), Table 7-21.
+"cover_types.hist"
+
+## ---------------------------------------------------------------------------
+## 7.9 glucose.hist
+## ---------------------------------------------------------------------------
+
+#' @name glucose.hist
+#' @title Blood Glucose Histogram-Valued Dataset
+#' @description
+#' Histogram-valued dataset of 4 regions with a single histogram-valued
+#' variable describing the distribution of blood glucose measurements.
+#'
+#' @format A data frame with 4 observations (regions) and 1 histogram-valued
+#' variable:
+#' \itemize{
+#'     \item \code{glucose}: Histogram of blood glucose levels.
+#' }
+#' Row names are Region_1 through Region_4.
+#'
+#' @usage data(glucose.hist)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 4-14.
+#' @examples
+#' data(glucose.hist)
+#' @keywords datasets histogram medical
+#' @source Billard, L. and Diday, E. (2020), Table 4-14.
+"glucose.hist"
+
+## ---------------------------------------------------------------------------
+## 7.10 state_income.hist
+## ---------------------------------------------------------------------------
+
+#' @name state_income.hist
+#' @title State Income Histogram-Valued Dataset
+#' @description
+#' Histogram-valued dataset of 6 US states with 4 income distribution
+#' histograms. Each histogram describes the distribution of household
+#' income within a state.
+#'
+#' @format A data frame with 6 observations (states) and 4 histogram-valued
+#' variables:
+#' \itemize{
+#'     \item \code{Y1} through \code{Y4}: Histogram-valued income distribution
+#'           variables.
+#' }
+#' Row names are State_1 through State_6.
+#'
+#' @usage data(state_income.hist)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 7-18.
+#' @examples
+#' data(state_income.hist)
+#' @keywords datasets histogram income
+#' @source Billard, L. and Diday, E. (2020), Table 7-18.
+"state_income.hist"
+
+## ---------------------------------------------------------------------------
+## 7.11 simulated.hist
+## ---------------------------------------------------------------------------
+
+#' @name simulated.hist
+#' @title Simulated Histogram-Valued Dataset
+#' @description
+#' Small simulated histogram-valued dataset of 5 observations with 2
+#' histogram-valued variables. Useful for testing and demonstrating
+#' histogram-valued statistical methods.
+#'
+#' @format A data frame with 5 observations and 2 histogram-valued variables:
+#' \itemize{
+#'     \item \code{Y1}: Histogram-valued variable 1.
+#'     \item \code{Y2}: Histogram-valued variable 2.
+#' }
+#' Row names are Obs_1 through Obs_5.
+#'
+#' @usage data(simulated.hist)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 7-26.
+#' @examples
+#' data(simulated.hist)
+#' @keywords datasets histogram simulated
+#' @source Billard, L. and Diday, E. (2020), Table 7-26.
+"simulated.hist"
+
+## ---------------------------------------------------------------------------
+## 7.12 age_pyramids.hist
+## ---------------------------------------------------------------------------
+
+#' @name age_pyramids.hist
+#' @title World Age Pyramids Histogram-Valued Dataset (2014)
+#' @description
+#' Histogram-valued dataset of 229 countries with 3 population age pyramid
+#' histograms (both sexes, male, female). Each histogram has 21 age bins
+#' representing the distribution of the population across age groups.
+#'
+#' @format A data frame with 229 observations (countries) and 3
+#' histogram-valued variables:
+#' \itemize{
+#'     \item \code{Both.Sexes.Population}: Histogram of total population
+#'           by age group.
+#'     \item \code{Male.Population}: Histogram of male population by age group.
+#'     \item \code{Female.Population}: Histogram of female population by age group.
+#' }
+#' Row names are country names (e.g., WORLD, Afghanistan, Albania).
+#'
+#' @usage data(age_pyramids.hist)
+#' @references
+#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
+#' symbolic variables: A new metric-based approach.
+#' \emph{Advances in Data Analysis and Classification}, 9(2), 143--175.
+#'
+#' Original data from the HistDAWass R package (\code{Age_Pyramids_2014}).
+#' @examples
+#' data(age_pyramids.hist)
+#' @keywords datasets histogram demographics
+#' @source HistDAWass R package (\code{Age_Pyramids_2014} dataset).
+"age_pyramids.hist"
+
+## ---------------------------------------------------------------------------
+## 7.13 ozone.hist
+## ---------------------------------------------------------------------------
+
+#' @name ozone.hist
+#' @title Ozone Air Quality Histogram-Valued Dataset
+#' @description
+#' Histogram-valued dataset of 84 daily observations with 4 weather-related
+#' histogram variables. Each histogram has 10 equal-probability (decile) bins
+#' summarizing hourly measurements within each day.
+#'
+#' @format A data frame with 84 observations (days) and 4 histogram-valued
+#' variables:
+#' \itemize{
+#'     \item \code{Ozone.Conc.ppb}: Histogram of ozone concentration (ppb).
+#'     \item \code{Temperature.C}: Histogram of temperature (Celsius).
+#'     \item \code{Solar.Radiation.WattM2}: Histogram of solar radiation (W/m^2).
+#'     \item \code{Wind.Speed.mSec}: Histogram of wind speed (m/s).
+#' }
+#' Row names are I1 through I84.
+#'
+#' @usage data(ozone.hist)
+#' @references
+#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
+#' symbolic variables: A new metric-based approach.
+#' \emph{Advances in Data Analysis and Classification}, 9(2), 143--175.
+#'
+#' Original data from the HistDAWass R package (\code{OzoneH} dataset),
+#' reduced from 100 quantile bins to 10 decile bins.
+#' @examples
+#' data(ozone.hist)
+#' @keywords datasets histogram weather environment
+#' @source HistDAWass R package (\code{OzoneH} dataset).
+"ozone.hist"
+
+## ---------------------------------------------------------------------------
+## 7.14 french_agriculture.hist
+## ---------------------------------------------------------------------------
+
+#' @name french_agriculture.hist
+#' @title French Agriculture Histogram-Valued Dataset
+#' @description
+#' Histogram-valued dataset of 22 French regions with 4 economic
+#' histogram variables related to agricultural production. Each histogram
+#' describes the distribution of farm-level values within a region.
+#'
+#' @format A data frame with 22 observations (French regions) and 4
+#' histogram-valued variables:
+#' \itemize{
+#'     \item \code{Y_TSC}: Histogram of total standard coefficient.
+#'     \item \code{X_Wheat}: Histogram of wheat production.
+#'     \item \code{X_Pig}: Histogram of pig production.
+#'     \item \code{X_Cmilk}: Histogram of cow milk production.
+#' }
+#' Row names are French region names (e.g., Ile-de-France, Picardie).
+#'
+#' @usage data(french_agriculture.hist)
+#' @references
+#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
+#' symbolic variables: A new metric-based approach.
+#' \emph{Advances in Data Analysis and Classification}, 9(2), 143--175.
+#'
+#' Original data from the HistDAWass R package (\code{Agronomique} dataset).
+#' @examples
+#' data(french_agriculture.hist)
+#' @keywords datasets histogram agriculture economics
+#' @source HistDAWass R package (\code{Agronomique} dataset).
+"french_agriculture.hist"
+
+## ---------------------------------------------------------------------------
+## 7.15 household_characteristics.distr
+## ---------------------------------------------------------------------------
+
+#' @name household_characteristics.distr
+#' @title Household Characteristics Distribution-Valued Dataset
+#' @description
+#' Distribution-valued dataset of 12 counties with 3 categorical
+#' probability distribution variables describing household fuel type,
+#' number of rooms, and household income brackets.
+#'
+#' @format A data frame with 12 observations (counties) and 3
+#' distribution-valued variables:
+#' \itemize{
+#'     \item \code{fuel_type}: Distribution over fuel types
+#'           (gas, electric, oil, wood, none).
+#'     \item \code{rooms}: Distribution over room counts
+#'           (\{1,2\}, \{3,4,5\}, \{>=6\}).
+#'     \item \code{household_income}: Distribution over income brackets
+#'           (<10, [10,25), [25,50), [50,75), [75,100), [100,150), [150,200), >=200).
+#' }
+#' Row names are County_1 through County_12.
+#'
+#' @usage data(household_characteristics.distr)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 6-1.
+#' @examples
+#' data(household_characteristics.distr)
+#' @keywords datasets distribution household
+#' @source Billard, L. and Diday, E. (2020), Table 6-1.
+"household_characteristics.distr"
+
+## ---------------------------------------------------------------------------
+## 7.16 county_income_gender.hist
+## ---------------------------------------------------------------------------
+
+#' @name county_income_gender.hist
+#' @title County Income by Gender Histogram-Valued Dataset
+#' @description
+#' Histogram-valued dataset of 12 counties with gender-stratified income
+#' histograms and sample sizes. Each county has a male income histogram,
+#' a female income histogram, and the number of respondents in each group.
+#'
+#' @format A data frame with 12 observations (counties) and 4 variables:
+#' \itemize{
+#'     \item \code{male_income}: Histogram of male household income
+#'           (4 bins from $0 to $100k).
+#'     \item \code{female_income}: Histogram of female household income
+#'           (4 bins from $0 to $100k).
+#'     \item \code{n_males}: Number of male respondents (numeric).
+#'     \item \code{n_females}: Number of female respondents (numeric).
+#' }
+#' Row names are County_1 through County_12.
+#'
+#' @usage data(county_income_gender.hist)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 6-16.
+#' @examples
+#' data(county_income_gender.hist)
+#' @keywords datasets histogram income gender
+#' @source Billard, L. and Diday, E. (2020), Table 6-16.
+"county_income_gender.hist"
+
+## ---------------------------------------------------------------------------
+## 7.17 joggers.mix
+## ---------------------------------------------------------------------------
+
+#' @name joggers.mix
+#' @title Joggers Mixed Symbolic Dataset
+#' @description
+#' Mixed symbolic dataset of 10 jogger groups with one interval-valued
+#' variable (pulse rate) and one histogram-valued variable (running time
+#' distribution).
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 10 observations
+#' (jogger groups) and 2 variables:
+#' \itemize{
+#'     \item \code{pulse_rate}: Interval-valued resting pulse rate range (bpm).
+#'     \item \code{running_time}: Histogram-valued distribution of running
+#'           times (minutes).
+#' }
+#' Row names are Group_1 through Group_10.
+#'
+#' @usage data(joggers.mix)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 2-5.
+#' @examples
+#' data(joggers.mix)
+#' @keywords datasets mixed interval histogram
+#' @source Billard, L. and Diday, E. (2020), Table 2-5.
+"joggers.mix"
+
+## ---------------------------------------------------------------------------
+## 7.18 census.mix
+## ---------------------------------------------------------------------------
+
+#' @name census.mix
+#' @title Census Mixed Symbolic Dataset
+#' @description
+#' Mixed symbolic dataset of 10 census regions combining 6 different symbolic
+#' variable types: histograms (age, home value), distributions (gender,
+#' tenure), a multi-valued set (fuel), and an interval (income).
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 10 observations
+#' (regions) and 6 variables:
+#' \itemize{
+#'     \item \code{age}: Histogram-valued age distribution (12 age bins).
+#'     \item \code{home_value}: Histogram-valued home value distribution
+#'           (7 value bins, in $1000s).
+#'     \item \code{gender}: Distribution over gender (male, female).
+#'     \item \code{fuel}: Multi-valued set of fuel types used.
+#'     \item \code{tenure}: Distribution over housing tenure
+#'           (owner, renter, vacant).
+#'     \item \code{income}: Interval-valued household income range ($1000s).
+#' }
+#' Row names are Region_1 through Region_10.
+#'
+#' @usage data(census.mix)
+#' @references
+#' Billard, L. and Diday, E. (2020). \emph{Clustering Methodology for
+#' Symbolic Data}. Wiley, Chichester. Table 7-23.
+#' @examples
+#' data(census.mix)
+#' @keywords datasets mixed interval histogram distribution
+#' @source Billard, L. and Diday, E. (2020), Table 7-23.
+"census.mix"
+
+## ---------------------------------------------------------------------------
+## 7.19 mtcars.mix
+## ---------------------------------------------------------------------------
+
+#' @name mtcars.mix
+#' @title Motor Trend Cars Mixed Symbolic Dataset
+#' @description
+#' Mixed symbolic dataset of 5 car groups from the \code{mtcars} data,
+#' with 7 interval-valued performance variables and 4 modal-valued
+#' categorical variables.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 5 observations
+#' (car groups) and 11 variables:
+#' \itemize{
+#'     \item \code{mpg}: Interval-valued miles per gallon.
+#'     \item \code{cyl}: Modal-valued number of cylinders.
+#'     \item \code{disp}: Interval-valued displacement (cu.in.).
+#'     \item \code{hp}: Interval-valued horsepower.
+#'     \item \code{drat}: Interval-valued rear axle ratio.
+#'     \item \code{wt}: Interval-valued weight (1000 lbs).
+#'     \item \code{qsec}: Interval-valued quarter-mile time (seconds).
+#'     \item \code{vs}: Modal-valued engine type (V/S).
+#'     \item \code{am}: Modal-valued transmission type (auto/manual).
+#'     \item \code{gear}: Modal-valued number of forward gears.
+#'     \item \code{carb}: Modal-valued number of carburetors.
+#' }
+#'
+#' @usage data(mtcars.mix)
+#' @references
+#' Henderson, R. and Velleman, P. (1981). Building multiple regression
+#' models interactively. \emph{Biometrics}, 37, 391--411.
+#'
+#' Original data from the ggESDA R package (\code{mtcars.i} dataset).
+#' @examples
+#' data(mtcars.mix)
+#' @keywords datasets mixed interval modal
+#' @source ggESDA R package (\code{mtcars.i} dataset).
+"mtcars.mix"

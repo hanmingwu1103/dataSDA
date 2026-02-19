@@ -1,3 +1,36 @@
+# dataSDA 0.2.1
+
+## New datasets (19 added, 88 total)
+
+Nineteen new datasets from Billard & Diday (2020) *Clustering Methodology for Symbolic Data*, the HistDAWass R package, and other R packages:
+
+### Interval-valued (5)
+- `genome_abundances.int` — 14 genome classes with 10 dinucleotide abundance intervals (Table 3-16).
+- `china_temp_monthly.int` — 15 Chinese weather stations with 12 monthly temperature intervals + elevation (Table 7-9).
+- `ecoli_routes.int` — 9 E. coli transport routes with 5 biochemical interval variables (Table 8-10).
+- `loans_by_risk.int` — 35 Lending Club loan groups by risk level (A-G) with 4 financial intervals (from MAINT.Data).
+- `polish_voivodships.int` — 18 Polish voivodships with 9 socio-economic interval variables (from clusterSim).
+
+### Histogram-valued (9)
+- `iris_species.hist` — 3 iris species with 4 morphological histogram variables (Table 4-10).
+- `flights_detail.hist` — 16 airlines with 5 flight performance histograms (Table 5-1).
+- `cover_types.hist` — 7 forest cover types with 4 topographic histograms (Table 7-21).
+- `glucose.hist` — 4 regions with blood glucose histograms (Table 4-14).
+- `state_income.hist` — 6 US states with 4 income distribution histograms (Table 7-18).
+- `simulated.hist` — 5 simulated observations with 2 histogram variables (Table 7-26).
+- `age_pyramids.hist` — 229 countries with 3 age pyramid histograms (from HistDAWass).
+- `ozone.hist` — 84 daily observations with 4 weather histograms (from HistDAWass).
+- `french_agriculture.hist` — 22 French regions with 4 agricultural histograms (from HistDAWass).
+
+### Distribution-valued (1)
+- `household_characteristics.distr` — 12 counties with 3 categorical distribution variables (Table 6-1).
+
+### Mixed symbolic (4)
+- `county_income_gender.hist` — 12 counties with gendered income histograms + sample sizes (Table 6-16).
+- `joggers.mix` — 10 jogger groups with pulse rate intervals + running time histograms (Table 2-5).
+- `census.mix` — 10 census regions with 6 mixed-type variables: histograms, distributions, multi-valued sets, and intervals (Table 7-23).
+- `mtcars.mix` — 5 car groups with 7 interval + 4 modal variables (from ggESDA).
+
 # dataSDA 0.2.0
 
 ## New datasets (13 added, 69 total)
