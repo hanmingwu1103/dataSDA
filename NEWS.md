@@ -1,3 +1,17 @@
+# dataSDA 0.1.9
+
+## New datasets (7 added, 55 total)
+
+Seven new interval-valued benchmark datasets from recent SDA papers (2020-2025):
+
+- `freshwater_fish.int` — 12 freshwater fish species with 13 heavy metal bioaccumulation variables, 4 feeding classes (Andrade et al., 2025).
+- `fungi.int` — 55 fungi specimens with 5 morphological variables, 3 genera: Amanita, Agaricus, Boletus (Andrade et al., 2025).
+- `iris.int` — 30 interval observations of Fisher's iris data, 4 sepal/petal variables, 3 species (Andrade et al., 2025).
+- `water_flow.int` — 316 water flow sensor readings with 47 interval features, 2 classes (Andrade et al., 2025).
+- `wine.int` — 33 wine samples with 9 chemical/physical property variables, 2 classes (Andrade et al., 2025).
+- `car_models.int` — 33 Italian car models with 8 specification variables, 4 categories (Andrade et al., 2025).
+- `hdi_gender.int` — 183 countries with 2 World Bank gender indicator intervals and ordinal HDI classification (Alcacer et al., 2023).
+
 # dataSDA 0.1.8
 
 ## Vignette

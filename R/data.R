@@ -1012,3 +1012,242 @@
 #' data(acid_rain.int)
 #' @keywords datasets interval
 "acid_rain.int"
+
+## ---------------------------------------------------------------------------
+## SECTION 5: New benchmark datasets from recent SDA papers (2020-2025)
+## ---------------------------------------------------------------------------
+
+## ---------------------------------------------------------------------------
+## 5.1 freshwater_fish.int
+## ---------------------------------------------------------------------------
+
+#' @name freshwater_fish.int
+#' @title Freshwater Fish Heavy Metal Bioaccumulation Interval Dataset
+#' @description
+#' Interval-valued dataset of heavy metal concentrations in organs and tissues
+#' of 12 freshwater fish species, grouped into 4 feeding categories (Carnivores,
+#' Omnivores, Detritivores, Herbivores). Contains 13 interval-valued variables
+#' measuring metal concentrations in organs and organ-to-muscle ratios.
+#'
+#' @format A data frame with 12 observations and 14 variables:
+#' \itemize{
+#'     \item \code{body_length}: Body length (cm).
+#'     \item \code{body_weight}: Body weight (g).
+#'     \item \code{muscle}: Metal concentration in muscle tissue.
+#'     \item \code{intestine}: Metal concentration in intestine.
+#'     \item \code{stomach}: Metal concentration in stomach.
+#'     \item \code{gills}: Metal concentration in gills.
+#'     \item \code{liver}: Metal concentration in liver.
+#'     \item \code{kidney}: Metal concentration in kidney.
+#'     \item \code{liver_muscle_ratio}: Liver-to-muscle concentration ratio.
+#'     \item \code{kidney_muscle_ratio}: Kidney-to-muscle concentration ratio.
+#'     \item \code{gills_muscle_ratio}: Gills-to-muscle concentration ratio.
+#'     \item \code{intestine_muscle_ratio}: Intestine-to-muscle concentration ratio.
+#'     \item \code{stomach_muscle_ratio}: Stomach-to-muscle concentration ratio.
+#'     \item \code{class}: Feeding category (Carnivores, Omnivores, Detritivores, Herbivores).
+#' }
+#'
+#' @usage data(freshwater_fish.int)
+#' @references
+#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Kernel clustering with automatic variable weighting for interval data.
+#' \emph{Neurocomputing}, 617, 128954.
+#' @examples
+#' data(freshwater_fish.int)
+#' @keywords datasets interval clustering
+#' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
+"freshwater_fish.int"
+
+## ---------------------------------------------------------------------------
+## 5.2 fungi.int
+## ---------------------------------------------------------------------------
+
+#' @name fungi.int
+#' @title Fungi Morphological Measurements Interval Dataset
+#' @description
+#' Interval-valued morphological measurements for 55 fungi specimens from
+#' 3 genera (Amanita, Agaricus, Boletus). Contains 5 interval-valued variables
+#' describing pileus and stipe dimensions and spore characteristics.
+#'
+#' @format A data frame with 55 observations and 6 variables:
+#' \itemize{
+#'     \item \code{pileus_width}: Width of the pileus (cap).
+#'     \item \code{stipe_width}: Width of the stipe (stem).
+#'     \item \code{stipe_thickness}: Thickness of the stipe.
+#'     \item \code{spore_height}: Height of the spores.
+#'     \item \code{spore_width}: Width of the spores.
+#'     \item \code{class}: Fungus genus (Amanita, Agaricus, Boletus).
+#' }
+#'
+#' @usage data(fungi.int)
+#' @references
+#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Kernel clustering with automatic variable weighting for interval data.
+#' \emph{Neurocomputing}, 617, 128954.
+#' @examples
+#' data(fungi.int)
+#' @keywords datasets interval clustering
+#' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
+"fungi.int"
+
+## ---------------------------------------------------------------------------
+## 5.3 iris.int
+## ---------------------------------------------------------------------------
+
+#' @name iris.int
+#' @title Iris Species Interval Dataset
+#' @description
+#' Interval-valued version of the classic iris dataset, aggregated from
+#' Fisher's iris data into 30 interval observations across 3 species
+#' (Setosa, Versicolor, Virginica). Each observation represents a group of
+#' flowers with ranges for sepal and petal measurements.
+#'
+#' @format A data frame with 30 observations and 5 variables:
+#' \itemize{
+#'     \item \code{sepal_length}: Sepal length range (cm).
+#'     \item \code{sepal_width}: Sepal width range (cm).
+#'     \item \code{petal_length}: Petal length range (cm).
+#'     \item \code{petal_width}: Petal width range (cm).
+#'     \item \code{class}: Species (Setosa, Versicolor, Virginica).
+#' }
+#'
+#' @usage data(iris.int)
+#' @references
+#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Kernel clustering with automatic variable weighting for interval data.
+#' \emph{Neurocomputing}, 617, 128954.
+#' @examples
+#' data(iris.int)
+#' @keywords datasets interval clustering
+#' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
+"iris.int"
+
+## ---------------------------------------------------------------------------
+## 5.4 water_flow.int
+## ---------------------------------------------------------------------------
+
+#' @name water_flow.int
+#' @title Water Flow Sensor Readings Interval Dataset
+#' @description
+#' Large interval-valued dataset of water flow sensor readings with 316
+#' observations and 47 interval-valued feature variables (IF1-IF48, excluding
+#' IF17), classified into 2 groups. Used as a benchmark for interval data
+#' clustering with high-dimensional features.
+#'
+#' @format A data frame with 316 observations and 48 variables:
+#' \itemize{
+#'     \item \code{if1} through \code{if48} (excluding \code{if17}): 47 interval-valued
+#'           sensor feature measurements.
+#'     \item \code{class}: Group label (1 or 2).
+#' }
+#'
+#' @usage data(water_flow.int)
+#' @references
+#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Kernel clustering with automatic variable weighting for interval data.
+#' \emph{Neurocomputing}, 617, 128954.
+#' @examples
+#' data(water_flow.int)
+#' @keywords datasets interval clustering
+#' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
+"water_flow.int"
+
+## ---------------------------------------------------------------------------
+## 5.5 wine.int
+## ---------------------------------------------------------------------------
+
+#' @name wine.int
+#' @title Wine Chemical Properties Interval Dataset
+#' @description
+#' Interval-valued chemical and physical properties of 33 wine samples
+#' classified into 2 groups. Contains 9 interval-valued measurement variables.
+#' Used as a benchmark for interval data clustering algorithms.
+#'
+#' @format A data frame with 33 observations and 10 variables:
+#' \itemize{
+#'     \item \code{V1} through \code{V9}: Nine interval-valued chemical/physical
+#'           property measurements.
+#'     \item \code{class}: Wine group (1 or 2).
+#' }
+#'
+#' @usage data(wine.int)
+#' @references
+#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Kernel clustering with automatic variable weighting for interval data.
+#' \emph{Neurocomputing}, 617, 128954.
+#' @examples
+#' data(wine.int)
+#' @keywords datasets interval clustering
+#' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
+"wine.int"
+
+## ---------------------------------------------------------------------------
+## 5.6 car_models.int
+## ---------------------------------------------------------------------------
+
+#' @name car_models.int
+#' @title Italian Car Models Interval Dataset
+#' @description
+#' Interval-valued specifications for 33 Italian car models, classified into
+#' 4 categories (Utilitaria, Berlina, Ammiraglia, Sportiva). An extended
+#' version of the classic cars interval dataset with 8 interval-valued
+#' variables including dimensions.
+#'
+#' @format A data frame with 33 observations and 9 variables:
+#' \itemize{
+#'     \item \code{price}: Price range (currency units).
+#'     \item \code{engine_cc}: Engine displacement range (cc).
+#'     \item \code{top_speed}: Top speed range (km/h).
+#'     \item \code{acceleration}: Acceleration range (seconds 0-100 km/h).
+#'     \item \code{wheelbase}: Wheelbase range (cm).
+#'     \item \code{length}: Length range (cm).
+#'     \item \code{width}: Width range (cm).
+#'     \item \code{height}: Height range (cm).
+#'     \item \code{class}: Car category (Utilitaria, Berlina, Ammiraglia, Sportiva).
+#' }
+#'
+#' @usage data(car_models.int)
+#' @references
+#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Kernel clustering with automatic variable weighting for interval data.
+#' \emph{Neurocomputing}, 617, 128954.
+#' @examples
+#' data(car_models.int)
+#' @keywords datasets interval clustering
+#' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
+"car_models.int"
+
+## ---------------------------------------------------------------------------
+## 5.7 hdi_gender.int
+## ---------------------------------------------------------------------------
+
+#' @name hdi_gender.int
+#' @title Human Development Index and Gender Indicators Interval Dataset
+#' @description
+#' Interval-valued World Bank gender indicators for 183 countries, with
+#' ordinal HDI classification. Contains interval ranges for Women, Business
+#' and the Law Index Score and proportion of seats held by women in national
+#' parliaments.
+#'
+#' @format A data frame with 183 observations and 6 variables:
+#' \itemize{
+#'     \item \code{code}: ISO 3166-1 alpha-3 country code.
+#'     \item \code{country}: Country name.
+#'     \item \code{hdi}: Human Development Index value (UNDP).
+#'     \item \code{women_law_index}: Women, Business and the Law Index Score range.
+#'     \item \code{women_parliament}: Proportion of seats held by women in
+#'           national parliaments range (\%).
+#'     \item \code{hdi_category}: Ordered factor with HDI classification
+#'           (Low < Medium < High < Very High).
+#' }
+#'
+#' @usage data(hdi_gender.int)
+#' @references
+#' Alcacer, A., Barrel, A., Groenen, P. J. F. and Grana, M. (2023).
+#' Ordinal classification for interval-valued data and ordinal data.
+#' \emph{Expert Systems with Applications}, 238, 121825.
+#' @examples
+#' data(hdi_gender.int)
+#' @keywords datasets interval ordinal
+#' @source \url{https://github.com/aleixalcacer/OCFIVD}
+"hdi_gender.int"
