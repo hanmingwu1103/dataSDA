@@ -8,8 +8,10 @@
 A symbolic data frame (\code{symbolic_tbl}) with 15 observations
 (weather stations) and 13 variables:
 \itemize{
-    \item \code{January} through \code{December}: Interval-valued monthly
-          temperature ranges (degrees Celsius).
+    \item \code{January}, \code{February}, \code{March}, \code{April},
+          \code{May}, \code{June}, \code{July}, \code{August},
+          \code{September}, \code{October}, \code{November}, \code{December}:
+          Interval-valued monthly temperature ranges (degrees Celsius).
     \item \code{Elevation}: Station elevation above sea level (numeric, meters).
 }
 Row names are station names (e.g., BoKeTu, Hailaer, LaSa).

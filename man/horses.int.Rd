@@ -5,7 +5,16 @@
 \alias{horses.int}
 \title{Horse Breeds Interval Dataset}
 \format{
-A data frame with 8 observations and 6 interval-valued variables.
+A symbolic data frame (\code{symbolic_tbl}) with 8 observations and 7 variables:
+\itemize{
+    \item \code{Breed}: Horse breed code (CES, CMA, PEN, TES, CEN, LES, PES, PAM; character).
+    \item \code{Minimum_Weight}: Minimum weight range (kg, interval).
+    \item \code{Maximum_Weight}: Maximum weight range (kg, interval).
+    \item \code{Minimum_Height}: Minimum height range (cm, interval).
+    \item \code{Maximum_Height}: Maximum height range (cm, interval).
+    \item \code{Mares_Cost}: Cost of mares range (currency units, interval).
+    \item \code{Fillies_Cost}: Cost of fillies range (currency units, interval).
+}
 }
 \usage{
 data(horses.int)

@@ -5,7 +5,19 @@
 \alias{uscrime.int}
 \title{US Crime Statistics Interval Dataset}
 \format{
-A data frame with 46 observations and 102 interval-valued variables.
+A symbolic data frame (\code{symbolic_tbl}) with 46 observations and
+102 interval-valued variables. Key variables include:
+\itemize{
+    \item \code{fold}: Cross-validation fold assignment.
+    \item \code{population}: Population range.
+    \item \code{householdsize}: Household size range.
+    \item \code{racepctblack}, \code{racePctWhite}, \code{racePctAsian},
+          \code{racePctHisp}: Race percentage ranges.
+    \item \code{medIncome}, \code{medFamInc}, \code{perCapInc}: Income ranges.
+    \item \code{PctUnemployed}, \code{PctEmploy}: Employment percentage ranges.
+    \item \code{ViolentCrimesPerPop}: Violent crimes per population range.
+}
+Plus 90 additional interval-valued socio-economic and demographic variables.
 }
 \source{
 Extracted from RSDA package (\code{uscrime_int}).

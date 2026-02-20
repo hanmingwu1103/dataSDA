@@ -5,10 +5,10 @@
 \alias{synthetic_clusters.int}
 \title{Synthetic Interval Clusters Dataset}
 \format{
-A data frame with 125 observations and 7 variables:
+A symbolic data frame (\code{symbolic_tbl}) with 125 observations and 7 variables:
 \itemize{
-    \item \code{X1} through \code{X6}: Six interval-valued variables.
-    \item \code{cluster}: Cluster membership (1-5).
+    \item \code{V1} through \code{V6}: Six interval-valued variables.
+    \item \code{class}: Cluster membership (1--5, set-valued).
 }
 }
 \source{

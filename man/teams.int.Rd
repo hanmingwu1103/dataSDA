@@ -5,12 +5,13 @@
 \alias{teams.int}
 \title{Pickup League Teams Interval Dataset}
 \format{
-A data frame with 5 observations and 4 variables:
+A data frame with 5 observations and 7 columns (3 interval variables
+in \code{_l}/\code{_u} Min-Max pairs, plus a label):
 \itemize{
     \item \code{team_type}: Performance category (Very Good, Good, Average, Fair, Poor).
-    \item \code{age}: Player age range (years).
-    \item \code{weight}: Player weight range (pounds).
-    \item \code{speed}: Speed range -- time to run 100 yards (seconds).
+    \item \code{age_l}, \code{age_u}: Player age range (years).
+    \item \code{weight_l}, \code{weight_u}: Player weight range (pounds).
+    \item \code{speed_l}, \code{speed_u}: Speed range -- time to run 100 yards (seconds).
 }
 }
 \usage{

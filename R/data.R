@@ -111,7 +111,15 @@
 #' (Utilitarian, Berlina, Sportive, Luxury), described by Price,
 #' EngineCapacity, TopSpeed and Acceleration intervals.
 #'
-#' @format A data frame with 27 observations and 5 variables.
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 27 observations and 5 variables:
+#' \itemize{
+#'     \item \code{Price}: Price range (interval).
+#'     \item \code{EngCap}: Engine capacity range (cc, interval).
+#'     \item \code{TopSpeed}: Top speed range (km/h, interval).
+#'     \item \code{Acceleration}: Acceleration range (seconds 0--100 km/h, interval).
+#'     \item \code{class}: Car class (Utilitarian, Berlina, Sportive, Luxury; set-valued).
+#' }
+#'
 #' @usage data(cars.int)
 #' @references
 #' Duarte Silva, A.P., Brito, P., Filzmoser, P. and Dias, J.G. (2021).
@@ -136,7 +144,15 @@
 #' demonstrating standardization, clustering, self-organizing maps,
 #' MLE and MANOVA.
 #'
-#' @format A data frame with 899 observations and 5 variables.
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 899 observations and 5 variables:
+#' \itemize{
+#'     \item \code{Q1}: Quarter 1 (Jan--Mar) temperature range (tenths of degrees Celsius, interval).
+#'     \item \code{Q2}: Quarter 2 (Apr--Jun) temperature range (interval).
+#'     \item \code{Q3}: Quarter 3 (Jul--Sep) temperature range (interval).
+#'     \item \code{Q4}: Quarter 4 (Oct--Dec) temperature range (interval).
+#'     \item \code{GeoReg}: Geographic region classification (factor).
+#' }
+#'
 #' @usage data(china_temp.int)
 #' @references
 #' Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
@@ -177,7 +193,15 @@
 #' Interval-valued dataset with 142 units and four interval-valued variables
 #' from the nycflights13 package, aggregated by month and carrier.
 #'
-#' @format A list containing FlightsDF, FlightsUnits, and FlightsIdt.
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 142 observations and 5 variables:
+#' \itemize{
+#'     \item \code{X}: Month-carrier identifier (character).
+#'     \item \code{dep_delay}: Departure delay range (minutes, interval).
+#'     \item \code{arr_delay}: Arrival delay range (minutes, interval).
+#'     \item \code{air_time}: Air time range (minutes, interval).
+#'     \item \code{distance}: Distance range (miles, interval).
+#' }
+#'
 #' @usage data(nycflights.int)
 #' @references
 #' Duarte Silva, A.P., Brito, P., Filzmoser, P. and Dias, J.G. (2021).
@@ -524,14 +548,30 @@
 #'     \item \code{Y3}: Age (integer).
 #'     \item \code{Y4}: Sex (M/D, character).
 #'     \item \code{Y5}: Marital status (S/M, character).
-#'     \item \code{Y6}--\code{Y8}: Family composition indicators (integer).
-#'     \item \code{Y9}--\code{Y15}: Physical measurements (integer).
+#'     \item \code{Y6}: Number of dependents (integer).
+#'     \item \code{Y7}: Parents alive indicator (integer).
+#'     \item \code{Y8}: Number of children (integer).
+#'     \item \code{Y9}: Height (cm, integer).
+#'     \item \code{Y10}: Weight (pounds, integer).
+#'     \item \code{Y11}: Systolic blood pressure (mmHg, integer).
+#'     \item \code{Y12}: Diastolic blood pressure (mmHg, integer).
+#'     \item \code{Y13}: Cholesterol (mg/dL, integer).
+#'     \item \code{Y14}: Cholesterol measure 2 (integer).
+#'     \item \code{Y15}: Additional lab measurement (integer).
 #'     \item \code{Y16}: Ratio measurement (numeric).
-#'     \item \code{Y17}--\code{Y19}: Lab values (integer).
+#'     \item \code{Y17}: Lab value (integer).
+#'     \item \code{Y18}: Lab value (integer).
+#'     \item \code{Y19}: Lab value (integer).
 #'     \item \code{Y20}: Lab ratio (numeric).
-#'     \item \code{Y21}--\code{Y22}: Additional lab values (integer).
-#'     \item \code{Y23}--\code{Y27}: Blood chemistry values (numeric).
-#'     \item \code{Y28}--\code{Y29}: Diagnostic indicators (Y/N, character).
+#'     \item \code{Y21}: Additional lab value (integer).
+#'     \item \code{Y22}: Additional lab value (integer).
+#'     \item \code{Y23}: Blood chemistry value (numeric).
+#'     \item \code{Y24}: Blood chemistry value (numeric).
+#'     \item \code{Y25}: Blood chemistry value (numeric).
+#'     \item \code{Y26}: Blood chemistry value (numeric).
+#'     \item \code{Y27}: Blood chemistry value (numeric).
+#'     \item \code{Y28}: Diagnostic indicator (Y/N, character).
+#'     \item \code{Y29}: Diagnostic indicator (Y/N, character).
 #'     \item \code{Y30}: Count variable (integer).
 #' }
 #'
@@ -630,7 +670,17 @@
 #' Extensively used in SDA for demonstrating divisive clustering, distance
 #' computation, hierarchy/pyramid construction, and complete objects.
 #'
-#' @format A data frame with 8 observations and 6 interval-valued variables.
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 8 observations and 7 variables:
+#' \itemize{
+#'     \item \code{Breed}: Horse breed code (CES, CMA, PEN, TES, CEN, LES, PES, PAM; character).
+#'     \item \code{Minimum_Weight}: Minimum weight range (kg, interval).
+#'     \item \code{Maximum_Weight}: Maximum weight range (kg, interval).
+#'     \item \code{Minimum_Height}: Minimum height range (cm, interval).
+#'     \item \code{Maximum_Height}: Maximum height range (cm, interval).
+#'     \item \code{Mares_Cost}: Cost of mares range (currency units, interval).
+#'     \item \code{Fillies_Cost}: Cost of fillies range (currency units, interval).
+#' }
+#'
 #' @usage data(horses.int)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 7.14.
@@ -844,12 +894,14 @@
 #' Olive\}, and \{Linseed, Perilla\}. Widely used for comparing clustering
 #' methods and distance measures in symbolic data analysis.
 #'
-#' @format A data frame with 8 observations and 4 interval-valued variables:
+#' @format A data frame with 8 observations and 9 columns (4 interval variables
+#' in \code{_l}/\code{_u} Min-Max pairs, plus a label):
 #' \itemize{
-#'     \item \code{specific_gravity}: Specific gravity of the oil/fat.
-#'     \item \code{freezing_point}: Freezing point (degrees Celsius).
-#'     \item \code{iodine_value}: Iodine value.
-#'     \item \code{saponification_value}: Saponification value.
+#'     \item \code{sample}: Oil/fat sample name (character).
+#'     \item \code{specific_gravity_l}, \code{specific_gravity_u}: Specific gravity range.
+#'     \item \code{freezing_point_l}, \code{freezing_point_u}: Freezing point range (degrees Celsius).
+#'     \item \code{iodine_value_l}, \code{iodine_value_u}: Iodine value range.
+#'     \item \code{saponification_value_l}, \code{saponification_value_u}: Saponification value range.
 #' }
 #'
 #' @usage data(oils.int)
@@ -881,12 +933,13 @@
 #' players varying widely in age, weight, and speed. Used for symbolic
 #' principal component analysis.
 #'
-#' @format A data frame with 5 observations and 4 variables:
+#' @format A data frame with 5 observations and 7 columns (3 interval variables
+#' in \code{_l}/\code{_u} Min-Max pairs, plus a label):
 #' \itemize{
 #'     \item \code{team_type}: Performance category (Very Good, Good, Average, Fair, Poor).
-#'     \item \code{age}: Player age range (years).
-#'     \item \code{weight}: Player weight range (pounds).
-#'     \item \code{speed}: Speed range -- time to run 100 yards (seconds).
+#'     \item \code{age_l}, \code{age_u}: Player age range (years).
+#'     \item \code{weight_l}, \code{weight_u}: Player weight range (pounds).
+#'     \item \code{speed_l}, \code{speed_u}: Speed range -- time to run 100 yards (seconds).
 #' }
 #'
 #' @usage data(teams.int)
@@ -913,12 +966,13 @@
 #' (decision rule: Weight <= 74.75 kg). When all three variables are used,
 #' clustering separates by racket tension instead.
 #'
-#' @format A data frame with 4 observations and 4 variables:
+#' @format A data frame with 4 observations and 7 columns (3 interval variables
+#' in \code{_l}/\code{_u} Min-Max pairs, plus a label):
 #' \itemize{
 #'     \item \code{court_type}: Type of court (Hard, Grass, Indoor, Clay).
-#'     \item \code{player_weight}: Player weight range (kg).
-#'     \item \code{player_height}: Player height range (m).
-#'     \item \code{racket_tension}: Racket tension range.
+#'     \item \code{player_weight_l}, \code{player_weight_u}: Player weight range (kg).
+#'     \item \code{player_height_l}, \code{player_height_u}: Player height range (m).
+#'     \item \code{racket_tension_l}, \code{racket_tension_u}: Racket tension range.
 #' }
 #'
 #' @usage data(tennis.int)
@@ -945,12 +999,14 @@
 #' algorithm, and distance measure comparisons (Gowda-Diday, Hausdorff,
 #' City-Block, L1, L2, etc.) for interval data.
 #'
-#' @format A data frame with 21 observations and 4 interval-valued variables:
+#' @format A data frame with 21 observations and 9 columns (4 interval variables
+#' in \code{_l}/\code{_u} Min-Max pairs, plus a label):
 #' \itemize{
-#'     \item \code{head}: Head length range (mm).
-#'     \item \code{tail}: Tail length range (mm).
-#'     \item \code{height}: Ear height range (cm).
-#'     \item \code{forearm}: Forearm length range (mm).
+#'     \item \code{species}: Bat species name (character).
+#'     \item \code{head_l}, \code{head_u}: Head length range (mm).
+#'     \item \code{tail_l}, \code{tail_u}: Tail length range (mm).
+#'     \item \code{height_l}, \code{height_u}: Ear height range (cm).
+#'     \item \code{forearm_l}, \code{forearm_u}: Forearm length range (mm).
 #' }
 #'
 #' @usage data(bats.int)
@@ -978,13 +1034,15 @@
 #' transactions. The symbolic version (Table 2.4) aggregates into
 #' interval-valued observations for each person-month combination.
 #'
-#' @format A data frame with person-month rows and 5 interval-valued columns:
+#' @format A data frame with 6 observations and 11 columns (5 interval variables
+#' in \code{_l}/\code{_u} Min-Max pairs, plus a label):
 #' \itemize{
-#'     \item \code{food}: Food expenditure range (USD).
-#'     \item \code{social}: Social expenditure range (USD).
-#'     \item \code{travel}: Travel expenditure range (USD).
-#'     \item \code{gas}: Gas expenditure range (USD).
-#'     \item \code{clothes}: Clothes expenditure range (USD).
+#'     \item \code{person_month}: Person-month identifier (e.g., "Jon - January"; character).
+#'     \item \code{food_l}, \code{food_u}: Food expenditure range (USD).
+#'     \item \code{social_l}, \code{social_u}: Social expenditure range (USD).
+#'     \item \code{travel_l}, \code{travel_u}: Travel expenditure range (USD).
+#'     \item \code{gas_l}, \code{gas_u}: Gas expenditure range (USD).
+#'     \item \code{clothes_l}, \code{clothes_u}: Clothes expenditure range (USD).
 #' }
 #'
 #' @usage data(credit_card.int)
@@ -1037,7 +1095,14 @@
 #' (hyperrectangles), degenerate intervals (lines), and trivial intervals
 #' (points). Used for vertices PCA demonstration.
 #'
-#' @format A data frame with 5 observations and 3 interval-valued variables.
+#' @format A data frame with 5 observations (w1--w5) and 6 columns (3 interval
+#' variables in \code{_l}/\code{_u} Min-Max pairs):
+#' \itemize{
+#'     \item \code{y1_l}, \code{y1_u}: First interval variable.
+#'     \item \code{y2_l}, \code{y2_u}: Second interval variable.
+#'     \item \code{y3_l}, \code{y3_u}: Third interval variable.
+#' }
+#'
 #' @usage data(trivial_intervals.int)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
@@ -1058,11 +1123,13 @@
 #' interval-valued size, categorical flying, and categorical migration.
 #' Foundational SDA example from 600 individual bird observations.
 #'
-#' @format A data frame with 3 observations and 3 symbolic variables:
+#' @format A data frame with 3 observations (Swallow, Ostrich, Penguin) and
+#' 5 variables:
 #' \itemize{
-#'     \item \code{flying}: Flying ability (Yes/No), categorical.
-#'     \item \code{size}: Size range as interval (cm).
-#'     \item \code{migration}: Migratory behavior, categorical.
+#'     \item \code{species}: Species name (character).
+#'     \item \code{flying}: Flying ability (Yes/No, character).
+#'     \item \code{size_l}, \code{size_u}: Size range (cm, Min-Max pair).
+#'     \item \code{migration}: Migratory behavior (TRUE/FALSE, logical).
 #' }
 #'
 #' @usage data(bird_species.mix)
@@ -1089,8 +1156,18 @@
 #' Expert partition into 4 classes: Class 1 (tropical/warm), Class 2
 #' (temperate European and Asian), Class 3 (Mauritius), Class 4 (Tehran).
 #'
-#' @format A data frame with city rows and 12 interval-valued monthly
-#' temperature variables (Jan-Dec), plus an expert class assignment.
+#' @format A data frame with 6 observations and 13 columns (6 monthly interval
+#' variables in \code{_l}/\code{_u} Min-Max pairs, plus a label). Only
+#' January through June are included:
+#' \itemize{
+#'     \item \code{city}: City name (character).
+#'     \item \code{jan_l}, \code{jan_u}: January temperature range (degrees Celsius).
+#'     \item \code{feb_l}, \code{feb_u}: February temperature range.
+#'     \item \code{mar_l}, \code{mar_u}: March temperature range.
+#'     \item \code{apr_l}, \code{apr_u}: April temperature range.
+#'     \item \code{may_l}, \code{may_u}: May temperature range.
+#'     \item \code{jun_l}, \code{jun_u}: June temperature range.
+#' }
 #'
 #' @usage data(temperature_city.int)
 #' @references
@@ -1143,8 +1220,21 @@
 #' employment variables (employment type, education, industry sector,
 #' occupation, marital status). Used for factorial discriminant analysis.
 #'
-#' @format A data frame with 12 sex-age group observations and
-#' interval-valued proportion variables.
+#' @format A data frame with 12 observations and 20 columns (9 interval variables
+#' in \code{_l}/\code{_u} Min-Max pairs, plus a group label and class):
+#' \itemize{
+#'     \item \code{group}: Sex-age group identifier (character).
+#'     \item \code{full_time_l}, \code{full_time_u}: Full-time employment proportion range.
+#'     \item \code{part_time_l}, \code{part_time_u}: Part-time employment proportion range.
+#'     \item \code{primary_studies_l}, \code{primary_studies_u}: Primary studies proportion range.
+#'     \item \code{secondary_studies_l}, \code{secondary_studies_u}: Secondary studies proportion range.
+#'     \item \code{uni_studies_l}, \code{uni_studies_u}: University studies proportion range.
+#'     \item \code{employee_l}, \code{employee_u}: Employee proportion range.
+#'     \item \code{manufacturing_l}, \code{manufacturing_u}: Manufacturing sector proportion range.
+#'     \item \code{construction_l}, \code{construction_u}: Construction sector proportion range.
+#'     \item \code{wholesale_retail_l}, \code{wholesale_retail_u}: Wholesale/retail proportion range.
+#'     \item \code{class}: Group classification (numeric).
+#' }
 #'
 #' @usage data(employment.int)
 #' @references
@@ -1166,13 +1256,14 @@
 #' and hospital databases. Contains interval-valued, multi-valued, and
 #' modal-valued variables.
 #'
-#' @format A data frame with 3 observations and 5 symbolic variables:
+#' @format A data frame with 3 observations (Paris, Lyon, Toulouse) and 8 columns:
 #' \itemize{
-#'     \item \code{no_pupils}: Number of pupils range (interval).
-#'     \item \code{type}: School type (modal).
-#'     \item \code{level}: Coded level (multi-valued).
-#'     \item \code{no_beds}: Number of beds range (interval).
-#'     \item \code{specialty}: Specialty code (multi-valued).
+#'     \item \code{town}: Town name (character).
+#'     \item \code{no_pupils_l}, \code{no_pupils_u}: Number of pupils range (Min-Max pair).
+#'     \item \code{type}: School type (modal, character).
+#'     \item \code{level}: Coded level (multi-valued, character).
+#'     \item \code{no_beds_l}, \code{no_beds_u}: Number of beds range (Min-Max pair).
+#'     \item \code{specialty}: Specialty code (multi-valued, character).
 #' }
 #'
 #' @usage data(town_services.mix)
@@ -1650,7 +1741,19 @@
 #' interval-valued variables covering various crime types and rates.
 #' Originally from the RSDA package.
 #'
-#' @format A data frame with 46 observations and 102 interval-valued variables.
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 46 observations and
+#' 102 interval-valued variables. Key variables include:
+#' \itemize{
+#'     \item \code{fold}: Cross-validation fold assignment.
+#'     \item \code{population}: Population range.
+#'     \item \code{householdsize}: Household size range.
+#'     \item \code{racepctblack}, \code{racePctWhite}, \code{racePctAsian},
+#'           \code{racePctHisp}: Race percentage ranges.
+#'     \item \code{medIncome}, \code{medFamInc}, \code{perCapInc}: Income ranges.
+#'     \item \code{PctUnemployed}, \code{PctEmploy}: Employment percentage ranges.
+#'     \item \code{ViolentCrimesPerPop}: Violent crimes per population range.
+#' }
+#' Plus 90 additional interval-valued socio-economic and demographic variables.
 #'
 #' @usage data(uscrime.int)
 #' @references
@@ -1703,10 +1806,10 @@
 #' 25 each, described by 6 interval-valued variables and a cluster label.
 #' Designed for benchmarking interval data clustering algorithms.
 #'
-#' @format A data frame with 125 observations and 7 variables:
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 125 observations and 7 variables:
 #' \itemize{
-#'     \item \code{X1} through \code{X6}: Six interval-valued variables.
-#'     \item \code{cluster}: Cluster membership (1-5).
+#'     \item \code{V1} through \code{V6}: Six interval-valued variables.
+#'     \item \code{class}: Cluster membership (1--5, set-valued).
 #' }
 #'
 #' @usage data(synthetic_clusters.int)
@@ -1730,10 +1833,27 @@
 #' and 17 variables of mixed types: interval-valued environmental measurements
 #' and modal-valued (distributional) categorical variables.
 #'
-#' @format A data frame with 14 observations and 17 variables. Modal-valued
-#' columns (URBANICITY, INCOMELEVEL, EDUCATION, REGIONDEVELOPME, etc.) contain
-#' distribution strings. Interval-valued columns (CONTROL, PM2.5, PM10, etc.)
-#' contain complex-encoded intervals.
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 14 observations and
+#' 17 variables:
+#' \itemize{
+#'     \item \code{URBANICITY}: Modal-valued urbanicity distribution (character).
+#'     \item \code{INCOMELEVEL}: Modal-valued income level distribution (character).
+#'     \item \code{EDUCATION}: Modal-valued education distribution (character).
+#'     \item \code{REGIONDEVELOPME}: Modal-valued regional development distribution (character).
+#'     \item \code{CONTROL}: Environmental control index range (interval).
+#'     \item \code{SATISFY}: Satisfaction index range (interval).
+#'     \item \code{INDIVIDUAL}: Individual concern index range (interval).
+#'     \item \code{WELFARE}: Welfare index range (interval).
+#'     \item \code{HUMAN}: Human impact index range (interval).
+#'     \item \code{POLITICS}: Political concern index range (interval).
+#'     \item \code{BURDEN}: Burden index range (interval).
+#'     \item \code{NOISE}: Noise pollution index range (interval).
+#'     \item \code{NATURE}: Nature preservation index range (interval).
+#'     \item \code{SEASETC}: Seas/coastal index range (interval).
+#'     \item \code{MULTI}: Multi-indicator range (interval).
+#'     \item \code{WATERWASTE}: Water/waste index range (interval).
+#'     \item \code{VEHICLE}: Vehicle emissions index range (interval).
+#' }
 #'
 #' @usage data(environment.mix)
 #' @references
@@ -1997,8 +2117,10 @@
 #' @format A symbolic data frame (\code{symbolic_tbl}) with 15 observations
 #' (weather stations) and 13 variables:
 #' \itemize{
-#'     \item \code{January} through \code{December}: Interval-valued monthly
-#'           temperature ranges (degrees Celsius).
+#'     \item \code{January}, \code{February}, \code{March}, \code{April},
+#'           \code{May}, \code{June}, \code{July}, \code{August},
+#'           \code{September}, \code{October}, \code{November}, \code{December}:
+#'           Interval-valued monthly temperature ranges (degrees Celsius).
 #'     \item \code{Elevation}: Station elevation above sea level (numeric, meters).
 #' }
 #' Row names are station names (e.g., BoKeTu, Hailaer, LaSa).

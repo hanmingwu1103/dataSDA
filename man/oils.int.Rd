@@ -5,12 +5,14 @@
 \alias{oils.int}
 \title{Oils and Fats Interval Dataset}
 \format{
-A data frame with 8 observations and 4 interval-valued variables:
+A data frame with 8 observations and 9 columns (4 interval variables
+in \code{_l}/\code{_u} Min-Max pairs, plus a label):
 \itemize{
-    \item \code{specific_gravity}: Specific gravity of the oil/fat.
-    \item \code{freezing_point}: Freezing point (degrees Celsius).
-    \item \code{iodine_value}: Iodine value.
-    \item \code{saponification_value}: Saponification value.
+    \item \code{sample}: Oil/fat sample name (character).
+    \item \code{specific_gravity_l}, \code{specific_gravity_u}: Specific gravity range.
+    \item \code{freezing_point_l}, \code{freezing_point_u}: Freezing point range (degrees Celsius).
+    \item \code{iodine_value_l}, \code{iodine_value_u}: Iodine value range.
+    \item \code{saponification_value_l}, \code{saponification_value_u}: Saponification value range.
 }
 }
 \usage{

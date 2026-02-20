@@ -5,10 +5,27 @@
 \alias{environment.mix}
 \title{EPA Environmental Data Mixed Symbolic Dataset}
 \format{
-A data frame with 14 observations and 17 variables. Modal-valued
-columns (URBANICITY, INCOMELEVEL, EDUCATION, REGIONDEVELOPME, etc.) contain
-distribution strings. Interval-valued columns (CONTROL, PM2.5, PM10, etc.)
-contain complex-encoded intervals.
+A symbolic data frame (\code{symbolic_tbl}) with 14 observations and
+17 variables:
+\itemize{
+    \item \code{URBANICITY}: Modal-valued urbanicity distribution (character).
+    \item \code{INCOMELEVEL}: Modal-valued income level distribution (character).
+    \item \code{EDUCATION}: Modal-valued education distribution (character).
+    \item \code{REGIONDEVELOPME}: Modal-valued regional development distribution (character).
+    \item \code{CONTROL}: Environmental control index range (interval).
+    \item \code{SATISFY}: Satisfaction index range (interval).
+    \item \code{INDIVIDUAL}: Individual concern index range (interval).
+    \item \code{WELFARE}: Welfare index range (interval).
+    \item \code{HUMAN}: Human impact index range (interval).
+    \item \code{POLITICS}: Political concern index range (interval).
+    \item \code{BURDEN}: Burden index range (interval).
+    \item \code{NOISE}: Noise pollution index range (interval).
+    \item \code{NATURE}: Nature preservation index range (interval).
+    \item \code{SEASETC}: Seas/coastal index range (interval).
+    \item \code{MULTI}: Multi-indicator range (interval).
+    \item \code{WATERWASTE}: Water/waste index range (interval).
+    \item \code{VEHICLE}: Vehicle emissions index range (interval).
+}
 }
 \source{
 Extracted from ggESDA package (\code{Environment}).

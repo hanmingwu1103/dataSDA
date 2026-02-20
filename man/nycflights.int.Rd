@@ -5,7 +5,14 @@
 \alias{nycflights.int}
 \title{New York City Flights Interval Dataset}
 \format{
-A list containing FlightsDF, FlightsUnits, and FlightsIdt.
+A symbolic data frame (\code{symbolic_tbl}) with 142 observations and 5 variables:
+\itemize{
+    \item \code{X}: Month-carrier identifier (character).
+    \item \code{dep_delay}: Departure delay range (minutes, interval).
+    \item \code{arr_delay}: Arrival delay range (minutes, interval).
+    \item \code{air_time}: Air time range (minutes, interval).
+    \item \code{distance}: Distance range (miles, interval).
+}
 }
 \source{
 \url{https://CRAN.R-project.org/package=MAINT.Data}

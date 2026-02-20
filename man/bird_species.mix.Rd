@@ -5,11 +5,13 @@
 \alias{bird_species.mix}
 \title{Bird Species Mixed Symbolic Dataset}
 \format{
-A data frame with 3 observations and 3 symbolic variables:
+A data frame with 3 observations (Swallow, Ostrich, Penguin) and
+5 variables:
 \itemize{
-    \item \code{flying}: Flying ability (Yes/No), categorical.
-    \item \code{size}: Size range as interval (cm).
-    \item \code{migration}: Migratory behavior, categorical.
+    \item \code{species}: Species name (character).
+    \item \code{flying}: Flying ability (Yes/No, character).
+    \item \code{size_l}, \code{size_u}: Size range (cm, Min-Max pair).
+    \item \code{migration}: Migratory behavior (TRUE/FALSE, logical).
 }
 }
 \usage{

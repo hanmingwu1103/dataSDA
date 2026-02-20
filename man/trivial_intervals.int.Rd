@@ -5,7 +5,13 @@
 \alias{trivial_intervals.int}
 \title{Trivial and Non-Trivial Intervals Example Dataset}
 \format{
-A data frame with 5 observations and 3 interval-valued variables.
+A data frame with 5 observations (w1--w5) and 6 columns (3 interval
+variables in \code{_l}/\code{_u} Min-Max pairs):
+\itemize{
+    \item \code{y1_l}, \code{y1_u}: First interval variable.
+    \item \code{y2_l}, \code{y2_u}: Second interval variable.
+    \item \code{y3_l}, \code{y3_u}: Third interval variable.
+}
 }
 \usage{
 data(trivial_intervals.int)

@@ -5,13 +5,15 @@
 \alias{credit_card.int}
 \title{Credit Card Expenses Interval Dataset}
 \format{
-A data frame with person-month rows and 5 interval-valued columns:
+A data frame with 6 observations and 11 columns (5 interval variables
+in \code{_l}/\code{_u} Min-Max pairs, plus a label):
 \itemize{
-    \item \code{food}: Food expenditure range (USD).
-    \item \code{social}: Social expenditure range (USD).
-    \item \code{travel}: Travel expenditure range (USD).
-    \item \code{gas}: Gas expenditure range (USD).
-    \item \code{clothes}: Clothes expenditure range (USD).
+    \item \code{person_month}: Person-month identifier (e.g., "Jon - January"; character).
+    \item \code{food_l}, \code{food_u}: Food expenditure range (USD).
+    \item \code{social_l}, \code{social_u}: Social expenditure range (USD).
+    \item \code{travel_l}, \code{travel_u}: Travel expenditure range (USD).
+    \item \code{gas_l}, \code{gas_u}: Gas expenditure range (USD).
+    \item \code{clothes_l}, \code{clothes_u}: Clothes expenditure range (USD).
 }
 }
 \usage{

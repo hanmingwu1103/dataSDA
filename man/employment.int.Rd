@@ -5,8 +5,21 @@
 \alias{employment.int}
 \title{European Employment by Gender and Age Interval Dataset}
 \format{
-A data frame with 12 sex-age group observations and
-interval-valued proportion variables.
+A data frame with 12 observations and 20 columns (9 interval variables
+in \code{_l}/\code{_u} Min-Max pairs, plus a group label and class):
+\itemize{
+    \item \code{group}: Sex-age group identifier (character).
+    \item \code{full_time_l}, \code{full_time_u}: Full-time employment proportion range.
+    \item \code{part_time_l}, \code{part_time_u}: Part-time employment proportion range.
+    \item \code{primary_studies_l}, \code{primary_studies_u}: Primary studies proportion range.
+    \item \code{secondary_studies_l}, \code{secondary_studies_u}: Secondary studies proportion range.
+    \item \code{uni_studies_l}, \code{uni_studies_u}: University studies proportion range.
+    \item \code{employee_l}, \code{employee_u}: Employee proportion range.
+    \item \code{manufacturing_l}, \code{manufacturing_u}: Manufacturing sector proportion range.
+    \item \code{construction_l}, \code{construction_u}: Construction sector proportion range.
+    \item \code{wholesale_retail_l}, \code{wholesale_retail_u}: Wholesale/retail proportion range.
+    \item \code{class}: Group classification (numeric).
+}
 }
 \usage{
 data(employment.int)
