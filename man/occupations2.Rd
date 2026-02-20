@@ -5,13 +5,20 @@
 \alias{occupations2}
 \title{Occupation Salaries Modal-Valued Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 9 rows and 4 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 9 observations and 4 variables:
+\itemize{
+    \item \code{Occupation}: Occupation name (character).
+    \item \code{Gender}: Modal distribution over gender (Male, Female).
+    \item \code{Salary}: Modal distribution over 7 ordered salary bins.
+    \item \code{n}: Sample size (numeric).
+}
 }
 \usage{
 data(occupations2)
 }
 \description{
 Modal-valued version of the occupation salaries dataset.
+See \code{\link{occupations}} for the wide-format version.
 }
 \examples{
 data(occupations2)

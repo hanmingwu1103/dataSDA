@@ -5,13 +5,21 @@
 \alias{car.int}
 \title{Car Models Interval Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 8 rows and 5 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 8 observations and 5 variables:
+\itemize{
+    \item \code{Car}: Car brand name (character).
+    \item \code{Price}: Price range (thousands of currency units, interval).
+    \item \code{Max_Velocity}: Maximum velocity range (km/h, interval).
+    \item \code{Accn_Time}: Acceleration time range (seconds 0--100 km/h, interval).
+    \item \code{Cylinder_Capacity}: Engine cylinder capacity range (cc, interval).
+}
 }
 \usage{
 data(car.int)
 }
 \description{
-Interval-valued data for car models with price, engine, speed, acceleration.
+Interval-valued data for 8 car brands with price and performance
+specifications. Each brand aggregates multiple models into interval ranges.
 }
 \examples{
 data(car.int)

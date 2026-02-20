@@ -5,13 +5,21 @@
 \alias{profession.int}
 \title{Profession Work Salary Time Interval Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 15 rows and 4 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 15 observations and 4 variables:
+\itemize{
+    \item \code{Type_of_Work}: Work category (White Collar or Blue Collar, character).
+    \item \code{Profession}: Profession name (character).
+    \item \code{Salary}: Salary range (currency units, interval).
+    \item \code{Duration}: Working duration range (hours per week, interval).
+}
 }
 \usage{
 data(profession.int)
 }
 \description{
-Interval-valued data for professional categories by salary and working time.
+Interval-valued data for 15 profession entries classified by work type
+(White Collar / Blue Collar). Each entry describes a specific profession
+with salary and working duration ranges.
 }
 \examples{
 data(profession.int)

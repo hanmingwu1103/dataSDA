@@ -5,7 +5,22 @@
 \alias{airline_flights.hist}
 \title{JFK Airport Airline Flights Histogram-Valued Dataset}
 \format{
-An object of class \code{data.frame} with 16 rows and 17 columns.
+A data frame with 16 observations (Airline1--Airline16) and
+17 numeric columns representing 6 histogram variables in wide format:
+\itemize{
+    \item \code{Flight Time(<120)}, \code{Flight Time([120, 220])},
+          \code{Flight Time(>220)}: Flight time distribution (3 bins).
+    \item \code{Taxi In(<4)}, \code{Taxi In([4, 10])},
+          \code{Taxi In(>10)}: Taxi-in time distribution (3 bins).
+    \item \code{Arrival Delay(<0)}, \code{Arrival Delay([0, 60])},
+          \code{Arrival Delay(>60)}: Arrival delay distribution (3 bins).
+    \item \code{Taxi Out(<16)}, \code{Taxi Out([16, 30])},
+          \code{Taxi Out(>30)}: Taxi-out time distribution (3 bins).
+    \item \code{Departure Delay(<0)}, \code{Departure Delay([0, 60])},
+          \code{Departure Delay(>60)}: Departure delay distribution (3 bins).
+    \item \code{Weather Delay(No)}, \code{Weather Delay(Yes)}:
+          Weather delay distribution (2 bins).
+}
 }
 \usage{
 data(airline_flights.hist)
@@ -14,6 +29,8 @@ data(airline_flights.hist)
 Histogram-valued dataset of 16 airlines flying into JFK Airport.
 Six variables (Flight Time, Taxi In, Arrival Delay, Taxi Out,
 Departure Delay, Weather Delay) recorded as frequency distributions.
+This is the wide (flat table) format; see \code{\link{airline_flights2}}
+for the modal-valued version.
 }
 \examples{
 data(airline_flights.hist)

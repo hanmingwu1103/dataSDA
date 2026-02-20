@@ -5,13 +5,22 @@
 \alias{hierarchy.int}
 \title{Hierarchy Interval Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 20 rows and 6 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 20 observations and 6 variables:
+\itemize{
+    \item \code{Y}: Response variable range (interval).
+    \item \code{X1}: Hierarchy level 1 category (a/b/c, character).
+    \item \code{X2}: Hierarchy level 2 category (a1/a2, character; NA for non-a).
+    \item \code{X3}: Hierarchy level 3 category (a11/a12, character; NA for non-a1).
+    \item \code{X4}: Predictor range for group b (interval; NA for non-b).
+    \item \code{X5}: Predictor range for group c (interval; NA for non-c).
+}
 }
 \usage{
 data(hierarchy.int)
 }
 \description{
-Interval-valued version of the hierarchy dataset.
+Interval-valued version of the hierarchy dataset. See \code{\link{hierarchy}}
+for the classical version.
 }
 \examples{
 data(hierarchy.int)

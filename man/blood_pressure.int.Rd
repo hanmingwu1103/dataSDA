@@ -5,13 +5,20 @@
 \alias{blood_pressure.int}
 \title{Blood Pressure Interval Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 15 rows and 3 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 15 observations and
+3 interval-valued variables:
+\itemize{
+    \item \code{Pulse_Rate}: Pulse rate range (beats per minute, interval).
+    \item \code{Systolic_Pressure}: Systolic blood pressure range (mmHg, interval).
+    \item \code{Diastolic_Pressure}: Diastolic blood pressure range (mmHg, interval).
+}
 }
 \usage{
 data(blood_pressure.int)
 }
 \description{
-Interval-valued blood pressure measurements by patient groups.
+Interval-valued blood pressure and pulse rate measurements for
+15 patient groups.
 }
 \examples{
 data(blood_pressure.int)

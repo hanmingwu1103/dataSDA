@@ -5,7 +5,18 @@
 \alias{abalone.iGAP}
 \title{Abalone Dataset (iGAP Format)}
 \format{
-An object of class \code{data.frame} with 24 rows and 7 columns.
+A data frame with 24 observations (e.g., F-10-12, M-4-6) and
+7 character columns in iGAP format (comma-separated \code{"min, max"} strings):
+\itemize{
+    \item \code{Length}: Shell length range.
+    \item \code{Diameter}: Shell diameter range.
+    \item \code{Height}: Shell height range.
+    \item \code{Whole}: Whole weight range.
+    \item \code{Shucked}: Shucked weight range.
+    \item \code{Viscera}: Viscera weight range.
+    \item \code{Shell}: Shell weight range.
+}
+Row names encode Sex-AgeGroup (e.g., F-10-12 = Female age 10--12).
 }
 \source{
 UCI Machine Learning Repository.
@@ -15,7 +26,8 @@ data(abalone.iGAP)
 }
 \description{
 Interval-valued dataset of 24 units from the UCI Abalone dataset,
-aggregated by sex and age. iGAP format for matrix visualization.
+aggregated by sex and age group. iGAP format (comma-separated interval
+strings). See \code{\link{abalone.int}} for the Min-Max column format.
 }
 \examples{
 data(abalone.iGAP)

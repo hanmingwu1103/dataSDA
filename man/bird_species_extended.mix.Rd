@@ -5,15 +5,24 @@
 \alias{bird_species_extended.mix}
 \title{Bird Species Extended Mixed Symbolic Dataset}
 \format{
-A data frame with 3 observations and 4 symbolic variables.
+A data frame with 3 observations and 6 variables:
+\itemize{
+    \item \code{species}: Species name (character).
+    \item \code{flying}: Flying ability (Yes/No, character).
+    \item \code{height_l}: Height lower bound (cm, numeric).
+    \item \code{height_u}: Height upper bound (cm, numeric).
+    \item \code{color}: Color distribution as weighted set string
+          (e.g., "\{white, 0.3; black, 0.7\}").
+    \item \code{migratory}: Migratory behavior (Yes/No, character).
+}
 }
 \usage{
 data(bird_species_extended.mix)
 }
 \description{
 Three bird species (Geese, Ostrich, Penguin) with interval-valued
-height, histogram-valued color distribution, and categorical
-flying/migratory variables.
+height, distribution-valued color, and categorical flying/migratory
+variables.
 }
 \examples{
 data(bird_species_extended.mix)

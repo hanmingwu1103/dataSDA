@@ -5,14 +5,32 @@
 \alias{health_insurance.mix}
 \title{Health Insurance Mixed Symbolic Dataset}
 \format{
-An object of class \code{data.frame} with 51 rows and 30 columns.
+A data frame with 51 observations and 30 variables (Y1--Y30):
+\itemize{
+    \item \code{Y1}: City (character).
+    \item \code{Y2}: Gender (M/F, character).
+    \item \code{Y3}: Age (integer).
+    \item \code{Y4}: Sex (M/D, character).
+    \item \code{Y5}: Marital status (S/M, character).
+    \item \code{Y6}--\code{Y8}: Family composition indicators (integer).
+    \item \code{Y9}--\code{Y15}: Physical measurements (integer).
+    \item \code{Y16}: Ratio measurement (numeric).
+    \item \code{Y17}--\code{Y19}: Lab values (integer).
+    \item \code{Y20}: Lab ratio (numeric).
+    \item \code{Y21}--\code{Y22}: Additional lab values (integer).
+    \item \code{Y23}--\code{Y27}: Blood chemistry values (numeric).
+    \item \code{Y28}--\code{Y29}: Diagnostic indicators (Y/N, character).
+    \item \code{Y30}: Count variable (integer).
+}
 }
 \usage{
 data(health_insurance.mix)
 }
 \description{
-Health insurance data grouped by disease type and gender with
-classical and symbolic variables of mixed types.
+Classical (microdata) health insurance dataset of 51 individual patient
+records with 30 variables including demographics, clinical measurements,
+and diagnostic indicators. This is the raw data underlying the
+symbolic \code{\link{health_insurance2}} dataset.
 }
 \examples{
 data(health_insurance.mix)

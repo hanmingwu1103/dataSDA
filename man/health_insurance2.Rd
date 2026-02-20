@@ -5,13 +5,24 @@
 \alias{health_insurance2}
 \title{Health Insurance Modal-Valued Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 6 rows and 6 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 6 observations and
+6 variables:
+\itemize{
+    \item \code{Type Gender}: Disease type and gender label (character).
+    \item \code{Age}: Modal distribution over age bins.
+    \item \code{Marital Status}: Modal distribution over marital status (M, S).
+    \item \code{Parents Alive}: Modal distribution over number of parents alive (0, 1, 2).
+    \item \code{Weight}: Modal distribution over weight bins (pounds).
+    \item \code{Cholesterol}: Modal distribution over cholesterol bins (mg/dL).
+}
 }
 \usage{
 data(health_insurance2)
 }
 \description{
-Modal-valued version of the health insurance dataset.
+Modal-valued symbolic version of the health insurance dataset, aggregated
+into 6 disease-type-by-gender groups. See \code{\link{health_insurance.mix}}
+for the underlying microdata.
 }
 \examples{
 data(health_insurance2)

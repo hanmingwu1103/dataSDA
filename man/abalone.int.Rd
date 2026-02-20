@@ -5,7 +5,18 @@
 \alias{abalone.int}
 \title{Abalone Interval Dataset}
 \format{
-An object of class \code{data.frame} with 24 rows and 14 columns.
+A data frame with 24 observations and 14 columns (7 interval variables
+in \code{_min}/\code{_max} pairs):
+\itemize{
+    \item \code{Length_min}, \code{Length_max}: Shell length range.
+    \item \code{Diameter_min}, \code{Diameter_max}: Shell diameter range.
+    \item \code{Height_min}, \code{Height_max}: Shell height range.
+    \item \code{Whole_min}, \code{Whole_max}: Whole weight range.
+    \item \code{Shucked_min}, \code{Shucked_max}: Shucked weight range.
+    \item \code{Viscera_min}, \code{Viscera_max}: Viscera weight range.
+    \item \code{Shell_min}, \code{Shell_max}: Shell weight range.
+}
+Row names encode Sex-AgeGroup (e.g., F-10-12 = Female age 10--12).
 }
 \source{
 UCI Machine Learning Repository.
@@ -15,10 +26,15 @@ data(abalone.int)
 }
 \description{
 Interval-valued dataset of 24 units from the UCI Abalone dataset,
-aggregated by sex and age. Standard data frame format.
+aggregated by sex and age group. Min-Max column format (two columns per
+variable). See \code{\link{abalone.iGAP}} for the iGAP format version.
 }
 \examples{
 data(abalone.int)
+}
+\references{
+Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
+symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
 }
 \keyword{datasets}
 \keyword{interval}

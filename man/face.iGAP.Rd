@@ -5,14 +5,25 @@
 \alias{face.iGAP}
 \title{Face Dataset (iGAP Format)}
 \format{
-An object of class \code{data.frame} with 27 rows and 6 columns.
+A data frame with 27 observations and 6 character columns in iGAP
+format (comma-separated \code{"min,max"} strings):
+\itemize{
+    \item \code{AD}: Distance AD (facial landmark pair).
+    \item \code{BC}: Distance BC (facial landmark pair).
+    \item \code{AH}: Distance AH (facial landmark pair).
+    \item \code{DH}: Distance DH (facial landmark pair).
+    \item \code{EH}: Distance EH (facial landmark pair).
+    \item \code{GH}: Distance GH (facial landmark pair).
+}
+Row names encode individual and replication (e.g., FRA1, FRA2, FRA3).
 }
 \usage{
 data(face.iGAP)
 }
 \description{
-Symbolic data matrix with all interval-type variables for facial
-measurements, in iGAP format.
+Interval-valued facial measurement data for 27 face images (9 individuals
+x 3 replications) in iGAP format (comma-separated interval strings).
+Contains 6 distance measurements between facial landmarks.
 }
 \examples{
 data(face.iGAP)

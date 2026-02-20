@@ -5,14 +5,23 @@
 \alias{airline_flights2}
 \title{JFK Airport Airline Flights Modal-Valued Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 16 rows and 6 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 16 observations and
+6 modal-valued variables:
+\itemize{
+    \item \code{FlightTime}: Modal distribution over flight time bins.
+    \item \code{TaxiIn}: Modal distribution over taxi-in time bins.
+    \item \code{ArrivalDelay}: Modal distribution over arrival delay bins.
+    \item \code{TaxiOut}: Modal distribution over taxi-out time bins.
+    \item \code{DepartureDelay}: Modal distribution over departure delay bins.
+    \item \code{WeatherDelay}: Modal distribution over weather delay bins.
+}
 }
 \usage{
 data(airline_flights2)
 }
 \description{
 Modal-valued version of the airline flights dataset.
-See \code{\link{airline_flights.hist}}.
+See \code{\link{airline_flights.hist}} for the wide-format version.
 }
 \examples{
 data(airline_flights2)

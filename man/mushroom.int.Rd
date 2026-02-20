@@ -5,7 +5,14 @@
 \alias{mushroom.int}
 \title{Mushroom Species Interval Dataset}
 \format{
-A data frame with 23 observations and interval-valued variables.
+A symbolic data frame (\code{symbolic_tbl}) with 23 observations and 5 variables:
+\itemize{
+    \item \code{Species}: Mushroom species name (character).
+    \item \code{Pileus.Cap.Width}: Pileus cap width range (cm, interval).
+    \item \code{Stipe.Length}: Stipe length range (cm, interval).
+    \item \code{Stipe.Thickness}: Stipe thickness range (cm, interval).
+    \item \code{Edibility}: Edibility code (U = Unknown, Y = Yes, N = No, T = Toxic; character).
+}
 }
 \usage{
 data(mushroom.int)

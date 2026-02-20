@@ -5,7 +5,13 @@
 \alias{fuel_consumption}
 \title{Fuel Consumption by Region Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 10 rows and 3 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 10 observations and 3 variables:
+\itemize{
+    \item \code{Region}: Region identifier (character).
+    \item \code{Expenditure}: Per-capita fuel expenditure (numeric).
+    \item \code{Fuel_Type}: Modal distribution over fuel types
+          (gas, oil, electric, other).
+}
 }
 \usage{
 data(fuel_consumption)
@@ -13,7 +19,7 @@ data(fuel_consumption)
 \description{
 Modal-valued dataset describing fuel consumption patterns across 10
 regions by proportions of heating fuel types (gas, oil, electricity,
-coal, none) and central heating presence.
+other) and per-capita expenditure.
 }
 \examples{
 data(fuel_consumption)

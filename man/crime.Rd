@@ -5,13 +5,24 @@
 \alias{crime}
 \title{Crime Demographics Dataset}
 \format{
-An object of class \code{data.frame} with 15 rows and 7 columns.
+A data frame with 15 observations (gang1--gang15) and 7 numeric
+columns representing 3 modal variables in wide format:
+\itemize{
+    \item \code{Crime(violent)}, \code{Crime(non-violent)}, \code{Crime(none)}:
+          Distribution over crime types (3 bins).
+    \item \code{Gender(male)}, \code{Gender(female)}:
+          Distribution over gender (2 bins).
+    \item \code{Age(<20)}, \code{Age(>=20)}:
+          Distribution over age groups (2 bins).
+}
 }
 \usage{
 data(crime)
 }
 \description{
-Crime-related demographic variables with symbolic data types.
+Modal-valued dataset of 15 gangs described by probability distributions
+over crime type, gender, and age group. This is the wide (flat table)
+format; see \code{\link{crime2}} for the modal-valued version.
 }
 \examples{
 data(crime)
@@ -20,4 +31,4 @@ data(crime)
 Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
-\keyword{symbolic}
+\keyword{modal}

@@ -5,13 +5,21 @@
 \alias{age_cholesterol_weight.int}
 \title{Age-Cholesterol-Weight Interval Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 7 rows and 4 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 7 observations and 4 variables:
+\itemize{
+    \item \code{Age}: Age range (years, interval).
+    \item \code{Cholesterol}: Cholesterol level range (mg/dL, interval).
+    \item \code{Weight}: Weight range (pounds, interval).
+    \item \code{n}: Number of individuals in the age group (numeric).
+}
 }
 \usage{
 data(age_cholesterol_weight.int)
 }
 \description{
-Interval-valued dataset relating age, cholesterol, and weight measurements.
+Interval-valued dataset of 7 age-group observations with cholesterol and
+weight measurements. Each observation aggregates individuals in a 10-year
+age band with interval ranges for cholesterol and weight.
 }
 \examples{
 data(age_cholesterol_weight.int)

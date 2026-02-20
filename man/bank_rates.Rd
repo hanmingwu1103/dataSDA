@@ -5,14 +5,23 @@
 \alias{bank_rates}
 \title{Bank Interest Rates AR Model Symbolic Dataset}
 \format{
-An object of class \code{data.frame} with 4 rows and 6 columns.
+A data frame with 4 observations (Bank1--Bank4) and 6 variables:
+\itemize{
+    \item \code{bank}: Bank identifier (character).
+    \item \code{order}: AR model order (numeric).
+    \item \code{phi1}: First AR parameter (numeric; NA if unknown).
+    \item \code{phi2}: Second AR parameter (numeric; NA if order < 2 or unknown).
+    \item \code{phi1_known}: Whether phi1 is known (logical).
+    \item \code{phi2_known}: Whether phi2 is known (logical; NA if order < 2).
+}
 }
 \usage{
 data(bank_rates)
 }
 \description{
 Symbolic dataset of autoregressive time series models for 4 banks.
-Each bank is described by AR model order, parameters, and noise variance.
+Each bank is described by AR model order, parameters, and whether
+parameters are known.
 }
 \examples{
 data(bank_rates)

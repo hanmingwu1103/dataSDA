@@ -5,13 +5,20 @@
 \alias{veterinary.int}
 \title{Veterinary Interval Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 10 rows and 3 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 10 observations and 3 variables:
+\itemize{
+    \item \code{Animal}: Animal type and sex label (e.g., HorseM, BearF; character).
+    \item \code{Height}: Height range (cm, interval).
+    \item \code{Weight}: Weight range (kg, interval).
+}
 }
 \usage{
 data(veterinary.int)
 }
 \description{
-Interval-valued veterinary dataset with animal measurements.
+Interval-valued veterinary dataset of 10 animal specimens described
+by height and weight ranges. Includes male and female specimens of
+horses, bears, foxes, cats, and dogs.
 }
 \examples{
 data(veterinary.int)

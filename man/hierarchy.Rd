@@ -5,13 +5,24 @@
 \alias{hierarchy}
 \title{Hierarchy Dataset}
 \format{
-An object of class \code{data.frame} with 20 rows and 6 columns.
+A data frame with 20 observations and 6 variables:
+\itemize{
+    \item \code{Y}: Response variable (numeric).
+    \item \code{X1}: Hierarchy level 1 category (a/b/c, character).
+    \item \code{X2}: Hierarchy level 2 category (a1/a2, character; NA for non-a).
+    \item \code{X3}: Hierarchy level 3 category (a11/a12, character; NA for non-a1).
+    \item \code{X4}: Numeric predictor for group b (numeric; NA for non-b).
+    \item \code{X5}: Numeric predictor for group c (numeric; NA for non-c).
+}
 }
 \usage{
 data(hierarchy)
 }
 \description{
-Classical dataset illustrating hierarchical data structures.
+Classical (microdata) dataset of 20 observations illustrating hierarchical
+categorical structures with a response variable Y and hierarchical
+predictors X1--X5. See \code{\link{hierarchy.int}} for the interval-valued
+version.
 }
 \examples{
 data(hierarchy)

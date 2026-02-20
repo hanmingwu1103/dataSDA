@@ -5,7 +5,18 @@
 \alias{mushroom_fuzzy}
 \title{Mushroom Species Fuzzy/Symbolic Dataset}
 \format{
-An object of class \code{data.frame} with 4 rows and 9 columns.
+A data frame with 4 observations (Mushroom1--Mushroom4) and 9 variables:
+\itemize{
+    \item \code{specimen}: Specimen identifier (character).
+    \item \code{species}: Species name (character).
+    \item \code{stipe_thickness}: Stipe thickness measurement (numeric, cm).
+    \item \code{fuzzy_small}: Fuzzy membership degree for Small (numeric, 0--1).
+    \item \code{fuzzy_average}: Fuzzy membership degree for Average (numeric, 0--1).
+    \item \code{fuzzy_large}: Fuzzy membership degree for Large (numeric, 0--1).
+    \item \code{stipe_length}: Stipe length (numeric, cm).
+    \item \code{cap_size}: Cap size as interval string (e.g., "24 +/- 1", character).
+    \item \code{cap_colour}: Cap colour (character).
+}
 }
 \usage{
 data(mushroom_fuzzy)
@@ -13,7 +24,7 @@ data(mushroom_fuzzy)
 \description{
 Extended mushroom data with fuzzy stipe thickness (Small/Average/Large),
 numerical stipe length, interval cap size, and categorical cap colour
-for two Amanita species.
+for two Amanita species (4 specimens).
 }
 \examples{
 data(mushroom_fuzzy)

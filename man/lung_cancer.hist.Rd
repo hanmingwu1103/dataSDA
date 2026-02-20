@@ -5,13 +5,19 @@
 \alias{lung_cancer.hist}
 \title{Lung Cancer Treatments by State Histogram-Valued Dataset}
 \format{
-An object of class \code{data.frame} with 2 rows and 2 columns.
+A data frame with 2 observations and 2 variables:
+\itemize{
+    \item \code{state}: State name (character).
+    \item \code{y30}: Histogram-valued distribution of treatment counts
+          as a weighted set string (e.g., "\{0, 0.77; 1, 0.08; 2, 0.15\}").
+}
 }
 \usage{
 data(lung_cancer.hist)
 }
 \description{
-Histogram-valued distribution of lung cancer treatment counts by US state.
+Histogram-valued distribution of lung cancer treatment counts for 2 US
+states (Massachusetts and New York).
 }
 \examples{
 data(lung_cancer.hist)

@@ -5,13 +5,21 @@
 \alias{crime2}
 \title{Crime Demographics Modal-Valued Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 15 rows and 3 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 15 observations and
+3 modal-valued variables:
+\itemize{
+    \item \code{Crime}: Modal distribution over crime types
+          (violent, non-violent, none).
+    \item \code{Gender}: Modal distribution over gender (male, female).
+    \item \code{Age}: Modal distribution over age groups (<20, >=20).
+}
 }
 \usage{
 data(crime2)
 }
 \description{
 Modal-valued version of the crime demographics dataset.
+See \code{\link{crime}} for the wide-format version.
 }
 \examples{
 data(crime2)

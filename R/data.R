@@ -226,7 +226,14 @@
 #' @description
 #' Interval-valued version of the mushroom dataset. See \code{\link{mushroom}}.
 #'
-#' @format A data frame with 23 observations and interval-valued variables.
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 23 observations and 5 variables:
+#' \itemize{
+#'     \item \code{Species}: Mushroom species name (character).
+#'     \item \code{Pileus.Cap.Width}: Pileus cap width range (cm, interval).
+#'     \item \code{Stipe.Length}: Stipe length range (cm, interval).
+#'     \item \code{Stipe.Thickness}: Stipe thickness range (cm, interval).
+#'     \item \code{Edibility}: Edibility code (U = Unknown, Y = Yes, N = No, T = Toxic; character).
+#' }
 #' @usage data(mushroom.int)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 3.2.
@@ -238,7 +245,17 @@
 #' @name age_cholesterol_weight.int
 #' @title Age-Cholesterol-Weight Interval Dataset
 #' @description
-#' Interval-valued dataset relating age, cholesterol, and weight measurements.
+#' Interval-valued dataset of 7 age-group observations with cholesterol and
+#' weight measurements. Each observation aggregates individuals in a 10-year
+#' age band with interval ranges for cholesterol and weight.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 7 observations and 4 variables:
+#' \itemize{
+#'     \item \code{Age}: Age range (years, interval).
+#'     \item \code{Cholesterol}: Cholesterol level range (mg/dL, interval).
+#'     \item \code{Weight}: Weight range (pounds, interval).
+#'     \item \code{n}: Number of individuals in the age group (numeric).
+#' }
 #'
 #' @usage data(age_cholesterol_weight.int)
 #' @references
@@ -254,6 +271,25 @@
 #' Histogram-valued dataset of 16 airlines flying into JFK Airport.
 #' Six variables (Flight Time, Taxi In, Arrival Delay, Taxi Out,
 #' Departure Delay, Weather Delay) recorded as frequency distributions.
+#' This is the wide (flat table) format; see \code{\link{airline_flights2}}
+#' for the modal-valued version.
+#'
+#' @format A data frame with 16 observations (Airline1--Airline16) and
+#' 17 numeric columns representing 6 histogram variables in wide format:
+#' \itemize{
+#'     \item \code{Flight Time(<120)}, \code{Flight Time([120, 220])},
+#'           \code{Flight Time(>220)}: Flight time distribution (3 bins).
+#'     \item \code{Taxi In(<4)}, \code{Taxi In([4, 10])},
+#'           \code{Taxi In(>10)}: Taxi-in time distribution (3 bins).
+#'     \item \code{Arrival Delay(<0)}, \code{Arrival Delay([0, 60])},
+#'           \code{Arrival Delay(>60)}: Arrival delay distribution (3 bins).
+#'     \item \code{Taxi Out(<16)}, \code{Taxi Out([16, 30])},
+#'           \code{Taxi Out(>30)}: Taxi-out time distribution (3 bins).
+#'     \item \code{Departure Delay(<0)}, \code{Departure Delay([0, 60])},
+#'           \code{Departure Delay(>60)}: Departure delay distribution (3 bins).
+#'     \item \code{Weather Delay(No)}, \code{Weather Delay(Yes)}:
+#'           Weather delay distribution (2 bins).
+#' }
 #'
 #' @usage data(airline_flights.hist)
 #' @references
@@ -267,7 +303,18 @@
 #' @title JFK Airport Airline Flights Modal-Valued Dataset
 #' @description
 #' Modal-valued version of the airline flights dataset.
-#' See \code{\link{airline_flights.hist}}.
+#' See \code{\link{airline_flights.hist}} for the wide-format version.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 16 observations and
+#' 6 modal-valued variables:
+#' \itemize{
+#'     \item \code{FlightTime}: Modal distribution over flight time bins.
+#'     \item \code{TaxiIn}: Modal distribution over taxi-in time bins.
+#'     \item \code{ArrivalDelay}: Modal distribution over arrival delay bins.
+#'     \item \code{TaxiOut}: Modal distribution over taxi-out time bins.
+#'     \item \code{DepartureDelay}: Modal distribution over departure delay bins.
+#'     \item \code{WeatherDelay}: Modal distribution over weather delay bins.
+#' }
 #'
 #' @usage data(airline_flights2)
 #' @references
@@ -280,7 +327,15 @@
 #' @name baseball.int
 #' @title Baseball Teams Interval Dataset
 #' @description
-#' Interval-valued data for baseball teams with player statistics.
+#' Interval-valued data for 19 baseball teams with aggregated player
+#' batting statistics and a pattern variable classifying team performance.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 19 observations and 3 variables:
+#' \itemize{
+#'     \item \code{At_Bats}: Range of at-bats across players (interval).
+#'     \item \code{Hits}: Range of hits across players (interval).
+#'     \item \code{Pattern}: Team performance pattern code (character).
+#' }
 #'
 #' @usage data(baseball.int)
 #' @references
@@ -293,21 +348,37 @@
 #' @name bird.mix
 #' @title Bird Species Mixed Symbolic Dataset
 #' @description
-#' Mixed symbolic data for bird species with interval-valued morphological
-#' measurements and categorical symbolic variables (habitat, color).
+#' Interval-valued morphological measurements for 20 bird specimens.
+#' Despite the \code{.mix} suffix, this dataset contains only
+#' interval-valued variables (density and size).
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 20 observations and 2 variables:
+#' \itemize{
+#'     \item \code{Density}: Feather density range (interval).
+#'     \item \code{Size}: Body size range (cm, interval).
+#' }
 #'
 #' @usage data(bird.mix)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.5.
 #' @examples
 #' data(bird.mix)
-#' @keywords datasets mixed interval categorical
+#' @keywords datasets interval
 "bird.mix"
 
 #' @name blood_pressure.int
 #' @title Blood Pressure Interval Dataset
 #' @description
-#' Interval-valued blood pressure measurements by patient groups.
+#' Interval-valued blood pressure and pulse rate measurements for
+#' 15 patient groups.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 15 observations and
+#' 3 interval-valued variables:
+#' \itemize{
+#'     \item \code{Pulse_Rate}: Pulse rate range (beats per minute, interval).
+#'     \item \code{Systolic_Pressure}: Systolic blood pressure range (mmHg, interval).
+#'     \item \code{Diastolic_Pressure}: Diastolic blood pressure range (mmHg, interval).
+#' }
 #'
 #' @usage data(blood_pressure.int)
 #' @references
@@ -320,7 +391,17 @@
 #' @name car.int
 #' @title Car Models Interval Dataset
 #' @description
-#' Interval-valued data for car models with price, engine, speed, acceleration.
+#' Interval-valued data for 8 car brands with price and performance
+#' specifications. Each brand aggregates multiple models into interval ranges.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 8 observations and 5 variables:
+#' \itemize{
+#'     \item \code{Car}: Car brand name (character).
+#'     \item \code{Price}: Price range (thousands of currency units, interval).
+#'     \item \code{Max_Velocity}: Maximum velocity range (km/h, interval).
+#'     \item \code{Accn_Time}: Acceleration time range (seconds 0--100 km/h, interval).
+#'     \item \code{Cylinder_Capacity}: Engine cylinder capacity range (cc, interval).
+#' }
 #'
 #' @usage data(car.int)
 #' @references
@@ -333,20 +414,43 @@
 #' @name crime
 #' @title Crime Demographics Dataset
 #' @description
-#' Crime-related demographic variables with symbolic data types.
+#' Modal-valued dataset of 15 gangs described by probability distributions
+#' over crime type, gender, and age group. This is the wide (flat table)
+#' format; see \code{\link{crime2}} for the modal-valued version.
+#'
+#' @format A data frame with 15 observations (gang1--gang15) and 7 numeric
+#' columns representing 3 modal variables in wide format:
+#' \itemize{
+#'     \item \code{Crime(violent)}, \code{Crime(non-violent)}, \code{Crime(none)}:
+#'           Distribution over crime types (3 bins).
+#'     \item \code{Gender(male)}, \code{Gender(female)}:
+#'           Distribution over gender (2 bins).
+#'     \item \code{Age(<20)}, \code{Age(>=20)}:
+#'           Distribution over age groups (2 bins).
+#' }
 #'
 #' @usage data(crime)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
 #' data(crime)
-#' @keywords datasets symbolic
+#' @keywords datasets modal
 "crime"
 
 #' @name crime2
 #' @title Crime Demographics Modal-Valued Dataset
 #' @description
 #' Modal-valued version of the crime demographics dataset.
+#' See \code{\link{crime}} for the wide-format version.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 15 observations and
+#' 3 modal-valued variables:
+#' \itemize{
+#'     \item \code{Crime}: Modal distribution over crime types
+#'           (violent, non-violent, none).
+#'     \item \code{Gender}: Modal distribution over gender (male, female).
+#'     \item \code{Age}: Modal distribution over age groups (<20, >=20).
+#' }
 #'
 #' @usage data(crime2)
 #' @references
@@ -363,6 +467,17 @@
 #' financial variables (job cost codes, activity codes, budgets).
 #' Used for PCA demonstrations.
 #'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 14 observations and 7 variables:
+#' \itemize{
+#'     \item \code{Sector}: Business sector name (character).
+#'     \item \code{Job_Cost}: Job cost range (currency units, interval).
+#'     \item \code{Job_Code}: Job code range (interval).
+#'     \item \code{Activity_Code}: Activity code range (interval).
+#'     \item \code{Monthly_Cost}: Monthly cost range (currency units, interval).
+#'     \item \code{Annual_Budget}: Annual budget range (currency units, interval).
+#'     \item \code{n}: Number of entities in the sector (numeric).
+#' }
+#'
 #' @usage data(finance.int)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 5.2.
@@ -376,7 +491,15 @@
 #' @description
 #' Modal-valued dataset describing fuel consumption patterns across 10
 #' regions by proportions of heating fuel types (gas, oil, electricity,
-#' coal, none) and central heating presence.
+#' other) and per-capita expenditure.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 10 observations and 3 variables:
+#' \itemize{
+#'     \item \code{Region}: Region identifier (character).
+#'     \item \code{Expenditure}: Per-capita fuel expenditure (numeric).
+#'     \item \code{Fuel_Type}: Modal distribution over fuel types
+#'           (gas, oil, electric, other).
+#' }
 #'
 #' @usage data(fuel_consumption)
 #' @references
@@ -389,8 +512,28 @@
 #' @name health_insurance.mix
 #' @title Health Insurance Mixed Symbolic Dataset
 #' @description
-#' Health insurance data grouped by disease type and gender with
-#' classical and symbolic variables of mixed types.
+#' Classical (microdata) health insurance dataset of 51 individual patient
+#' records with 30 variables including demographics, clinical measurements,
+#' and diagnostic indicators. This is the raw data underlying the
+#' symbolic \code{\link{health_insurance2}} dataset.
+#'
+#' @format A data frame with 51 observations and 30 variables (Y1--Y30):
+#' \itemize{
+#'     \item \code{Y1}: City (character).
+#'     \item \code{Y2}: Gender (M/F, character).
+#'     \item \code{Y3}: Age (integer).
+#'     \item \code{Y4}: Sex (M/D, character).
+#'     \item \code{Y5}: Marital status (S/M, character).
+#'     \item \code{Y6}--\code{Y8}: Family composition indicators (integer).
+#'     \item \code{Y9}--\code{Y15}: Physical measurements (integer).
+#'     \item \code{Y16}: Ratio measurement (numeric).
+#'     \item \code{Y17}--\code{Y19}: Lab values (integer).
+#'     \item \code{Y20}: Lab ratio (numeric).
+#'     \item \code{Y21}--\code{Y22}: Additional lab values (integer).
+#'     \item \code{Y23}--\code{Y27}: Blood chemistry values (numeric).
+#'     \item \code{Y28}--\code{Y29}: Diagnostic indicators (Y/N, character).
+#'     \item \code{Y30}: Count variable (integer).
+#' }
 #'
 #' @usage data(health_insurance.mix)
 #' @references
@@ -403,7 +546,20 @@
 #' @name health_insurance2
 #' @title Health Insurance Modal-Valued Dataset
 #' @description
-#' Modal-valued version of the health insurance dataset.
+#' Modal-valued symbolic version of the health insurance dataset, aggregated
+#' into 6 disease-type-by-gender groups. See \code{\link{health_insurance.mix}}
+#' for the underlying microdata.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 6 observations and
+#' 6 variables:
+#' \itemize{
+#'     \item \code{Type Gender}: Disease type and gender label (character).
+#'     \item \code{Age}: Modal distribution over age bins.
+#'     \item \code{Marital Status}: Modal distribution over marital status (M, S).
+#'     \item \code{Parents Alive}: Modal distribution over number of parents alive (0, 1, 2).
+#'     \item \code{Weight}: Modal distribution over weight bins (pounds).
+#'     \item \code{Cholesterol}: Modal distribution over cholesterol bins (mg/dL).
+#' }
 #'
 #' @usage data(health_insurance2)
 #' @references
@@ -416,7 +572,20 @@
 #' @name hierarchy
 #' @title Hierarchy Dataset
 #' @description
-#' Classical dataset illustrating hierarchical data structures.
+#' Classical (microdata) dataset of 20 observations illustrating hierarchical
+#' categorical structures with a response variable Y and hierarchical
+#' predictors X1--X5. See \code{\link{hierarchy.int}} for the interval-valued
+#' version.
+#'
+#' @format A data frame with 20 observations and 6 variables:
+#' \itemize{
+#'     \item \code{Y}: Response variable (numeric).
+#'     \item \code{X1}: Hierarchy level 1 category (a/b/c, character).
+#'     \item \code{X2}: Hierarchy level 2 category (a1/a2, character; NA for non-a).
+#'     \item \code{X3}: Hierarchy level 3 category (a11/a12, character; NA for non-a1).
+#'     \item \code{X4}: Numeric predictor for group b (numeric; NA for non-b).
+#'     \item \code{X5}: Numeric predictor for group c (numeric; NA for non-c).
+#' }
 #'
 #' @usage data(hierarchy)
 #' @references
@@ -429,7 +598,18 @@
 #' @name hierarchy.int
 #' @title Hierarchy Interval Dataset
 #' @description
-#' Interval-valued version of the hierarchy dataset.
+#' Interval-valued version of the hierarchy dataset. See \code{\link{hierarchy}}
+#' for the classical version.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 20 observations and 6 variables:
+#' \itemize{
+#'     \item \code{Y}: Response variable range (interval).
+#'     \item \code{X1}: Hierarchy level 1 category (a/b/c, character).
+#'     \item \code{X2}: Hierarchy level 2 category (a1/a2, character; NA for non-a).
+#'     \item \code{X3}: Hierarchy level 3 category (a11/a12, character; NA for non-a1).
+#'     \item \code{X4}: Predictor range for group b (interval; NA for non-b).
+#'     \item \code{X5}: Predictor range for group c (interval; NA for non-c).
+#' }
 #'
 #' @usage data(hierarchy.int)
 #' @references
@@ -462,20 +642,40 @@
 #' @name occupations
 #' @title Occupation Salaries Dataset
 #' @description
-#' Salary ranges for different occupations.
+#' Modal-valued dataset of 9 occupations with gender and salary distributions.
+#' This is the wide (flat table) format; see \code{\link{occupations2}} for the
+#' modal-valued version.
+#'
+#' @format A data frame with 9 observations and 11 columns:
+#' \itemize{
+#'     \item \code{Occupation}: Occupation name (character).
+#'     \item \code{Gender(M)}, \code{Gender(F)}: Proportion male/female (2 bins).
+#'     \item \code{Salary(1)} through \code{Salary(7)}: Salary distribution
+#'           across 7 ordered bins (proportions).
+#'     \item \code{n}: Sample size (integer).
+#' }
 #'
 #' @usage data(occupations)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
 #' data(occupations)
-#' @keywords datasets interval
+#' @keywords datasets modal
 "occupations"
 
 #' @name occupations2
 #' @title Occupation Salaries Modal-Valued Dataset
 #' @description
 #' Modal-valued version of the occupation salaries dataset.
+#' See \code{\link{occupations}} for the wide-format version.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 9 observations and 4 variables:
+#' \itemize{
+#'     \item \code{Occupation}: Occupation name (character).
+#'     \item \code{Gender}: Modal distribution over gender (Male, Female).
+#'     \item \code{Salary}: Modal distribution over 7 ordered salary bins.
+#'     \item \code{n}: Sample size (numeric).
+#' }
 #'
 #' @usage data(occupations2)
 #' @references
@@ -488,7 +688,17 @@
 #' @name profession.int
 #' @title Profession Work Salary Time Interval Dataset
 #' @description
-#' Interval-valued data for professional categories by salary and working time.
+#' Interval-valued data for 15 profession entries classified by work type
+#' (White Collar / Blue Collar). Each entry describes a specific profession
+#' with salary and working duration ranges.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 15 observations and 4 variables:
+#' \itemize{
+#'     \item \code{Type_of_Work}: Work category (White Collar or Blue Collar, character).
+#'     \item \code{Profession}: Profession name (character).
+#'     \item \code{Salary}: Salary range (currency units, interval).
+#'     \item \code{Duration}: Working duration range (hours per week, interval).
+#' }
 #'
 #' @usage data(profession.int)
 #' @references
@@ -501,7 +711,16 @@
 #' @name veterinary.int
 #' @title Veterinary Interval Dataset
 #' @description
-#' Interval-valued veterinary dataset with animal measurements.
+#' Interval-valued veterinary dataset of 10 animal specimens described
+#' by height and weight ranges. Includes male and female specimens of
+#' horses, bears, foxes, cats, and dogs.
+#'
+#' @format A symbolic data frame (\code{symbolic_tbl}) with 10 observations and 3 variables:
+#' \itemize{
+#'     \item \code{Animal}: Animal type and sex label (e.g., HorseM, BearF; character).
+#'     \item \code{Height}: Height range (cm, interval).
+#'     \item \code{Weight}: Weight range (kg, interval).
+#' }
 #'
 #' @usage data(veterinary.int)
 #' @references
@@ -519,7 +738,21 @@
 #' @title Abalone Dataset (iGAP Format)
 #' @description
 #' Interval-valued dataset of 24 units from the UCI Abalone dataset,
-#' aggregated by sex and age. iGAP format for matrix visualization.
+#' aggregated by sex and age group. iGAP format (comma-separated interval
+#' strings). See \code{\link{abalone.int}} for the Min-Max column format.
+#'
+#' @format A data frame with 24 observations (e.g., F-10-12, M-4-6) and
+#' 7 character columns in iGAP format (comma-separated \code{"min, max"} strings):
+#' \itemize{
+#'     \item \code{Length}: Shell length range.
+#'     \item \code{Diameter}: Shell diameter range.
+#'     \item \code{Height}: Shell height range.
+#'     \item \code{Whole}: Whole weight range.
+#'     \item \code{Shucked}: Shucked weight range.
+#'     \item \code{Viscera}: Viscera weight range.
+#'     \item \code{Shell}: Shell weight range.
+#' }
+#' Row names encode Sex-AgeGroup (e.g., F-10-12 = Female age 10--12).
 #'
 #' @usage data(abalone.iGAP)
 #' @references
@@ -535,9 +768,26 @@
 #' @title Abalone Interval Dataset
 #' @description
 #' Interval-valued dataset of 24 units from the UCI Abalone dataset,
-#' aggregated by sex and age. Standard data frame format.
+#' aggregated by sex and age group. Min-Max column format (two columns per
+#' variable). See \code{\link{abalone.iGAP}} for the iGAP format version.
+#'
+#' @format A data frame with 24 observations and 14 columns (7 interval variables
+#' in \code{_min}/\code{_max} pairs):
+#' \itemize{
+#'     \item \code{Length_min}, \code{Length_max}: Shell length range.
+#'     \item \code{Diameter_min}, \code{Diameter_max}: Shell diameter range.
+#'     \item \code{Height_min}, \code{Height_max}: Shell height range.
+#'     \item \code{Whole_min}, \code{Whole_max}: Whole weight range.
+#'     \item \code{Shucked_min}, \code{Shucked_max}: Shucked weight range.
+#'     \item \code{Viscera_min}, \code{Viscera_max}: Viscera weight range.
+#'     \item \code{Shell_min}, \code{Shell_max}: Shell weight range.
+#' }
+#' Row names encode Sex-AgeGroup (e.g., F-10-12 = Female age 10--12).
 #'
 #' @usage data(abalone.int)
+#' @references
+#' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
+#' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
 #' @examples
 #' data(abalone.int)
 #' @keywords datasets interval
@@ -547,8 +797,21 @@
 #' @name face.iGAP
 #' @title Face Dataset (iGAP Format)
 #' @description
-#' Symbolic data matrix with all interval-type variables for facial
-#' measurements, in iGAP format.
+#' Interval-valued facial measurement data for 27 face images (9 individuals
+#' x 3 replications) in iGAP format (comma-separated interval strings).
+#' Contains 6 distance measurements between facial landmarks.
+#'
+#' @format A data frame with 27 observations and 6 character columns in iGAP
+#' format (comma-separated \code{"min,max"} strings):
+#' \itemize{
+#'     \item \code{AD}: Distance AD (facial landmark pair).
+#'     \item \code{BC}: Distance BC (facial landmark pair).
+#'     \item \code{AH}: Distance AH (facial landmark pair).
+#'     \item \code{DH}: Distance DH (facial landmark pair).
+#'     \item \code{EH}: Distance EH (facial landmark pair).
+#'     \item \code{GH}: Distance GH (facial landmark pair).
+#' }
+#' Row names encode individual and replication (e.g., FRA1, FRA2, FRA3).
 #'
 #' @usage data(face.iGAP)
 #' @references
@@ -846,10 +1109,20 @@
 #' @title Bird Species Extended Mixed Symbolic Dataset
 #' @description
 #' Three bird species (Geese, Ostrich, Penguin) with interval-valued
-#' height, histogram-valued color distribution, and categorical
-#' flying/migratory variables.
+#' height, distribution-valued color, and categorical flying/migratory
+#' variables.
 #'
-#' @format A data frame with 3 observations and 4 symbolic variables.
+#' @format A data frame with 3 observations and 6 variables:
+#' \itemize{
+#'     \item \code{species}: Species name (character).
+#'     \item \code{flying}: Flying ability (Yes/No, character).
+#'     \item \code{height_l}: Height lower bound (cm, numeric).
+#'     \item \code{height_u}: Height upper bound (cm, numeric).
+#'     \item \code{color}: Color distribution as weighted set string
+#'           (e.g., "\{white, 0.3; black, 0.7\}").
+#'     \item \code{migratory}: Migratory behavior (Yes/No, character).
+#' }
+#'
 #' @usage data(bird_species_extended.mix)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
@@ -919,9 +1192,18 @@
 #' @title World Cup Soccer Teams Interval Dataset
 #' @description
 #' Interval-valued data for soccer teams grouped by World Cup qualification
-#' status. Includes age, weight, height ranges and covariance.
+#' status (yes/no). Includes age, weight, height ranges and the covariance
+#' between weight and height.
 #'
-#' @format A data frame with 2 observations and 5 variables.
+#' @format A data frame with 2 observations and 8 variables:
+#' \itemize{
+#'     \item \code{world_cup}: Qualification status (yes/no, character).
+#'     \item \code{age_l}, \code{age_u}: Player age range (years).
+#'     \item \code{weight_l}, \code{weight_u}: Player weight range (kg).
+#'     \item \code{height_l}, \code{height_u}: Player height range (meters).
+#'     \item \code{cov_weight_height}: Covariance between weight and height (numeric).
+#' }
+#'
 #' @usage data(world_cup.int)
 #' @references
 #' Diday, E. and Noirhomme-Fraiture, M. (Eds.) (2008). \emph{Symbolic Data
@@ -940,7 +1222,20 @@
 #' @description
 #' Extended mushroom data with fuzzy stipe thickness (Small/Average/Large),
 #' numerical stipe length, interval cap size, and categorical cap colour
-#' for two Amanita species.
+#' for two Amanita species (4 specimens).
+#'
+#' @format A data frame with 4 observations (Mushroom1--Mushroom4) and 9 variables:
+#' \itemize{
+#'     \item \code{specimen}: Specimen identifier (character).
+#'     \item \code{species}: Species name (character).
+#'     \item \code{stipe_thickness}: Stipe thickness measurement (numeric, cm).
+#'     \item \code{fuzzy_small}: Fuzzy membership degree for Small (numeric, 0--1).
+#'     \item \code{fuzzy_average}: Fuzzy membership degree for Average (numeric, 0--1).
+#'     \item \code{fuzzy_large}: Fuzzy membership degree for Large (numeric, 0--1).
+#'     \item \code{stipe_length}: Stipe length (numeric, cm).
+#'     \item \code{cap_size}: Cap size as interval string (e.g., "24 +/- 1", character).
+#'     \item \code{cap_colour}: Cap colour (character).
+#' }
 #'
 #' @usage data(mushroom_fuzzy)
 #' @references
@@ -959,7 +1254,18 @@
 #' @title Bank Interest Rates AR Model Symbolic Dataset
 #' @description
 #' Symbolic dataset of autoregressive time series models for 4 banks.
-#' Each bank is described by AR model order, parameters, and noise variance.
+#' Each bank is described by AR model order, parameters, and whether
+#' parameters are known.
+#'
+#' @format A data frame with 4 observations (Bank1--Bank4) and 6 variables:
+#' \itemize{
+#'     \item \code{bank}: Bank identifier (character).
+#'     \item \code{order}: AR model order (numeric).
+#'     \item \code{phi1}: First AR parameter (numeric; NA if unknown).
+#'     \item \code{phi2}: Second AR parameter (numeric; NA if order < 2 or unknown).
+#'     \item \code{phi1_known}: Whether phi1 is known (logical).
+#'     \item \code{phi2_known}: Whether phi2 is known (logical; NA if order < 2).
+#' }
 #'
 #' @usage data(bank_rates)
 #' @references
@@ -977,7 +1283,15 @@
 #' @name lung_cancer.hist
 #' @title Lung Cancer Treatments by State Histogram-Valued Dataset
 #' @description
-#' Histogram-valued distribution of lung cancer treatment counts by US state.
+#' Histogram-valued distribution of lung cancer treatment counts for 2 US
+#' states (Massachusetts and New York).
+#'
+#' @format A data frame with 2 observations and 2 variables:
+#' \itemize{
+#'     \item \code{state}: State name (character).
+#'     \item \code{y30}: Histogram-valued distribution of treatment counts
+#'           as a weighted set string (e.g., "\{0, 0.77; 1, 0.08; 2, 0.15\}").
+#' }
 #'
 #' @usage data(lung_cancer.hist)
 #' @references
@@ -996,12 +1310,15 @@
 #' @title Acid Rain Pollution Indices Interval Dataset
 #' @description
 #' Interval-valued acid rain pollution indices for sulphates and nitrates
-#' (kg/hectares) by US state.
+#' (kg/hectares) for 2 US states (Massachusetts and New York).
 #'
-#' @format A data frame with 2 observations and 2 interval-valued variables:
+#' @format A data frame with 2 observations and 5 variables in Min-Max format:
 #' \itemize{
-#'     \item \code{sulphate}: Sulphate pollution index range (kg/hectares).
-#'     \item \code{nitrate}: Nitrate pollution index range (kg/hectares).
+#'     \item \code{state}: State name (character).
+#'     \item \code{sulphate_l}, \code{sulphate_u}: Sulphate pollution index range
+#'           (kg/hectares).
+#'     \item \code{nitrate_l}, \code{nitrate_u}: Nitrate pollution index range
+#'           (kg/hectares).
 #' }
 #'
 #' @usage data(acid_rain.int)

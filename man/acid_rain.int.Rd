@@ -5,10 +5,13 @@
 \alias{acid_rain.int}
 \title{Acid Rain Pollution Indices Interval Dataset}
 \format{
-A data frame with 2 observations and 2 interval-valued variables:
+A data frame with 2 observations and 5 variables in Min-Max format:
 \itemize{
-    \item \code{sulphate}: Sulphate pollution index range (kg/hectares).
-    \item \code{nitrate}: Nitrate pollution index range (kg/hectares).
+    \item \code{state}: State name (character).
+    \item \code{sulphate_l}, \code{sulphate_u}: Sulphate pollution index range
+          (kg/hectares).
+    \item \code{nitrate_l}, \code{nitrate_u}: Nitrate pollution index range
+          (kg/hectares).
 }
 }
 \usage{
@@ -16,7 +19,7 @@ data(acid_rain.int)
 }
 \description{
 Interval-valued acid rain pollution indices for sulphates and nitrates
-(kg/hectares) by US state.
+(kg/hectares) for 2 US states (Massachusetts and New York).
 }
 \examples{
 data(acid_rain.int)

@@ -5,13 +5,22 @@
 \alias{occupations}
 \title{Occupation Salaries Dataset}
 \format{
-An object of class \code{data.frame} with 9 rows and 11 columns.
+A data frame with 9 observations and 11 columns:
+\itemize{
+    \item \code{Occupation}: Occupation name (character).
+    \item \code{Gender(M)}, \code{Gender(F)}: Proportion male/female (2 bins).
+    \item \code{Salary(1)} through \code{Salary(7)}: Salary distribution
+          across 7 ordered bins (proportions).
+    \item \code{n}: Sample size (integer).
+}
 }
 \usage{
 data(occupations)
 }
 \description{
-Salary ranges for different occupations.
+Modal-valued dataset of 9 occupations with gender and salary distributions.
+This is the wide (flat table) format; see \code{\link{occupations2}} for the
+modal-valued version.
 }
 \examples{
 data(occupations)
@@ -20,4 +29,4 @@ data(occupations)
 Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 }
 \keyword{datasets}
-\keyword{interval}
+\keyword{modal}

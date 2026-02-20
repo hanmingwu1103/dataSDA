@@ -5,14 +5,19 @@
 \alias{bird.mix}
 \title{Bird Species Mixed Symbolic Dataset}
 \format{
-An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 20 rows and 2 columns.
+A symbolic data frame (\code{symbolic_tbl}) with 20 observations and 2 variables:
+\itemize{
+    \item \code{Density}: Feather density range (interval).
+    \item \code{Size}: Body size range (cm, interval).
+}
 }
 \usage{
 data(bird.mix)
 }
 \description{
-Mixed symbolic data for bird species with interval-valued morphological
-measurements and categorical symbolic variables (habitat, color).
+Interval-valued morphological measurements for 20 bird specimens.
+Despite the \code{.mix} suffix, this dataset contains only
+interval-valued variables (density and size).
 }
 \examples{
 data(bird.mix)
@@ -20,7 +25,5 @@ data(bird.mix)
 \references{
 Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.5.
 }
-\keyword{categorical}
 \keyword{datasets}
 \keyword{interval}
-\keyword{mixed}
