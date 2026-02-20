@@ -2,7 +2,7 @@
 title: "Introduction to dataSDA"
 subtitle: "Datasets and Basic Statistics for Symbolic Data Analysis"
 author: "Po-Wei Chen, Chun-houh Chen and Han-Ming Wu*"
-date: "February 11, 2026"
+date: "February 20, 2026"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -33,7 +33,7 @@ library(HistDAWass)
 
 # Introduction
 
-The `dataSDA` package (v0.1.8) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>.
+The `dataSDA` package (v0.2.4) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>.
 
 The package provides functions organized into the following categories:
 
@@ -586,4 +586,4 @@ We welcome contributions of high-quality datasets for symbolic data analysis. Su
 
 # Citation
 
-Po-Wei Chen, Chun-houh Chen, Han-Ming Wu (2026), dataSDA: datasets and basic statistics for symbolic data analysis in R (v0.1.8). Technical report.
+Po-Wei Chen, Chun-houh Chen, Han-Ming Wu (2026), dataSDA: datasets and basic statistics for symbolic data analysis in R (v0.2.4). Technical report.
