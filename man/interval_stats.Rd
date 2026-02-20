@@ -30,13 +30,25 @@ int_cor(x, var_name1, var_name2, method = "CM", ...)
 \item{var_name2}{the variable name or the column location (multiple variables are allowed).}
 }
 \value{
-A numeric value: the mean, variance, covariance, or correlation.
+A numeric matrix for \code{int_mean} and \code{int_var} (methods x variables);
+  a named list of covariance/correlation matrices for \code{int_cov} and \code{int_cor}
+  (one matrix per method).
 }
 \description{
 Functions to compute the mean, variance, covariance, and correlation of interval-valued data.
 }
 \details{
-...
+Available methods (applicable to all four functions):
+\itemize{
+  \item \code{CM}: Center Method — uses midpoints (a + b) / 2
+  \item \code{VM}: Vertices Method — uses all 2^p vertex combinations
+  \item \code{QM}: Quantiles Method — uses equally spaced quantile points
+  \item \code{SE}: Set Expansion — uses endpoints only (quantiles with m = 1)
+  \item \code{FV}: Fitted Values — uses linear regression fitted values
+  \item \code{EJD}: Empirical Joint Distribution
+  \item \code{GQ}: Geometric-Quantile method
+  \item \code{SPT}: Symmetric Parametric Transformation
+}
 }
 \examples{
 data(mushroom.int)

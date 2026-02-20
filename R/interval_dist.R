@@ -111,12 +111,12 @@ int_dist <- function(x, method = "euclidean", gamma = 0.5, q = 1, p = 2, ...) {
   }
   
   n <- dim(x_array)[1]
-  p <- dim(x_array)[2]
+  n_vars <- dim(x_array)[2]
   
   a <- x_array[, , 1, drop = FALSE]
   b <- x_array[, , 2, drop = FALSE]
-  dim(a) <- c(n, p)
-  dim(b) <- c(n, p)
+  dim(a) <- c(n, n_vars)
+  dim(b) <- c(n, n_vars)
   
   if (any(a > b, na.rm = TRUE)) {
     stop("int_dist: all lower bounds must be <= upper bounds.", call. = FALSE)
@@ -140,7 +140,7 @@ int_dist <- function(x, method = "euclidean", gamma = 0.5, q = 1, p = 2, ...) {
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
         d_ij <- 0
-        for (r in 1:p) {
+        for (r in 1:n_vars) {
           denom1 <- ifelse(global_range[r] == 0, 1, global_range[r])
           denom23 <- max(b[i, r], b[j, r]) - min(a[i, r], a[j, r])
           denom23 <- ifelse(denom23 == 0, 1, denom23)
@@ -166,7 +166,7 @@ int_dist <- function(x, method = "euclidean", gamma = 0.5, q = 1, p = 2, ...) {
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
         d_ij <- 0
-        for (r in 1:p) {
+        for (r in 1:n_vars) {
           union_len <- max(b[i, r], b[j, r]) - min(a[i, r], a[j, r])
           inter_len <- max(0, min(b[i, r], b[j, r]) - max(a[i, r], a[j, r]))
           
@@ -226,8 +226,8 @@ int_dist <- function(x, method = "euclidean", gamma = 0.5, q = 1, p = 2, ...) {
   }
   
   else if (method == "nEHD") {
-    H2 <- numeric(p)
-    for (r in 1:p) {
+    H2 <- numeric(n_vars)
+    for (r in 1:n_vars) {
       ss <- 0
       for (i in 1:n) {
         for (j in 1:n) {
@@ -289,7 +289,7 @@ int_dist <- function(x, method = "euclidean", gamma = 0.5, q = 1, p = 2, ...) {
     for (i in 1:(n - 1)) {
       for (j in (i + 1):n) {
         d <- 0
-        for (r in 1:p) {
+        for (r in 1:n_vars) {
           d <- d + (mid[i, r] - mid[j, r])^2 + (rad[i, r] - rad[j, r])^2 / 3
         }
         D[i, j] <- D[j, i] <- sqrt(d)

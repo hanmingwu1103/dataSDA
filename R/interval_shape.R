@@ -12,6 +12,7 @@
 #'   \item \code{int_skewness}: Measure of asymmetry (skewness)
 #'   \item \code{int_kurtosis}: Measure of tail heaviness (kurtosis)
 #'   \item \code{int_symmetry}: Symmetry coefficient
+#'   \item \code{int_tailedness}: Tailedness measure (alias for excess kurtosis)
 #' }
 #' 
 #' Skewness interpretation:
@@ -41,6 +42,9 @@
 #' 
 #' # Check symmetry
 #' int_symmetry(mushroom.int, var_name = 2:4, method = "CM")
+#'
+#' # Check tailedness
+#' int_tailedness(mushroom.int, var_name = "Pileus.Cap.Width", method = "CM")
 #' @importFrom stats sd
 #' @export
 int_skewness <- function(x, var_name, method = "CM", ...) {

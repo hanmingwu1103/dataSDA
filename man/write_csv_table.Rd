@@ -4,7 +4,7 @@
 \alias{write_csv_table}
 \title{Write Symbolic Data Table}
 \usage{
-write_csv_table(data, file, output)
+write_csv_table(data, file, output = TRUE)
 }
 \arguments{
 \item{data}{The conventional data.}
@@ -14,7 +14,7 @@ write_csv_table(data, file, output)
 \item{output}{This is an experimental argument, with default TRUE, and can be ignored by most users.}
 }
 \value{
-Write in CSV file the symbolic data table.
+Invisibly writes the data to the specified CSV file when \code{output = TRUE}. When \code{output = FALSE}, returns the data frame without writing.
 }
 \description{
 This function write (save) a symbolic data table from a CSV data file.

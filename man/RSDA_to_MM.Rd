@@ -4,7 +4,7 @@
 \alias{RSDA_to_MM}
 \title{RSDA to MM}
 \usage{
-RSDA_to_MM(data, RSDA)
+RSDA_to_MM(data, RSDA = TRUE)
 }
 \arguments{
 \item{data}{The RSDA format with interval dataframe.}

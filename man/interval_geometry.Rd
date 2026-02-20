@@ -47,6 +47,7 @@ These functions compute basic geometric properties:
   \item \code{int_center}: Center point of each interval ((lower + upper) / 2)
   \item \code{int_overlap}: Overlap measure between two interval variables
   \item \code{int_containment}: Check if one interval contains another
+  \item \code{int_midrange}: Half-range of each interval ((upper - lower) / 2)
 }
 }
 \examples{
@@ -64,6 +65,12 @@ int_center(mushroom.int, var_name = 2:4)
 
 # Measure overlap between two variables
 int_overlap(mushroom.int, "Pileus.Cap.Width", "Stipe.Length")
+
+# Check containment
+int_containment(mushroom.int, "Pileus.Cap.Width", "Stipe.Length")
+
+# Calculate midrange
+int_midrange(mushroom.int, var_name = 2:3)
 }
 \seealso{
 int_width int_radius int_center int_overlap

@@ -37,6 +37,7 @@ These functions measure distribution shape:
   \item \code{int_skewness}: Measure of asymmetry (skewness)
   \item \code{int_kurtosis}: Measure of tail heaviness (kurtosis)
   \item \code{int_symmetry}: Symmetry coefficient
+  \item \code{int_tailedness}: Tailedness measure (alias for excess kurtosis)
 }
 
 Skewness interpretation:
@@ -65,6 +66,9 @@ int_kurtosis(mushroom.int, var_name = c("Stipe.Length", "Stipe.Thickness"))
 
 # Check symmetry
 int_symmetry(mushroom.int, var_name = 2:4, method = "CM")
+
+# Check tailedness
+int_tailedness(mushroom.int, var_name = "Pileus.Cap.Width", method = "CM")
 }
 \seealso{
 int_mean int_var int_skewness int_kurtosis

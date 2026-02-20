@@ -4,7 +4,7 @@
 \alias{iGAP_to_RSDA}
 \title{iGAP to RSDA}
 \usage{
-iGAP_to_RSDA(data, location)
+iGAP_to_RSDA(data, location = NULL)
 }
 \arguments{
 \item{data}{The dataframe with the iGAP format.}

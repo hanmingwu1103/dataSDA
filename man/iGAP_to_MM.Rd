@@ -4,7 +4,7 @@
 \alias{iGAP_to_MM}
 \title{iGAP to MM}
 \usage{
-iGAP_to_MM(data, location)
+iGAP_to_MM(data, location = NULL)
 }
 \arguments{
 \item{data}{The dataframe with the iGAP format.}

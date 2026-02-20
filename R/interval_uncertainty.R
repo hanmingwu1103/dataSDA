@@ -15,6 +15,8 @@
 #'   \item \code{int_dispersion}: General dispersion index
 #'   \item \code{int_imprecision}: Imprecision based on interval width
 #'   \item \code{int_granularity}: Variability in interval sizes
+#'   \item \code{int_uniformity}: Uniformity of interval widths (inverse of granularity)
+#'   \item \code{int_information_content}: Normalized entropy (entropy / log2(n))
 #' }
 #' @author Han-Ming Wu
 #' @seealso int_var int_entropy int_cv
@@ -30,8 +32,17 @@
 #' # Measure imprecision
 #' int_imprecision(mushroom.int, var_name = c("Stipe.Length", "Stipe.Thickness"))
 #' 
+#' # Dispersion index
+#' int_dispersion(mushroom.int, var_name = "Pileus.Cap.Width", method = "CM")
+#'
 #' # Check data granularity
 #' int_granularity(mushroom.int, var_name = 2:4)
+#'
+#' # Check uniformity
+#' int_uniformity(mushroom.int, var_name = 2:3)
+#'
+#' # Information content
+#' int_information_content(mushroom.int, var_name = "Stipe.Length", method = "CM")
 #' @importFrom graphics hist
 #' @importFrom stats sd median
 #' @export

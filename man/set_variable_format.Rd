@@ -4,7 +4,7 @@
 \alias{set_variable_format}
 \title{Set Variable Format}
 \usage{
-set_variable_format(data, location, var)
+set_variable_format(data, location = NULL, var = NULL)
 }
 \arguments{
 \item{data}{A conventional data.}

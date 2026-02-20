@@ -7,12 +7,27 @@
 #' @param var_name2 the variable name or the column location.
 #' @param method methods to calculate statistics: mean and var: BG (default), L2W; cov and cor: BG (default), BD, B, L2W.
 #' @param ... additional parameters.
-#' @return A numeric value: the mean, variance, covariance, or correlation.
-#' @details ...
+#' @return A numeric value or matrix for \code{hist_mean} and \code{hist_var}; a single numeric value for \code{hist_cov} and \code{hist_cor}.
+#' @details
+#' Available methods:
+#' \itemize{
+#'   \item \code{hist_mean}: Compute the mean of histogram-valued data.
+#'   \item \code{hist_var}: Compute the variance of histogram-valued data.
+#'   \item \code{hist_cov}: Compute the covariance between two histogram-valued variables.
+#'   \item \code{hist_cor}: Compute the correlation between two histogram-valued variables.
+#' }
+#'
+#' Methods for mean and variance: BG (Billard & Diday), L2W (L2 Wasserstein).
+#' Methods for covariance and correlation: BG, BD (Billard-Diday), B (Bertrand), L2W.
 #' @author Po-Wei Chen, Han-Ming Wu
 #' @seealso int_mean int_var int_cov int_cor
 #' @examples
 #' library(HistDAWass)
+#' x <- HistDAWass::BLOOD
+#' hist_mean(x, var_name = "Cholesterol", method = "BG")
+#' hist_var(x, var_name = "Cholesterol", method = "BG")
+#' hist_cov(x, var_name1 = "Cholesterol", var_name2 = "Hemoglobin", method = "BG")
+#' hist_cor(x, var_name1 = "Cholesterol", var_name2 = "Hemoglobin", method = "BG")
 #' @import HistDAWass
 #' @export
 hist_mean <- function(x, var_name, method = "BG", ...){
@@ -244,7 +259,7 @@ hist_var_w <- function(object, var){
 
 #' @rdname histogram_stats
 #' @export
-hist_cov <- function(x, var_name1, var_name2, method = "BG"){
+hist_cov <- function(x, var_name1, var_name2, method = "BG", ...){
   .check_MatH(x, "hist_cov")
   .check_hist_var_name(var_name1, x, "hist_cov")
   .check_hist_var_name(var_name2, x, "hist_cov")
@@ -311,7 +326,7 @@ hist_cov <- function(x, var_name1, var_name2, method = "BG"){
 
 #' @rdname histogram_stats
 #' @export
-hist_cor <- function(x, var_name1, var_name2, method = "BG"){
+hist_cor <- function(x, var_name1, var_name2, method = "BG", ...){
   .check_MatH(x, "hist_cor")
   .check_hist_var_name(var_name1, x, "hist_cor")
   .check_hist_var_name(var_name2, x, "hist_cor")

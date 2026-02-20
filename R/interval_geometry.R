@@ -15,6 +15,7 @@
 #'   \item \code{int_center}: Center point of each interval ((lower + upper) / 2)
 #'   \item \code{int_overlap}: Overlap measure between two interval variables
 #'   \item \code{int_containment}: Check if one interval contains another
+#'   \item \code{int_midrange}: Half-range of each interval ((upper - lower) / 2)
 #' }
 #' @author Han-Ming Wu
 #' @seealso int_width int_radius int_center int_overlap
@@ -33,6 +34,12 @@
 #' 
 #' # Measure overlap between two variables
 #' int_overlap(mushroom.int, "Pileus.Cap.Width", "Stipe.Length")
+#'
+#' # Check containment
+#' int_containment(mushroom.int, "Pileus.Cap.Width", "Stipe.Length")
+#'
+#' # Calculate midrange
+#' int_midrange(mushroom.int, var_name = 2:3)
 #' @export
 int_width <- function(x, var_name, ...) {
   .check_symbolic_tbl(x, "int_width")

@@ -362,7 +362,7 @@ int_convert_format <- function(x, to = "MM", from = NULL, ...) {
 #' @name RSDA_to_MM
 #' @aliases RSDA_to_MM
 #' @description To convert RSDA format interval dataframe to MM format.
-#' @usage RSDA_to_MM(data, RSDA)
+#' @usage RSDA_to_MM(data, RSDA = TRUE)
 #' @param data The RSDA format with interval dataframe.
 #' @param RSDA Whether to load the RSDA package.
 #' @returns Return a dataframe with the MM format.
@@ -476,7 +476,7 @@ RSDA_to_MM <- function(data, RSDA = TRUE){
 #' @name iGAP_to_MM
 #' @aliases iGAP_to_MM
 #' @description To convert iGAP format to MM format.
-#' @usage iGAP_to_MM(data, location)
+#' @usage iGAP_to_MM(data, location = NULL)
 #' @param data The dataframe with the iGAP format.
 #' @param location The location of the symbolic variable in the data.
 #' @returns Return a dataframe with the MM format.
@@ -513,10 +513,10 @@ iGAP_to_MM <- function(data, location = NULL){
 #' @returns Return a dataframe with the MM format.
 #' @importFrom RSDA SODAS.to.RSDA
 #' @examples
-#' ## Not run:
-#  # We can read the file directly from the SODAS XML file as follows:
-#  # abalone <- SODAS_to_MM('C:/Users/user/AppData/abalone.xml)
-#' data(abalone.int)
+#' \dontrun{
+#' # Read from a SODAS XML file:
+#' abalone <- SODAS_to_MM("C:/Users/user/AppData/abalone.xml")
+#' }
 #' @export
 
 SODAS_to_MM <- function(XMLPath){
@@ -601,10 +601,10 @@ RSDA_to_iGAP <- function(data){
 #' @returns Return a dataframe with the iGAP format.
 #' @importFrom RSDA SODAS.to.RSDA
 #' @examples
-#' ## Not run:
-#  # We can read the file directly from the SODAS XML file as follows:
-#  # abalone <- SODAS_to_MM('C:/Users/user/AppData/abalone.xml)
-#' data(abalone.int)
+#' \dontrun{
+#' # Read from a SODAS XML file:
+#' abalone <- SODAS_to_iGAP("C:/Users/user/AppData/abalone.xml")
+#' }
 #' @export
 
 SODAS_to_iGAP <- function(XMLPath){
@@ -692,7 +692,7 @@ MM_to_RSDA <- function(data){
 #' @name iGAP_to_RSDA
 #' @aliases iGAP_to_RSDA
 #' @description To convert iGAP format interval dataframe to RSDA format (symbolic_tbl).
-#' @usage iGAP_to_RSDA(data, location)
+#' @usage iGAP_to_RSDA(data, location = NULL)
 #' @param data The dataframe with the iGAP format.
 #' @param location The location of the symbolic variable in the data.
 #' @returns Return a symbolic_tbl dataframe with complex-encoded interval columns.

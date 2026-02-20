@@ -16,6 +16,8 @@ Return a dataframe with the MM format.
 To convert SODAS format interval dataframe to the MM format.
 }
 \examples{
-## Not run:
-data(abalone.int)
+\dontrun{
+# Read from a SODAS XML file:
+abalone <- SODAS_to_MM("C:/Users/user/AppData/abalone.xml")
+}
 }

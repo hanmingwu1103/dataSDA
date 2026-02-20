@@ -3,11 +3,11 @@
 #' @name write_csv_table
 #' @aliases write_csv_table
 #' @description This function write (save) a symbolic data table from a CSV data file.
-#' @usage write_csv_table(data, file, output)
+#' @usage write_csv_table(data, file, output = TRUE)
 #' @param data The conventional data.
 #' @param file The name of the CSV file.
 #' @param output This is an experimental argument, with default TRUE, and can be ignored by most users.
-#' @returns Write in CSV file the symbolic data table.
+#' @returns Invisibly writes the data to the specified CSV file when \code{output = TRUE}. When \code{output = FALSE}, returns the data frame without writing.
 #' @importFrom utils write.table
 #' @examples
 #' data(mushroom)

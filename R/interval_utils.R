@@ -302,7 +302,7 @@ RSDA_format <- function(data, sym_type1 = NULL, location = NULL,
 #' @aliases set_variable_format
 #' @description This function changes the format of the set variables
 #' in the data to conform to the RSDA format.
-#' @usage set_variable_format(data, location, var)
+#' @usage set_variable_format(data, location = NULL, var = NULL)
 #' @param data A conventional data.
 #' @param location The location of the set variable in the data.
 #' @param var The name of the set variable in the data.

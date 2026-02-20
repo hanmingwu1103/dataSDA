@@ -47,6 +47,7 @@ These functions compute various similarity measures:
   \item \code{int_cosine}: Cosine similarity
   \item \code{int_overlap_coefficient}: Overlap coefficient
   \item \code{int_tanimoto}: Tanimoto coefficient (generalized Jaccard)
+  \item \code{int_similarity_matrix}: Pairwise similarity matrix across all observations
 }
 
 All similarity measures range from 0 (no similarity) to 1 (perfect similarity).
@@ -67,6 +68,12 @@ int_cosine(mushroom.int,
 
 # Overlap coefficient
 int_overlap_coefficient(mushroom.int, 2, 3:4)
+
+# Tanimoto coefficient
+int_tanimoto(mushroom.int, "Pileus.Cap.Width", "Stipe.Length")
+
+# Similarity matrix across all observations
+int_similarity_matrix(mushroom.int, method = "jaccard")
 }
 \seealso{
 int_dist int_cor int_jaccard

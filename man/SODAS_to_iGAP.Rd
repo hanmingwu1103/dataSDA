@@ -16,6 +16,8 @@ Return a dataframe with the iGAP format.
 To convert SODAS format interval dataframe to the iGAP format.
 }
 \examples{
-## Not run:
-data(abalone.int)
+\dontrun{
+# Read from a SODAS XML file:
+abalone <- SODAS_to_iGAP("C:/Users/user/AppData/abalone.xml")
+}
 }

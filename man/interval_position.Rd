@@ -49,6 +49,7 @@ These functions provide position and scale measures:
   \item \code{int_range}: Range (max - min) of interval data
   \item \code{int_iqr}: Interquartile range (Q3 - Q1)
   \item \code{int_mad}: Median absolute deviation
+  \item \code{int_mode}: Mode of interval data (estimated via histogram)
 }
 }
 \examples{
@@ -64,8 +65,14 @@ int_quantile(mushroom.int, var_name = 2, probs = c(0.25, 0.5, 0.75))
 # Calculate interquartile range
 int_iqr(mushroom.int, var_name = c("Stipe.Length", "Stipe.Thickness"))
 
+# Calculate range
+int_range(mushroom.int, var_name = "Pileus.Cap.Width")
+
 # Calculate MAD
 int_mad(mushroom.int, var_name = 2:3, method = "CM")
+
+# Estimate mode
+int_mode(mushroom.int, var_name = "Stipe.Length", method = "CM")
 }
 \seealso{
 int_mean int_var int_median int_quantile
