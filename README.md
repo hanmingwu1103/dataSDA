@@ -198,6 +198,10 @@ The package includes **114 built-in datasets** for symbolic data analysis:
 
 `bank_rates`, `hierarchy`, `mushroom.int.mm`
 
+## Vignettes
+
+- [Introduction to dataSDA](https://htmlpreview.github.io/?https://github.com/hanmingwu1103/dataSDA/blob/master/inst/doc/dataSDA_intro.html)
+
 ## Dependencies
 
 - **R** (>= 4.0.0)
