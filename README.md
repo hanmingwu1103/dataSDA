@@ -4,7 +4,7 @@
 
 [![R](https://img.shields.io/badge/R-%3E%3D%204.0.0-blue)](https://www.r-project.org/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/version-0.1.5-green.svg)](https://github.com/hanmingwu1103/dataSDA/releases/tag/v0.1.5)
+[![Version](https://img.shields.io/badge/version-0.2.5-green.svg)](https://github.com/hanmingwu1103/dataSDA/releases/tag/v0.2.5)
 
 ## Overview
 
@@ -24,7 +24,11 @@ devtools::install_github("hanmingwu1103/dataSDA")
 Download the latest release from the [Releases](https://github.com/hanmingwu1103/dataSDA/releases) page, then:
 
 ```r
-install.packages("dataSDA_0.1.5.tar.gz", repos = NULL, type = "source")
+# Source package (all platforms)
+install.packages("dataSDA_0.2.5.tar.gz", repos = NULL, type = "source")
+
+# Binary package (Windows)
+install.packages("dataSDA_0.2.5.zip", repos = NULL, type = "win.binary")
 ```
 
 ## Features
@@ -67,16 +71,47 @@ hist_cor(HistDAWass::BLOOD, var_name1 = "Cholesterol",
 
 ### Data Format Conversion
 
+#### Interval format conversions
+
 | Function | Description |
 |---|---|
-| `RSDA_to_MM` | Convert RSDA / `symbolic_tbl` to MM (min-max) format |
-| `MM_to_iGAP` | Convert MM format to iGAP format |
-| `iGAP_to_MM` | Convert iGAP format to MM format |
-| `RSDA_to_iGAP` | Convert RSDA format to iGAP format |
-| `SODAS_to_MM` | Convert SODAS format to MM format |
-| `SODAS_to_iGAP` | Convert SODAS format to iGAP format |
+| `int_detect_format` | Detect the format of an interval-valued dataset |
+| `int_convert_format` | Convert between interval formats |
+| `int_list_conversions` | List all available format conversions |
+| `to_all_interval_formats` | Convert intervals to all supported formats at once |
+
+#### Pairwise format converters
+
+| Function | Description |
+|---|---|
+| `RSDA_to_MM` | RSDA / `symbolic_tbl` to MM (min-max) format |
+| `MM_to_RSDA` | MM format to RSDA / `symbolic_tbl` format |
+| `MM_to_iGAP` | MM format to iGAP format |
+| `iGAP_to_MM` | iGAP format to MM format |
+| `RSDA_to_iGAP` | RSDA format to iGAP format |
+| `iGAP_to_RSDA` | iGAP format to RSDA format |
+| `SODAS_to_MM` | SODAS format to MM format |
+| `SODAS_to_iGAP` | SODAS format to iGAP format |
+
+#### ARRAY format converters
+
+| Function | Description |
+|---|---|
+| `RSDA_to_ARRAY` | RSDA format to ARRAY format |
+| `ARRAY_to_RSDA` | ARRAY format to RSDA format |
+| `MM_to_ARRAY` | MM format to ARRAY format |
+| `ARRAY_to_MM` | ARRAY format to MM format |
+| `iGAP_to_ARRAY` | iGAP format to ARRAY format |
+| `ARRAY_to_iGAP` | ARRAY format to iGAP format |
+| `SODAS_to_ARRAY` | SODAS format to ARRAY format |
+
+#### Other conversion functions
+
+| Function | Description |
+|---|---|
 | `RSDA_format` | Convert conventional data to RSDA format |
 | `set_variable_format` | One-hot encode set variables for RSDA format |
+| `aggregate_to_symbolic` | Convert traditional data to symbolic data format |
 
 ### Utilities
 
@@ -85,27 +120,52 @@ hist_cor(HistDAWass::BLOOD, var_name1 = "Cholesterol",
 | `clean_colnames` | Clean column names of a data frame |
 | `read_symbolic_csv` | Read symbolic data from CSV file |
 | `write_symbolic_csv` | Write symbolic data to CSV file |
+| `search_data` | Search available datasets by keyword or type |
 
 ## Datasets
 
-The package includes 32 built-in datasets for symbolic data analysis:
+The package includes **114 built-in datasets** for symbolic data analysis:
 
-### Interval-valued datasets (`symbolic_tbl` class)
+### Interval-valued datasets (53 datasets, `.int`)
 
-`Abalone`, `Cars.int`, `ChinaTemp.int`, `age_cholesterol_weight.int`, `baseball.int`, `bird.int`, `blood_pressure.int`, `car.int`, `finance.int`, `hierarchy.int`, `horses.int`, `lackinfo.int`, `LoansbyPurpose.int`, `mushroom.int`, `nycflights.int`, `ohtemp.int`, `profession.int`, `soccer.bivar.int`, `veterinary.int`
+`abalone.int`, `acid_rain.int`, `age_cholesterol_weight.int`, `baseball.int`, `bats.int`, `blood_pressure.int`, `car.int`, `car_models.int`, `cardiological.int`, `cars.int`, `china_temp.int`, `china_temp_monthly.int`, `credit_card.int`, `ecoli_routes.int`, `employment.int`, `finance.int`, `freshwater_fish.int`, `fungi.int`, `genome_abundances.int`, `hdi_gender.int`, `horses.int`, `iris.int`, `judge1.int`, `judge2.int`, `judge3.int`, `lackinfo.int`, `lisbon_air_quality.int`, `loans_by_purpose.int`, `loans_by_risk.int`, `loans_by_risk_quantile.int`, `lynne1.int`, `mushroom.int`, `nycflights.int`, `ohtemp.int`, `oils.int`, `polish_voivodships.int`, `profession.int`, `prostate.int`, `soccer_bivar.int`, `synthetic_clusters.int`, `teams.int`, `temperature_city.int`, `tennis.int`, `trivial_intervals.int`, `uscrime.int`, `utsnow.int`, `veterinary.int`, `video1.int`, `video2.int`, `video3.int`, `water_flow.int`, `wine.int`, `world_cup.int`
 
-### iGAP / data.frame datasets
+### Histogram-valued datasets (25 datasets, `.hist`)
 
-`Abalone.iGAP`, `Face.iGAP`, `airline_flights`, `airline_flights2`, `crime`, `crime2`, `fuel_consumption`, `health_insurance`, `health_insurance2`, `hierarchy`, `mushroom`, `occupations`, `occupations2`
+`age_pyramids.hist`, `airline_flights.hist`, `bird_color_taxonomy.hist`, `blood.hist`, `china_climate_month.hist`, `china_climate_season.hist`, `cholesterol.hist`, `county_income_gender.hist`, `cover_types.hist`, `exchange_rate_returns.hist`, `flights_detail.hist`, `french_agriculture.hist`, `glucose.hist`, `hardwood.hist`, `hematocrit.hist`, `hematocrit_hemoglobin.hist`, `hemoglobin.hist`, `hierarchy.hist`, `hospital.hist`, `iris_species.hist`, `lung_cancer.hist`, `ozone.hist`, `simulated.hist`, `state_income.hist`, `weight_age.hist`
+
+### Mixed symbolic datasets (11 datasets, `.mix`)
+
+`bird.mix`, `bird_species.mix`, `bird_species_extended.mix`, `census.mix`, `environment.mix`, `health_insurance.mix`, `joggers.mix`, `mtcars.mix`, `mushroom_fuzzy.mix`, `polish_cars.mix`, `town_services.mix`
+
+### Interval time series datasets (9 datasets, `.its`)
+
+`crude_oil_wti.its`, `djia.its`, `euro_usd.its`, `ibovespa.its`, `irish_wind.its`, `merval.its`, `petrobras.its`, `shanghai_stock.its`, `sp500.its`
+
+### Modal-valued datasets (7 datasets, `.modal`)
+
+`airline_flights2.modal`, `crime.modal`, `crime2.modal`, `fuel_consumption.modal`, `health_insurance2.modal`, `occupations.modal`, `occupations2.modal`
+
+### Distribution-valued datasets (3 datasets, `.distr`)
+
+`energy_consumption.distr`, `energy_usage.distr`, `household_characteristics.distr`
+
+### iGAP format datasets (2 datasets, `.iGAP`)
+
+`abalone.iGAP`, `face.iGAP`
+
+### Other datasets
+
+`bank_rates`, `hierarchy`, `mushroom.int.mm`
 
 ## Dependencies
 
 - **R** (>= 4.0.0)
-- [RSDA](https://CRAN.R-project.org/package=RSDA), [HistDAWass](https://CRAN.R-project.org/package=HistDAWass), [dplyr](https://CRAN.R-project.org/package=dplyr), [tidyr](https://CRAN.R-project.org/package=tidyr), [magrittr](https://CRAN.R-project.org/package=magrittr)
+- [RSDA](https://CRAN.R-project.org/package=RSDA), [HistDAWass](https://CRAN.R-project.org/package=HistDAWass), [dplyr](https://CRAN.R-project.org/package=dplyr), [tidyr](https://CRAN.R-project.org/package=tidyr), [magrittr](https://CRAN.R-project.org/package=magrittr), [methods](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/00Index.html)
 
 ## Authors
 
-- **Po-Wei Chen** (Author), **Chun-houh Chen** (Author) 
+- **Po-Wei Chen** (Author), **Chun-houh Chen** (Author)
 - **Han-Ming Wu** (Creator, Maintainer) - [wuhm@g.nccu.edu.tw](mailto:wuhm@g.nccu.edu.tw)
 
 ## License
