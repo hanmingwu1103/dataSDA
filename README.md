@@ -80,31 +80,6 @@ hist_cor(HistDAWass::BLOOD, var_name1 = "Cholesterol",
 | `int_list_conversions` | List all available format conversions |
 | `to_all_interval_formats` | Convert intervals to all supported formats at once |
 
-#### Pairwise format converters
-
-| Function | Description |
-|---|---|
-| `RSDA_to_MM` | RSDA / `symbolic_tbl` to MM (min-max) format |
-| `MM_to_RSDA` | MM format to RSDA / `symbolic_tbl` format |
-| `MM_to_iGAP` | MM format to iGAP format |
-| `iGAP_to_MM` | iGAP format to MM format |
-| `RSDA_to_iGAP` | RSDA format to iGAP format |
-| `iGAP_to_RSDA` | iGAP format to RSDA format |
-| `SODAS_to_MM` | SODAS format to MM format |
-| `SODAS_to_iGAP` | SODAS format to iGAP format |
-
-#### ARRAY format converters
-
-| Function | Description |
-|---|---|
-| `RSDA_to_ARRAY` | RSDA format to ARRAY format |
-| `ARRAY_to_RSDA` | ARRAY format to RSDA format |
-| `MM_to_ARRAY` | MM format to ARRAY format |
-| `ARRAY_to_MM` | ARRAY format to MM format |
-| `iGAP_to_ARRAY` | iGAP format to ARRAY format |
-| `ARRAY_to_iGAP` | ARRAY format to iGAP format |
-| `SODAS_to_ARRAY` | SODAS format to ARRAY format |
-
 #### Other conversion functions
 
 | Function | Description |
@@ -112,6 +87,70 @@ hist_cor(HistDAWass::BLOOD, var_name1 = "Cholesterol",
 | `RSDA_format` | Convert conventional data to RSDA format |
 | `set_variable_format` | One-hot encode set variables for RSDA format |
 | `aggregate_to_symbolic` | Convert traditional data to symbolic data format |
+
+### Interval Geometry
+
+| Function | Description |
+|---|---|
+| `int_width` | Width of each interval |
+| `int_radius` | Radius of each interval |
+| `int_center` | Center point of each interval |
+| `int_midrange` | Half-range of each interval |
+| `int_overlap` | Overlap measure between two interval variables |
+| `int_containment` | Check if one interval contains another |
+
+### Interval Position and Scale
+
+| Function | Description |
+|---|---|
+| `int_median` | Median of interval data |
+| `int_quantile` | Quantiles of interval data |
+| `int_range` | Range of interval data |
+| `int_iqr` | Interquartile range |
+| `int_mad` | Median absolute deviation |
+| `int_mode` | Mode of interval data |
+
+### Interval Shape
+
+| Function | Description |
+|---|---|
+| `int_skewness` | Skewness of interval data |
+| `int_kurtosis` | Kurtosis of interval data |
+| `int_symmetry` | Symmetry coefficient |
+| `int_tailedness` | Tailedness measure |
+
+### Interval Distance and Similarity
+
+| Function | Description |
+|---|---|
+| `int_dist` | Distance measures (GD, IY, L1, L2, CB, HD, EHD, WD, etc.) |
+| `int_jaccard` | Jaccard similarity coefficient |
+| `int_dice` | Dice similarity coefficient |
+| `int_cosine` | Cosine similarity |
+| `int_overlap_coefficient` | Overlap coefficient |
+| `int_tanimoto` | Tanimoto coefficient |
+| `int_similarity_matrix` | Pairwise similarity matrix |
+
+### Interval Robust Statistics
+
+| Function | Description |
+|---|---|
+| `int_trimmed_mean` | Trimmed mean |
+| `int_winsorized_mean` | Winsorized mean |
+| `int_trimmed_var` | Trimmed variance |
+| `int_winsorized_var` | Winsorized variance |
+
+### Interval Uncertainty and Variability
+
+| Function | Description |
+|---|---|
+| `int_entropy` | Shannon entropy |
+| `int_cv` | Coefficient of variation |
+| `int_dispersion` | Dispersion index |
+| `int_imprecision` | Imprecision based on interval width |
+| `int_granularity` | Variability in interval sizes |
+| `int_uniformity` | Uniformity of interval widths |
+| `int_information_content` | Normalized entropy |
 
 ### Utilities
 
@@ -121,6 +160,7 @@ hist_cor(HistDAWass::BLOOD, var_name1 = "Cholesterol",
 | `read_symbolic_csv` | Read symbolic data from CSV file |
 | `write_symbolic_csv` | Write symbolic data to CSV file |
 | `search_data` | Search available datasets by keyword or type |
+| `aggregate_to_symbolic` | Convert traditional data to symbolic data format |
 
 ## Datasets
 
