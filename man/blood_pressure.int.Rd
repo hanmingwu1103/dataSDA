@@ -20,6 +20,17 @@ data(blood_pressure.int)
 Interval-valued blood pressure and pulse rate measurements for
 15 patient groups.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 15 \cr
+  \strong{Variables (p)} \tab 3 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Regression
+}
+}
+
 \examples{
 data(blood_pressure.int)
 }

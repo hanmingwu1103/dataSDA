@@ -24,6 +24,17 @@ Interval-valued dataset of 18 Polish voivodships (administrative regions)
 with 9 socio-economic interval variables describing demographic and
 economic characteristics at the county (powiat) level.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 18 \cr
+  \strong{Variables (p)} \tab 9 \cr
+  \strong{Subject area} \tab Socioeconomics \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(polish_voivodships.int)
 }

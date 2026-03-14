@@ -20,8 +20,8 @@ options <- c("CM", "VM", "QM", "SE", "FV", "EJD", "GQ", "SPT")
 #'   \item \code{SE}: Set Expansion — uses endpoints only (quantiles with m = 1)
 #'   \item \code{FV}: Fitted Values — uses linear regression fitted values
 #'   \item \code{EJD}: Empirical Joint Distribution
-#'   \item \code{GQ}: Geometric-Quantile method
-#'   \item \code{SPT}: Symmetric Parametric Transformation
+#'   \item \code{GQ}: Symbolic Covariance method (Billard and Diday, 2006)
+#'   \item \code{SPT}: Total Sum of Products (Billard, 2008)
 #' }
 #' @author Han-Ming Wu
 #' @seealso int_mean int_var int_cov int_cor

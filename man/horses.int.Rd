@@ -28,6 +28,17 @@ minimum/maximum height, cost of mares, cost of fillies.
 Extensively used in SDA for demonstrating divisive clustering, distance
 computation, hierarchy/pyramid construction, and complete objects.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 8 \cr
+  \strong{Variables (p)} \tab 7 \cr
+  \strong{Subject area} \tab Zoology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(horses.int)
 }

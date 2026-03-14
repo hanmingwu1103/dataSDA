@@ -29,9 +29,20 @@ data(airline_flights.hist)
 Histogram-valued dataset of 16 airlines flying into JFK Airport.
 Six variables (Flight Time, Taxi In, Arrival Delay, Taxi Out,
 Departure Delay, Weather Delay) recorded as frequency distributions.
-This is the wide (flat table) format; see \code{\link{airline_flights2}}
+This is the wide (flat table) format; see \code{\link{airline_flights2.modal}}
 for the modal-valued version.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 16 \cr
+  \strong{Variables (p)} \tab 17 \cr
+  \strong{Subject area} \tab Transportation \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+}
+}
+
 \examples{
 data(airline_flights.hist)
 }

@@ -24,6 +24,17 @@ data(lynne1.int)
 Interval-valued dataset of 10 observations with pulse rate, systolic
 pressure, and diastolic pressure intervals.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 10 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Regression
+}
+}
+
 \examples{
 data(lynne1.int)
 }

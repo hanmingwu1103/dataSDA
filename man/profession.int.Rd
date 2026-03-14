@@ -21,6 +21,17 @@ Interval-valued data for 15 profession entries classified by work type
 (White Collar / Blue Collar). Each entry describes a specific profession
 with salary and working duration ranges.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 15 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Sociology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Classification
+}
+}
+
 \examples{
 data(profession.int)
 }

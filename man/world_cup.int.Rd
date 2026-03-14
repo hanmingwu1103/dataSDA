@@ -22,6 +22,17 @@ Interval-valued data for soccer teams grouped by World Cup qualification
 status (yes/no). Includes age, weight, height ranges and the covariance
 between weight and height.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 2 \cr
+  \strong{Variables (p)} \tab 8 \cr
+  \strong{Subject area} \tab Sports \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(world_cup.int)
 }

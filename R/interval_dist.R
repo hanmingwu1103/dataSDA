@@ -74,7 +74,12 @@ int_dist <- function(x, method = "euclidean", gamma = 0.5, q = 1, p = 2, ...) {
   
   if (is_symbolic) {
     .check_symbolic_tbl(x, "int_dist")
-    idata <- symbolic_tbl_to_idata(x)
+    # Filter to interval (symbolic_interval) columns only
+    int_cols <- sapply(x, inherits, "symbolic_interval")
+    if (!any(int_cols)) {
+      stop("int_dist: no interval (symbolic_interval) columns found in 'x'.", call. = FALSE)
+    }
+    idata <- symbolic_tbl_to_idata(x[, int_cols, drop = FALSE])
     x_array <- idata
   } else {
     if (is.null(x)) {
@@ -336,8 +341,10 @@ int_pairwise_dist <- function(x, var_name1, var_name2, method = "euclidean", ...
   .check_symbolic_tbl(x, "int_pairwise_dist")
   .check_var_name(var_name1, x, "int_pairwise_dist")
   .check_var_name(var_name2, x, "int_pairwise_dist")
-  
-  idata <- symbolic_tbl_to_idata(x)
+
+  # Filter to interval columns only for proper numeric conversion
+  int_cols <- sapply(x, inherits, "symbolic_interval")
+  idata <- symbolic_tbl_to_idata(x[, int_cols, drop = FALSE])
   n <- nrow(idata)
   
   data1 <- idata[, var_name1, , drop = FALSE]

@@ -28,6 +28,17 @@ stations in China. Each station has 12 monthly temperature intervals
 (minimum and maximum observed temperatures in degrees Celsius) and
 an elevation value in meters.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 15 \cr
+  \strong{Variables (p)} \tab 13 \cr
+  \strong{Subject area} \tab Climate \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(china_temp_monthly.int)
 }

@@ -23,6 +23,17 @@ data(loans_by_purpose.int)
 Interval-valued data for loan characteristics aggregated by their purpose.
 Original microdata contains 887,383 loan records from Kaggle.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 14 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Finance \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+}
+}
+
 \examples{
 data(loans_by_purpose.int)
 }

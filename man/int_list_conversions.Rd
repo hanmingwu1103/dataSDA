@@ -7,9 +7,9 @@
 int_list_conversions(from = NULL, to = NULL)
 }
 \arguments{
-\item{from}{source format (optional): "RSDA", "MM", "iGAP", "SODAS"}
+\item{from}{source format (optional): "RSDA", "MM", "iGAP", "ARRAY", "SODAS"}
 
-\item{to}{target format (optional): "RSDA", "MM", "iGAP", "SODAS"}
+\item{to}{target format (optional): "RSDA", "MM", "iGAP", "ARRAY", "SODAS"}
 }
 \value{
 A data.frame showing available conversions

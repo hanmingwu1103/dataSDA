@@ -29,6 +29,17 @@ ordinal HDI classification. Contains interval ranges for Women, Business
 and the Law Index Score and proportion of seats held by women in national
 parliaments.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 183 \cr
+  \strong{Variables (p)} \tab 6 \cr
+  \strong{Subject area} \tab Socioeconomics \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Classification
+}
+}
+
 \examples{
 data(hdi_gender.int)
 }

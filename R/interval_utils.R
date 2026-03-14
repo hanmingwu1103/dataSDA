@@ -56,8 +56,8 @@ Interval_to_Vertices <- function(idata) {
   p <- dim(idata)[[2]]
   XV <- matrix(0, nrow = n * 2^p, ncol = p)
 
-  C.code <- F
-  if (C.code == F) {
+  C.code <- FALSE
+  if (C.code == FALSE) {
     cc <- 1
     index <- matrix(0, nrow = n * 2^p, ncol = 2)
     for (i in 1:n) {
@@ -166,8 +166,8 @@ Interval_to_FV <- function(idata) {
 #' @param data The conventional data.
 #' @returns Data after cleaning variable names.
 #' @examples
-#' data(mushroom)
-#' mushroom.clean <- clean_colnames(data = mushroom)
+#' data(mushroom.int.mm)
+#' mushroom.clean <- clean_colnames(data = mushroom.int.mm)
 #' @export
 
 clean_colnames <- function(data){
@@ -191,8 +191,8 @@ clean_colnames <- function(data){
 #' @param var The name of the symbolic variable in the data.
 #' @returns Return a dataframe with a label added to the previous column of symbolic variable.
 #' @examples
-#' data("mushroom")
-#' mushroom.set <- set_variable_format(data = mushroom, location = 8, var = "Species")
+#' data("mushroom.int.mm")
+#' mushroom.set <- set_variable_format(data = mushroom.int.mm, location = 8, var = "Species")
 #' mushroom.tmp <- RSDA_format(data = mushroom.set, sym_type1 = c("I", "S"),
 #'                             location = c(25, 31), sym_type2 = c("S", "I", "I"),
 #'                             var = c("Species", "Stipe.Length_min", "Stipe.Thickness_min"))
@@ -308,8 +308,8 @@ RSDA_format <- function(data, sym_type1 = NULL, location = NULL,
 #' @param var The name of the set variable in the data.
 #' @returns Return a dataframe in which a set variable is converted to one-hot encoding.
 #' @examples
-#' data("mushroom")
-#' mushroom.set <- set_variable_format(data = mushroom, location = 8, var = "Species")
+#' data("mushroom.int.mm")
+#' mushroom.set <- set_variable_format(data = mushroom.int.mm, location = 8, var = "Species")
 #' @export
 set_variable_format <- function(data, location = NULL, var = NULL){
   .check_data_frame(data, "set_variable_format")

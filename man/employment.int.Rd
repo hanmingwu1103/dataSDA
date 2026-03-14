@@ -29,6 +29,17 @@ Interval-valued proportions for 12 sex-age population groups across
 employment variables (employment type, education, industry sector,
 occupation, marital status). Used for factorial discriminant analysis.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 12 \cr
+  \strong{Variables (p)} \tab 20 \cr
+  \strong{Subject area} \tab Economics \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Discriminant analysis, Classification
+}
+}
+
 \examples{
 data(employment.int)
 }

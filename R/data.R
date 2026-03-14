@@ -7,6 +7,7 @@
 ##   .mix   = mixed symbolic types
 ##   .distr = distribution-valued
 ##   .iGAP  = iGAP format
+##   .its   = interval time series
 ## ============================================================================
 
 ## ---------------------------------------------------------------------------
@@ -52,6 +53,14 @@
 #' }
 #' @examples
 #' data(lackinfo.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 50 \cr
+#'   \strong{Variables (p)} \tab 8 \cr
+#'   \strong{Subject area} \tab Education \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Regression
+#' }
 #' @keywords datasets interval
 #' @source \url{https://CRAN.R-project.org/package=IntervalQuestionStat}
 "lackinfo.int"
@@ -76,6 +85,14 @@
 #' }
 #' @examples
 #' data(ohtemp.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 161 \cr
+#'   \strong{Variables (p)} \tab 7 \cr
+#'   \strong{Subject area} \tab Climate \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Regression, Spatial analysis
+#' }
 #' @keywords datasets interval
 #' @source \url{https://CRAN.R-project.org/package=intkrige}
 "ohtemp.int"
@@ -100,6 +117,14 @@
 #' \emph{Journal of Statistical Computation and Simulation}, 81, 1727-1744.
 #' @examples
 #' data(soccer_bivar.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 20 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Sports \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Regression
+#' }
 #' @keywords datasets interval regression
 #' @source \url{https://CRAN.R-project.org/package=iRegression}
 "soccer_bivar.int"
@@ -127,6 +152,14 @@
 #' \emph{R Journal}, 13(2).
 #' @examples
 #' data(cars.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 27 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Automotive \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Classification
+#' }
 #' @keywords datasets interval classification
 #' @source \url{https://CRAN.R-project.org/package=MAINT.Data}
 "cars.int"
@@ -162,6 +195,14 @@
 #' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
 #' @examples
 #' data(china_temp.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 899 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Climate \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering
 #' @source \url{https://CRAN.R-project.org/package=MAINT.Data}
 "china_temp.int"
@@ -183,6 +224,14 @@
 #' @usage data(loans_by_purpose.int)
 #' @examples
 #' data(loans_by_purpose.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 14 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets interval
 #' @source \url{https://CRAN.R-project.org/package=MAINT.Data}
 "loans_by_purpose.int"
@@ -208,6 +257,14 @@
 #' MAINT.Data: Modelling and Analysing Interval Data in R. \emph{R Journal}, 13(2).
 #' @examples
 #' data(nycflights.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 142 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Transportation \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Regression, Descriptive statistics
+#' }
 #' @keywords datasets interval
 #' @source \url{https://CRAN.R-project.org/package=MAINT.Data}
 "nycflights.int"
@@ -216,7 +273,7 @@
 ## SECTION 2: Datasets from Billard and Diday (2006)
 ## ---------------------------------------------------------------------------
 
-#' @name mushroom
+#' @name mushroom.int.mm
 #' @title Mushroom Species Dataset (Original Format)
 #' @description
 #' Interval-valued data for 23 mushroom species of the genus Agaricus
@@ -235,20 +292,28 @@
 #'     \item \code{Edibility}: Edibility code (U/Y/N/T).
 #' }
 #'
-#' @usage data(mushroom)
+#' @usage data(mushroom.int.mm)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 3.2.
 #' @examples
-#' data(mushroom)
+#' data(mushroom.int.mm)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 23 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Biology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets interval
 #' @source Billard, L. and Diday, E. (2006), Table 3.2.
-"mushroom"
+"mushroom.int.mm"
 
 #' @name mushroom.int
 #' @title Mushroom Species Interval Dataset
 #' @description
-#' Interval-valued version of the mushroom dataset. See \code{\link{mushroom}}.
+#' Interval-valued version of the mushroom dataset. See \code{\link{mushroom.int.mm}}.
 #'
 #' @format A symbolic data frame (\code{symbolic_tbl}) with 23 observations and 5 variables:
 #' \itemize{
@@ -263,6 +328,14 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 3.2.
 #' @examples
 #' data(mushroom.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 23 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Biology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets interval
 "mushroom.int"
 
@@ -286,6 +359,14 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
 #' data(age_cholesterol_weight.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 7 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Regression
+#' }
 #' @keywords datasets interval
 "age_cholesterol_weight.int"
 
@@ -295,7 +376,7 @@
 #' Histogram-valued dataset of 16 airlines flying into JFK Airport.
 #' Six variables (Flight Time, Taxi In, Arrival Delay, Taxi Out,
 #' Departure Delay, Weather Delay) recorded as frequency distributions.
-#' This is the wide (flat table) format; see \code{\link{airline_flights2}}
+#' This is the wide (flat table) format; see \code{\link{airline_flights2.modal}}
 #' for the modal-valued version.
 #'
 #' @format A data frame with 16 observations (Airline1--Airline16) and
@@ -320,10 +401,18 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.7.
 #' @examples
 #' data(airline_flights.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 16 \cr
+#'   \strong{Variables (p)} \tab 17 \cr
+#'   \strong{Subject area} \tab Transportation \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets histogram
 "airline_flights.hist"
 
-#' @name airline_flights2
+#' @name airline_flights2.modal
 #' @title JFK Airport Airline Flights Modal-Valued Dataset
 #' @description
 #' Modal-valued version of the airline flights dataset.
@@ -340,13 +429,21 @@
 #'     \item \code{WeatherDelay}: Modal distribution over weather delay bins.
 #' }
 #'
-#' @usage data(airline_flights2)
+#' @usage data(airline_flights2.modal)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.7.
 #' @examples
-#' data(airline_flights2)
+#' data(airline_flights2.modal)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 16 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Transportation \cr
+#'   \strong{Symbolic format} \tab Modal \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets modal
-"airline_flights2"
+"airline_flights2.modal"
 
 #' @name baseball.int
 #' @title Baseball Teams Interval Dataset
@@ -366,6 +463,14 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
 #' data(baseball.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 19 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Sports \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets interval
 "baseball.int"
 
@@ -387,6 +492,14 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.5.
 #' @examples
 #' data(bird.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 20 \cr
+#'   \strong{Variables (p)} \tab 2 \cr
+#'   \strong{Subject area} \tab Zoology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets interval
 "bird.mix"
 
@@ -409,6 +522,14 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
 #' data(blood_pressure.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 15 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Regression
+#' }
 #' @keywords datasets interval
 "blood_pressure.int"
 
@@ -432,15 +553,23 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
 #' data(car.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 8 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Automotive \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets interval
 "car.int"
 
-#' @name crime
+#' @name crime.modal
 #' @title Crime Demographics Dataset
 #' @description
 #' Modal-valued dataset of 15 gangs described by probability distributions
 #' over crime type, gender, and age group. This is the wide (flat table)
-#' format; see \code{\link{crime2}} for the modal-valued version.
+#' format; see \code{\link{crime2.modal}} for the modal-valued version.
 #'
 #' @format A data frame with 15 observations (gang1--gang15) and 7 numeric
 #' columns representing 3 modal variables in wide format:
@@ -453,19 +582,27 @@
 #'           Distribution over age groups (2 bins).
 #' }
 #'
-#' @usage data(crime)
+#' @usage data(crime.modal)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
-#' data(crime)
+#' data(crime.modal)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 15 \cr
+#'   \strong{Variables (p)} \tab 7 \cr
+#'   \strong{Subject area} \tab Criminology \cr
+#'   \strong{Symbolic format} \tab Modal \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets modal
-"crime"
+"crime.modal"
 
-#' @name crime2
+#' @name crime2.modal
 #' @title Crime Demographics Modal-Valued Dataset
 #' @description
 #' Modal-valued version of the crime demographics dataset.
-#' See \code{\link{crime}} for the wide-format version.
+#' See \code{\link{crime.modal}} for the wide-format version.
 #'
 #' @format A symbolic data frame (\code{symbolic_tbl}) with 15 observations and
 #' 3 modal-valued variables:
@@ -476,13 +613,21 @@
 #'     \item \code{Age}: Modal distribution over age groups (<20, >=20).
 #' }
 #'
-#' @usage data(crime2)
+#' @usage data(crime2.modal)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
-#' data(crime2)
+#' data(crime2.modal)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 15 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Criminology \cr
+#'   \strong{Symbolic format} \tab Modal \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets modal
-"crime2"
+"crime2.modal"
 
 #' @name finance.int
 #' @title Finance Sector Interval Dataset
@@ -507,10 +652,18 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 5.2.
 #' @examples
 #' data(finance.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 14 \cr
+#'   \strong{Variables (p)} \tab 7 \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab PCA
+#' }
 #' @keywords datasets interval PCA
 "finance.int"
 
-#' @name fuel_consumption
+#' @name fuel_consumption.modal
 #' @title Fuel Consumption by Region Dataset
 #' @description
 #' Modal-valued dataset describing fuel consumption patterns across 10
@@ -525,13 +678,21 @@
 #'           (gas, oil, electric, other).
 #' }
 #'
-#' @usage data(fuel_consumption)
+#' @usage data(fuel_consumption.modal)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 3.7.
 #' @examples
-#' data(fuel_consumption)
+#' data(fuel_consumption.modal)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Energy \cr
+#'   \strong{Symbolic format} \tab Modal \cr
+#'   \strong{Analytical tasks} \tab Regression
+#' }
 #' @keywords datasets modal regression
-"fuel_consumption"
+"fuel_consumption.modal"
 
 #' @name health_insurance.mix
 #' @title Health Insurance Mixed Symbolic Dataset
@@ -539,7 +700,7 @@
 #' Classical (microdata) health insurance dataset of 51 individual patient
 #' records with 30 variables including demographics, clinical measurements,
 #' and diagnostic indicators. This is the raw data underlying the
-#' symbolic \code{\link{health_insurance2}} dataset.
+#' symbolic \code{\link{health_insurance2.modal}} dataset.
 #'
 #' @format A data frame with 51 observations and 30 variables (Y1--Y30):
 #' \itemize{
@@ -580,10 +741,18 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Tables 2.1-2.2.
 #' @examples
 #' data(health_insurance.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 51 \cr
+#'   \strong{Variables (p)} \tab 30 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Classical (microdata) \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Aggregation
+#' }
 #' @keywords datasets mixed symbolic
 "health_insurance.mix"
 
-#' @name health_insurance2
+#' @name health_insurance2.modal
 #' @title Health Insurance Modal-Valued Dataset
 #' @description
 #' Modal-valued symbolic version of the health insurance dataset, aggregated
@@ -601,13 +770,21 @@
 #'     \item \code{Cholesterol}: Modal distribution over cholesterol bins (mg/dL).
 #' }
 #'
-#' @usage data(health_insurance2)
+#' @usage data(health_insurance2.modal)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.2b.
 #' @examples
-#' data(health_insurance2)
+#' data(health_insurance2.modal)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 6 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Modal \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets modal
-"health_insurance2"
+"health_insurance2.modal"
 
 #' @name hierarchy
 #' @title Hierarchy Dataset
@@ -632,6 +809,14 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.15.
 #' @examples
 #' data(hierarchy)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 20 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Methodology \cr
+#'   \strong{Symbolic format} \tab Classical (microdata) \cr
+#'   \strong{Analytical tasks} \tab Aggregation, Descriptive statistics
+#' }
 #' @keywords datasets hierarchical
 "hierarchy"
 
@@ -656,6 +841,14 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 2.15.
 #' @examples
 #' data(hierarchy.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 20 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Methodology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Regression
+#' }
 #' @keywords datasets interval
 "hierarchy.int"
 
@@ -686,14 +879,22 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 7.14.
 #' @examples
 #' data(horses.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 8 \cr
+#'   \strong{Variables (p)} \tab 7 \cr
+#'   \strong{Subject area} \tab Zoology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering
 "horses.int"
 
-#' @name occupations
+#' @name occupations.modal
 #' @title Occupation Salaries Dataset
 #' @description
 #' Modal-valued dataset of 9 occupations with gender and salary distributions.
-#' This is the wide (flat table) format; see \code{\link{occupations2}} for the
+#' This is the wide (flat table) format; see \code{\link{occupations2.modal}} for the
 #' modal-valued version.
 #'
 #' @format A data frame with 9 observations and 11 columns:
@@ -705,19 +906,27 @@
 #'     \item \code{n}: Sample size (integer).
 #' }
 #'
-#' @usage data(occupations)
+#' @usage data(occupations.modal)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
-#' data(occupations)
+#' data(occupations.modal)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 9 \cr
+#'   \strong{Variables (p)} \tab 11 \cr
+#'   \strong{Subject area} \tab Sociology \cr
+#'   \strong{Symbolic format} \tab Modal \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets modal
-"occupations"
+"occupations.modal"
 
-#' @name occupations2
+#' @name occupations2.modal
 #' @title Occupation Salaries Modal-Valued Dataset
 #' @description
 #' Modal-valued version of the occupation salaries dataset.
-#' See \code{\link{occupations}} for the wide-format version.
+#' See \code{\link{occupations.modal}} for the wide-format version.
 #'
 #' @format A symbolic data frame (\code{symbolic_tbl}) with 9 observations and 4 variables:
 #' \itemize{
@@ -727,13 +936,21 @@
 #'     \item \code{n}: Sample size (numeric).
 #' }
 #'
-#' @usage data(occupations2)
+#' @usage data(occupations2.modal)
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
-#' data(occupations2)
+#' data(occupations2.modal)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 9 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Sociology \cr
+#'   \strong{Symbolic format} \tab Modal \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets modal
-"occupations2"
+"occupations2.modal"
 
 #' @name profession.int
 #' @title Profession Work Salary Time Interval Dataset
@@ -755,6 +972,14 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
 #' data(profession.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 15 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Sociology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Classification
+#' }
 #' @keywords datasets interval
 "profession.int"
 
@@ -777,6 +1002,14 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
 #' data(veterinary.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Zoology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets interval
 "veterinary.int"
 
@@ -810,6 +1043,14 @@
 #' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
 #' @examples
 #' data(abalone.iGAP)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 24 \cr
+#'   \strong{Variables (p)} \tab 7 \cr
+#'   \strong{Subject area} \tab Marine biology \cr
+#'   \strong{Symbolic format} \tab Interval (iGAP) \cr
+#'   \strong{Analytical tasks} \tab Clustering, Visualization
+#' }
 #' @keywords datasets interval iGAP
 #' @source UCI Machine Learning Repository.
 "abalone.iGAP"
@@ -840,6 +1081,14 @@
 #' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
 #' @examples
 #' data(abalone.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 24 \cr
+#'   \strong{Variables (p)} \tab 14 \cr
+#'   \strong{Subject area} \tab Marine biology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering, Visualization
+#' }
 #' @keywords datasets interval
 #' @source UCI Machine Learning Repository.
 "abalone.int"
@@ -869,6 +1118,14 @@
 #' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
 #' @examples
 #' data(face.iGAP)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 27 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Biometrics \cr
+#'   \strong{Symbolic format} \tab Interval (iGAP) \cr
+#'   \strong{Analytical tasks} \tab Classification, Visualization
+#' }
 #' @keywords datasets interval iGAP
 "face.iGAP"
 
@@ -913,6 +1170,14 @@
 #' Analysis and the SODAS Software}. Wiley. Table 13.7, p.253.
 #' @examples
 #' data(oils.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 8 \cr
+#'   \strong{Variables (p)} \tab 9 \cr
+#'   \strong{Subject area} \tab Chemistry \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering
 "oils.int"
 
@@ -948,6 +1213,14 @@
 #' Table 2.24, p.63.
 #' @examples
 #' data(teams.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 5 \cr
+#'   \strong{Variables (p)} \tab 7 \cr
+#'   \strong{Subject area} \tab Sports \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab PCA
+#' }
 #' @keywords datasets interval PCA
 "teams.int"
 
@@ -981,6 +1254,14 @@
 #' Table 2.25, p.64.
 #' @examples
 #' data(tennis.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 4 \cr
+#'   \strong{Variables (p)} \tab 7 \cr
+#'   \strong{Subject area} \tab Sports \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering
 "tennis.int"
 
@@ -1015,6 +1296,14 @@
 #' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
 #' @examples
 #' data(bats.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 21 \cr
+#'   \strong{Variables (p)} \tab 9 \cr
+#'   \strong{Subject area} \tab Zoology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering, Visualization
+#' }
 #' @keywords datasets interval clustering visualization
 "bats.int"
 
@@ -1051,6 +1340,14 @@
 #' Tables 2.3-2.4.
 #' @examples
 #' data(credit_card.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 6 \cr
+#'   \strong{Variables (p)} \tab 11 \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets interval
 "credit_card.int"
 
@@ -1081,6 +1378,14 @@
 #' Table 2.8.
 #' @examples
 #' data(energy_consumption.distr)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 5 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Energy \cr
+#'   \strong{Symbolic format} \tab Distribution \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets distribution
 "energy_consumption.distr"
 
@@ -1109,6 +1414,14 @@
 #' Table 5.1, p.146.
 #' @examples
 #' data(trivial_intervals.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 5 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Methodology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab PCA
+#' }
 #' @keywords datasets interval PCA
 "trivial_intervals.int"
 
@@ -1138,6 +1451,14 @@
 #' Analysis and the SODAS Software}. Wiley. Table 1.2, p.6.
 #' @examples
 #' data(bird_species.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 3 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Zoology \cr
+#'   \strong{Symbolic format} \tab Mixed (interval, categorical) \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets mixed interval categorical
 "bird_species.mix"
 
@@ -1175,6 +1496,14 @@
 #' the Wasserstein metric. \emph{Proc. COMPSTAT 2008}, pp. 705-712.
 #' @examples
 #' data(temperature_city.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 6 \cr
+#'   \strong{Variables (p)} \tab 13 \cr
+#'   \strong{Subject area} \tab Climate \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering distance
 "temperature_city.int"
 
@@ -1206,6 +1535,14 @@
 #' Table 2.19.
 #' @examples
 #' data(bird_species_extended.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 3 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Zoology \cr
+#'   \strong{Symbolic format} \tab Mixed (interval, categorical, distribution) \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets mixed interval histogram categorical
 "bird_species_extended.mix"
 
@@ -1242,6 +1579,14 @@
 #' Analysis and the SODAS Software}. Wiley. Table 18.1.
 #' @examples
 #' data(employment.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 12 \cr
+#'   \strong{Variables (p)} \tab 20 \cr
+#'   \strong{Subject area} \tab Economics \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Discriminant analysis, Classification
+#' }
 #' @keywords datasets interval discriminant
 "employment.int"
 
@@ -1272,6 +1617,14 @@
 #' Analysis and the SODAS Software}. Wiley. Table 1.21, p.19.
 #' @examples
 #' data(town_services.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 3 \cr
+#'   \strong{Variables (p)} \tab 8 \cr
+#'   \strong{Subject area} \tab Public services \cr
+#'   \strong{Symbolic format} \tab Mixed (interval, modal, multi-valued) \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets mixed interval modal multi-valued
 "town_services.mix"
 
@@ -1301,14 +1654,22 @@
 #' Analysis and the SODAS Software}. Wiley. Table 1.9, p.13.
 #' @examples
 #' data(world_cup.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 2 \cr
+#'   \strong{Variables (p)} \tab 8 \cr
+#'   \strong{Subject area} \tab Sports \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets interval
 "world_cup.int"
 
 ## ---------------------------------------------------------------------------
-## 4.14 mushroom_fuzzy
+## 4.14 mushroom_fuzzy.mix
 ## ---------------------------------------------------------------------------
 
-#' @name mushroom_fuzzy
+#' @name mushroom_fuzzy.mix
 #' @title Mushroom Species Fuzzy/Symbolic Dataset
 #' @description
 #' Extended mushroom data with fuzzy stipe thickness (Small/Average/Large),
@@ -1328,14 +1689,22 @@
 #'     \item \code{cap_colour}: Cap colour (character).
 #' }
 #'
-#' @usage data(mushroom_fuzzy)
+#' @usage data(mushroom_fuzzy.mix)
 #' @references
 #' Diday, E. and Noirhomme-Fraiture, M. (Eds.) (2008). \emph{Symbolic Data
 #' Analysis and the SODAS Software}. Wiley. Tables 1.14-1.16.
 #' @examples
-#' data(mushroom_fuzzy)
+#' data(mushroom_fuzzy.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 4 \cr
+#'   \strong{Variables (p)} \tab 9 \cr
+#'   \strong{Subject area} \tab Biology \cr
+#'   \strong{Symbolic format} \tab Fuzzy \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets fuzzy symbolic
-"mushroom_fuzzy"
+"mushroom_fuzzy.mix"
 
 ## ---------------------------------------------------------------------------
 ## 4.15 bank_rates
@@ -1364,6 +1733,14 @@
 #' Table 2.9.
 #' @examples
 #' data(bank_rates)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 4 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Symbolic (model-valued) \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets symbolic model
 "bank_rates"
 
@@ -1390,6 +1767,14 @@
 #' Table 2.20.
 #' @examples
 #' data(lung_cancer.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 2 \cr
+#'   \strong{Variables (p)} \tab 2 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets histogram
 "lung_cancer.hist"
 
@@ -1418,6 +1803,14 @@
 #' Table 2.21.
 #' @examples
 #' data(acid_rain.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 2 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Environment \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets interval
 "acid_rain.int"
 
@@ -1462,6 +1855,14 @@
 #' \emph{Neurocomputing}, 617, 128954.
 #' @examples
 #' data(freshwater_fish.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 12 \cr
+#'   \strong{Variables (p)} \tab 14 \cr
+#'   \strong{Subject area} \tab Biology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering
 #' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
 "freshwater_fish.int"
@@ -1494,6 +1895,14 @@
 #' \emph{Neurocomputing}, 617, 128954.
 #' @examples
 #' data(fungi.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 55 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Biology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering
 #' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
 "fungi.int"
@@ -1526,6 +1935,14 @@
 #' \emph{Neurocomputing}, 617, 128954.
 #' @examples
 #' data(iris.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 30 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Botany \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering
 #' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
 "iris.int"
@@ -1556,6 +1973,14 @@
 #' \emph{Neurocomputing}, 617, 128954.
 #' @examples
 #' data(water_flow.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 316 \cr
+#'   \strong{Variables (p)} \tab 48 \cr
+#'   \strong{Subject area} \tab Engineering \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering
 #' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
 "water_flow.int"
@@ -1585,6 +2010,14 @@
 #' \emph{Neurocomputing}, 617, 128954.
 #' @examples
 #' data(wine.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 33 \cr
+#'   \strong{Variables (p)} \tab 10 \cr
+#'   \strong{Subject area} \tab Food science \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering
 #' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
 "wine.int"
@@ -1621,6 +2054,14 @@
 #' \emph{Neurocomputing}, 617, 128954.
 #' @examples
 #' data(car_models.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 33 \cr
+#'   \strong{Variables (p)} \tab 9 \cr
+#'   \strong{Subject area} \tab Automotive \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering, Classification
+#' }
 #' @keywords datasets interval clustering
 #' @source \url{https://github.com/Natandradesa/Kernel-Clustering-for-Interval-Data}
 "car_models.int"
@@ -1656,6 +2097,14 @@
 #' \emph{Expert Systems with Applications}, 238, 121825.
 #' @examples
 #' data(hdi_gender.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 183 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Socioeconomics \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Classification
+#' }
 #' @keywords datasets interval ordinal
 #' @source \url{https://github.com/aleixalcacer/OCFIVD}
 "hdi_gender.int"
@@ -1690,6 +2139,14 @@
 #' des donnees symboliques. Doctoral Thesis, Universite Paris IX-Dauphine.
 #' @examples
 #' data(cardiological.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 44 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets interval
 #' @source Extracted from RSDA package (\code{cardiologicalv2}).
 "cardiological.int"
@@ -1726,6 +2183,14 @@
 #' treated patients. \emph{J. Urology}, 141(5), 1076-1083.
 #' @examples
 #' data(prostate.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 97 \cr
+#'   \strong{Variables (p)} \tab 9 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Regression
+#' }
 #' @keywords datasets interval medical
 #' @source Extracted from RSDA package (\code{int_prost_train}, \code{int_prost_test}).
 "prostate.int"
@@ -1761,6 +2226,14 @@
 #' des donnees symboliques. Doctoral Thesis, Universite Paris IX-Dauphine.
 #' @examples
 #' data(uscrime.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 46 \cr
+#'   \strong{Variables (p)} \tab 102 \cr
+#'   \strong{Subject area} \tab Criminology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Regression, Clustering
+#' }
 #' @keywords datasets interval crime
 #' @source Extracted from RSDA package (\code{uscrime_int}).
 "uscrime.int"
@@ -1791,6 +2264,14 @@
 #' and Data Analysis}, pp. 197-208. Springer.
 #' @examples
 #' data(hardwood.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 5 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Forestry \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets histogram
 #' @source Extracted from RSDA package (\code{hardwoodBrito}).
 "hardwood.hist"
@@ -1818,6 +2299,14 @@
 #' Data. R package.
 #' @examples
 #' data(synthetic_clusters.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 125 \cr
+#'   \strong{Variables (p)} \tab 7 \cr
+#'   \strong{Subject area} \tab Methodology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval clustering synthetic
 #' @source Extracted from symbolicDA package (\code{data_symbolic}).
 "synthetic_clusters.int"
@@ -1861,6 +2350,14 @@
 #' ggESDA package. \emph{Journal of Statistical Software}.
 #' @examples
 #' data(environment.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 14 \cr
+#'   \strong{Variables (p)} \tab 17 \cr
+#'   \strong{Subject area} \tab Environment \cr
+#'   \strong{Symbolic format} \tab Mixed (interval, modal) \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets mixed interval modal
 #' @source Extracted from ggESDA package (\code{Environment}).
 "environment.mix"
@@ -1888,6 +2385,14 @@
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 3.10.
 #' @examples
 #' data(weight_age.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 7 \cr
+#'   \strong{Variables (p)} \tab 1 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets histogram
 #' @source Billard, L. and Diday, E. (2006), Table 3.10.
 "weight_age.hist"
@@ -1914,6 +2419,14 @@
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 3.12.
 #' @examples
 #' data(hospital.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 15 \cr
+#'   \strong{Variables (p)} \tab 1 \cr
+#'   \strong{Subject area} \tab Healthcare \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets histogram
 #' @source Billard, L. and Diday, E. (2006), Table 3.12.
 "hospital.hist"
@@ -1942,6 +2455,14 @@
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 4.5.
 #' @examples
 #' data(cholesterol.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 14 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets histogram medical
 #' @source Billard, L. and Diday, E. (2006), Table 4.5.
 "cholesterol.hist"
@@ -1970,6 +2491,14 @@
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 4.6.
 #' @examples
 #' data(hemoglobin.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 14 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets histogram medical
 #' @source Billard, L. and Diday, E. (2006), Table 4.6.
 "hemoglobin.hist"
@@ -1998,6 +2527,14 @@
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 4.14.
 #' @examples
 #' data(hematocrit.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 14 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets histogram medical
 #' @source Billard, L. and Diday, E. (2006), Table 4.14.
 "hematocrit.hist"
@@ -2025,6 +2562,14 @@
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 6.8.
 #' @examples
 #' data(hematocrit_hemoglobin.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 2 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Regression
+#' }
 #' @keywords datasets histogram medical regression
 #' @source Billard, L. and Diday, E. (2006), Table 6.8.
 "hematocrit_hemoglobin.hist"
@@ -2055,6 +2600,14 @@
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 3.7.
 #' @examples
 #' data(energy_usage.distr)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 2 \cr
+#'   \strong{Subject area} \tab Energy \cr
+#'   \strong{Symbolic format} \tab Distribution \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets distribution
 #' @source Billard, L. and Diday, E. (2006), Table 3.7.
 "energy_usage.distr"
@@ -2098,6 +2651,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 3-16.
 #' @examples
 #' data(genome_abundances.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 14 \cr
+#'   \strong{Variables (p)} \tab 11 \cr
+#'   \strong{Subject area} \tab Genomics \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets interval genomics
 #' @source Billard, L. and Diday, E. (2020), Table 3-16.
 "genome_abundances.int"
@@ -2131,6 +2692,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 7-9.
 #' @examples
 #' data(china_temp_monthly.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 15 \cr
+#'   \strong{Variables (p)} \tab 13 \cr
+#'   \strong{Subject area} \tab Climate \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval temperature climate
 #' @source Billard, L. and Diday, E. (2020), Table 7-9.
 "china_temp_monthly.int"
@@ -2159,6 +2728,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 8-10.
 #' @examples
 #' data(ecoli_routes.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 9 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Biology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval biology
 #' @source Billard, L. and Diday, E. (2020), Table 8-10.
 "ecoli_routes.int"
@@ -2194,6 +2771,14 @@
 #' Original data from the MAINT.Data R package.
 #' @examples
 #' data(loans_by_risk.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 35 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Classification, Clustering
+#' }
 #' @keywords datasets interval finance
 #' @source MAINT.Data R package (\code{LoansbyRisk_minmax} dataset).
 "loans_by_risk.int"
@@ -2226,6 +2811,14 @@
 #' Optimal Clustering Procedure for a Data Set}. R package.
 #' @examples
 #' data(polish_voivodships.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 18 \cr
+#'   \strong{Variables (p)} \tab 9 \cr
+#'   \strong{Subject area} \tab Socioeconomics \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets interval socioeconomic
 #' @source clusterSim R package (\code{data_pathtinger} dataset).
 "polish_voivodships.int"
@@ -2258,6 +2851,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 4-10.
 #' @examples
 #' data(iris_species.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 3 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Botany \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets histogram iris
 #' @source Billard, L. and Diday, E. (2020), Table 4-10.
 "iris_species.hist"
@@ -2290,6 +2891,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 5-1.
 #' @examples
 #' data(flights_detail.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 16 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Transportation \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets histogram flights
 #' @source Billard, L. and Diday, E. (2020), Table 5-1.
 "flights_detail.hist"
@@ -2322,6 +2931,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 7-21.
 #' @examples
 #' data(cover_types.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 7 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Forestry \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering, Classification
+#' }
 #' @keywords datasets histogram forestry
 #' @source Billard, L. and Diday, E. (2020), Table 7-21.
 "cover_types.hist"
@@ -2349,6 +2966,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 4-14.
 #' @examples
 #' data(glucose.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 4 \cr
+#'   \strong{Variables (p)} \tab 1 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets histogram medical
 #' @source Billard, L. and Diday, E. (2020), Table 4-14.
 "glucose.hist"
@@ -2378,6 +3003,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 7-18.
 #' @examples
 #' data(state_income.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 6 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Economics \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets histogram income
 #' @source Billard, L. and Diday, E. (2020), Table 7-18.
 "state_income.hist"
@@ -2406,6 +3039,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 7-26.
 #' @examples
 #' data(simulated.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 5 \cr
+#'   \strong{Variables (p)} \tab 2 \cr
+#'   \strong{Subject area} \tab Methodology \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets histogram simulated
 #' @source Billard, L. and Diday, E. (2020), Table 7-26.
 "simulated.hist"
@@ -2440,6 +3081,14 @@
 #' Original data from the HistDAWass R package (\code{Age_Pyramids_2014}).
 #' @examples
 #' data(age_pyramids.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 229 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Demographics \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets histogram demographics
 #' @source HistDAWass R package (\code{Age_Pyramids_2014} dataset).
 "age_pyramids.hist"
@@ -2475,6 +3124,14 @@
 #' reduced from 100 quantile bins to 10 decile bins.
 #' @examples
 #' data(ozone.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 84 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Environment \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Regression, Clustering
+#' }
 #' @keywords datasets histogram weather environment
 #' @source HistDAWass R package (\code{OzoneH} dataset).
 "ozone.hist"
@@ -2509,6 +3166,14 @@
 #' Original data from the HistDAWass R package (\code{Agronomique} dataset).
 #' @examples
 #' data(french_agriculture.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 22 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Agriculture \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Regression, Clustering
+#' }
 #' @keywords datasets histogram agriculture economics
 #' @source HistDAWass R package (\code{Agronomique} dataset).
 "french_agriculture.hist"
@@ -2542,6 +3207,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 6-1.
 #' @examples
 #' data(household_characteristics.distr)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 12 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Socioeconomics \cr
+#'   \strong{Symbolic format} \tab Distribution \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets distribution household
 #' @source Billard, L. and Diday, E. (2020), Table 6-1.
 "household_characteristics.distr"
@@ -2574,6 +3247,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 6-16.
 #' @examples
 #' data(county_income_gender.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 12 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Economics \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets histogram income gender
 #' @source Billard, L. and Diday, E. (2020), Table 6-16.
 "county_income_gender.hist"
@@ -2604,6 +3285,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 2-5.
 #' @examples
 #' data(joggers.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 2 \cr
+#'   \strong{Subject area} \tab Sports \cr
+#'   \strong{Symbolic format} \tab Mixed (interval, histogram) \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets mixed interval histogram
 #' @source Billard, L. and Diday, E. (2020), Table 2-5.
 "joggers.mix"
@@ -2639,6 +3328,14 @@
 #' Symbolic Data}. Wiley, Chichester. Table 7-23.
 #' @examples
 #' data(census.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 6 \cr
+#'   \strong{Subject area} \tab Demographics \cr
+#'   \strong{Symbolic format} \tab Mixed (interval, histogram, distribution, multi-valued) \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets mixed interval histogram distribution
 #' @source Billard, L. and Diday, E. (2020), Table 7-23.
 "census.mix"
@@ -2678,6 +3375,14 @@
 #' Original data from the ggESDA R package (\code{mtcars.i} dataset).
 #' @examples
 #' data(mtcars.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 5 \cr
+#'   \strong{Variables (p)} \tab 11 \cr
+#'   \strong{Subject area} \tab Automotive \cr
+#'   \strong{Symbolic format} \tab Mixed (interval, modal) \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets mixed interval modal
 #' @source ggESDA R package (\code{mtcars.i} dataset).
 "mtcars.mix"
@@ -2721,6 +3426,14 @@
 #' Original data from the intkrige R package (\code{utsnow} dataset).
 #' @examples
 #' data(utsnow.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 415 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Climate \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Regression, Spatial analysis
+#' }
 #' @keywords datasets interval
 #' @source intkrige R package (\code{utsnow} dataset).
 "utsnow.int"
@@ -2752,6 +3465,14 @@
 #' Original data from the RSDA R package (\code{Lynne1} dataset).
 #' @examples
 #' data(lynne1.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Regression
+#' }
 #' @keywords datasets interval
 #' @source RSDA R package (\code{Lynne1} dataset).
 "lynne1.int"
@@ -2786,6 +3507,14 @@
 #' (\code{LoansbyRiskLvs_qntlDt} dataset).
 #' @examples
 #' data(loans_by_risk_quantile.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 35 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Classification, Clustering
+#' }
 #' @keywords datasets interval
 #' @source MAINT.Data R package (\code{LoansbyRiskLvs_qntlDt} dataset).
 "loans_by_risk_quantile.int"
@@ -2813,6 +3542,14 @@
 #' Original data from the GPCSIV R package (\code{Judge1} dataset).
 #' @examples
 #' data(judge1.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 6 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Methodology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab PCA
+#' }
 #' @keywords datasets interval
 #' @source GPCSIV R package (\code{Judge1} dataset).
 "judge1.int"
@@ -2836,6 +3573,14 @@
 #' Original data from the GPCSIV R package (\code{Judge2} dataset).
 #' @examples
 #' data(judge2.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 6 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Methodology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab PCA
+#' }
 #' @keywords datasets interval
 #' @source GPCSIV R package (\code{Judge2} dataset).
 "judge2.int"
@@ -2859,6 +3604,14 @@
 #' Original data from the GPCSIV R package (\code{Judge3} dataset).
 #' @examples
 #' data(judge3.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 6 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Methodology \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab PCA
+#' }
 #' @keywords datasets interval
 #' @source GPCSIV R package (\code{Judge3} dataset).
 "judge3.int"
@@ -2887,6 +3640,14 @@
 #' Original data from the GPCSIV R package (\code{video1} dataset).
 #' @examples
 #' data(video1.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Digital media \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab PCA
+#' }
 #' @keywords datasets interval
 #' @source GPCSIV R package (\code{video1} dataset).
 "video1.int"
@@ -2911,6 +3672,14 @@
 #' Original data from the GPCSIV R package (\code{video2} dataset).
 #' @examples
 #' data(video2.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Digital media \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab PCA
+#' }
 #' @keywords datasets interval
 #' @source GPCSIV R package (\code{video2} dataset).
 "video2.int"
@@ -2935,6 +3704,14 @@
 #' Original data from the GPCSIV R package (\code{video3} dataset).
 #' @examples
 #' data(video3.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 5 \cr
+#'   \strong{Subject area} \tab Digital media \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab PCA
+#' }
 #' @keywords datasets interval
 #' @source GPCSIV R package (\code{video3} dataset).
 "video3.int"
@@ -2975,6 +3752,14 @@
 #' (\url{https://qualar.apambiente.pt/}).
 #' @examples
 #' data(lisbon_air_quality.int)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 1096 \cr
+#'   \strong{Variables (p)} \tab 8 \cr
+#'   \strong{Subject area} \tab Environment \cr
+#'   \strong{Symbolic format} \tab Interval \cr
+#'   \strong{Analytical tasks} \tab Regression, Time series
+#' }
 #' @keywords datasets interval
 #' @source QualAr, Entrecampos station, Lisbon, Portugal.
 "lisbon_air_quality.int"
@@ -3013,6 +3798,14 @@
 #' Data}. R package.
 #' @examples
 #' data(polish_cars.mix)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 30 \cr
+#'   \strong{Variables (p)} \tab 12 \cr
+#'   \strong{Subject area} \tab Automotive \cr
+#'   \strong{Symbolic format} \tab Mixed (interval, multinomial) \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets mixed interval multinomial
 #' @source symbolicDA R package (\code{cars} dataset).
 "polish_cars.mix"
@@ -3046,6 +3839,14 @@
 #' Original data from the HistDAWass R package (\code{BLOOD} dataset).
 #' @examples
 #' data(blood.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 14 \cr
+#'   \strong{Variables (p)} \tab 3 \cr
+#'   \strong{Subject area} \tab Medical \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+#' }
 #' @keywords datasets histogram
 #' @source HistDAWass R package (\code{BLOOD} dataset).
 "blood.hist"
@@ -3079,6 +3880,14 @@
 #' Original data from the HistDAWass R package (\code{China_Month} dataset).
 #' @examples
 #' data(china_climate_month.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 60 \cr
+#'   \strong{Variables (p)} \tab 168 \cr
+#'   \strong{Subject area} \tab Climate \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets histogram
 #' @source HistDAWass R package (\code{China_Month} dataset).
 "china_climate_month.hist"
@@ -3112,6 +3921,14 @@
 #' Original data from the HistDAWass R package (\code{China_Seas} dataset).
 #' @examples
 #' data(china_climate_season.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 60 \cr
+#'   \strong{Variables (p)} \tab 56 \cr
+#'   \strong{Subject area} \tab Climate \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Clustering
+#' }
 #' @keywords datasets histogram
 #' @source HistDAWass R package (\code{China_Seas} dataset).
 "china_climate_season.hist"
@@ -3143,6 +3960,14 @@
 #' Original data from the HistDAWass R package (\code{RetHTS} dataset).
 #' @examples
 #' data(exchange_rate_returns.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 108 \cr
+#'   \strong{Variables (p)} \tab 1 \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Histogram \cr
+#'   \strong{Analytical tasks} \tab Time series, Descriptive statistics
+#' }
 #' @keywords datasets histogram
 #' @source HistDAWass R package (\code{RetHTS} dataset).
 "exchange_rate_returns.hist"
@@ -3176,6 +4001,14 @@
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 6.20.
 #' @examples
 #' data(hierarchy.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 10 \cr
+#'   \strong{Variables (p)} \tab 7 \cr
+#'   \strong{Subject area} \tab Methodology \cr
+#'   \strong{Symbolic format} \tab Mixed (histogram, interval, categorical) \cr
+#'   \strong{Analytical tasks} \tab Descriptive statistics
+#' }
 #' @keywords datasets mixed histogram interval
 #' @source Billard, L. and Diday, E. (2007), Table 6.20.
 "hierarchy.hist"
@@ -3208,6 +4041,532 @@
 #' and 6.14.
 #' @examples
 #' data(bird_color_taxonomy.hist)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 20 \cr
+#'   \strong{Variables (p)} \tab 4 \cr
+#'   \strong{Subject area} \tab Zoology \cr
+#'   \strong{Symbolic format} \tab Mixed (histogram, categorical, distribution) \cr
+#'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+#' }
 #' @keywords datasets mixed histogram distribution
 #' @source Billard, L. and Diday, E. (2007), Tables 6.9/6.14.
 "bird_color_taxonomy.hist"
+
+## ===========================================================================
+## SECTION 9: Interval time series (ITS) datasets from financial markets
+## ===========================================================================
+## These datasets contain daily (or weekly) high/low price intervals for
+## financial indices, commodities, exchange rates, and stocks. They are
+## widely used as benchmarks in interval time series forecasting research.
+## Naming convention: name.its (interval time series)
+## ===========================================================================
+
+## ---------------------------------------------------------------------------
+## sp500.its - S&P 500 daily high/low (Arroyo et al. 2011)
+## ---------------------------------------------------------------------------
+
+#' @name sp500.its
+#' @title S&P 500 Daily High/Low Interval Time Series
+#' @description
+#' Daily high and low prices of the S&P 500 index from January 2, 2004 to
+#' December 30, 2005 (504 trading days). This dataset is a benchmark for
+#' interval time series forecasting, matching the period used in the
+#' foundational work by Arroyo, Gonzalez-Rivera and Mate (2011).
+#'
+#' @details
+#' The S&P 500 is a market-capitalization-weighted index of 500 leading
+#' publicly traded companies in the United States. Each observation
+#' represents a trading day with the daily low and high prices forming an
+#' interval. This dataset has been widely used to evaluate interval-valued
+#' autoregressive models, exponential smoothing methods for intervals, and
+#' center-and-range forecasting approaches.
+#'
+#' @usage data(sp500.its)
+#' @format A data frame with 504 observations and 3 variables:
+#' \itemize{
+#'     \item \code{date}: Trading date (Date class).
+#'     \item \code{low}: Daily low price of the S&P 500 index.
+#'     \item \code{high}: Daily high price of the S&P 500 index.
+#' }
+#'
+#' @references
+#' Arroyo, J., Gonzalez-Rivera, G. and Mate, C. (2011). Forecasting with
+#' interval and histogram data: Some financial applications. In
+#' \emph{Handbook of Empirical Economics and Finance}, pp. 247--280.
+#' Chapman and Hall/CRC.
+#'
+#' @source Yahoo Finance, ticker \code{^GSPC}. Downloaded via the
+#' \pkg{quantmod} package.
+#' @examples
+#' data(sp500.its)
+#' head(sp500.its)
+#' plot(sp500.its$date, sp500.its$high, type = "l", col = "red",
+#'      ylab = "Price", xlab = "Date", main = "S&P 500 Daily High/Low")
+#' lines(sp500.its$date, sp500.its$low, col = "blue")
+#' legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 504 \cr
+#'   \strong{Variables (p)} \tab 3 (date, low, high) \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval time series \cr
+#'   \strong{Analytical tasks} \tab Forecasting, Time series analysis
+#' }
+#' @keywords datasets interval timeseries finance
+"sp500.its"
+
+## ---------------------------------------------------------------------------
+## djia.its - Dow Jones Industrial Average daily high/low (Arroyo et al. 2011)
+## ---------------------------------------------------------------------------
+
+#' @name djia.its
+#' @title Dow Jones Industrial Average Daily High/Low Interval Time Series
+#' @description
+#' Daily high and low prices of the Dow Jones Industrial Average (DJIA) from
+#' January 2, 2004 to December 30, 2005 (504 trading days). This dataset
+#' matches the period used in the foundational interval time series work by
+#' Arroyo, Gonzalez-Rivera and Mate (2011).
+#'
+#' @details
+#' The DJIA is a price-weighted index of 30 prominent companies listed on
+#' stock exchanges in the United States. Each observation represents a
+#' trading day with the daily low and high prices forming an interval. This
+#' dataset has been used alongside the S&P 500 to compare interval
+#' forecasting methods.
+#'
+#' @usage data(djia.its)
+#' @format A data frame with 504 observations and 3 variables:
+#' \itemize{
+#'     \item \code{date}: Trading date (Date class).
+#'     \item \code{low}: Daily low price of the DJIA.
+#'     \item \code{high}: Daily high price of the DJIA.
+#' }
+#'
+#' @references
+#' Arroyo, J., Gonzalez-Rivera, G. and Mate, C. (2011). Forecasting with
+#' interval and histogram data: Some financial applications. In
+#' \emph{Handbook of Empirical Economics and Finance}, pp. 247--280.
+#' Chapman and Hall/CRC.
+#'
+#' @source Yahoo Finance, ticker \code{^DJI}. Downloaded via the
+#' \pkg{quantmod} package.
+#' @examples
+#' data(djia.its)
+#' head(djia.its)
+#' plot(djia.its$date, djia.its$high, type = "l", col = "red",
+#'      ylab = "Price", xlab = "Date", main = "DJIA Daily High/Low")
+#' lines(djia.its$date, djia.its$low, col = "blue")
+#' legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 504 \cr
+#'   \strong{Variables (p)} \tab 3 (date, low, high) \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval time series \cr
+#'   \strong{Analytical tasks} \tab Forecasting, Time series analysis
+#' }
+#' @keywords datasets interval timeseries finance
+"djia.its"
+
+## ---------------------------------------------------------------------------
+## ibovespa.its - Brazilian IBOVESPA daily high/low (Maciel et al. 2016)
+## ---------------------------------------------------------------------------
+
+#' @name ibovespa.its
+#' @title IBOVESPA Daily High/Low Interval Time Series
+#' @description
+#' Daily high and low values of the Brazilian IBOVESPA stock market index
+#' from January 3, 2000 to December 28, 2012 (3216 trading days). This
+#' dataset matches the period used by Maciel, Ballini and Gomide (2016) for
+#' evolving granular analytics for interval time series forecasting.
+#'
+#' @details
+#' The IBOVESPA (Indice Bovespa) is the benchmark index of the Brazilian
+#' stock exchange (B3, formerly BM&FBOVESPA). It tracks the performance of
+#' the most actively traded stocks on the Sao Paulo stock exchange. The
+#' 13-year span of this dataset covers multiple market regimes including the
+#' 2008 global financial crisis, making it suitable for evaluating
+#' forecasting models under diverse conditions.
+#'
+#' @usage data(ibovespa.its)
+#' @format A data frame with 3216 observations and 3 variables:
+#' \itemize{
+#'     \item \code{date}: Trading date (Date class).
+#'     \item \code{low}: Daily low value of the IBOVESPA index.
+#'     \item \code{high}: Daily high value of the IBOVESPA index.
+#' }
+#'
+#' @references
+#' Maciel, L., Ballini, R. and Gomide, F. (2016). Evolving granular
+#' analytics for interval time series forecasting. \emph{Granular Computing},
+#' \strong{1}(4), 213--224.
+#'
+#' @source Yahoo Finance, ticker \code{^BVSP}. Downloaded via the
+#' \pkg{quantmod} package.
+#' @examples
+#' data(ibovespa.its)
+#' head(ibovespa.its)
+#' plot(ibovespa.its$date, ibovespa.its$high, type = "l", col = "red",
+#'      ylab = "Index Value", xlab = "Date",
+#'      main = "IBOVESPA Daily High/Low (2000-2012)")
+#' lines(ibovespa.its$date, ibovespa.its$low, col = "blue")
+#' legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 3216 \cr
+#'   \strong{Variables (p)} \tab 3 (date, low, high) \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval time series \cr
+#'   \strong{Analytical tasks} \tab Forecasting, Time series analysis
+#' }
+#' @keywords datasets interval timeseries finance
+"ibovespa.its"
+
+## ---------------------------------------------------------------------------
+## crude_oil_wti.its - WTI Crude Oil Futures daily high/low (Yang et al. 2016)
+## ---------------------------------------------------------------------------
+
+#' @name crude_oil_wti.its
+#' @title WTI Crude Oil Futures Daily High/Low Interval Time Series
+#' @description
+#' Daily high and low prices of WTI (West Texas Intermediate) crude oil
+#' futures from January 2, 2003 to December 30, 2011 (2261 trading days).
+#' This dataset matches the period used by Yang, Han, Hong and Wang (2016)
+#' for analyzing crisis impacts on crude oil prices using interval time
+#' series modelling.
+#'
+#' @details
+#' WTI crude oil is a benchmark for oil prices in the Americas. This
+#' dataset covers a period that includes the 2003 Iraq War, the 2007--2008
+#' oil price spike (reaching nearly USD 150/barrel), the 2008 global
+#' financial crisis, and the subsequent recovery. The wide variation in
+#' price levels and volatility regimes makes this dataset ideal for
+#' evaluating interval time series models under structural breaks.
+#'
+#' @usage data(crude_oil_wti.its)
+#' @format A data frame with 2261 observations and 3 variables:
+#' \itemize{
+#'     \item \code{date}: Trading date (Date class).
+#'     \item \code{low}: Daily low price (USD per barrel).
+#'     \item \code{high}: Daily high price (USD per barrel).
+#' }
+#'
+#' @references
+#' Yang, W., Han, A., Hong, Y. and Wang, S. (2016). Analysis of crisis
+#' impact on crude oil prices: A new approach with interval time series
+#' modelling. \emph{Quantitative Finance}, \strong{16}(12), 1917--1928.
+#'
+#' @source Yahoo Finance, ticker \code{CL=F}. Downloaded via the
+#' \pkg{quantmod} package.
+#' @examples
+#' data(crude_oil_wti.its)
+#' head(crude_oil_wti.its)
+#' plot(crude_oil_wti.its$date, crude_oil_wti.its$high, type = "l",
+#'      col = "red", ylab = "Price (USD/barrel)", xlab = "Date",
+#'      main = "WTI Crude Oil Daily High/Low (2003-2011)")
+#' lines(crude_oil_wti.its$date, crude_oil_wti.its$low, col = "blue")
+#' legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 2261 \cr
+#'   \strong{Variables (p)} \tab 3 (date, low, high) \cr
+#'   \strong{Subject area} \tab Finance / Commodities \cr
+#'   \strong{Symbolic format} \tab Interval time series \cr
+#'   \strong{Analytical tasks} \tab Forecasting, Structural break analysis
+#' }
+#' @keywords datasets interval timeseries finance commodities
+"crude_oil_wti.its"
+
+## ---------------------------------------------------------------------------
+## merval.its - MERVAL Index weekly min/max (de Carvalho & Martos 2022)
+## ---------------------------------------------------------------------------
+
+#' @name merval.its
+#' @title MERVAL Index Weekly Min/Max Interval Time Series
+#' @description
+#' Weekly minimum and maximum values of the Argentine MERVAL stock market
+#' index from January 4, 2016 to September 28, 2020 (248 weeks). Daily
+#' data was downloaded and aggregated to weekly intervals. This dataset
+#' matches the period used by de Carvalho and Martos (2022).
+#'
+#' @details
+#' The MERVAL (Mercado de Valores de Buenos Aires) is the main stock market
+#' index of the Buenos Aires Stock Exchange. Each observation represents one
+#' week, with the weekly low computed as the minimum of daily lows and the
+#' weekly high computed as the maximum of daily highs. The date column
+#' indicates the Monday (start) of each week. This period covers the
+#' Argentine economic crisis and the early COVID-19 pandemic impact.
+#'
+#' @usage data(merval.its)
+#' @format A data frame with 248 observations and 3 variables:
+#' \itemize{
+#'     \item \code{date}: Week start date, Monday (Date class).
+#'     \item \code{low}: Weekly minimum of daily low values.
+#'     \item \code{high}: Weekly maximum of daily high values.
+#' }
+#'
+#' @references
+#' de Carvalho, F. A. T. and Martos, G. (2022). Modeling interval trendlines:
+#' Symbolic singular spectrum analysis for interval time series. \emph{Journal
+#' of Forecasting}, \strong{41}(1), 167--180.
+#'
+#' @source Yahoo Finance, ticker \code{^MERV}. Downloaded via the
+#' \pkg{quantmod} package and aggregated from daily to weekly.
+#' @examples
+#' data(merval.its)
+#' head(merval.its)
+#' plot(merval.its$date, merval.its$high, type = "l", col = "red",
+#'      ylab = "Index Value", xlab = "Date",
+#'      main = "MERVAL Weekly Min/Max (2016-2020)")
+#' lines(merval.its$date, merval.its$low, col = "blue")
+#' legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 248 \cr
+#'   \strong{Variables (p)} \tab 3 (date, low, high) \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval time series (weekly aggregation) \cr
+#'   \strong{Analytical tasks} \tab Forecasting, Time series analysis
+#' }
+#' @keywords datasets interval timeseries finance
+"merval.its"
+
+## ---------------------------------------------------------------------------
+## petrobras.its - Petrobras stock daily high/low (Maia et al. 2008)
+## ---------------------------------------------------------------------------
+
+#' @name petrobras.its
+#' @title Petrobras Stock Daily High/Low Interval Time Series
+#' @description
+#' Daily high and low stock prices of Petrobras (ADR traded on NYSE) from
+#' January 3, 2005 to December 29, 2006 (503 trading days). This dataset
+#' matches the period used by Maia, de Carvalho and Ludermir (2008) in
+#' their work on forecasting models for interval-valued time series.
+#'
+#' @details
+#' Petrobras (Petroleo Brasileiro S.A.) is the Brazilian multinational
+#' petroleum corporation. The ADR (American Depositary Receipt) is traded
+#' on the New York Stock Exchange under ticker PBR. Each observation
+#' represents a trading day with the daily low and high prices forming an
+#' interval. This was one of the first datasets used to demonstrate
+#' interval-valued autoregressive (iAR) models.
+#'
+#' @usage data(petrobras.its)
+#' @format A data frame with 503 observations and 3 variables:
+#' \itemize{
+#'     \item \code{date}: Trading date (Date class).
+#'     \item \code{low}: Daily low price (USD).
+#'     \item \code{high}: Daily high price (USD).
+#' }
+#'
+#' @references
+#' Maia, A. L. S., de Carvalho, F. A. T. and Ludermir, T. B. (2008).
+#' Forecasting models for interval-valued time series. \emph{Neurocomputing},
+#' \strong{71}(16--18), 3344--3352.
+#'
+#' @source Yahoo Finance, ticker \code{PBR}. Downloaded via the
+#' \pkg{quantmod} package.
+#' @examples
+#' data(petrobras.its)
+#' head(petrobras.its)
+#' plot(petrobras.its$date, petrobras.its$high, type = "l", col = "red",
+#'      ylab = "Price (USD)", xlab = "Date",
+#'      main = "Petrobras Daily High/Low (2005-2006)")
+#' lines(petrobras.its$date, petrobras.its$low, col = "blue")
+#' legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 503 \cr
+#'   \strong{Variables (p)} \tab 3 (date, low, high) \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval time series \cr
+#'   \strong{Analytical tasks} \tab Forecasting, Time series analysis
+#' }
+#' @keywords datasets interval timeseries finance
+"petrobras.its"
+
+## ---------------------------------------------------------------------------
+## euro_usd.its - Euro/Dollar exchange rate daily high/low
+## (Arroyo, Espinola & Mate 2011)
+## ---------------------------------------------------------------------------
+
+#' @name euro_usd.its
+#' @title Euro/Dollar Exchange Rate Daily High/Low Interval Time Series
+#' @description
+#' Daily high and low values of the EUR/USD exchange rate from January 1,
+#' 2004 to December 30, 2005 (520 trading days). Inspired by the dataset
+#' used by Arroyo, Espinola and Mate (2011) for exponential smoothing
+#' methods for interval time series.
+#'
+#' @details
+#' The EUR/USD exchange rate is the most traded currency pair in the world
+#' foreign exchange market. Each observation represents a trading day with
+#' the daily low and high exchange rates (USD per EUR) forming an interval.
+#' Note: the original study by Arroyo et al. (2011) used the period
+#' 2002--2003 (519 trading days); this dataset covers 2004--2005 because
+#' Yahoo Finance historical data for this ticker is only available from
+#' late 2003 onward.
+#'
+#' @usage data(euro_usd.its)
+#' @format A data frame with 520 observations and 3 variables:
+#' \itemize{
+#'     \item \code{date}: Trading date (Date class).
+#'     \item \code{low}: Daily low EUR/USD exchange rate.
+#'     \item \code{high}: Daily high EUR/USD exchange rate.
+#' }
+#'
+#' @references
+#' Arroyo, J., Espinola, R. and Mate, C. (2011). Different approaches to
+#' forecast interval time series: A comparison in finance. \emph{Computational
+#' Economics}, \strong{37}(2), 169--191.
+#'
+#' @source Yahoo Finance, ticker \code{EURUSD=X}. Downloaded via the
+#' \pkg{quantmod} package.
+#' @examples
+#' data(euro_usd.its)
+#' head(euro_usd.its)
+#' plot(euro_usd.its$date, euro_usd.its$high, type = "l", col = "red",
+#'      ylab = "EUR/USD", xlab = "Date",
+#'      main = "EUR/USD Daily High/Low (2004-2005)")
+#' lines(euro_usd.its$date, euro_usd.its$low, col = "blue")
+#' legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 520 \cr
+#'   \strong{Variables (p)} \tab 3 (date, low, high) \cr
+#'   \strong{Subject area} \tab Finance / Foreign Exchange \cr
+#'   \strong{Symbolic format} \tab Interval time series \cr
+#'   \strong{Analytical tasks} \tab Forecasting, Time series analysis
+#' }
+#' @keywords datasets interval timeseries finance exchange
+"euro_usd.its"
+
+## ---------------------------------------------------------------------------
+## shanghai_stock.its - Shanghai Composite Index daily high/low
+## (Yang, Zhang & Wang 2025)
+## ---------------------------------------------------------------------------
+
+#' @name shanghai_stock.its
+#' @title Shanghai Stock Exchange Composite Index Daily High/Low Interval Time Series
+#' @description
+#' Daily high and low values of the Shanghai Stock Exchange Composite Index
+#' (SSE Composite) from January 2, 2019 to December 30, 2022 (970 trading
+#' days). This dataset matches the period used by Yang, Zhang and Wang
+#' (2025) for interval time series forecasting.
+#'
+#' @details
+#' The SSE Composite Index is the most commonly used indicator to reflect
+#' the performance of the Shanghai Stock Exchange. It tracks all stocks
+#' (A-shares and B-shares) listed on the exchange. This dataset covers a
+#' period that includes the COVID-19 pandemic and its market impacts,
+#' providing a rich testbed for evaluating interval forecasting models
+#' under extreme volatility.
+#'
+#' @usage data(shanghai_stock.its)
+#' @format A data frame with 970 observations and 3 variables:
+#' \itemize{
+#'     \item \code{date}: Trading date (Date class).
+#'     \item \code{low}: Daily low value of the SSE Composite Index.
+#'     \item \code{high}: Daily high value of the SSE Composite Index.
+#' }
+#'
+#' @references
+#' Yang, W., Zhang, S. and Wang, S. (2025). On smooth transition interval
+#' autoregressive models. \emph{Journal of Forecasting}, \strong{44}(2),
+#' 310--332.
+#'
+#' @source Yahoo Finance, ticker \code{000001.SS}. Downloaded via the
+#' \pkg{quantmod} package.
+#' @examples
+#' data(shanghai_stock.its)
+#' head(shanghai_stock.its)
+#' plot(shanghai_stock.its$date, shanghai_stock.its$high, type = "l",
+#'      col = "red", ylab = "Index Value", xlab = "Date",
+#'      main = "Shanghai Composite Daily High/Low (2019-2022)")
+#' lines(shanghai_stock.its$date, shanghai_stock.its$low, col = "blue")
+#' legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 970 \cr
+#'   \strong{Variables (p)} \tab 3 (date, low, high) \cr
+#'   \strong{Subject area} \tab Finance \cr
+#'   \strong{Symbolic format} \tab Interval time series \cr
+#'   \strong{Analytical tasks} \tab Forecasting, Time series analysis
+#' }
+#' @keywords datasets interval timeseries finance
+"shanghai_stock.its"
+
+## ---------------------------------------------------------------------------
+## 9.9 irish_wind.its - Irish wind speed monthly interval (Teles & Brito 2015)
+## ---------------------------------------------------------------------------
+
+#' @name irish_wind.its
+#' @title Irish Wind Speed Monthly Interval Time Series
+#' @description
+#' Monthly interval-valued wind speed data at 5 meteorological stations in
+#' Ireland from January 1961 to December 1978 (216 months). For each month
+#' and station, the interval is defined as [minimum daily average wind speed,
+#' maximum daily average wind speed] across all days in that month.
+#'
+#' @details
+#' The original data contains daily average wind speeds (in knots) at 12
+#' synoptic meteorological stations in the Republic of Ireland, collected by
+#' the Irish Meteorological Service. This is the classic Haslett and Raftery
+#' (1989) dataset, one of the most widely used benchmarks in spatial
+#' statistics. Following the approach of Teles and Brito (2015), the raw
+#' daily data is aggregated to monthly intervals for 5 selected stations:
+#' Birr (BIR), Dublin Airport (DUB), Kilkenny (KIL), Shannon Airport (SHA),
+#' and Valentia Observatory (VAL). Each monthly interval captures the range
+#' of daily wind variability within that month.
+#'
+#' @usage data(irish_wind.its)
+#' @format A data frame with 216 observations and 11 columns (5 interval
+#' variables in \code{_l}/\code{_u} Min-Max pairs, plus a date):
+#' \itemize{
+#'     \item \code{date}: First day of the month (Date class).
+#'     \item \code{BIR_l}, \code{BIR_u}: Monthly [min, max] daily wind speed
+#'     at Birr (knots).
+#'     \item \code{DUB_l}, \code{DUB_u}: Monthly [min, max] daily wind speed
+#'     at Dublin Airport (knots).
+#'     \item \code{KIL_l}, \code{KIL_u}: Monthly [min, max] daily wind speed
+#'     at Kilkenny (knots).
+#'     \item \code{SHA_l}, \code{SHA_u}: Monthly [min, max] daily wind speed
+#'     at Shannon Airport (knots).
+#'     \item \code{VAL_l}, \code{VAL_u}: Monthly [min, max] daily wind speed
+#'     at Valentia Observatory (knots).
+#' }
+#'
+#' @references
+#' Haslett, J. and Raftery, A. E. (1989). Space-time modelling with
+#' long-memory dependence: Assessing Ireland's wind power resource.
+#' \emph{Journal of the Royal Statistical Society, Series C (Applied
+#' Statistics)}, \strong{38}(1), 1--50.
+#'
+#' Teles, P. and Brito, P. (2015). Modeling interval time series with
+#' space-time processes. \emph{Communications in Statistics -- Theory and
+#' Methods}, \strong{44}(17), 3599--3619.
+#'
+#' @source Derived from the \code{wind} dataset in the \pkg{gstat} R
+#' package (originally from Haslett and Raftery, 1989). Daily data
+#' aggregated to monthly intervals.
+#' @examples
+#' data(irish_wind.its)
+#' head(irish_wind.its)
+#' # Plot Valentia Observatory wind speed interval
+#' plot(irish_wind.its$date, irish_wind.its$VAL_u, type = "l", col = "red",
+#'      ylab = "Wind speed (knots)", xlab = "Date",
+#'      main = "Valentia Observatory Monthly Wind Speed Interval")
+#' lines(irish_wind.its$date, irish_wind.its$VAL_l, col = "blue")
+#' legend("topright", c("Max", "Min"), col = c("red", "blue"), lty = 1)
+#' @section Metadata:
+#' \tabular{ll}{
+#'   \strong{Sample size (n)} \tab 216 \cr
+#'   \strong{Variables (p)} \tab 11 \cr
+#'   \strong{Subject area} \tab Meteorology \cr
+#'   \strong{Symbolic format} \tab Interval time series (multivariate) \cr
+#'   \strong{Analytical tasks} \tab Space-time modelling, Forecasting,
+#'   Clustering
+#' }
+#' @keywords datasets interval timeseries meteorology spatial
+"irish_wind.its"

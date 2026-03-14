@@ -24,8 +24,8 @@ Return a dataframe with a label added to the previous column of symbolic variabl
 This function changes the format of the data to conform to RSDA format.
 }
 \examples{
-data("mushroom")
-mushroom.set <- set_variable_format(data = mushroom, location = 8, var = "Species")
+data("mushroom.int.mm")
+mushroom.set <- set_variable_format(data = mushroom.int.mm, location = 8, var = "Species")
 mushroom.tmp <- RSDA_format(data = mushroom.set, sym_type1 = c("I", "S"),
                             location = c(25, 31), sym_type2 = c("S", "I", "I"),
                             var = c("Species", "Stipe.Length_min", "Stipe.Thickness_min"))

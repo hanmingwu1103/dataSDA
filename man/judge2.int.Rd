@@ -19,6 +19,17 @@ Interval-valued ratings from Judge 2 for 6 regions on 4 variables.
 From a study of generalized principal component analysis for
 interval-valued data (GPCSIV).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 6 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Methodology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab PCA
+}
+}
+
 \examples{
 data(judge2.int)
 }

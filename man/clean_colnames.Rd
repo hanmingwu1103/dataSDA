@@ -16,6 +16,6 @@ Data after cleaning variable names.
 This function is used to clean up variable names to conform to the RSDA format.
 }
 \examples{
-data(mushroom)
-mushroom.clean <- clean_colnames(data = mushroom)
+data(mushroom.int.mm)
+mushroom.clean <- clean_colnames(data = mushroom.int.mm)
 }

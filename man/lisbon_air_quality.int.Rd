@@ -31,6 +31,17 @@ pollutant concentration is represented as a \eqn{[\min, \max]} interval
 from hourly measurements. Missing days are imputed via linear
 interpolation.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 1096 \cr
+  \strong{Variables (p)} \tab 8 \cr
+  \strong{Subject area} \tab Environment \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Regression, Time series
+}
+}
+
 \examples{
 data(lisbon_air_quality.int)
 }

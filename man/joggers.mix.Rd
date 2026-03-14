@@ -25,6 +25,17 @@ Mixed symbolic dataset of 10 jogger groups with one interval-valued
 variable (pulse rate) and one histogram-valued variable (running time
 distribution).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 10 \cr
+  \strong{Variables (p)} \tab 2 \cr
+  \strong{Subject area} \tab Sports \cr
+  \strong{Symbolic format} \tab Mixed (interval, histogram) \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(joggers.mix)
 }

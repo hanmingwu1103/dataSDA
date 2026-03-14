@@ -9,9 +9,9 @@ int_convert_format(x, to = "MM", from = NULL, ...)
 \arguments{
 \item{x}{interval data in one of the supported formats}
 
-\item{to}{target format: "MM", "iGAP", "RSDA", "SODAS" (default: "MM")}
+\item{to}{target format: "MM", "iGAP", "RSDA", "ARRAY", "SODAS" (default: "MM")}
 
-\item{from}{source format (optional): "MM", "iGAP", "RSDA", "SODAS". If NULL, will auto-detect.}
+\item{from}{source format (optional): "MM", "iGAP", "RSDA", "ARRAY", "SODAS". If NULL, will auto-detect.}
 
 \item{...}{additional parameters passed to specific conversion functions}
 }
@@ -28,14 +28,11 @@ appropriate conversion function.
 
 Supported conversions:
 \itemize{
-  \item RSDA → MM (via \code{RSDA_to_MM})
-  \item RSDA → iGAP (via \code{RSDA_to_iGAP})
-  \item iGAP → MM (via \code{iGAP_to_MM})
-  \item SODAS → MM (via \code{SODAS_to_MM})
-  \item SODAS → iGAP (via \code{SODAS_to_iGAP})
-  \item MM → iGAP (via \code{MM_to_iGAP})
-  \item MM → RSDA (via \code{MM_to_RSDA})
-  \item iGAP → RSDA (via \code{iGAP_to_RSDA})
+  \item RSDA ??? MM, iGAP, ARRAY
+  \item MM ??? iGAP, RSDA, ARRAY
+  \item iGAP ??? MM, RSDA, ARRAY
+  \item ARRAY ??? RSDA, MM, iGAP
+  \item SODAS ??? MM, iGAP, ARRAY
 }
 }
 \examples{
@@ -58,7 +55,9 @@ mm_datasets <- lapply(datasets, int_convert_format, to = "MM")
 int_list_conversions()
 }
 \seealso{
-int_detect_format int_list_conversions RSDA_to_MM iGAP_to_MM MM_to_iGAP MM_to_RSDA iGAP_to_RSDA
+int_detect_format int_list_conversions RSDA_to_MM RSDA_to_ARRAY
+  MM_to_RSDA MM_to_ARRAY ARRAY_to_RSDA ARRAY_to_MM ARRAY_to_iGAP
+  iGAP_to_MM iGAP_to_RSDA iGAP_to_ARRAY MM_to_iGAP
 }
 \author{
 Han-Ming Wu

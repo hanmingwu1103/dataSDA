@@ -4,3 +4,16 @@
 ^Meta$
 ^\.claude$
 ^dataSDA$
+^TimeSeries$
+^application\.R$
+^application2\.R$
+^benchmark_dataSDA\.R$
+^benchmark_class4\.R$
+^benchmark_class4_v2\.R$
+^create_its_datasets\.R$
+^Rplots\.pdf$
+^.*\.pdf$
+^claude-code-prompt.*\.md$
+^dataSDA\.Rcheck$
+^vignettes/dataSDA_intro\.html$
+^vignettes/dataSDA_intro_files$

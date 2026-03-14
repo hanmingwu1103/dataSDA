@@ -29,6 +29,17 @@ structure is: \{Beef tallow, Hog fat\}, \{Cottonseed, Sesame, Camellia,
 Olive\}, and \{Linseed, Perilla\}. Widely used for comparing clustering
 methods and distance measures in symbolic data analysis.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 8 \cr
+  \strong{Variables (p)} \tab 9 \cr
+  \strong{Subject area} \tab Chemistry \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(oils.int)
 }

@@ -20,6 +20,17 @@ Interval-valued engagement metrics for 10 user groups on a video
 platform. Variables represent ranges of visit, watch, like, comment,
 and share counts.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 10 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Digital media \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab PCA
+}
+}
+
 \examples{
 data(video2.int)
 }

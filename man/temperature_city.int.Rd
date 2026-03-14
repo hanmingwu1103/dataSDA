@@ -30,6 +30,17 @@ Wasserstein) in dynamic clustering algorithms.
 Expert partition into 4 classes: Class 1 (tropical/warm), Class 2
 (temperate European and Asian), Class 3 (Mauritius), Class 4 (Tehran).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 6 \cr
+  \strong{Variables (p)} \tab 13 \cr
+  \strong{Subject area} \tab Climate \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(temperature_city.int)
 }

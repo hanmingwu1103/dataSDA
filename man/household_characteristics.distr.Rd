@@ -28,6 +28,17 @@ Distribution-valued dataset of 12 counties with 3 categorical
 probability distribution variables describing household fuel type,
 number of rooms, and household income brackets.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 12 \cr
+  \strong{Variables (p)} \tab 3 \cr
+  \strong{Subject area} \tab Socioeconomics \cr
+  \strong{Symbolic format} \tab Distribution \cr
+  \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+}
+}
+
 \examples{
 data(household_characteristics.distr)
 }

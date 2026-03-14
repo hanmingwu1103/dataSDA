@@ -33,6 +33,17 @@ Mixed symbolic dataset of 30 car models sold in Poland, with 9
 interval-valued technical specification variables and 3 multinomial-valued
 categorical variables.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 30 \cr
+  \strong{Variables (p)} \tab 12 \cr
+  \strong{Subject area} \tab Automotive \cr
+  \strong{Symbolic format} \tab Mixed (interval, multinomial) \cr
+  \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+}
+}
+
 \examples{
 data(polish_cars.mix)
 }

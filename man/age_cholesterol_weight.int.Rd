@@ -21,6 +21,17 @@ Interval-valued dataset of 7 age-group observations with cholesterol and
 weight measurements. Each observation aggregates individuals in a 10-year
 age band with interval ranges for cholesterol and weight.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 7 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Regression
+}
+}
+
 \examples{
 data(age_cholesterol_weight.int)
 }

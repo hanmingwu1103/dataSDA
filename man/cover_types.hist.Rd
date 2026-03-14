@@ -27,6 +27,17 @@ Histogram-valued dataset of 7 forest cover types with 4 topographic
 histogram variables. Each histogram describes the distribution of a
 terrain feature across locations classified as that cover type.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 7 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Forestry \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Clustering, Classification
+}
+}
+
 \examples{
 data(cover_types.hist)
 }

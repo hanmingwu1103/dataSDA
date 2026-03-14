@@ -24,6 +24,17 @@ Histogram-valued dataset of 6 US states with 4 income distribution
 histograms. Each histogram describes the distribution of household
 income within a state.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 6 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Economics \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(state_income.hist)
 }

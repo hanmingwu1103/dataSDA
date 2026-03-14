@@ -22,6 +22,17 @@ data(glucose.hist)
 Histogram-valued dataset of 4 regions with a single histogram-valued
 variable describing the distribution of blood glucose measurements.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 4 \cr
+  \strong{Variables (p)} \tab 1 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(glucose.hist)
 }

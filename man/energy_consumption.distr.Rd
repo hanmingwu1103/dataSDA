@@ -23,6 +23,17 @@ Each energy type described by Normal distribution parameters (mean, SD).
 Five types: Petroleum, Natural Gas, Coal, Hydroelectric, Nuclear Power.
 Values are rescaled consumption from the US Census Bureau (2004).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 5 \cr
+  \strong{Variables (p)} \tab 3 \cr
+  \strong{Subject area} \tab Energy \cr
+  \strong{Symbolic format} \tab Distribution \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(energy_consumption.distr)
 }

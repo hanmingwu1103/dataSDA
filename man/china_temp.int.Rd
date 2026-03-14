@@ -31,6 +31,17 @@ People's Republic of China. Widely used in the SDA literature for
 demonstrating standardization, clustering, self-organizing maps,
 MLE and MANOVA.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 899 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Climate \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(china_temp.int)
 }

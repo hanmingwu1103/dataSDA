@@ -77,39 +77,39 @@ test_that("int_detect_format returns unknown for non-XML string", {
 
 # ---------- int_list_conversions ---------------------------------------------
 
-test_that("int_list_conversions returns all 8 conversions", {
+test_that("int_list_conversions returns all 15 conversions", {
   result <- int_list_conversions()
   expect_s3_class(result, "data.frame")
-  expect_equal(nrow(result), 8)
+  expect_equal(nrow(result), 15)
   expect_true(all(c("from", "to", "function_name") %in% names(result)))
 })
 
 test_that("int_list_conversions filters by from", {
   rsda <- int_list_conversions(from = "RSDA")
   expect_true(all(toupper(rsda$from) == "RSDA"))
-  expect_equal(nrow(rsda), 2)
+  expect_equal(nrow(rsda), 3)
 
   sodas <- int_list_conversions(from = "SODAS")
   expect_true(all(toupper(sodas$from) == "SODAS"))
-  expect_equal(nrow(sodas), 2)
+  expect_equal(nrow(sodas), 3)
 
   mm <- int_list_conversions(from = "MM")
   expect_true(all(toupper(mm$from) == "MM"))
-  expect_equal(nrow(mm), 2)
+  expect_equal(nrow(mm), 3)
 })
 
 test_that("int_list_conversions filters by to", {
   to_mm <- int_list_conversions(to = "MM")
   expect_true(all(toupper(to_mm$to) == "MM"))
-  expect_equal(nrow(to_mm), 3)
+  expect_equal(nrow(to_mm), 4)
 
   to_igap <- int_list_conversions(to = "iGAP")
   expect_true(all(toupper(to_igap$to) == "IGAP"))
-  expect_equal(nrow(to_igap), 3)
+  expect_equal(nrow(to_igap), 4)
 
   to_rsda <- int_list_conversions(to = "RSDA")
   expect_true(all(toupper(to_rsda$to) == "RSDA"))
-  expect_equal(nrow(to_rsda), 2)
+  expect_equal(nrow(to_rsda), 3)
 })
 
 test_that("int_list_conversions filters by from and to", {
@@ -126,12 +126,12 @@ test_that("int_list_conversions finds MM to RSDA conversion", {
 
 test_that("int_list_conversions is case-insensitive for from", {
   result <- int_list_conversions(from = "rsda")
-  expect_equal(nrow(result), 2)
+  expect_equal(nrow(result), 3)
 })
 
 test_that("int_list_conversions is case-insensitive for to", {
   result <- int_list_conversions(to = "mm")
-  expect_equal(nrow(result), 3)
+  expect_equal(nrow(result), 4)
 })
 
 test_that("int_list_conversions handles iGAP case variations", {

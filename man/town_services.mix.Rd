@@ -23,6 +23,17 @@ Symbolic data for 3 towns (Paris, Lyon, Toulouse) combining school
 and hospital databases. Contains interval-valued, multi-valued, and
 modal-valued variables.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 3 \cr
+  \strong{Variables (p)} \tab 8 \cr
+  \strong{Subject area} \tab Public services \cr
+  \strong{Symbolic format} \tab Mixed (interval, modal, multi-valued) \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(town_services.mix)
 }

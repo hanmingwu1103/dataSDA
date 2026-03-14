@@ -10,7 +10,7 @@ int_detect_format(x)
 \item{x}{interval data in unknown format}
 }
 \value{
-A character string indicating the detected format: "RSDA", "MM", "iGAP", "SODAS", or "unknown"
+A character string indicating the detected format: "RSDA", "MM", "iGAP", "ARRAY", "SODAS", or "unknown"
 }
 \description{
 Automatically detect the format of interval data.
@@ -21,6 +21,7 @@ Detection rules:
   \item \code{RSDA}: has class "symbolic_tbl" and contains complex columns
   \item \code{MM}: data.frame with paired "_min" and "_max" columns
   \item \code{iGAP}: data.frame with columns containing comma-separated values (e.g., "1.2,3.4")
+  \item \code{ARRAY}: a 3-dimensional array with \code{dim[3] = 2} (min/max slices)
   \item \code{SODAS}: character string ending with ".xml" (file path)
   \item \code{SDS}: alias for SODAS
 }
@@ -31,4 +32,8 @@ int_detect_format(mushroom.int)  # Should return "RSDA"
 
 data(abalone.iGAP)
 int_detect_format(abalone.iGAP)  # Should return "iGAP"
+
+# ARRAY format
+x <- array(1:24, dim = c(4, 3, 2))
+int_detect_format(x)  # Should return "ARRAY"
 }

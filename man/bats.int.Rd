@@ -27,6 +27,17 @@ Used to demonstrate color coding schemes, the HCT-R2E seriation
 algorithm, and distance measure comparisons (Gowda-Diday, Hausdorff,
 City-Block, L1, L2, etc.) for interval data.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 21 \cr
+  \strong{Variables (p)} \tab 9 \cr
+  \strong{Subject area} \tab Zoology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering, Visualization
+}
+}
+
 \examples{
 data(bats.int)
 }

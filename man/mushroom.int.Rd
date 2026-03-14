@@ -18,8 +18,19 @@ A symbolic data frame (\code{symbolic_tbl}) with 23 observations and 5 variables
 data(mushroom.int)
 }
 \description{
-Interval-valued version of the mushroom dataset. See \code{\link{mushroom}}.
+Interval-valued version of the mushroom dataset. See \code{\link{mushroom.int.mm}}.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 23 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Biology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+}
+}
+
 \examples{
 data(mushroom.int)
 }

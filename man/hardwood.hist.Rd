@@ -24,6 +24,17 @@ Histogram-valued climate data for 5 hardwood tree species in the
 southeastern United States. Each observation represents a species with
 4 histogram-valued climate variables.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 5 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Forestry \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+}
+}
+
 \examples{
 data(hardwood.hist)
 }

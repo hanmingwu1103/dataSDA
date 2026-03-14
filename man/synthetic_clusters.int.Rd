@@ -22,6 +22,17 @@ Synthetic interval-valued dataset with 125 observations in 5 groups of
 25 each, described by 6 interval-valued variables and a cluster label.
 Designed for benchmarking interval data clustering algorithms.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 125 \cr
+  \strong{Variables (p)} \tab 7 \cr
+  \strong{Subject area} \tab Methodology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(synthetic_clusters.int)
 }

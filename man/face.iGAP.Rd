@@ -25,6 +25,17 @@ Interval-valued facial measurement data for 27 face images (9 individuals
 x 3 replications) in iGAP format (comma-separated interval strings).
 Contains 6 distance measurements between facial landmarks.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 27 \cr
+  \strong{Variables (p)} \tab 6 \cr
+  \strong{Subject area} \tab Biometrics \cr
+  \strong{Symbolic format} \tab Interval (iGAP) \cr
+  \strong{Analytical tasks} \tab Classification, Visualization
+}
+}
+
 \examples{
 data(face.iGAP)
 }

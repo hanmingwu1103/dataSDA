@@ -26,6 +26,17 @@ Clustering on weight and height separates grass courts from the rest
 (decision rule: Weight <= 74.75 kg). When all three variables are used,
 clustering separates by racket tension instead.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 4 \cr
+  \strong{Variables (p)} \tab 7 \cr
+  \strong{Subject area} \tab Sports \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(tennis.int)
 }

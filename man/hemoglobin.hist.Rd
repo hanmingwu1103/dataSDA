@@ -23,6 +23,17 @@ Histogram-valued hemoglobin distributions for 14 gender-age groups
 (7 female + 7 male age groups from 20s to 80+). Each observation has
 a 10-bin histogram of hemoglobin levels (g/dL).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 14 \cr
+  \strong{Variables (p)} \tab 3 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(hemoglobin.hist)
 }

@@ -28,6 +28,17 @@ the Very Good team has homogeneous players, whereas the Poor team has
 players varying widely in age, weight, and speed. Used for symbolic
 principal component analysis.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 5 \cr
+  \strong{Variables (p)} \tab 7 \cr
+  \strong{Subject area} \tab Sports \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab PCA
+}
+}
+
 \examples{
 data(teams.int)
 }

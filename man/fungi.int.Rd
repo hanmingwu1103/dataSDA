@@ -26,6 +26,17 @@ Interval-valued morphological measurements for 55 fungi specimens from
 3 genera (Amanita, Agaricus, Boletus). Contains 5 interval-valued variables
 describing pileus and stipe dimensions and spore characteristics.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 55 \cr
+  \strong{Variables (p)} \tab 6 \cr
+  \strong{Subject area} \tab Biology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(fungi.int)
 }

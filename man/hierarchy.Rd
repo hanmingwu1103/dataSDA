@@ -24,6 +24,17 @@ categorical structures with a response variable Y and hierarchical
 predictors X1--X5. See \code{\link{hierarchy.int}} for the interval-valued
 version.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 20 \cr
+  \strong{Variables (p)} \tab 6 \cr
+  \strong{Subject area} \tab Methodology \cr
+  \strong{Symbolic format} \tab Classical (microdata) \cr
+  \strong{Analytical tasks} \tab Aggregation, Descriptive statistics
+}
+}
+
 \examples{
 data(hierarchy)
 }

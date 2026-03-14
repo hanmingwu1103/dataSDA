@@ -27,6 +27,17 @@ Interval-valued dataset of 35 Lending Club loan groups classified by
 risk level (A through G, 5 groups each). Each group is described by
 4 interval-valued financial variables.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 35 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Finance \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Classification, Clustering
+}
+}
+
 \examples{
 data(loans_by_risk.int)
 }

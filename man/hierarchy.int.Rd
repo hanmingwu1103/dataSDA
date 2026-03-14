@@ -22,6 +22,17 @@ data(hierarchy.int)
 Interval-valued version of the hierarchy dataset. See \code{\link{hierarchy}}
 for the classical version.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 20 \cr
+  \strong{Variables (p)} \tab 6 \cr
+  \strong{Subject area} \tab Methodology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Regression
+}
+}
+
 \examples{
 data(hierarchy.int)
 }

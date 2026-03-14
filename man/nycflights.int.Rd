@@ -24,6 +24,17 @@ data(nycflights.int)
 Interval-valued dataset with 142 units and four interval-valued variables
 from the nycflights13 package, aggregated by month and carrier.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 142 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Transportation \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Regression, Descriptive statistics
+}
+}
+
 \examples{
 data(nycflights.int)
 }

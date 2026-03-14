@@ -23,6 +23,17 @@ Symbolic dataset of autoregressive time series models for 4 banks.
 Each bank is described by AR model order, parameters, and whether
 parameters are known.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 4 \cr
+  \strong{Variables (p)} \tab 6 \cr
+  \strong{Subject area} \tab Finance \cr
+  \strong{Symbolic format} \tab Symbolic (model-valued) \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(bank_rates)
 }

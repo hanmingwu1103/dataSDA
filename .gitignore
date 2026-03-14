@@ -4,9 +4,11 @@
 .Ruserdata
 *.tar.gz
 *.Rcheck/
-.claude/
 dataSDA/
 .Rd2pdf*/
 vignettes/*.csv
+vignettes/*.html
 /doc/
 /Meta/
+.claude/
+bak/

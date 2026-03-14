@@ -38,6 +38,17 @@ Mixed symbolic dataset from the US EPA with 14 state-group observations
 and 17 variables of mixed types: interval-valued environmental measurements
 and modal-valued (distributional) categorical variables.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 14 \cr
+  \strong{Variables (p)} \tab 17 \cr
+  \strong{Subject area} \tab Environment \cr
+  \strong{Symbolic format} \tab Mixed (interval, modal) \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+}
+}
+
 \examples{
 data(environment.mix)
 }

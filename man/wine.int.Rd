@@ -23,6 +23,17 @@ Interval-valued chemical and physical properties of 33 wine samples
 classified into 2 groups. Contains 9 interval-valued measurement variables.
 Used as a benchmark for interval data clustering algorithms.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 33 \cr
+  \strong{Variables (p)} \tab 10 \cr
+  \strong{Subject area} \tab Food science \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(wine.int)
 }

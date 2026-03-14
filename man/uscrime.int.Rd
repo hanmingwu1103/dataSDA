@@ -30,6 +30,17 @@ Interval-valued crime statistics for 46 US states, containing 102
 interval-valued variables covering various crime types and rates.
 Originally from the RSDA package.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 46 \cr
+  \strong{Variables (p)} \tab 102 \cr
+  \strong{Subject area} \tab Criminology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Regression, Clustering
+}
+}
+
 \examples{
 data(uscrime.int)
 }

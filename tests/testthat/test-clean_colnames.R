@@ -40,9 +40,9 @@ test_that("clean_colnames returns a data.frame", {
   expect_s3_class(result, "data.frame")
 })
 
-test_that("clean_colnames works with mushroom dataset", {
-  data(mushroom)
-  result <- clean_colnames(mushroom)
+test_that("clean_colnames works with mushroom.int.mm dataset", {
+  data(mushroom.int.mm)
+  result <- clean_colnames(mushroom.int.mm)
   expect_s3_class(result, "data.frame")
-  expect_equal(nrow(result), nrow(mushroom))
+  expect_equal(nrow(result), nrow(mushroom.int.mm))
 })

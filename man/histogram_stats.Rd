@@ -21,7 +21,9 @@ hist_cor(x, var_name1, var_name2, method = "BG", ...)
 
 \item{var_name}{the variable name or the column location.}
 
-\item{method}{methods to calculate statistics: mean and var: BG (default), L2W; cov and cor: BG (default), BD, B, L2W.}
+\item{method}{method to calculate statistics. One of \code{"BG"} (Bertrand and Goupil, 2000; default),
+\code{"BD"} (Billard and Diday, 2006), \code{"B"} (Billard, 2008), or \code{"L2W"} (L2 Wasserstein).
+All four methods are available for all four functions.}
 
 \item{...}{additional parameters.}
 
@@ -30,13 +32,13 @@ hist_cor(x, var_name1, var_name2, method = "BG", ...)
 \item{var_name2}{the variable name or the column location.}
 }
 \value{
-A numeric value or matrix for \code{hist_mean} and \code{hist_var}; a single numeric value for \code{hist_cov} and \code{hist_cor}.
+A numeric value or vector for \code{hist_mean} and \code{hist_var}; a single numeric value for \code{hist_cov} and \code{hist_cor}.
 }
 \description{
 Functions to compute the mean, variance, covariance, and correlation of histogram-valued data.
 }
 \details{
-Available methods:
+Four functions are provided:
 \itemize{
   \item \code{hist_mean}: Compute the mean of histogram-valued data.
   \item \code{hist_var}: Compute the variance of histogram-valued data.
@@ -44,14 +46,36 @@ Available methods:
   \item \code{hist_cor}: Compute the correlation between two histogram-valued variables.
 }
 
-Methods for mean and variance: BG (Billard & Diday), L2W (L2 Wasserstein).
-Methods for covariance and correlation: BG, BD (Billard-Diday), B (Bertrand), L2W.
+Four methods are supported for all functions:
+\describe{
+  \item{BG}{Bertrand and Goupil (2000) method. Uses histogram bin boundaries
+    and probabilities to compute first and second moments.}
+  \item{BD}{Billard and Diday (2006) method. A signed decomposition using
+    the sign of each bin's midpoint deviation from the overall mean and a
+    quadratic form on the bin boundaries.}
+  \item{B}{Billard (2008) method. Uses cross-products of deviations of the
+    bin boundaries from the overall mean.}
+  \item{L2W}{L2 Wasserstein method. Uses optimal-transport (Wasserstein)
+    distances between the quantile functions of the histogram distributions.}
+}
+
+For the mean, BG, BD, and B return the same value because they share the
+same first-order moment definition; only L2W uses a different (quantile-based)
+mean.  For variance, covariance, and correlation, all four methods generally
+produce different results.
+
+For \code{hist_cor}, the BG, BD, and B correlations all use the
+Bertrand-Goupil standard deviation \eqn{S(Y)} in the denominator, following
+Irpino and Verde (2015, Eqs. 30--32). Only the L2W method uses its own
+Wasserstein-based standard deviation in the denominator.
 }
 \examples{
 library(HistDAWass)
 x <- HistDAWass::BLOOD
 hist_mean(x, var_name = "Cholesterol", method = "BG")
+hist_mean(x, var_name = "Cholesterol", method = "BD")
 hist_var(x, var_name = "Cholesterol", method = "BG")
+hist_var(x, var_name = "Cholesterol", method = "BD")
 hist_cov(x, var_name1 = "Cholesterol", var_name2 = "Hemoglobin", method = "BG")
 hist_cor(x, var_name1 = "Cholesterol", var_name2 = "Hemoglobin", method = "BG")
 }

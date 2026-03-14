@@ -24,6 +24,17 @@ Three bird species (Geese, Ostrich, Penguin) with interval-valued
 height, distribution-valued color, and categorical flying/migratory
 variables.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 3 \cr
+  \strong{Variables (p)} \tab 6 \cr
+  \strong{Subject area} \tab Zoology \cr
+  \strong{Symbolic format} \tab Mixed (interval, categorical, distribution) \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(bird_species_extended.mix)
 }

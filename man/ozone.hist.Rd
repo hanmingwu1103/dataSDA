@@ -26,6 +26,17 @@ Histogram-valued dataset of 84 daily observations with 4 weather-related
 histogram variables. Each histogram has 10 equal-probability (decile) bins
 summarizing hourly measurements within each day.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 84 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Environment \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Regression, Clustering
+}
+}
+
 \examples{
 data(ozone.hist)
 }

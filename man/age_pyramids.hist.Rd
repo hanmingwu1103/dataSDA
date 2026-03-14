@@ -26,6 +26,17 @@ Histogram-valued dataset of 229 countries with 3 population age pyramid
 histograms (both sexes, male, female). Each histogram has 21 age bins
 representing the distribution of the population across age groups.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 229 \cr
+  \strong{Variables (p)} \tab 3 \cr
+  \strong{Subject area} \tab Demographics \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+}
+}
+
 \examples{
 data(age_pyramids.hist)
 }

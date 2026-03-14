@@ -27,6 +27,17 @@ Histogram-valued dataset of 16 airlines with 5 flight performance
 histograms. Each histogram has 12 bins describing the distribution
 of a performance metric across flights for that airline.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 16 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Transportation \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(flights_detail.hist)
 }

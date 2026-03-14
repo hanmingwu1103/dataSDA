@@ -28,6 +28,17 @@ Mixed symbolic dataset of 10 observations with hierarchical categorical
 variables, conditional histogram variables, and an interval-valued
 variable. From Table 6.20 of Billard and Diday (2007).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 10 \cr
+  \strong{Variables (p)} \tab 7 \cr
+  \strong{Subject area} \tab Methodology \cr
+  \strong{Symbolic format} \tab Mixed (histogram, interval, categorical) \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(hierarchy.hist)
 }

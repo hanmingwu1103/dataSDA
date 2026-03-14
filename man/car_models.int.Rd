@@ -30,6 +30,17 @@ Interval-valued specifications for 33 Italian car models, classified into
 version of the classic cars interval dataset with 8 interval-valued
 variables including dimensions.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 33 \cr
+  \strong{Variables (p)} \tab 9 \cr
+  \strong{Subject area} \tab Automotive \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering, Classification
+}
+}
+
 \examples{
 data(car_models.int)
 }

@@ -29,6 +29,17 @@ Interval-valued dataset of 24 units from the UCI Abalone dataset,
 aggregated by sex and age group. Min-Max column format (two columns per
 variable). See \code{\link{abalone.iGAP}} for the iGAP format version.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 24 \cr
+  \strong{Variables (p)} \tab 14 \cr
+  \strong{Subject area} \tab Marine biology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering, Visualization
+}
+}
+
 \examples{
 data(abalone.int)
 }

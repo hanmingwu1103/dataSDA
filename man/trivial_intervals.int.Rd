@@ -21,6 +21,17 @@ Simple 5x3 example illustrating different interval types: full intervals
 (hyperrectangles), degenerate intervals (lines), and trivial intervals
 (points). Used for vertices PCA demonstration.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 5 \cr
+  \strong{Variables (p)} \tab 6 \cr
+  \strong{Subject area} \tab Methodology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab PCA
+}
+}
+
 \examples{
 data(trivial_intervals.int)
 }

@@ -28,6 +28,17 @@ ground snow load interval (lower and upper bounds of the prediction
 interval in kPa) plus the point estimate, geographic coordinates, and
 elevation.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 415 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Climate \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Regression, Spatial analysis
+}
+}
+
 \examples{
 data(utsnow.int)
 }

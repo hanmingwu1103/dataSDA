@@ -25,6 +25,17 @@ Interval-valued dataset of 35 Lending Club loan groups stratified by risk
 level (A1--G5). Intervals represent the 10th to 90th percentile range of
 each financial variable within each risk subgrade.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 35 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Finance \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Classification, Clustering
+}
+}
+
 \examples{
 data(loans_by_risk_quantile.int)
 }

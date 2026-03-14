@@ -25,6 +25,17 @@ Each station has 14 climate variables measured across 4 seasons
 (56 histogram columns total). Histograms are reduced to 10 decile
 bins from the original HistDAWass distributions.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 60 \cr
+  \strong{Variables (p)} \tab 56 \cr
+  \strong{Subject area} \tab Climate \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(china_climate_season.hist)
 }

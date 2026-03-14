@@ -29,6 +29,17 @@ The original classical dataset (Table 2.3) records individual
 transactions. The symbolic version (Table 2.4) aggregates into
 interval-valued observations for each person-month combination.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 6 \cr
+  \strong{Variables (p)} \tab 11 \cr
+  \strong{Subject area} \tab Finance \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(credit_card.int)
 }

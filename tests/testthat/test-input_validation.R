@@ -86,29 +86,6 @@ test_that("set_variable_format rejects missing var", {
   expect_error(set_variable_format(df, var = "nonexistent"), "not found in data")
 })
 
-# ---------- write_csv_table ----------
-test_that("write_csv_table rejects non-data.frame", {
-  expect_error(write_csv_table(NULL, "f.csv"), "must not be NULL")
-  expect_error(write_csv_table(42, "f.csv"), "must be a data.frame")
-})
-
-test_that("write_csv_table rejects bad file", {
-  df <- data.frame(a = 1)
-  expect_error(write_csv_table(df, NULL), "must be a non-empty character")
-  expect_error(write_csv_table(df, ""), "must be a non-empty character")
-  expect_error(write_csv_table(df, 123), "must be a non-empty character")
-})
-
-test_that("write_csv_table rejects bad output", {
-  df <- data.frame(a = 1)
-  expect_error(write_csv_table(df, "f.csv", output = "yes"), "must be TRUE or FALSE")
-})
-
-test_that("write_csv_table rejects nonexistent directory", {
-  df <- data.frame(a = 1)
-  expect_error(write_csv_table(df, "nonexistent_dir_abc123/f.csv", output = TRUE),
-               "directory does not exist")
-})
 
 # ---------- int_mean / int_var ----------
 test_that("int_mean rejects non-symbolic_tbl", {

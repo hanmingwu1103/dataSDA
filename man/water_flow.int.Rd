@@ -24,6 +24,17 @@ observations and 47 interval-valued feature variables (IF1-IF48, excluding
 IF17), classified into 2 groups. Used as a benchmark for interval data
 clustering with high-dimensional features.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 316 \cr
+  \strong{Variables (p)} \tab 48 \cr
+  \strong{Subject area} \tab Engineering \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(water_flow.int)
 }

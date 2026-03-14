@@ -25,6 +25,17 @@ Female-20, Male-50). Each observation contains histograms for
 cholesterol, hemoglobin, and hematocrit, represented as multi-bin
 distributions.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 14 \cr
+  \strong{Variables (p)} \tab 3 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+}
+}
+
 \examples{
 data(blood.hist)
 }

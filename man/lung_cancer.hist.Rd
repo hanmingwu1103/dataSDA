@@ -19,6 +19,17 @@ data(lung_cancer.hist)
 Histogram-valued distribution of lung cancer treatment counts for 2 US
 states (Massachusetts and New York).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 2 \cr
+  \strong{Variables (p)} \tab 2 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(lung_cancer.hist)
 }

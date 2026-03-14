@@ -27,6 +27,17 @@ Interval-valued dataset of 30-year trimmed mean daily temperatures for the
 Ohio river basin. Intervals are defined by the mean daily maximum and minimum
 temperatures from January 1, 1988 to December 31, 2018.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 161 \cr
+  \strong{Variables (p)} \tab 7 \cr
+  \strong{Subject area} \tab Climate \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Regression, Spatial analysis
+}
+}
+
 \examples{
 data(ohtemp.int)
 }

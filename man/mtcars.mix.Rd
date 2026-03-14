@@ -32,6 +32,17 @@ Mixed symbolic dataset of 5 car groups from the \code{mtcars} data,
 with 7 interval-valued performance variables and 4 modal-valued
 categorical variables.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 5 \cr
+  \strong{Variables (p)} \tab 11 \cr
+  \strong{Subject area} \tab Automotive \cr
+  \strong{Symbolic format} \tab Mixed (interval, modal) \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+}
+}
+
 \examples{
 data(mtcars.mix)
 }

@@ -21,6 +21,17 @@ data(car.int)
 Interval-valued data for 8 car brands with price and performance
 specifications. Each brand aggregates multiple models into interval ranges.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 8 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Automotive \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+}
+}
+
 \examples{
 data(car.int)
 }

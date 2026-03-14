@@ -46,6 +46,17 @@ The 5 items measuring perception of lack of information are:
     \item I5: The amount of information I receive from the teacher is very low.
 }
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 50 \cr
+  \strong{Variables (p)} \tab 8 \cr
+  \strong{Subject area} \tab Education \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Regression
+}
+}
+
 \examples{
 data(lackinfo.int)
 }

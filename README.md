@@ -83,7 +83,8 @@ hist_cor(HistDAWass::BLOOD, var_name1 = "Cholesterol",
 | Function | Description |
 |---|---|
 | `clean_colnames` | Clean column names of a data frame |
-| `write_csv_table` | Write data to CSV file |
+| `read_symbolic_csv` | Read symbolic data from CSV file |
+| `write_symbolic_csv` | Write symbolic data to CSV file |
 
 ## Datasets
 

@@ -35,6 +35,17 @@ of 12 freshwater fish species, grouped into 4 feeding categories (Carnivores,
 Omnivores, Detritivores, Herbivores). Contains 13 interval-valued variables
 measuring metal concentrations in organs and organ-to-muscle ratios.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 12 \cr
+  \strong{Variables (p)} \tab 14 \cr
+  \strong{Subject area} \tab Biology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(freshwater_fish.int)
 }

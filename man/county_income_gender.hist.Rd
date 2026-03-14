@@ -27,6 +27,17 @@ Histogram-valued dataset of 12 counties with gender-stratified income
 histograms and sample sizes. Each county has a male income histogram,
 a female income histogram, and the number of respondents in each group.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 12 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Economics \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+}
+}
+
 \examples{
 data(county_income_gender.hist)
 }

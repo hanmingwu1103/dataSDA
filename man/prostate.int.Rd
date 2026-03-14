@@ -30,6 +30,17 @@ Interval-valued clinical measurements for 97 prostate cancer patients
 from log-transformed cancer volume, weight, age, and other clinical
 predictors.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 97 \cr
+  \strong{Variables (p)} \tab 9 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Regression
+}
+}
+
 \examples{
 data(prostate.int)
 }

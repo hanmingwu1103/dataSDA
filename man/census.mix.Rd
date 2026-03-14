@@ -30,6 +30,17 @@ Mixed symbolic dataset of 10 census regions combining 6 different symbolic
 variable types: histograms (age, home value), distributions (gender,
 tenure), a multi-valued set (fuel), and an interval (income).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 10 \cr
+  \strong{Variables (p)} \tab 6 \cr
+  \strong{Subject area} \tab Demographics \cr
+  \strong{Symbolic format} \tab Mixed (interval, histogram, distribution, multi-valued) \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(census.mix)
 }

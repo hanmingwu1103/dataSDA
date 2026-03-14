@@ -22,6 +22,17 @@ Symbolic data for 3 bird species (Swallow, Ostrich, Penguin) with
 interval-valued size, categorical flying, and categorical migration.
 Foundational SDA example from 600 individual bird observations.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 3 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Zoology \cr
+  \strong{Symbolic format} \tab Mixed (interval, categorical) \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(bird_species.mix)
 }

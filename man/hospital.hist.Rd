@@ -21,6 +21,17 @@ data(hospital.hist)
 Histogram-valued cost distributions for 15 hospitals. Each observation
 is a hospital with a 10-bin histogram of patient costs.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 15 \cr
+  \strong{Variables (p)} \tab 1 \cr
+  \strong{Subject area} \tab Healthcare \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+}
+}
+
 \examples{
 data(hospital.hist)
 }

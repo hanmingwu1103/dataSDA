@@ -22,6 +22,17 @@ Bivariate histogram-valued dataset with 10 observations, each described
 by a 2-bin hematocrit histogram and a 2-bin hemoglobin histogram.
 Used for bivariate symbolic regression demonstrations.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 10 \cr
+  \strong{Variables (p)} \tab 2 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Regression
+}
+}
+
 \examples{
 data(hematocrit_hemoglobin.hist)
 }

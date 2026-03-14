@@ -26,6 +26,17 @@ Fisher's iris data into 30 interval observations across 3 species
 (Setosa, Versicolor, Virginica). Each observation represents a group of
 flowers with ranges for sepal and petal measurements.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 30 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Botany \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(iris.int)
 }

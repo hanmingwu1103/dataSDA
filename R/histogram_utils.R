@@ -33,13 +33,11 @@
   MAT
 }
 
-# Sign function for histogram covariance (replaces 2 duplicate definitions)
-.hist_Gj <- function(a, b, p, hmean) {
-  if (sum((a + b) * p) / 2 <= hmean) {
-    return(-1)
-  } else {
-    return(1)
-  }
+# Sign function for histogram BD covariance: per-bin sign.
+# Returns a vector of -1/1, one per bin, based on whether
+# the bin midpoint is <= or > the grand mean (hmean).
+.hist_Gj <- function(a, b, hmean) {
+  ifelse((a + b) / 2 <= hmean, -1, 1)
 }
 
 # Q value computation (replaces 2 duplicate definitions)
@@ -65,19 +63,19 @@
   list(pvar1 = pvar1, pvar2 = pvar2)
 }
 
-# Compute G and Q values for BD method (replaces 2 duplicate definitions)
+# Compute G and Q values for BD method.
+# G1, G2 are per-bin sign vectors; Q1, Q2 are per-bin quadratic form vectors.
 .hist_get_GQ <- function(object, i, loc1, loc2, var1, var2) {
   object1 <- object@M[i, loc1][[1]]
   object2 <- object@M[i, loc2][[1]]
   lenx1 <- length(object1@x)
   lenx2 <- length(object2@x)
-  p <- .hist_get_pvars(object, i, loc1, loc2)
   hmean1 <- hist_mean_BG(object, var1)
   hmean2 <- hist_mean_BG(object, var2)
   Q1 <- .hist_Qj(object1@x[1:(lenx1 - 1)], object1@x[2:lenx1], hmean1)
   Q2 <- .hist_Qj(object2@x[1:(lenx2 - 1)], object2@x[2:lenx2], hmean2)
-  G1 <- .hist_Gj(object1@x[1:(lenx1 - 1)], object1@x[2:lenx1], p$pvar1, hmean1)
-  G2 <- .hist_Gj(object2@x[1:(lenx2 - 1)], object2@x[2:lenx2], p$pvar2, hmean2)
+  G1 <- .hist_Gj(object1@x[1:(lenx1 - 1)], object1@x[2:lenx1], hmean1)
+  G2 <- .hist_Gj(object2@x[1:(lenx2 - 1)], object2@x[2:lenx2], hmean2)
   list(Q1 = Q1, Q2 = Q2, G1 = G1, G2 = G2)
 }
 

@@ -23,6 +23,17 @@ Histogram-valued time series of 108 monthly observations of daily
 exchange rate returns. Each observation is a histogram distribution
 of intra-month daily returns.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 108 \cr
+  \strong{Variables (p)} \tab 1 \cr
+  \strong{Subject area} \tab Finance \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Time series, Descriptive statistics
+}
+}
+
 \examples{
 data(exchange_rate_returns.hist)
 }

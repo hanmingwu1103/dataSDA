@@ -21,6 +21,17 @@ data(acid_rain.int)
 Interval-valued acid rain pollution indices for sulphates and nitrates
 (kg/hectares) for 2 US states (Massachusetts and New York).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 2 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Environment \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(acid_rain.int)
 }

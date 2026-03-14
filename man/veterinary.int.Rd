@@ -20,6 +20,17 @@ Interval-valued veterinary dataset of 10 animal specimens described
 by height and weight ranges. Includes male and female specimens of
 horses, bears, foxes, cats, and dogs.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 10 \cr
+  \strong{Variables (p)} \tab 3 \cr
+  \strong{Subject area} \tab Zoology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+}
+}
+
 \examples{
 data(veterinary.int)
 }

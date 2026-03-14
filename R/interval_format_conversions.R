@@ -15,22 +15,27 @@
 #' @description Automatically detect the format of interval data.
 #' @usage int_detect_format(x)
 #' @param x interval data in unknown format
-#' @returns A character string indicating the detected format: "RSDA", "MM", "iGAP", "SODAS", or "unknown"
+#' @returns A character string indicating the detected format: "RSDA", "MM", "iGAP", "ARRAY", "SODAS", or "unknown"
 #' @details
 #' Detection rules:
 #' \itemize{
 #'   \item \code{RSDA}: has class "symbolic_tbl" and contains complex columns
 #'   \item \code{MM}: data.frame with paired "_min" and "_max" columns
 #'   \item \code{iGAP}: data.frame with columns containing comma-separated values (e.g., "1.2,3.4")
+#'   \item \code{ARRAY}: a 3-dimensional array with \code{dim[3] = 2} (min/max slices)
 #'   \item \code{SODAS}: character string ending with ".xml" (file path)
 #'   \item \code{SDS}: alias for SODAS
 #' }
 #' @examples
 #' data(mushroom.int)
 #' int_detect_format(mushroom.int)  # Should return "RSDA"
-#' 
+#'
 #' data(abalone.iGAP)
 #' int_detect_format(abalone.iGAP)  # Should return "iGAP"
+#'
+#' # ARRAY format
+#' x <- array(1:24, dim = c(4, 3, 2))
+#' int_detect_format(x)  # Should return "ARRAY"
 #' @export
 int_detect_format <- function(x) {
   
@@ -45,7 +50,12 @@ int_detect_format <- function(x) {
       return("SODAS")
     }
   }
-  
+
+  # Check for ARRAY format (3D array with dim[3] = 2)
+  if (is.array(x) && length(dim(x)) == 3 && dim(x)[3] == 2) {
+    return("ARRAY")
+  }
+
   # Check for RSDA format (symbolic_tbl with complex columns)
   if (inherits(x, "symbolic_tbl")) {
     # Check if it has complex mode columns (interval columns)
@@ -112,8 +122,8 @@ int_detect_format <- function(x) {
 #' @aliases int_list_conversions
 #' @description List all available format conversion functions.
 #' @usage int_list_conversions(from = NULL, to = NULL)
-#' @param from source format (optional): "RSDA", "MM", "iGAP", "SODAS"
-#' @param to target format (optional): "RSDA", "MM", "iGAP", "SODAS"
+#' @param from source format (optional): "RSDA", "MM", "iGAP", "ARRAY", "SODAS"
+#' @param to target format (optional): "RSDA", "MM", "iGAP", "ARRAY", "SODAS"
 #' @returns A data.frame showing available conversions
 #' @examples
 #' # List all conversions
@@ -129,11 +139,21 @@ int_list_conversions <- function(from = NULL, to = NULL) {
   
   # Define all available conversions
   conversions <- data.frame(
-    from = c("RSDA", "RSDA", "iGAP", "SODAS", "SODAS", "MM", "MM", "iGAP"),
-    to = c("MM", "iGAP", "MM", "MM", "iGAP", "iGAP", "RSDA", "RSDA"),
-    function_name = c("RSDA_to_MM", "RSDA_to_iGAP", "iGAP_to_MM",
-                      "SODAS_to_MM", "SODAS_to_iGAP", "MM_to_iGAP",
-                      "MM_to_RSDA", "iGAP_to_RSDA"),
+    from = c("RSDA", "RSDA", "RSDA",
+             "MM", "MM", "MM",
+             "iGAP", "iGAP", "iGAP",
+             "ARRAY", "ARRAY", "ARRAY",
+             "SODAS", "SODAS", "SODAS"),
+    to = c("MM", "iGAP", "ARRAY",
+           "iGAP", "RSDA", "ARRAY",
+           "MM", "RSDA", "ARRAY",
+           "RSDA", "MM", "iGAP",
+           "MM", "iGAP", "ARRAY"),
+    function_name = c("RSDA_to_MM", "RSDA_to_iGAP", "RSDA_to_ARRAY",
+                      "MM_to_iGAP", "MM_to_RSDA", "MM_to_ARRAY",
+                      "iGAP_to_MM", "iGAP_to_RSDA", "iGAP_to_ARRAY",
+                      "ARRAY_to_RSDA", "ARRAY_to_MM", "ARRAY_to_iGAP",
+                      "SODAS_to_MM", "SODAS_to_iGAP", "SODAS_to_ARRAY"),
     stringsAsFactors = FALSE
   )
   
@@ -160,28 +180,27 @@ int_list_conversions <- function(from = NULL, to = NULL) {
 #' @description Automatically detect the format of interval data and convert it to the target format.
 #' @usage int_convert_format(x, to = "MM", from = NULL, ...)
 #' @param x interval data in one of the supported formats
-#' @param to target format: "MM", "iGAP", "RSDA", "SODAS" (default: "MM")
-#' @param from source format (optional): "MM", "iGAP", "RSDA", "SODAS". If NULL, will auto-detect.
+#' @param to target format: "MM", "iGAP", "RSDA", "ARRAY", "SODAS" (default: "MM")
+#' @param from source format (optional): "MM", "iGAP", "RSDA", "ARRAY", "SODAS". If NULL, will auto-detect.
 #' @param ... additional parameters passed to specific conversion functions
 #' @returns Interval data in the target format
 #' @details
 #' This function provides a unified interface for all interval format conversions.
 #' It automatically detects the source format (unless specified) and applies the
 #' appropriate conversion function.
-#' 
+#'
 #' Supported conversions:
 #' \itemize{
-#'   \item RSDA → MM (via \code{RSDA_to_MM})
-#'   \item RSDA → iGAP (via \code{RSDA_to_iGAP})
-#'   \item iGAP → MM (via \code{iGAP_to_MM})
-#'   \item SODAS → MM (via \code{SODAS_to_MM})
-#'   \item SODAS → iGAP (via \code{SODAS_to_iGAP})
-#'   \item MM → iGAP (via \code{MM_to_iGAP})
-#'   \item MM → RSDA (via \code{MM_to_RSDA})
-#'   \item iGAP → RSDA (via \code{iGAP_to_RSDA})
+#'   \item RSDA ??? MM, iGAP, ARRAY
+#'   \item MM ??? iGAP, RSDA, ARRAY
+#'   \item iGAP ??? MM, RSDA, ARRAY
+#'   \item ARRAY ??? RSDA, MM, iGAP
+#'   \item SODAS ??? MM, iGAP, ARRAY
 #' }
 #' @author Han-Ming Wu
-#' @seealso int_detect_format int_list_conversions RSDA_to_MM iGAP_to_MM MM_to_iGAP MM_to_RSDA iGAP_to_RSDA
+#' @seealso int_detect_format int_list_conversions RSDA_to_MM RSDA_to_ARRAY
+#'   MM_to_RSDA MM_to_ARRAY ARRAY_to_RSDA ARRAY_to_MM ARRAY_to_iGAP
+#'   iGAP_to_MM iGAP_to_RSDA iGAP_to_ARRAY MM_to_iGAP
 #' @importFrom utils capture.output head
 #' @examples
 #' # Auto-detect and convert to MM
@@ -206,7 +225,7 @@ int_convert_format <- function(x, to = "MM", from = NULL, ...) {
   
   # Normalize target format
   to <- toupper(to)
-  valid_targets <- c("MM", "IGAP", "RSDA", "SODAS", "SDS")
+  valid_targets <- c("MM", "IGAP", "RSDA", "ARRAY", "SODAS", "SDS")
   
   if (!to %in% valid_targets) {
     stop("int_convert_format: 'to' must be one of: ", 
@@ -299,6 +318,9 @@ int_convert_format <- function(x, to = "MM", from = NULL, ...) {
     "MM_to_RSDA" = {
       MM_to_RSDA(x)
     },
+    "ARRAY_to_RSDA" = {
+      ARRAY_to_RSDA(x)
+    },
     "IGAP_to_RSDA" = {
       args <- list(...)
       if (is.null(args$location)) {
@@ -330,6 +352,50 @@ int_convert_format <- function(x, to = "MM", from = NULL, ...) {
       } else {
         iGAP_to_RSDA(x, location = args$location)
       }
+    },
+
+    # To ARRAY format
+    "RSDA_to_ARRAY" = {
+      RSDA_to_ARRAY(x)
+    },
+    "MM_to_ARRAY" = {
+      MM_to_ARRAY(x)
+    },
+    "IGAP_to_ARRAY" = {
+      args <- list(...)
+      if (is.null(args$location)) {
+        if (is.data.frame(x)) {
+          char_cols <- which(sapply(x, is.character))
+          interval_cols <- c()
+          for (col_idx in char_cols) {
+            values <- as.character(x[[col_idx]])
+            if (any(grepl(",", values), na.rm = TRUE))
+              interval_cols <- c(interval_cols, col_idx)
+          }
+          if (length(interval_cols) > 0) {
+            message("Auto-detected interval columns: ", paste(interval_cols, collapse = ", "))
+            iGAP_to_ARRAY(x, location = interval_cols)
+          } else {
+            stop("int_convert_format: No interval columns detected in iGAP data. ",
+                 "Please specify 'location' parameter.", call. = FALSE)
+          }
+        } else {
+          stop("int_convert_format: iGAP data must be a data.frame.", call. = FALSE)
+        }
+      } else {
+        iGAP_to_ARRAY(x, location = args$location)
+      }
+    },
+    "SODAS_to_ARRAY" = {
+      SODAS_to_ARRAY(x)
+    },
+
+    # From ARRAY to other formats
+    "ARRAY_to_MM" = {
+      ARRAY_to_MM(x)
+    },
+    "ARRAY_to_IGAP" = {
+      ARRAY_to_iGAP(x)
     },
 
     # Unsupported conversion
@@ -523,7 +589,7 @@ SODAS_to_MM <- function(XMLPath){
   .check_file_path(XMLPath, "SODAS_to_MM")
   .check_file_exists(XMLPath, "SODAS_to_MM")
   data <- RSDA::SODAS.to.RSDA(XMLPath)
-  df <- RSDA_to_MM(data, RSDA = T)
+  df <- RSDA_to_MM(data, RSDA = TRUE)
   return(df)
 }
 
@@ -585,7 +651,7 @@ RSDA_to_iGAP <- function(data){
     stop("RSDA_to_iGAP: 'data' must be a symbolic_tbl object, not ",
          class(data)[1], ".", call. = FALSE)
   }
-  df <- RSDA_to_MM(data, RSDA = T)
+  df <- RSDA_to_MM(data, RSDA = TRUE)
   df.iGAP <- MM_to_iGAP(df)
   return(df.iGAP)
 }
@@ -669,7 +735,7 @@ MM_to_RSDA <- function(data){
         used <- c(used, col)
       }
     } else if (grepl("_[Mm]ax$", col)) {
-      # _max column without matching _min already processed — skip if used
+      # _max column without matching _min already processed -- skip if used
       next
     } else {
       # Non-interval column, keep as-is
@@ -706,4 +772,420 @@ iGAP_to_RSDA <- function(data, location = NULL){
   mm <- iGAP_to_MM(data, location)
   result <- MM_to_RSDA(mm)
   return(result)
+}
+
+
+# --- Conversions to/from ARRAY format ----------------------------------------
+
+# Internal validator for ARRAY format
+.check_array_format <- function(data, fn_name) {
+  if (is.null(data))
+    stop(fn_name, ": 'data' must not be NULL.", call. = FALSE)
+  if (!is.array(data) || length(dim(data)) != 3 || dim(data)[3] != 2)
+    stop(fn_name, ": 'data' must be a 3-dimensional array with dim[3] = 2 ",
+         "(i.e., [n, p, 2]).", call. = FALSE)
+}
+
+
+#' RSDA to ARRAY
+#'
+#' @name RSDA_to_ARRAY
+#' @aliases RSDA_to_ARRAY
+#' @description Convert RSDA format (symbolic_tbl) to a 3-dimensional array
+#' \code{[n, p, 2]} where slice \code{[,,1]} contains the minima and
+#' slice \code{[,,2]} contains the maxima.
+#' @usage RSDA_to_ARRAY(data)
+#' @param data A symbolic_tbl with interval columns.
+#' @returns A numeric array of dimension \code{[n, p, 2]} with dimnames.
+#' Only interval (symbolic_interval) columns are included.
+#' @examples
+#' data(mushroom.int)
+#' arr <- RSDA_to_ARRAY(mushroom.int)
+#' dim(arr)  # [23, 3, 2]
+#' @export
+RSDA_to_ARRAY <- function(data) {
+  if (is.null(data))
+    stop("RSDA_to_ARRAY: 'data' must not be NULL.", call. = FALSE)
+  if (!inherits(data, "symbolic_tbl"))
+    stop("RSDA_to_ARRAY: 'data' must be a symbolic_tbl object, not ",
+         class(data)[1], ".", call. = FALSE)
+
+  # Filter to interval columns only
+  int_cols <- sapply(data, function(col) {
+    inherits(col, "symbolic_interval") || mode(col) == "complex"
+  })
+  if (!any(int_cols))
+    stop("RSDA_to_ARRAY: no interval columns found in 'data'.", call. = FALSE)
+
+  symbolic_tbl_to_idata(data[, int_cols, drop = FALSE])
+}
+
+
+#' ARRAY to RSDA
+#'
+#' @name ARRAY_to_RSDA
+#' @aliases ARRAY_to_RSDA
+#' @description Convert a 3-dimensional array \code{[n, p, 2]} to RSDA format
+#' (symbolic_tbl with symbolic_interval columns).
+#' @usage ARRAY_to_RSDA(data)
+#' @param data A numeric array of dimension \code{[n, p, 2]} where
+#' \code{[,,1]} stores minima and \code{[,,2]} stores maxima.
+#' @returns A symbolic_tbl with p symbolic_interval columns.
+#' @examples
+#' x <- array(NA, dim = c(4, 3, 2))
+#' x[,,1] <- matrix(c(1,2,3,4, 5,6,7,8, 9,10,11,12), nrow = 4)
+#' x[,,2] <- matrix(c(3,5,6,7, 8,9,10,12, 13,15,16,18), nrow = 4)
+#' dimnames(x) <- list(paste0("obs_", 1:4), c("V1","V2","V3"), c("min","max"))
+#' rsda <- ARRAY_to_RSDA(x)
+#' rsda
+#' @export
+ARRAY_to_RSDA <- function(data) {
+  .check_array_format(data, "ARRAY_to_RSDA")
+
+  n <- dim(data)[1]
+  p <- dim(data)[2]
+
+  var_names <- dimnames(data)[[2]]
+  if (is.null(var_names)) var_names <- paste0("V", seq_len(p))
+  row_names <- dimnames(data)[[1]]
+  if (is.null(row_names)) row_names <- as.character(seq_len(n))
+
+  col_list <- vector("list", p)
+  names(col_list) <- var_names
+  for (j in seq_len(p)) {
+    col_list[[j]] <- .new_symbolic_interval(data[, j, 1], data[, j, 2])
+  }
+
+  structure(col_list,
+            class = c("symbolic_tbl", "tbl_df", "tbl", "data.frame"),
+            row.names = seq_len(n),
+            names = var_names,
+            concept = row_names)
+}
+
+
+#' MM to ARRAY
+#'
+#' @name MM_to_ARRAY
+#' @aliases MM_to_ARRAY
+#' @description Convert MM format (paired \code{_min}/\code{_max} columns) to a
+#' 3-dimensional array \code{[n, p, 2]}.
+#' @usage MM_to_ARRAY(data)
+#' @param data A data.frame in MM format with paired \code{_min} and \code{_max}
+#' columns.
+#' @returns A numeric array of dimension \code{[n, p, 2]} with dimnames.
+#' Non-interval columns are excluded.
+#' @examples
+#' data(mushroom.int)
+#' mm <- RSDA_to_MM(mushroom.int, RSDA = FALSE)
+#' arr <- MM_to_ARRAY(mm)
+#' dim(arr)
+#' @export
+MM_to_ARRAY <- function(data) {
+  .check_data_frame(data, "MM_to_ARRAY")
+  col_names <- names(data)
+
+  min_cols <- grep("_[Mm]in$", col_names, value = TRUE)
+  if (length(min_cols) == 0)
+    stop("MM_to_ARRAY: no '_min' columns found in 'data'.", call. = FALSE)
+
+  base_names <- sub("_[Mm]in$", "", min_cols)
+  n <- nrow(data)
+  p <- length(base_names)
+
+  result <- array(NA_real_, dim = c(n, p, 2))
+  var_names <- character(p)
+
+  for (j in seq_len(p)) {
+    max_col <- col_names[grepl(paste0("^", base_names[j], "_[Mm]ax$"), col_names)]
+    if (length(max_col) != 1)
+      stop("MM_to_ARRAY: no matching '_max' column for '", min_cols[j], "'.",
+           call. = FALSE)
+    result[, j, 1] <- as.numeric(data[[min_cols[j]]])
+    result[, j, 2] <- as.numeric(data[[max_col]])
+    var_names[j] <- base_names[j]
+  }
+
+  dimnames(result) <- list(rownames(data), var_names, c("min", "max"))
+  result
+}
+
+
+#' ARRAY to MM
+#'
+#' @name ARRAY_to_MM
+#' @aliases ARRAY_to_MM
+#' @description Convert a 3-dimensional array \code{[n, p, 2]} to MM format
+#' (data.frame with paired \code{_min}/\code{_max} columns).
+#' @usage ARRAY_to_MM(data)
+#' @param data A numeric array of dimension \code{[n, p, 2]} where
+#' \code{[,,1]} stores minima and \code{[,,2]} stores maxima.
+#' @returns A data.frame with \code{2p} columns (paired \code{_min}/\code{_max}).
+#' @examples
+#' x <- array(NA, dim = c(4, 3, 2))
+#' x[,,1] <- matrix(c(1,2,3,4, 5,6,7,8, 9,10,11,12), nrow = 4)
+#' x[,,2] <- matrix(c(3,5,6,7, 8,9,10,12, 13,15,16,18), nrow = 4)
+#' dimnames(x) <- list(paste0("obs_", 1:4), c("V1","V2","V3"), c("min","max"))
+#' mm <- ARRAY_to_MM(x)
+#' mm
+#' @export
+ARRAY_to_MM <- function(data) {
+  .check_array_format(data, "ARRAY_to_MM")
+
+  n <- dim(data)[1]
+  p <- dim(data)[2]
+
+  var_names <- dimnames(data)[[2]]
+  if (is.null(var_names)) var_names <- paste0("V", seq_len(p))
+  row_names <- dimnames(data)[[1]]
+
+  col_names <- character(2 * p)
+  result <- data.frame(matrix(NA_real_, nrow = n, ncol = 2 * p))
+  for (j in seq_len(p)) {
+    result[, 2 * j - 1] <- data[, j, 1]
+    result[, 2 * j]     <- data[, j, 2]
+    col_names[2 * j - 1] <- paste0(var_names[j], "_min")
+    col_names[2 * j]     <- paste0(var_names[j], "_max")
+  }
+  names(result) <- col_names
+  if (!is.null(row_names)) rownames(result) <- row_names
+  result
+}
+
+
+#' iGAP to ARRAY
+#'
+#' @name iGAP_to_ARRAY
+#' @aliases iGAP_to_ARRAY
+#' @description Convert iGAP format to a 3-dimensional array \code{[n, p, 2]}.
+#' @usage iGAP_to_ARRAY(data, location = NULL)
+#' @param data A data.frame in iGAP format.
+#' @param location Integer vector specifying which columns contain
+#' comma-separated interval values.
+#' @returns A numeric array of dimension \code{[n, p, 2]} with dimnames.
+#' @importFrom tidyr separate
+#' @importFrom magrittr %>%
+#' @examples
+#' data(abalone.iGAP)
+#' arr <- iGAP_to_ARRAY(abalone.iGAP, 1:7)
+#' dim(arr)
+#' @export
+iGAP_to_ARRAY <- function(data, location = NULL) {
+  .check_data_frame(data, "iGAP_to_ARRAY")
+  .check_location(location, ncol(data), "iGAP_to_ARRAY")
+  mm <- iGAP_to_MM(data, location)
+  MM_to_ARRAY(mm)
+}
+
+
+#' ARRAY to iGAP
+#'
+#' @name ARRAY_to_iGAP
+#' @aliases ARRAY_to_iGAP
+#' @description Convert a 3-dimensional array \code{[n, p, 2]} to iGAP format
+#' (data.frame with comma-separated interval values).
+#' @usage ARRAY_to_iGAP(data)
+#' @param data A numeric array of dimension \code{[n, p, 2]} where
+#' \code{[,,1]} stores minima and \code{[,,2]} stores maxima.
+#' @returns A data.frame in iGAP format with comma-separated \code{"min,max"}
+#' values.
+#' @importFrom dplyr select
+#' @importFrom tidyr unite
+#' @importFrom magrittr %>%
+#' @examples
+#' x <- array(NA, dim = c(4, 3, 2))
+#' x[,,1] <- matrix(c(1,2,3,4, 5,6,7,8, 9,10,11,12), nrow = 4)
+#' x[,,2] <- matrix(c(3,5,6,7, 8,9,10,12, 13,15,16,18), nrow = 4)
+#' dimnames(x) <- list(paste0("obs_", 1:4), c("V1","V2","V3"), c("min","max"))
+#' igap <- ARRAY_to_iGAP(x)
+#' igap
+#' @export
+ARRAY_to_iGAP <- function(data) {
+  .check_array_format(data, "ARRAY_to_iGAP")
+  mm <- ARRAY_to_MM(data)
+  MM_to_iGAP(mm)
+}
+
+
+#' Convert Interval Data to All Supported Formats
+#'
+#' @name to_all_interval_formats
+#' @aliases to_all_interval_formats
+#' @description Convert interval data from any recognized format to all six
+#' supported interval data formats and return the results as a named list.
+#' This is useful for inspecting and comparing how the same interval data is
+#' represented across different formats.
+#' @usage to_all_interval_formats(x, ...)
+#' @param x Interval data in one of the supported formats:
+#' \code{"RSDA"}, \code{"MM"}, \code{"iGAP"}, \code{"ARRAY"},
+#' \code{"SODAS"}, or \code{"SDS"}.
+#' @param ... Additional arguments passed to conversion functions (e.g.,
+#' \code{location} for iGAP input).
+#' @returns A named list with six slots:
+#' \describe{
+#'   \item{\code{RSDA}}{A \code{symbolic_tbl} with complex-encoded
+#'     \code{symbolic_interval} columns.}
+#'   \item{\code{MM}}{A \code{data.frame} with paired \code{_min}/\code{_max}
+#'     columns.}
+#'   \item{\code{iGAP}}{A \code{data.frame} with comma-separated
+#'     \code{"min,max"} character values.}
+#'   \item{\code{ARRAY}}{A three-dimensional numeric \code{array} of dimension
+#'     \code{[n, p, 2]} where \code{[,,1]} stores minima and \code{[,,2]}
+#'     stores maxima.}
+#'   \item{\code{SODAS}}{\code{NULL} unless the input is a SODAS XML file path,
+#'     in which case it stores the original path.}
+#'   \item{\code{SDS}}{\code{NULL} unless the input is a SODAS/SDS XML file path
+#'     (alias for SODAS).}
+#' }
+#' @details
+#' Six interval data formats are supported in this package.  Each format
+#' stores the same information -- lower and upper bounds for every variable of
+#' every observation -- but differs in its structure and origin:
+#'
+#' \describe{
+#'   \item{\strong{RSDA}}{
+#'     A \code{symbolic_tbl} object (class
+#'     \code{c("symbolic_tbl", "tbl_df", "tbl", "data.frame")}) where each
+#'     interval variable is a complex column (\code{symbolic_interval}):
+#'     \code{Re()} gives the minimum and \code{Im()} gives the maximum.
+#'     This is the native format of the \pkg{RSDA} package
+#'     (Billard & Diday, 2006; Rodriguez, 2024).
+#'   }
+#'   \item{\strong{MM (Min-Max)}}{
+#'     A plain \code{data.frame} where each interval variable is represented by
+#'     two numeric columns named \code{<var>_min} and \code{<var>_max}.
+#'     This is a widely used general-purpose representation.
+#'   }
+#'   \item{\strong{iGAP}}{
+#'     A \code{data.frame} where each interval variable is stored as a character
+#'     column with comma-separated values \code{"min,max"}.
+#'     This is the format used by the \pkg{iGAP} software (Correia, 2009).
+#'   }
+#'   \item{\strong{ARRAY}}{
+#'     A three-dimensional numeric \code{array} of size \code{[n, p, 2]}.
+#'     The first slice \code{[,,1]} contains all minima and the second slice
+#'     \code{[,,2]} contains all maxima.  Dimnames encode observation labels,
+#'     variable names, and \code{c("min", "max")}.  This format is convenient
+#'     for matrix-based computations.
+#'   }
+#'   \item{\strong{SODAS}}{
+#'     An XML file on disk produced by the SODAS software (Diday & Noirhomme,
+#'     2008).  In R, SODAS data is referenced by its file path and read via
+#'     \code{RSDA::SODAS.to.RSDA()}.  Since SODAS is a file-based format, it
+#'     cannot be generated from in-memory data.
+#'   }
+#'   \item{\strong{SDS}}{
+#'     An alias for SODAS.  Both refer to the same XML-based format.
+#'   }
+#' }
+#' @references
+#' Billard, L. and Diday, E. (2006).
+#' \emph{Symbolic Data Analysis: Conceptual Statistics and Data Mining}.
+#' Wiley.
+#'
+#' Rodriguez, O. (2024).
+#' \emph{RSDA: R to Symbolic Data Analysis}.
+#' R package, \url{https://CRAN.R-project.org/package=RSDA}.
+#'
+#' Correia, M. (2009).
+#' \emph{Interval GARCH and Aggregation of Predictions}.
+#'
+#' Diday, E. and Noirhomme-Fraiture, M. (2008).
+#' \emph{Symbolic Data Analysis and the SODAS Software}.
+#' Wiley.
+#' @author Han-Ming Wu
+#' @seealso \code{\link{int_detect_format}}, \code{\link{int_convert_format}},
+#'   \code{\link{int_list_conversions}}
+#' @examples
+#' data(car.int)
+#' result <- to_all_interval_formats(car.int)
+#' names(result)
+#'
+#' # RSDA format (symbolic_tbl)
+#' result$RSDA
+#'
+#' # MM format (data.frame with _min/_max columns)
+#' head(result$MM)
+#'
+#' # iGAP format (data.frame with comma-separated values)
+#' head(result$iGAP)
+#'
+#' # ARRAY format (3D array)
+#' dim(result$ARRAY)
+#' result$ARRAY[1:3, , 1]  # minima
+#' result$ARRAY[1:3, , 2]  # maxima
+#'
+#' # SODAS/SDS slots are NULL (file-based format)
+#' result$SODAS
+#' result$SDS
+#' @export
+to_all_interval_formats <- function(x, ...) {
+  # Detect source format
+  src <- int_detect_format(x)
+  if (src == "unknown")
+    stop("to_all_interval_formats: could not detect the format of 'x'. ",
+         "Supported formats: RSDA, MM, iGAP, ARRAY, SODAS/SDS.", call. = FALSE)
+
+  src_upper <- toupper(src)
+  if (src_upper == "SDS") src_upper <- "SODAS"
+
+  # Initialize result list
+  result <- list(RSDA = NULL, MM = NULL, iGAP = NULL,
+                 ARRAY = NULL, SODAS = NULL, SDS = NULL)
+
+  # Place original data in the matching slot
+  switch(src_upper,
+    "RSDA"  = { result$RSDA  <- x },
+    "MM"    = { result$MM    <- x },
+    "IGAP"  = { result$iGAP  <- x },
+    "ARRAY" = { result$ARRAY <- x },
+    "SODAS" = { result$SODAS <- x; result$SDS <- x }
+  )
+
+  # Convert to each in-memory format that is not yet filled
+  targets <- c(RSDA = "RSDA", MM = "MM", iGAP = "IGAP", ARRAY = "ARRAY")
+
+  for (slot_name in names(targets)) {
+    if (!is.null(result[[slot_name]])) next
+    result[[slot_name]] <- tryCatch(
+      suppressMessages(int_convert_format(x, to = targets[[slot_name]],
+                                          from = src_upper, ...)),
+      error = function(e) {
+        warning("to_all_interval_formats: conversion to ", slot_name,
+                " failed: ", conditionMessage(e), call. = FALSE)
+        NULL
+      }
+    )
+  }
+
+  # SODAS/SDS: file-based format, cannot be produced from in-memory data
+  if (src_upper != "SODAS") {
+    message("Note: SODAS/SDS is a file-based XML format and cannot be ",
+            "generated from in-memory data. The SODAS and SDS slots are NULL.")
+  }
+
+  result
+}
+
+
+#' SODAS to ARRAY
+#'
+#' @name SODAS_to_ARRAY
+#' @aliases SODAS_to_ARRAY
+#' @description Convert SODAS format (XML file) to a 3-dimensional array
+#' \code{[n, p, 2]}.
+#' @usage SODAS_to_ARRAY(XMLPath)
+#' @param XMLPath Disk path where the SODAS \code{*.XML} file is.
+#' @returns A numeric array of dimension \code{[n, p, 2]} with dimnames.
+#' @importFrom RSDA SODAS.to.RSDA
+#' @examples
+#' \dontrun{
+#' arr <- SODAS_to_ARRAY("C:/Users/user/AppData/abalone.xml")
+#' }
+#' @export
+SODAS_to_ARRAY <- function(XMLPath) {
+  .check_file_path(XMLPath, "SODAS_to_ARRAY")
+  .check_file_exists(XMLPath, "SODAS_to_ARRAY")
+  rsda <- RSDA::SODAS.to.RSDA(XMLPath)
+  RSDA_to_ARRAY(rsda)
 }

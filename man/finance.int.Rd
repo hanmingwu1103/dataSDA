@@ -24,6 +24,17 @@ Interval-valued data for 14 business sectors described by job-related
 financial variables (job cost codes, activity codes, budgets).
 Used for PCA demonstrations.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 14 \cr
+  \strong{Variables (p)} \tab 7 \cr
+  \strong{Subject area} \tab Finance \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab PCA
+}
+}
+
 \examples{
 data(finance.int)
 }

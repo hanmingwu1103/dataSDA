@@ -25,6 +25,17 @@ Distribution-valued dataset for 10 towns (geographic areas) with
 categorical probability distributions for fuel type and central heating.
 Each observation has two distribution-valued variables.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 10 \cr
+  \strong{Variables (p)} \tab 2 \cr
+  \strong{Subject area} \tab Energy \cr
+  \strong{Symbolic format} \tab Distribution \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(energy_usage.distr)
 }

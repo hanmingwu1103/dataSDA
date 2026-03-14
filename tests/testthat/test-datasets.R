@@ -1,6 +1,6 @@
 dataset_names <- c(
   "abalone.int", "abalone.iGAP", "face.iGAP",
-  "mushroom", "mushroom.int",
+  "mushroom.int.mm", "mushroom.int",
   "bird.mix", "baseball.int", "blood_pressure.int",
   "car.int", "cars.int", "china_temp.int",
   "finance.int", "hierarchy.int", "horses.int",
@@ -9,10 +9,10 @@ dataset_names <- c(
   "soccer_bivar.int", "veterinary.int",
   "age_cholesterol_weight.int",
   "hierarchy",
-  "fuel_consumption", "health_insurance.mix", "health_insurance2",
-  "airline_flights.hist", "airline_flights2",
-  "crime", "crime2",
-  "occupations", "occupations2"
+  "fuel_consumption.modal", "health_insurance.mix", "health_insurance2.modal",
+  "airline_flights.hist", "airline_flights2.modal",
+  "crime.modal", "crime2.modal",
+  "occupations.modal", "occupations2.modal"
 )
 
 test_that("all datasets can be loaded", {
@@ -61,10 +61,10 @@ test_that(".iGAP datasets are data.frames", {
   }
 })
 
-test_that("mushroom dataset is a data.frame", {
-  data(mushroom)
-  expect_s3_class(mushroom, "data.frame")
-  expect_true(nrow(mushroom) > 0)
+test_that("mushroom.int.mm dataset is a data.frame", {
+  data(mushroom.int.mm)
+  expect_s3_class(mushroom.int.mm, "data.frame")
+  expect_true(nrow(mushroom.int.mm) > 0)
 })
 
 test_that("mushroom.int has complex columns", {
@@ -107,20 +107,20 @@ test_that("hierarchy dataset loads correctly", {
   expect_true(nrow(hierarchy) > 0)
 })
 
-test_that("fuel_consumption dataset loads correctly", {
-  data(fuel_consumption)
-  expect_true(is.data.frame(fuel_consumption))
-  expect_true(nrow(fuel_consumption) > 0)
+test_that("fuel_consumption.modal dataset loads correctly", {
+  data(fuel_consumption.modal)
+  expect_true(is.data.frame(fuel_consumption.modal))
+  expect_true(nrow(fuel_consumption.modal) > 0)
 })
 
-test_that("crime dataset loads correctly", {
-  data(crime)
-  expect_true(is.data.frame(crime))
-  expect_true(nrow(crime) > 0)
+test_that("crime.modal dataset loads correctly", {
+  data(crime.modal)
+  expect_true(is.data.frame(crime.modal))
+  expect_true(nrow(crime.modal) > 0)
 })
 
-test_that("occupations dataset loads correctly", {
-  data(occupations)
-  expect_true(is.data.frame(occupations))
-  expect_true(nrow(occupations) > 0)
+test_that("occupations.modal dataset loads correctly", {
+  data(occupations.modal)
+  expect_true(is.data.frame(occupations.modal))
+  expect_true(nrow(occupations.modal) > 0)
 })

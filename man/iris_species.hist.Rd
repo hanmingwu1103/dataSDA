@@ -27,6 +27,17 @@ Setosa) with 4 histogram-valued morphological variables and a species
 label. Each histogram describes the distribution of measurements
 within a species.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 3 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Botany \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+}
+}
+
 \examples{
 data(iris_species.hist)
 }

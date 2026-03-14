@@ -23,6 +23,17 @@ data(ecoli_routes.int)
 Interval-valued dataset of 9 E. coli transport routes with 5 interval
 variables representing biochemical pathway measurements.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 9 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Biology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(ecoli_routes.int)
 }

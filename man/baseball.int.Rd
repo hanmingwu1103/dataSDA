@@ -19,6 +19,17 @@ data(baseball.int)
 Interval-valued data for 19 baseball teams with aggregated player
 batting statistics and a pattern variable classifying team performance.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 19 \cr
+  \strong{Variables (p)} \tab 3 \cr
+  \strong{Subject area} \tab Sports \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Clustering
+}
+}
+
 \examples{
 data(baseball.int)
 }

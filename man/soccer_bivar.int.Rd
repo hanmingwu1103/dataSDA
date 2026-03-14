@@ -22,6 +22,17 @@ data(soccer_bivar.int)
 Interval-valued data for 20 teams from the French premier soccer championship.
 Contains ranges of Weight (response), Height and Age (explanatory variables).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 20 \cr
+  \strong{Variables (p)} \tab 3 \cr
+  \strong{Subject area} \tab Sports \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Regression
+}
+}
+
 \examples{
 data(soccer_bivar.int)
 }

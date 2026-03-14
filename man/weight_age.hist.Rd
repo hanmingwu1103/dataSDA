@@ -22,6 +22,17 @@ Histogram-valued weight distributions for 7 age groups (20s through 80s).
 Each observation represents an age decade with a 7-bin histogram of
 weight values (pounds).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 7 \cr
+  \strong{Variables (p)} \tab 1 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(weight_age.hist)
 }

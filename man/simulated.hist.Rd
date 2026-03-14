@@ -23,6 +23,17 @@ Small simulated histogram-valued dataset of 5 observations with 2
 histogram-valued variables. Useful for testing and demonstrating
 histogram-valued statistical methods.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 5 \cr
+  \strong{Variables (p)} \tab 2 \cr
+  \strong{Subject area} \tab Methodology \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Clustering
+}
+}
+
 \examples{
 data(simulated.hist)
 }

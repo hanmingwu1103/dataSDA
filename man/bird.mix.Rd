@@ -19,6 +19,17 @@ Interval-valued morphological measurements for 20 bird specimens.
 Despite the \code{.mix} suffix, this dataset contains only
 interval-valued variables (density and size).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 20 \cr
+  \strong{Variables (p)} \tab 2 \cr
+  \strong{Subject area} \tab Zoology \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Descriptive statistics
+}
+}
+
 \examples{
 data(bird.mix)
 }

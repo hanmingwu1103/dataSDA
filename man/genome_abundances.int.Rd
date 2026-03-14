@@ -34,6 +34,17 @@ classes. Each class aggregates multiple genomes; the intervals represent
 the range of observed abundance values within each class for 10 dinucleotide
 pairs, plus a count variable.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 14 \cr
+  \strong{Variables (p)} \tab 11 \cr
+  \strong{Subject area} \tab Genomics \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+}
+}
+
 \examples{
 data(genome_abundances.int)
 }

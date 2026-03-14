@@ -26,6 +26,17 @@ Histogram-valued dataset of 22 French regions with 4 economic
 histogram variables related to agricultural production. Each histogram
 describes the distribution of farm-level values within a region.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 22 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Agriculture \cr
+  \strong{Symbolic format} \tab Histogram \cr
+  \strong{Analytical tasks} \tab Regression, Clustering
+}
+}
+
 \examples{
 data(french_agriculture.hist)
 }

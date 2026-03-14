@@ -46,8 +46,19 @@ data(health_insurance.mix)
 Classical (microdata) health insurance dataset of 51 individual patient
 records with 30 variables including demographics, clinical measurements,
 and diagnostic indicators. This is the raw data underlying the
-symbolic \code{\link{health_insurance2}} dataset.
+symbolic \code{\link{health_insurance2.modal}} dataset.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 51 \cr
+  \strong{Variables (p)} \tab 30 \cr
+  \strong{Subject area} \tab Medical \cr
+  \strong{Symbolic format} \tab Classical (microdata) \cr
+  \strong{Analytical tasks} \tab Descriptive statistics, Aggregation
+}
+}
+
 \examples{
 data(health_insurance.mix)
 }

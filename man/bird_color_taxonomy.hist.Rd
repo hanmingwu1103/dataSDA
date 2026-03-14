@@ -26,6 +26,17 @@ feather density and body size, categorical tone, and distribution-valued
 shade (fuzzy taxonomy). From Tables 6.9 and 6.14 of Billard and Diday
 (2007).
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 20 \cr
+  \strong{Variables (p)} \tab 4 \cr
+  \strong{Subject area} \tab Zoology \cr
+  \strong{Symbolic format} \tab Mixed (histogram, categorical, distribution) \cr
+  \strong{Analytical tasks} \tab Clustering, Descriptive statistics
+}
+}
+
 \examples{
 data(bird_color_taxonomy.hist)
 }

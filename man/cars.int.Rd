@@ -25,6 +25,17 @@ Interval-valued data for 27 car models classified into four classes
 (Utilitarian, Berlina, Sportive, Luxury), described by Price,
 EngineCapacity, TopSpeed and Acceleration intervals.
 }
+\section{Metadata}{
+
+\tabular{ll}{
+  \strong{Sample size (n)} \tab 27 \cr
+  \strong{Variables (p)} \tab 5 \cr
+  \strong{Subject area} \tab Automotive \cr
+  \strong{Symbolic format} \tab Interval \cr
+  \strong{Analytical tasks} \tab Classification
+}
+}
+
 \examples{
 data(cars.int)
 }
