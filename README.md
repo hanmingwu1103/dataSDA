@@ -157,6 +157,7 @@ hist_cor(HistDAWass::BLOOD, var_name1 = "Cholesterol",
 | Function | Description |
 |---|---|
 | `clean_colnames` | Clean column names of a data frame |
+| `check_zero_width_intervals` | Flag zero-width intervals (`min == max`) in interval-valued data |
 | `read_symbolic_csv` | Read symbolic data from CSV file |
 | `write_symbolic_csv` | Write symbolic data to CSV file |
 | `search_data` | Search available datasets by keyword or type |
@@ -200,7 +201,7 @@ The package includes **114 built-in datasets** for symbolic data analysis:
 
 ## Vignettes
 
-- [Introduction to dataSDA](https://htmlpreview.github.io/?https://github.com/hanmingwu1103/dataSDA/blob/master/inst/doc/dataSDA_intro.html)
+- [Introduction to dataSDA](https://htmlpreview.github.io/?https://github.com/hanmingwu1103/dataSDA/blob/master/docs/dataSDA_intro.html)
 
 ## Dependencies
 
@@ -215,3 +216,7 @@ The package includes **114 built-in datasets** for symbolic data analysis:
 ## License
 
 GPL (>= 2)
+
+## Citation
+
+Po-Wei Chen, Chun-houh Chen, Han-Ming Wu (2026), dataSDA: datasets and basic statistics for symbolic data analysis in R (v0.2.6). Journal of Applied Statistics.
