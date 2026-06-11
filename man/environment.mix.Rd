@@ -28,7 +28,7 @@ A symbolic data frame (\code{symbolic_tbl}) with 14 observations and
 }
 }
 \source{
-Extracted from ggESDA package (\code{Environment}).
+Extracted from the ggInterval package (\code{Environment}).
 }
 \usage{
 data(environment.mix)
@@ -53,8 +53,9 @@ and modal-valued (distributional) categorical variables.
 data(environment.mix)
 }
 \references{
-Sun, Y. and Billard, L. (2020). Symbolic data analysis with the
-ggESDA package. \emph{Journal of Statistical Software}.
+Jiang, B.-S. and Wu, H.-M. (2025). ggInterval: an R package for
+visualizing interval-valued data using ggplot2. R package version 0.2.5.
+\url{https://CRAN.R-project.org/package=ggInterval}
 }
 \keyword{datasets}
 \keyword{interval}

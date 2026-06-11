@@ -2,7 +2,7 @@
 title: "Introduction to dataSDA"
 subtitle: "Datasets and Basic Statistics for Symbolic Data Analysis"
 author: "Po-Wei Chen, Chun-houh Chen and Han-Ming Wu*"
-date: "March 14, 2026"
+date: "June 11, 2026"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -16,10 +16,13 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+not_cran <- identical(Sys.getenv("NOT_CRAN"), "true")
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   echo = TRUE,
+  eval = not_cran,
   warning = FALSE,
   message = FALSE,
   out.width = "100%",
@@ -30,7 +33,6 @@ library(dataSDA)
 library(RSDA)
 library(HistDAWass)
 
-not_cran <- identical(Sys.getenv("NOT_CRAN"), "true")
 has_symbolicDA <- requireNamespace("symbolicDA", quietly = TRUE)
 has_MAINT <- requireNamespace("MAINT.Data", quietly = TRUE)
 has_e1071 <- requireNamespace("e1071", quietly = TRUE)
@@ -39,7 +41,7 @@ has_ggInterval <- requireNamespace("ggInterval", quietly = TRUE) && not_cran
 
 # Introduction
 
-The `dataSDA` package (v0.3.0) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>.
+The `dataSDA` package (v0.2.5) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>.
 
 
 The package includes **114 datasets** spanning seven types of symbolic data. Each dataset name uses a suffix that indicates its type:
@@ -58,21 +60,38 @@ The package includes **114 datasets** spanning seven types of symbolic data. Eac
 ```{r dataset-summary, echo = FALSE}
 # Use installed package data dir; fall back to source tree when building locally
 data_dir <- system.file("data", package = "dataSDA")
-if (!nzchar(data_dir) || length(list.files(data_dir, pattern = "[.]rda$")) == 0)
+if (!nzchar(data_dir) || length(list.files(data_dir, pattern = "[.]rda$")) == 0) {
   data_dir <- file.path("..", "data")
+}
 
 data_files <- list.files(data_dir, pattern = "[.]rda$")
 data_names <- sub("[.]rda$", "", data_files)
 
 classify_type <- function(name) {
-  if (grepl("[.]its$", name))      return("Interval Time Series (.its)")
-  if (grepl("[.]int[.]mm$", name)) return("Interval (.int.mm)")
-  if (grepl("[.]int$", name))      return("Interval (.int)")
-  if (grepl("[.]iGAP$", name))     return("Interval (.iGAP)")
-  if (grepl("[.]hist$", name))     return("Histogram (.hist)")
-  if (grepl("[.]distr$", name))    return("Distributional (.distr)")
-  if (grepl("[.]mix$", name))      return("Mixed (.mix)")
-  if (grepl("[.]modal$", name))    return("Modal (.modal)")
+  if (grepl("[.]its$", name)) {
+    return("Interval Time Series (.its)")
+  }
+  if (grepl("[.]int[.]mm$", name)) {
+    return("Interval (.int.mm)")
+  }
+  if (grepl("[.]int$", name)) {
+    return("Interval (.int)")
+  }
+  if (grepl("[.]iGAP$", name)) {
+    return("Interval (.iGAP)")
+  }
+  if (grepl("[.]hist$", name)) {
+    return("Histogram (.hist)")
+  }
+  if (grepl("[.]distr$", name)) {
+    return("Distributional (.distr)")
+  }
+  if (grepl("[.]mix$", name)) {
+    return("Mixed (.mix)")
+  }
+  if (grepl("[.]modal$", name)) {
+    return("Modal (.modal)")
+  }
   "Other"
 }
 
@@ -80,8 +99,10 @@ types <- sapply(data_names, classify_type, USE.NAMES = FALSE)
 type_tbl <- as.data.frame(table(Type = types), stringsAsFactors = FALSE)
 type_tbl <- type_tbl[order(-type_tbl$Freq), ]
 names(type_tbl)[2] <- "Datasets"
-kable(type_tbl, row.names = FALSE,
-      caption = "Dataset counts by type")
+kable(type_tbl,
+  row.names = FALSE,
+  caption = "Dataset counts by type"
+)
 ```
 
 
@@ -224,19 +245,23 @@ head(mushroom.int.mm, 3)
 First, use `set_variable_format()` to create pseudo-variables for each category using one-hot encoding:
 
 ```{r}
-mushroom_set <- set_variable_format(data = mushroom.int.mm, location = 8,
-                                    var = "Species")
+mushroom_set <- set_variable_format(
+  data = mushroom.int.mm, location = 8,
+  var = "Species"
+)
 head(mushroom_set, 3)
 ```
 
 Next, apply `RSDA_format()` to prefix each variable with `$I` (interval) or `$S` (set) tags:
 
 ```{r}
-mushroom_tmp <- RSDA_format(data = mushroom_set,
-                            sym_type1 = c("I", "I", "I", "S"),
-                            location = c(25, 27, 29, 31),
-                            sym_type2 = c("S"),
-                            var = c("Species"))
+mushroom_tmp <- RSDA_format(
+  data = mushroom_set,
+  sym_type1 = c("I", "I", "I", "S"),
+  location = c(25, 27, 29, 31),
+  sym_type2 = c("S"),
+  var = c("Species")
+)
 head(mushroom_tmp, 3)
 ```
 
@@ -286,9 +311,10 @@ ListOfWeight <- list(
 )
 
 Weight <- methods::new("MatH",
-                       nrows = 3, ncols = 1, ListOfDist = ListOfWeight,
-                       names.rows = c("20s", "30s", "40s"),
-                       names.cols = c("weight"), by.row = FALSE)
+  nrows = 3, ncols = 1, ListOfDist = ListOfWeight,
+  names.rows = c("20s", "30s", "40s"),
+  names.cols = c("weight"), by.row = FALSE
+)
 Weight
 ```
 
@@ -344,20 +370,28 @@ cols <- c("#4E79A7", "#F28E2B")
 par(mfrow = c(2, 1), mar = c(5, 4, 3, 6), las = 2, xpd = TRUE)
 
 # --- Mean across eight methods ---
-bp <- barplot(t(mean_mat), beside = TRUE, col = cols,
-              main = "Interval Mean by Method (mushroom.int)",
-              ylab = "Mean",
-              ylim = c(0, max(mean_mat) * 1.25))
-legend("topright", inset = c(-0.18, 0),
-       legend = colnames(mean_mat), fill = cols, bty = "n", cex = 0.85)
+bp <- barplot(t(mean_mat),
+  beside = TRUE, col = cols,
+  main = "Interval Mean by Method (mushroom.int)",
+  ylab = "Mean",
+  ylim = c(0, max(mean_mat) * 1.25)
+)
+legend("topright",
+  inset = c(-0.18, 0),
+  legend = colnames(mean_mat), fill = cols, bty = "n", cex = 0.85
+)
 
 # --- Variance across eight methods ---
-bp <- barplot(t(var_mat), beside = TRUE, col = cols,
-              main = "Interval Variance by Method (mushroom.int)",
-              ylab = "Variance",
-              ylim = c(0, max(var_mat) * 1.25))
-legend("topright", inset = c(-0.18, 0),
-       legend = colnames(var_mat), fill = cols, bty = "n", cex = 0.85)
+bp <- barplot(t(var_mat),
+  beside = TRUE, col = cols,
+  main = "Interval Variance by Method (mushroom.int)",
+  ylab = "Variance",
+  ylim = c(0, max(var_mat) * 1.25)
+)
+legend("topright",
+  inset = c(-0.18, 0),
+  legend = colnames(var_mat), fill = cols, bty = "n", cex = 0.85
+)
 ```
 
 ## Covariance and correlation
@@ -372,8 +406,10 @@ cor_list <- int_cor(mushroom.int, "Pileus.Cap.Width", "Stipe.Length", method)
 cov_vec <- sapply(cov_list, function(x) x[1, 1])
 cor_vec <- sapply(cor_list, function(x) x[1, 1])
 
-data.frame(Method = names(cov_vec), Covariance = round(cov_vec, 4),
-           Correlation = round(cor_vec, 4), row.names = NULL)
+data.frame(
+  Method = names(cov_vec), Covariance = round(cov_vec, 4),
+  Correlation = round(cor_vec, 4), row.names = NULL
+)
 ```
 
 The SE method yields the largest covariance because it doubles the effective sample by stacking both endpoints, amplifying joint variation. VM produces the lowest correlation (0.36) because the vertex expansion introduces $2^p$ combinations per observation, many of which are non-informative.
@@ -382,19 +418,25 @@ The SE method yields the largest covariance because it doubles the effective sam
 par(mfrow = c(2, 1), mar = c(5, 4, 3, 1), las = 2)
 
 # --- Covariance across eight methods ---
-bar_cols <- c("#4E79A7", "#59A14F", "#F28E2B", "#E15759",
-              "#76B7B2", "#EDC948", "#B07AA1", "#FF9DA7")
-bp <- barplot(cov_vec, col = bar_cols, border = NA,
-              main = "Cov(Pileus.Cap.Width, Stipe.Length) by Method",
-              ylab = "Covariance",
-              ylim = c(0, max(cov_vec) * 1.25))
+bar_cols <- c(
+  "#4E79A7", "#59A14F", "#F28E2B", "#E15759",
+  "#76B7B2", "#EDC948", "#B07AA1", "#FF9DA7"
+)
+bp <- barplot(cov_vec,
+  col = bar_cols, border = NA,
+  main = "Cov(Pileus.Cap.Width, Stipe.Length) by Method",
+  ylab = "Covariance",
+  ylim = c(0, max(cov_vec) * 1.25)
+)
 text(bp, cov_vec, labels = round(cov_vec, 2), pos = 3, cex = 0.8)
 
 # --- Correlation across eight methods ---
-bp <- barplot(cor_vec, col = bar_cols, border = NA,
-              main = "Cor(Pileus.Cap.Width, Stipe.Length) by Method",
-              ylab = "Correlation",
-              ylim = c(0, 1.15))
+bp <- barplot(cor_vec,
+  col = bar_cols, border = NA,
+  main = "Cor(Pileus.Cap.Width, Stipe.Length) by Method",
+  ylab = "Correlation",
+  ylim = c(0, 1.15)
+)
 text(bp, cor_vec, labels = round(cor_vec, 2), pos = 3, cex = 0.8)
 abline(h = 1, lty = 2, col = "grey50")
 ```
@@ -653,32 +695,44 @@ bar_cols <- c("#4E79A7", "#59A14F", "#F28E2B", "#E15759")
 par(mfrow = c(2, 2), mar = c(4, 5, 3, 1), las = 1)
 
 # --- Mean: Cholesterol ---
-bp <- barplot(mean_mat["Cholesterol", ], col = bar_cols, border = NA,
-              main = "Mean of Cholesterol", ylab = "Mean",
-              ylim = c(0, max(mean_mat["Cholesterol", ]) * 1.15))
+bp <- barplot(mean_mat["Cholesterol", ],
+  col = bar_cols, border = NA,
+  main = "Mean of Cholesterol", ylab = "Mean",
+  ylim = c(0, max(mean_mat["Cholesterol", ]) * 1.15)
+)
 text(bp, mean_mat["Cholesterol", ],
-     labels = round(mean_mat["Cholesterol", ], 2), pos = 3, cex = 0.8)
+  labels = round(mean_mat["Cholesterol", ], 2), pos = 3, cex = 0.8
+)
 
 # --- Mean: Hemoglobin ---
-bp <- barplot(mean_mat["Hemoglobin", ], col = bar_cols, border = NA,
-              main = "Mean of Hemoglobin", ylab = "Mean",
-              ylim = c(0, max(mean_mat["Hemoglobin", ]) * 1.15))
+bp <- barplot(mean_mat["Hemoglobin", ],
+  col = bar_cols, border = NA,
+  main = "Mean of Hemoglobin", ylab = "Mean",
+  ylim = c(0, max(mean_mat["Hemoglobin", ]) * 1.15)
+)
 text(bp, mean_mat["Hemoglobin", ],
-     labels = round(mean_mat["Hemoglobin", ], 2), pos = 3, cex = 0.8)
+  labels = round(mean_mat["Hemoglobin", ], 2), pos = 3, cex = 0.8
+)
 
 # --- Variance: Cholesterol ---
-bp <- barplot(var_mat["Cholesterol", ], col = bar_cols, border = NA,
-              main = "Variance of Cholesterol", ylab = "Variance",
-              ylim = c(0, max(var_mat["Cholesterol", ]) * 1.25))
+bp <- barplot(var_mat["Cholesterol", ],
+  col = bar_cols, border = NA,
+  main = "Variance of Cholesterol", ylab = "Variance",
+  ylim = c(0, max(var_mat["Cholesterol", ]) * 1.25)
+)
 text(bp, var_mat["Cholesterol", ],
-     labels = round(var_mat["Cholesterol", ], 1), pos = 3, cex = 0.8)
+  labels = round(var_mat["Cholesterol", ], 1), pos = 3, cex = 0.8
+)
 
 # --- Variance: Hemoglobin ---
-bp <- barplot(var_mat["Hemoglobin", ], col = bar_cols, border = NA,
-              main = "Variance of Hemoglobin", ylab = "Variance",
-              ylim = c(0, max(var_mat["Hemoglobin", ]) * 1.25))
+bp <- barplot(var_mat["Hemoglobin", ],
+  col = bar_cols, border = NA,
+  main = "Variance of Hemoglobin", ylab = "Variance",
+  ylim = c(0, max(var_mat["Hemoglobin", ]) * 1.25)
+)
 text(bp, var_mat["Hemoglobin", ],
-     labels = round(var_mat["Hemoglobin", ], 4), pos = 3, cex = 0.8)
+  labels = round(var_mat["Hemoglobin", ], 4), pos = 3, cex = 0.8
+)
 ```
 
 ## Covariance and correlation
@@ -686,34 +740,42 @@ text(bp, var_mat["Hemoglobin", ],
 We compute the covariance and correlation between `Cholesterol` and `Hemoglobin` using all four methods.
 
 ```{r}
-cov_vec <- sapply(all_methods, function(m)
-  hist_cov(BLOOD, "Cholesterol", "Hemoglobin", method = m))
-cor_vec <- sapply(all_methods, function(m)
-  hist_cor(BLOOD, "Cholesterol", "Hemoglobin", method = m))
+cov_vec <- sapply(all_methods, function(m) {
+  hist_cov(BLOOD, "Cholesterol", "Hemoglobin", method = m)
+})
+cor_vec <- sapply(all_methods, function(m) {
+  hist_cor(BLOOD, "Cholesterol", "Hemoglobin", method = m)
+})
 
-data.frame(Method = all_methods,
-           Covariance = round(cov_vec, 4),
-           Correlation = round(cor_vec, 4),
-           row.names = NULL)
+data.frame(
+  Method = all_methods,
+  Covariance = round(cov_vec, 4),
+  Correlation = round(cor_vec, 4),
+  row.names = NULL
+)
 ```
 
-All four methods yield a negative association between Cholesterol and Hemoglobin. Following Irpino and Verde (2015, Eqs. 30--32), the BG, BD, and B correlations all use the Bertrand-Goupil standard deviation in the denominator, so their values are similar (around ???0.20 to ???0.22). Only L2W uses its own Wasserstein-based variance, which produces a different correlation.
+All four methods yield a negative association between Cholesterol and Hemoglobin. Following Irpino and Verde (2015, Eqs. 30--32), the BG, BD, and B correlations all use the Bertrand-Goupil standard deviation in the denominator, so their values are similar (around -0.20 to -0.22). Only L2W uses its own Wasserstein-based variance, which produces a different correlation.
 
 ```{r fig.width=7, fig.height=4}
 par(mfrow = c(1, 2), mar = c(4, 5, 3, 1), las = 1)
 
 # --- Covariance ---
-bp <- barplot(cov_vec, col = bar_cols, border = NA,
-              main = "Cov(Cholesterol, Hemoglobin)",
-              ylab = "Covariance",
-              ylim = c(min(cov_vec) * 1.35, 0))
+bp <- barplot(cov_vec,
+  col = bar_cols, border = NA,
+  main = "Cov(Cholesterol, Hemoglobin)",
+  ylab = "Covariance",
+  ylim = c(min(cov_vec) * 1.35, 0)
+)
 text(bp, cov_vec, labels = round(cov_vec, 2), pos = 1, cex = 0.8)
 
 # --- Correlation ---
-bp <- barplot(cor_vec, col = bar_cols, border = NA,
-              main = "Cor(Cholesterol, Hemoglobin)",
-              ylab = "Correlation",
-              ylim = c(min(cor_vec) * 1.4, 0))
+bp <- barplot(cor_vec,
+  col = bar_cols, border = NA,
+  main = "Cor(Cholesterol, Hemoglobin)",
+  ylab = "Correlation",
+  ylim = c(min(cor_vec) * 1.4, 0)
+)
 text(bp, cor_vec, labels = round(cor_vec, 2), pos = 1, cex = 0.8)
 abline(h = -1, lty = 2, col = "grey50")
 ```
@@ -733,10 +795,10 @@ The `aggregate_to_symbolic()` function converts a classical data frame into inte
 set.seed(42)
 iris_int <- aggregate_to_symbolic(
   iris,
-  type        = "int",
-  group_by    = "kmeans",
+  type = "int",
+  group_by = "kmeans",
   stratify_var = "Species",
-  K           = 10
+  K = 10
 )
 iris_int
 ```
@@ -754,7 +816,7 @@ library(ggplot2)
 iris_int_num <- iris_int[, sapply(iris_int, inherits, "symbolic_interval")]
 for (v in colnames(iris_int_num)) {
   cv <- unclass(iris_int_num[[v]])
-  w  <- Im(cv) - Re(cv)
+  w <- Im(cv) - Re(cv)
   fix <- which(w == 0)
   if (length(fix) > 0) {
     cv[fix] <- complex(real = Re(cv[fix]) - 1e-6, imaginary = Im(cv[fix]) + 1e-6)
@@ -781,8 +843,10 @@ ggInterval_PCA(iris_int_num)
 ```{r eda-radar, eval = has_ggInterval, fig.width = 7, fig.height = 7}
 data(environment.mix)
 env_int <- environment.mix[, 5:17]
-ggInterval_radarplot(env_int, plotPartial = c(4, 6),
-                     showLegend = FALSE, addText = FALSE)
+ggInterval_radarplot(env_int,
+  plotPartial = c(4, 6),
+  showLegend = FALSE, addText = FALSE
+)
 ```
 
 ### Interval time series visualization
@@ -808,22 +872,29 @@ wind_long <- do.call(rbind, lapply(stations, function(st) {
 wind_long$Station <- factor(wind_long$Station, levels = stations)
 
 # Dodge bars for each station within each month
-n_st  <- length(stations)
+n_st <- length(stations)
 bar_w <- 0.6 / n_st
 wind_long$st_idx <- as.numeric(wind_long$Station)
 wind_long$x <- wind_long$month_num +
   (wind_long$st_idx - (n_st + 1) / 2) * bar_w
 
 ggplot(wind_long) +
-  geom_rect(aes(xmin = x - bar_w / 2, xmax = x + bar_w / 2,
-                ymin = lower, ymax = upper, fill = Station),
-            alpha = 0.4, color = NA) +
+  geom_rect(
+    aes(
+      xmin = x - bar_w / 2, xmax = x + bar_w / 2,
+      ymin = lower, ymax = upper, fill = Station
+    ),
+    alpha = 0.4, color = NA
+  ) +
   geom_line(aes(x = x, y = mid, color = Station, group = Station),
-            linewidth = 0.5) +
+    linewidth = 0.5
+  ) +
   geom_point(aes(x = x, y = mid, color = Station), size = 1) +
   scale_x_continuous(breaks = 1:12, labels = month.abb) +
-  labs(title = "Irish Wind Speed Intervals (1961)",
-       x = "Month", y = "Wind Speed (knots)") +
+  labs(
+    title = "Irish Wind Speed Intervals (1961)",
+    x = "Month", y = "Wind Speed (knots)"
+  ) +
   theme_grey(base_size = 12)
 ```
 
@@ -841,7 +912,9 @@ Each method independently determines its own optimal number of clusters $k$ via 
 # Helper: extract interval-only columns as symbolic_tbl
 .get_interval_cols <- function(x) {
   int_cols <- sapply(x, function(col) inherits(col, "symbolic_interval"))
-  if (sum(int_cols) == 0) return(x)
+  if (sum(int_cols) == 0) {
+    return(x)
+  }
   out <- x[, int_cols, drop = FALSE]
   class(out) <- c("symbolic_tbl", class(out))
   out
@@ -849,7 +922,8 @@ Each method independently determines its own optimal number of clusters $k$ via 
 
 # Helper: convert symbolic_tbl to 3D array [n, p, 2] for symbolicDA
 .to_3d_array <- function(x) {
-  n <- nrow(x); p <- ncol(x)
+  n <- nrow(x)
+  p <- ncol(x)
   arr <- array(0, dim = c(n, p, 2))
   for (j in seq_len(p)) {
     cv <- unclass(x[[j]])
@@ -878,11 +952,16 @@ Each method independently determines its own optimal number of clusters $k$ via 
   ks <- as.integer(names(qualities))
   qs <- qualities
   valid <- !is.na(qs)
-  if (sum(valid) < 2) return(ks[which(valid)[1]])
-  valid_ks <- ks[valid]; valid_qs <- qs[valid]
+  if (sum(valid) < 2) {
+    return(ks[which(valid)[1]])
+  }
+  valid_ks <- ks[valid]
+  valid_qs <- qs[valid]
   gains <- diff(valid_qs)
   max_gain <- max(gains, na.rm = TRUE)
-  if (max_gain <= 0) return(valid_ks[1])
+  if (max_gain <= 0) {
+    return(valid_ks[1])
+  }
   threshold <- max_gain / (1 + n / 100)
   for (i in seq_along(gains)) {
     if (gains[i] < threshold) {
@@ -903,70 +982,94 @@ library(symbolicDA)
 set.seed(123)
 
 datasets_clust_int <- list(
-  list(name = "face.iGAP",              data = "face.iGAP"),
-  list(name = "prostate.int",           data = "prostate.int"),
-  list(name = "nycflights.int",         data = "nycflights.int"),
-  list(name = "china_temp.int",         data = "china_temp.int"),
+  list(name = "face.iGAP", data = "face.iGAP"),
+  list(name = "prostate.int", data = "prostate.int"),
+  list(name = "nycflights.int", data = "nycflights.int"),
+  list(name = "china_temp.int", data = "china_temp.int"),
   list(name = "lisbon_air_quality.int", data = "lisbon_air_quality.int")
 )
 
 clust_int_results <- do.call(rbind, lapply(datasets_clust_int, function(ds) {
-  tryCatch({
-    data(list = ds$data)
-    x <- get(ds$data)
-    if (!inherits(x, "symbolic_tbl")) {
-      x <- tryCatch(int_convert_format(x, to = "RSDA"), error = function(e) x)
-      for (i in seq_along(x)) {
-        if (is.complex(x[[i]]) && !inherits(x[[i]], "symbolic_interval"))
-          class(x[[i]]) <- c("symbolic_interval", "vctrs_vctr")
+  tryCatch(
+    {
+      data(list = ds$data)
+      x <- get(ds$data)
+      if (!inherits(x, "symbolic_tbl")) {
+        x <- tryCatch(int_convert_format(x, to = "RSDA"), error = function(e) x)
+        for (i in seq_along(x)) {
+          if (is.complex(x[[i]]) && !inherits(x[[i]], "symbolic_interval")) {
+            class(x[[i]]) <- c("symbolic_interval", "vctrs_vctr")
+          }
+        }
+        if (!inherits(x, "symbolic_tbl")) {
+          class(x) <- c("symbolic_tbl", class(x))
+        }
       }
-      if (!inherits(x, "symbolic_tbl"))
-        class(x) <- c("symbolic_tbl", class(x))
-    }
-    x_int <- .get_interval_cols(x)
-    n <- nrow(x_int); p <- ncol(x_int)
-    k_max <- min(n - 1, 10, max(3, floor(n / 5)))
+      x_int <- .get_interval_cols(x)
+      n <- nrow(x_int)
+      p <- ncol(x_int)
+      k_max <- min(n - 1, 10, max(3, floor(n / 5)))
 
-    d <- int_dist_matrix(x_int, method = "hausdorff")
-    so <- simple2SO(.to_3d_array(x_int))
+      d <- int_dist_matrix(x_int, method = "hausdorff")
+      so <- simple2SO(.to_3d_array(x_int))
 
-    km_qs <- dc_qs <- sc_qs <- setNames(rep(NA_real_, k_max - 1),
-                                         as.character(2:k_max))
-    for (k in 2:k_max) {
-      set.seed(123)
-      km_qs[as.character(k)] <- tryCatch({
-        res <- sym.kmeans(x_int, k = k)
-        1 - res$tot.withinss / res$totss
-      }, error = function(e) NA)
+      km_qs <- dc_qs <- sc_qs <- setNames(
+        rep(NA_real_, k_max - 1),
+        as.character(2:k_max)
+      )
+      for (k in 2:k_max) {
+        set.seed(123)
+        km_qs[as.character(k)] <- tryCatch(
+          {
+            res <- sym.kmeans(x_int, k = k)
+            1 - res$tot.withinss / res$totss
+          },
+          error = function(e) NA
+        )
 
-      set.seed(123)
-      dc_qs[as.character(k)] <- tryCatch({
-        cl <- DClust(d, cl = k, iter = 100)
-        .clust_quality(d, cl)
-      }, error = function(e) NA)
+        set.seed(123)
+        dc_qs[as.character(k)] <- tryCatch(
+          {
+            cl <- DClust(d, cl = k, iter = 100)
+            .clust_quality(d, cl)
+          },
+          error = function(e) NA
+        )
 
-      set.seed(123)
-      sc_qs[as.character(k)] <- tryCatch({
-        cl <- SClust(so, cl = k, iter = 100)
-        .clust_quality(d, cl)
-      }, error = function(e) NA)
-    }
+        set.seed(123)
+        sc_qs[as.character(k)] <- tryCatch(
+          {
+            cl <- SClust(so, cl = k, iter = 100)
+            .clust_quality(d, cl)
+          },
+          error = function(e) NA
+        )
+      }
 
-    km_k <- .find_optimal_k(km_qs, n); km_q <- km_qs[as.character(km_k)]
-    dc_k <- .find_optimal_k(dc_qs, n); dc_q <- dc_qs[as.character(dc_k)]
-    sc_k <- .find_optimal_k(sc_qs, n); sc_q <- sc_qs[as.character(sc_k)]
+      km_k <- .find_optimal_k(km_qs, n)
+      km_q <- km_qs[as.character(km_k)]
+      dc_k <- .find_optimal_k(dc_qs, n)
+      dc_q <- dc_qs[as.character(dc_k)]
+      sc_k <- .find_optimal_k(sc_qs, n)
+      sc_q <- sc_qs[as.character(sc_k)]
 
-    data.frame(Dataset = ds$name, n = n, p = p,
-               sym.kmeans = sprintf("%.4f (%d)", km_q, km_k),
-               DClust     = sprintf("%.4f (%d)", dc_q, dc_k),
-               SClust     = sprintf("%.4f (%d)", sc_q, sc_k))
-  }, error = function(e) NULL)
+      data.frame(
+        Dataset = ds$name, n = n, p = p,
+        sym.kmeans = sprintf("%.4f (%d)", km_q, km_k),
+        DClust = sprintf("%.4f (%d)", dc_q, dc_k),
+        SClust = sprintf("%.4f (%d)", sc_q, sc_k)
+      )
+    },
+    error = function(e) NULL
+  )
 }))
 ```
 
 ```{r clust-int-table, eval = has_symbolicDA && not_cran}
-kable(clust_int_results, row.names = FALSE,
-      caption = "Table 4: Interval clustering quality (1 - WSS/TSS) with optimal k in parentheses")
+kable(clust_int_results,
+  row.names = FALSE,
+  caption = "Table 4: Interval clustering quality (1 - WSS/TSS) with optimal k in parentheses"
+)
 ```
 
 
@@ -989,15 +1092,17 @@ The same n-adaptive elbow method from Section 4.2 is used for each method to ind
   xs <- numeric(0)
   ps <- numeric(0)
   for (b in bins) {
-    b_clean <- gsub("\\[|\\]|\\(|\\)", "", b)  # strip brackets
+    b_clean <- gsub("\\[|\\]|\\(|\\)", "", b) # strip brackets
     parts <- as.numeric(trimws(strsplit(b_clean, ",")[[1]]))
-    lo <- parts[1]; hi <- parts[2]; p <- parts[3]
+    lo <- parts[1]
+    hi <- parts[2]
+    p <- parts[3]
     if (length(xs) == 0) xs <- lo
     xs <- c(xs, hi)
     ps <- c(ps, p)
   }
   cp <- c(0, cumsum(ps))
-  cp[length(cp)] <- 1  # ensure exact 1
+  cp[length(cp)] <- 1 # ensure exact 1
   distributionH(xs, cp)
 }
 
@@ -1006,15 +1111,18 @@ The same n-adaptive elbow method from Section 4.2 is used for each method to ind
 .dataSDA_hist_to_MatH <- function(df) {
   df <- as.data.frame(df)
   hist_cols <- names(df)[sapply(df, is.character)]
-  hist_cols <- hist_cols[sapply(hist_cols, function(cn)
-    any(grepl("^\\{\\[", na.omit(df[[cn]]))))]
+  hist_cols <- hist_cols[sapply(hist_cols, function(cn) {
+    any(grepl("^\\{\\[", na.omit(df[[cn]])))
+  })]
   # Keep only columns where >50% of values are non-NA (handles conditional vars)
-  hist_cols <- hist_cols[sapply(hist_cols, function(cn)
-    mean(!is.na(df[[cn]])) > 0.5)]
+  hist_cols <- hist_cols[sapply(hist_cols, function(cn) {
+    mean(!is.na(df[[cn]])) > 0.5
+  })]
   # Drop rows with remaining NAs
   complete <- complete.cases(df[, hist_cols, drop = FALSE])
   df <- df[complete, , drop = FALSE]
-  n <- nrow(df); p <- length(hist_cols)
+  n <- nrow(df)
+  p <- length(hist_cols)
   dists <- vector("list", n * p)
   for (j in seq_along(hist_cols)) {
     for (i in seq_len(n)) {
@@ -1027,7 +1135,8 @@ The same n-adaptive elbow method from Section 4.2 is used for each method to ind
     ListOfDist = dists,
     names.rows = rn,
     names.cols = hist_cols,
-    by.row = FALSE)
+    by.row = FALSE
+  )
 }
 ```
 
@@ -1043,55 +1152,77 @@ datasets_clust_hist <- list(
 )
 
 clust_hist_results <- do.call(rbind, lapply(datasets_clust_hist, function(ds) {
-  tryCatch({
-    data(list = ds$name, package = "dataSDA")
-    raw <- get(ds$name)
-    x <- .dataSDA_hist_to_MatH(raw)
-    n <- nrow(x@M); p <- ncol(x@M)
-    k_max <- min(n - 1, 10, max(3, floor(n / 5)))
+  tryCatch(
+    {
+      data(list = ds$name, package = "dataSDA")
+      raw <- get(ds$name)
+      x <- .dataSDA_hist_to_MatH(raw)
+      n <- nrow(x@M)
+      p <- ncol(x@M)
+      k_max <- min(n - 1, 10, max(3, floor(n / 5)))
 
-    # Precompute Wasserstein distance matrix and hclust tree (shared across k)
-    dm <- WH_MAT_DIST(x)
-    set.seed(123)
-    hc <- WH_hclust(x, simplify = TRUE)
-
-    km_qs <- fc_qs <- hc_qs <- setNames(rep(NA_real_, k_max - 1),
-                                         as.character(2:k_max))
-    for (k in 2:k_max) {
+      # Precompute Wasserstein distance matrix and hclust tree (shared across k)
+      dm <- WH_MAT_DIST(x)
       set.seed(123)
-      km_qs[as.character(k)] <- tryCatch({
-        res <- WH_kmeans(x, k = k)
-        res$quality
-      }, error = function(e) NA)
+      hc <- WH_hclust(x, simplify = TRUE)
 
-      set.seed(123)
-      fc_qs[as.character(k)] <- tryCatch({
-        res <- WH_fcmeans(x, k = k)
-        res$quality
-      }, error = function(e) NA)
+      km_qs <- fc_qs <- hc_qs <- setNames(
+        rep(NA_real_, k_max - 1),
+        as.character(2:k_max)
+      )
+      for (k in 2:k_max) {
+        set.seed(123)
+        km_qs[as.character(k)] <- tryCatch(
+          {
+            res <- WH_kmeans(x, k = k)
+            res$quality
+          },
+          error = function(e) NA
+        )
 
-      set.seed(123)
-      hc_qs[as.character(k)] <- tryCatch({
-        cl <- cutree(hc, k = k)
-        .clust_quality(dm, cl)
-      }, error = function(e) NA)
-    }
+        set.seed(123)
+        fc_qs[as.character(k)] <- tryCatch(
+          {
+            res <- WH_fcmeans(x, k = k)
+            res$quality
+          },
+          error = function(e) NA
+        )
 
-    km_k <- .find_optimal_k(km_qs, n); km_q <- km_qs[as.character(km_k)]
-    fc_k <- .find_optimal_k(fc_qs, n); fc_q <- fc_qs[as.character(fc_k)]
-    hc_k <- .find_optimal_k(hc_qs, n); hc_q <- hc_qs[as.character(hc_k)]
+        set.seed(123)
+        hc_qs[as.character(k)] <- tryCatch(
+          {
+            cl <- cutree(hc, k = k)
+            .clust_quality(dm, cl)
+          },
+          error = function(e) NA
+        )
+      }
 
-    data.frame(Dataset = ds$name, n = n, p = p,
-               WH_kmeans  = sprintf("%.4f (%d)", km_q, km_k),
-               WH_fcmeans = sprintf("%.4f (%d)", fc_q, fc_k),
-               WH_hclust  = sprintf("%.4f (%d)", hc_q, hc_k))
-  }, error = function(e) NULL)
+      km_k <- .find_optimal_k(km_qs, n)
+      km_q <- km_qs[as.character(km_k)]
+      fc_k <- .find_optimal_k(fc_qs, n)
+      fc_q <- fc_qs[as.character(fc_k)]
+      hc_k <- .find_optimal_k(hc_qs, n)
+      hc_q <- hc_qs[as.character(hc_k)]
+
+      data.frame(
+        Dataset = ds$name, n = n, p = p,
+        WH_kmeans = sprintf("%.4f (%d)", km_q, km_k),
+        WH_fcmeans = sprintf("%.4f (%d)", fc_q, fc_k),
+        WH_hclust = sprintf("%.4f (%d)", hc_q, hc_k)
+      )
+    },
+    error = function(e) NULL
+  )
 }))
 ```
 
 ```{r clust-hist-table}
-kable(clust_hist_results, row.names = FALSE,
-      caption = "Table 5: Histogram clustering quality (1 - WSS/TSS) with optimal k in parentheses")
+kable(clust_hist_results,
+  row.names = FALSE,
+  caption = "Table 5: Histogram clustering quality (1 - WSS/TSS) with optimal k in parentheses"
+)
 ```
 
 
@@ -1132,70 +1263,96 @@ library(MAINT.Data)
 library(e1071)
 
 datasets_class <- list(
-  list(name = "cars.int",        data = "cars.int",
-       class_col = "class",
-       class_desc = "class: Utilitarian(7), Berlina(8), Sportive(8), Luxury(4)"),
-  list(name = "china_temp.int",  data = "china_temp.int",
-       class_col = "GeoReg",
-       class_desc = "GeoReg: 6 regions"),
-  list(name = "mushroom.int",    data = "mushroom.int",
-       class_col = "Edibility",
-       class_desc = "Edibility: T(4), U(2), Y(17)"),
-  list(name = "ohtemp.int",      data = "ohtemp.int",
-       class_col = "STATE",
-       class_desc = "STATE: 10 groups"),
-  list(name = "wine.int",        data = "wine.int",
-       class_col = "class",
-       class_desc = "class: 1(21), 2(12)")
+  list(
+    name = "cars.int", data = "cars.int",
+    class_col = "class",
+    class_desc = "class: Utilitarian(7), Berlina(8), Sportive(8), Luxury(4)"
+  ),
+  list(
+    name = "china_temp.int", data = "china_temp.int",
+    class_col = "GeoReg",
+    class_desc = "GeoReg: 6 regions"
+  ),
+  list(
+    name = "mushroom.int", data = "mushroom.int",
+    class_col = "Edibility",
+    class_desc = "Edibility: T(4), U(2), Y(17)"
+  ),
+  list(
+    name = "ohtemp.int", data = "ohtemp.int",
+    class_col = "STATE",
+    class_desc = "STATE: 10 groups"
+  ),
+  list(
+    name = "wine.int", data = "wine.int",
+    class_col = "class",
+    class_desc = "class: 1(21), 2(12)"
+  )
 )
 
 class_results <- do.call(rbind, lapply(datasets_class, function(ds) {
-  tryCatch({
-    data(list = ds$data)
-    x <- get(ds$data)
-    grp <- .get_class_labels(x, ds$class_col)
+  tryCatch(
+    {
+      data(list = ds$data)
+      x <- get(ds$data)
+      grp <- .get_class_labels(x, ds$class_col)
 
-    idata <- .build_IData(x)
+      idata <- .build_IData(x)
 
-    int_cols <- sapply(x, function(col) inherits(col, "symbolic_interval"))
-    svm_df <- data.frame(row.names = seq_len(nrow(x)))
-    for (v in names(x)[int_cols]) {
-      cv <- unclass(x[[v]])
-      svm_df[[paste0(v, "_l")]] <- Re(cv)
-      svm_df[[paste0(v, "_u")]] <- Im(cv)
-    }
+      int_cols <- sapply(x, function(col) inherits(col, "symbolic_interval"))
+      svm_df <- data.frame(row.names = seq_len(nrow(x)))
+      for (v in names(x)[int_cols]) {
+        cv <- unclass(x[[v]])
+        svm_df[[paste0(v, "_l")]] <- Re(cv)
+        svm_df[[paste0(v, "_u")]] <- Im(cv)
+      }
 
-    set.seed(123)
-    lda_acc <- tryCatch({
-      res <- MAINT.Data::lda(idata, grouping = grp)
-      pred <- predict(res, idata)
-      mean(pred$class == grp)
-    }, error = function(e) NA)
+      set.seed(123)
+      lda_acc <- tryCatch(
+        {
+          res <- MAINT.Data::lda(idata, grouping = grp)
+          pred <- predict(res, idata)
+          mean(pred$class == grp)
+        },
+        error = function(e) NA
+      )
 
-    set.seed(123)
-    qda_acc <- tryCatch({
-      res <- MAINT.Data::qda(idata, grouping = grp)
-      pred <- predict(res, idata)
-      mean(pred$class == grp)
-    }, error = function(e) NA)
+      set.seed(123)
+      qda_acc <- tryCatch(
+        {
+          res <- MAINT.Data::qda(idata, grouping = grp)
+          pred <- predict(res, idata)
+          mean(pred$class == grp)
+        },
+        error = function(e) NA
+      )
 
-    set.seed(123)
-    svm_acc <- tryCatch({
-      svm_df$class <- grp
-      res <- svm(class ~ ., data = svm_df, kernel = "radial")
-      pred <- predict(res, svm_df)
-      mean(pred == grp)
-    }, error = function(e) NA)
+      set.seed(123)
+      svm_acc <- tryCatch(
+        {
+          svm_df$class <- grp
+          res <- svm(class ~ ., data = svm_df, kernel = "radial")
+          pred <- predict(res, svm_df)
+          mean(pred == grp)
+        },
+        error = function(e) NA
+      )
 
-    data.frame(Dataset = ds$name, Response = ds$class_desc,
-               LDA = lda_acc, QDA = qda_acc, SVM = svm_acc)
-  }, error = function(e) NULL)
+      data.frame(
+        Dataset = ds$name, Response = ds$class_desc,
+        LDA = lda_acc, QDA = qda_acc, SVM = svm_acc
+      )
+    },
+    error = function(e) NULL
+  )
 }))
 ```
 
 ```{r class-int-table, eval = has_MAINT && has_e1071 && not_cran}
-kable(class_results, digits = 4, row.names = FALSE,
-      caption = "Table 6: Classification accuracy (resubstitution)")
+kable(class_results,
+  digits = 4, row.names = FALSE,
+  caption = "Table 6: Classification accuracy (resubstitution)"
+)
 ```
 
 
@@ -1211,104 +1368,141 @@ We benchmark five regression methods on five interval-valued datasets and report
 
 ```{r reg-int, results = "hide"}
 datasets_reg <- list(
-  list(name = "abalone.iGAP",      data = "abalone.iGAP",
-       response = "Length",           n_x = 6),
-  list(name = "cardiological.int",  data = "cardiological.int",
-       response = "pulse",            n_x = 4),
-  list(name = "nycflights.int",     data = "nycflights.int",
-       response = "distance",         n_x = 3),
-  list(name = "oils.int",           data = "oils.int",
-       response = "specific_gravity", n_x = 3),
-  list(name = "prostate.int",       data = "prostate.int",
-       response = "lpsa",             n_x = 8)
+  list(
+    name = "abalone.iGAP", data = "abalone.iGAP",
+    response = "Length", n_x = 6
+  ),
+  list(
+    name = "cardiological.int", data = "cardiological.int",
+    response = "pulse", n_x = 4
+  ),
+  list(
+    name = "nycflights.int", data = "nycflights.int",
+    response = "distance", n_x = 3
+  ),
+  list(
+    name = "oils.int", data = "oils.int",
+    response = "specific_gravity", n_x = 3
+  ),
+  list(
+    name = "prostate.int", data = "prostate.int",
+    response = "lpsa", n_x = 8
+  )
 )
 
 reg_results <- do.call(rbind, lapply(datasets_reg, function(ds) {
-  tryCatch({
-    data(list = ds$data)
-    x <- get(ds$data)
+  tryCatch(
+    {
+      data(list = ds$data)
+      x <- get(ds$data)
 
-    if (!inherits(x, "symbolic_tbl")) {
-      x2 <- tryCatch(int_convert_format(x, to = "RSDA"), error = function(e) NULL)
-      if (!is.null(x2)) {
-        x <- x2
-        for (i in seq_along(x)) {
-          if (is.complex(x[[i]]) && !inherits(x[[i]], "symbolic_interval"))
-            class(x[[i]]) <- c("symbolic_interval", "vctrs_vctr")
+      if (!inherits(x, "symbolic_tbl")) {
+        x2 <- tryCatch(int_convert_format(x, to = "RSDA"), error = function(e) NULL)
+        if (!is.null(x2)) {
+          x <- x2
+          for (i in seq_along(x)) {
+            if (is.complex(x[[i]]) && !inherits(x[[i]], "symbolic_interval")) {
+              class(x[[i]]) <- c("symbolic_interval", "vctrs_vctr")
+            }
+          }
+          if (!inherits(x, "symbolic_tbl")) {
+            class(x) <- c("symbolic_tbl", class(x))
+          }
+        } else {
+          cn <- colnames(x)
+          l_cols <- grep("_l$", cn, value = TRUE)
+          vars <- sub("_l$", "", l_cols)
+          out <- data.frame(row.names = seq_len(nrow(x)))
+          for (v in vars) {
+            lv <- x[[paste0(v, "_l")]]
+            uv <- x[[paste0(v, "_u")]]
+            si <- complex(real = lv, imaginary = uv)
+            class(si) <- c("symbolic_interval", "vctrs_vctr")
+            out[[v]] <- si
+          }
+          class(out) <- c("symbolic_tbl", class(out))
+          x <- out
         }
-        if (!inherits(x, "symbolic_tbl"))
-          class(x) <- c("symbolic_tbl", class(x))
-      } else {
-        cn <- colnames(x)
-        l_cols <- grep("_l$", cn, value = TRUE)
-        vars <- sub("_l$", "", l_cols)
-        out <- data.frame(row.names = seq_len(nrow(x)))
-        for (v in vars) {
-          lv <- x[[paste0(v, "_l")]]; uv <- x[[paste0(v, "_u")]]
-          si <- complex(real = lv, imaginary = uv)
-          class(si) <- c("symbolic_interval", "vctrs_vctr")
-          out[[v]] <- si
-        }
-        class(out) <- c("symbolic_tbl", class(out))
-        x <- out
       }
-    }
-    x_int <- .get_interval_cols(x)
+      x_int <- .get_interval_cols(x)
 
-    fml <- as.formula(paste(ds$response, "~ ."))
-    nc <- data.frame(row.names = seq_len(nrow(x_int)))
-    for (v in names(x_int)) {
-      cv <- unclass(x_int[[v]])
-      nc[[v]] <- (Re(cv) + Im(cv)) / 2
-    }
-    actual <- nc[[ds$response]]
-    resp_idx <- which(names(x_int) == ds$response)
-    .r2 <- function(a, p) 1 - sum((a - p)^2) / sum((a - mean(a))^2)
+      fml <- as.formula(paste(ds$response, "~ ."))
+      nc <- data.frame(row.names = seq_len(nrow(x_int)))
+      for (v in names(x_int)) {
+        cv <- unclass(x_int[[v]])
+        nc[[v]] <- (Re(cv) + Im(cv)) / 2
+      }
+      actual <- nc[[ds$response]]
+      resp_idx <- which(names(x_int) == ds$response)
+      .r2 <- function(a, p) 1 - sum((a - p)^2) / sum((a - mean(a))^2)
 
-    set.seed(123)
-    lm_r2 <- tryCatch({
-      res <- sym.lm(fml, sym.data = x_int, method = "cm")
-      summary(res)$r.squared
-    }, error = function(e) NA)
+      set.seed(123)
+      lm_r2 <- tryCatch(
+        {
+          res <- sym.lm(fml, sym.data = x_int, method = "cm")
+          summary(res)$r.squared
+        },
+        error = function(e) NA
+      )
 
-    set.seed(123)
-    glm_r2 <- tryCatch({
-      res <- sym.glm(sym.data = x_int, response = resp_idx, method = "cm")
-      pred <- as.numeric(predict(res, newx = as.matrix(nc[, -resp_idx]),
-                                 s = "lambda.min"))
-      .r2(actual, pred)
-    }, error = function(e) NA)
+      set.seed(123)
+      glm_r2 <- tryCatch(
+        {
+          res <- sym.glm(sym.data = x_int, response = resp_idx, method = "cm")
+          pred <- as.numeric(predict(res,
+            newx = as.matrix(nc[, -resp_idx]),
+            s = "lambda.min"
+          ))
+          .r2(actual, pred)
+        },
+        error = function(e) NA
+      )
 
-    set.seed(123)
-    rf_r2 <- tryCatch({
-      res <- sym.rf(fml, sym.data = x_int, method = "cm")
-      tail(res$rsq, 1)
-    }, error = function(e) NA)
+      set.seed(123)
+      rf_r2 <- tryCatch(
+        {
+          res <- sym.rf(fml, sym.data = x_int, method = "cm")
+          tail(res$rsq, 1)
+        },
+        error = function(e) NA
+      )
 
-    set.seed(123)
-    rt_r2 <- tryCatch({
-      res <- sym.rt(fml, sym.data = x_int, method = "cm")
-      .r2(actual, predict(res))
-    }, error = function(e) NA)
+      set.seed(123)
+      rt_r2 <- tryCatch(
+        {
+          res <- sym.rt(fml, sym.data = x_int, method = "cm")
+          .r2(actual, predict(res))
+        },
+        error = function(e) NA
+      )
 
-    set.seed(123)
-    nnet_r2 <- tryCatch({
-      res <- sym.nnet(fml, sym.data = x_int, method = "cm")
-      pred_sc <- as.numeric(res$net.result[[1]])
-      pred <- pred_sc * res$data_c_sds[resp_idx] + res$data_c_means[resp_idx]
-      .r2(actual, pred)
-    }, error = function(e) NA)
+      set.seed(123)
+      nnet_r2 <- tryCatch(
+        {
+          res <- sym.nnet(fml, sym.data = x_int, method = "cm")
+          pred_sc <- as.numeric(res$net.result[[1]])
+          pred <- pred_sc * res$data_c_sds[resp_idx] + res$data_c_means[resp_idx]
+          .r2(actual, pred)
+        },
+        error = function(e) NA
+      )
 
-    data.frame(Dataset = ds$name, Response = ds$response, p = ds$n_x,
-               sym.lm = lm_r2, sym.glm = glm_r2, sym.rf = rf_r2,
-               sym.rt = rt_r2, sym.nnet = nnet_r2)
-  }, error = function(e) NULL)
+      data.frame(
+        Dataset = ds$name, Response = ds$response, p = ds$n_x,
+        sym.lm = lm_r2, sym.glm = glm_r2, sym.rf = rf_r2,
+        sym.rt = rt_r2, sym.nnet = nnet_r2
+      )
+    },
+    error = function(e) NULL
+  )
 }))
 ```
 
 ```{r reg-int-table}
-kable(reg_results, digits = 4, row.names = FALSE,
-      caption = "Table 7: Regression R-squared")
+kable(reg_results,
+  digits = 4, row.names = FALSE,
+  caption = "Table 7: Regression R-squared"
+)
 ```
 
 
@@ -1354,4 +1548,4 @@ We welcome contributions of high-quality datasets for symbolic data analysis. Su
 
 # Citation
 
-Po-Wei Chen, Chun-houh Chen, Han-Ming Wu (2026), dataSDA: datasets and basic statistics for symbolic data analysis in R (v0.3.0). Technical report.
+Po-Wei Chen, Chun-houh Chen, Han-Ming Wu (2026), dataSDA: datasets and basic statistics for symbolic data analysis in R (v0.2.5). Journal of Applied Statistics.

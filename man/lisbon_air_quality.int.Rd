@@ -51,7 +51,7 @@ for interval data. \emph{European Journal of Operational Research},
 258(3), 1118--1130.
 
 Data from the QualAr Portuguese air quality monitoring network
-(\url{https://qualar.apambiente.pt/}).
+(\samp{https://qualar.apambiente.pt/}).
 }
 \keyword{datasets}
 \keyword{interval}

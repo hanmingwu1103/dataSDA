@@ -43,7 +43,8 @@ data(bats.int)
 }
 \references{
 Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
+symbolic data with matrix visualization.
+\emph{Computational Statistics & Data Analysis}, 79, 14--29.
 }
 \keyword{clustering}
 \keyword{datasets}

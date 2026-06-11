@@ -48,9 +48,6 @@ data(china_temp.int)
 \references{
 Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
 Normal and Skew-Normal distributions. \emph{J. Appl. Stat.}, 39(1), 3-20.
-
-Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
 }
 \keyword{clustering}
 \keyword{datasets}

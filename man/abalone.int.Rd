@@ -44,8 +44,12 @@ variable). See \code{\link{abalone.iGAP}} for the iGAP format version.
 data(abalone.int)
 }
 \references{
-Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
+Nash, W. J., Sellers, T. L., Talbot, S. R., Cawthorn, A. J., and Ford, W. B.
+(1994). The Population Biology of Abalone (\emph{Haliotis} species) in
+Tasmania. Sea Fisheries Division, Technical Report No. 48.
+
+UCI Machine Learning Repository.
+\url{https://archive.ics.uci.edu/ml/datasets/Abalone}
 }
 \keyword{datasets}
 \keyword{interval}

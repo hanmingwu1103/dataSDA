@@ -1,3 +1,68 @@
+# dataSDA 0.2.6 (development)
+
+## Improvements
+
+- `aggregate_to_symbolic(type = "int")` now warns when it produces zero-width
+  intervals (`min == max`). Such degenerate intervals break downstream tools
+  such as `ggInterval::ggInterval_indexImage()` (which divides by interval
+  width). A single warning names the affected variables and any concept that
+  collapsed on every variable (e.g. a single-member cluster), and suggests
+  reducing `K` or merging small groups.
+
+# dataSDA 0.2.5
+
+## New datasets (9 added, 114 total)
+
+Nine interval time series (ITS) datasets from global financial markets and meteorology:
+
+### Interval time series (9)
+- `sp500.its` — S&P 500 index daily OHLC intervals.
+- `djia.its` — Dow Jones Industrial Average daily OHLC intervals.
+- `ibovespa.its` — Ibovespa (Brazil) daily OHLC intervals.
+- `crude_oil_wti.its` — WTI crude oil daily OHLC intervals.
+- `merval.its` — MERVAL (Argentina) daily OHLC intervals.
+- `petrobras.its` — Petrobras stock daily OHLC intervals.
+- `euro_usd.its` — EUR/USD exchange rate daily OHLC intervals.
+- `shanghai_stock.its` — Shanghai Composite daily OHLC intervals.
+- `irish_wind.its` — Irish wind energy daily intervals.
+
+## Dataset renaming
+
+Renamed 7 datasets with proper type suffixes for consistency:
+
+| Old name | New name |
+|---|---|
+| `airline_flights2` | `airline_flights2.modal` |
+| `crime` | `crime.modal` |
+| `crime2` | `crime2.modal` |
+| `fuel_consumption` | `fuel_consumption.modal` |
+| `health_insurance2` | `health_insurance2.modal` |
+| `occupations` | `occupations.modal` |
+| `occupations2` | `occupations2.modal` |
+
+Also added `mushroom.int.mm` (interval multi-modal format of mushroom data).
+
+## New functions (8 exported)
+
+- **Data conversion**: `aggregate_to_symbolic()` — convert traditional data to symbolic data format.
+- **I/O**: `read_symbolic_csv()`, `write_symbolic_csv()` — read/write symbolic data as CSV.
+- **Search**: `search_data()` — search available datasets by keyword or type.
+- **Format conversion**: `to_all_interval_formats()` — convert intervals to all supported formats at once.
+- **ARRAY format converters**: `ARRAY_to_MM()`, `ARRAY_to_RSDA()`, `ARRAY_to_iGAP()`, `MM_to_ARRAY()`, `RSDA_to_ARRAY()`, `SODAS_to_ARRAY()`, `iGAP_to_ARRAY()`.
+
+## Bug fixes
+
+- Fixed `int_dist` p parameter bug.
+- Fixed documentation for 19 datasets with incorrect column metadata.
+- Fixed function documentation: `@usage` defaults, `@details`, and examples.
+
+## Other changes
+
+- Updated vignette with new examples and content.
+- Pre-built vignette to avoid CRAN timeout (eval gated by `NOT_CRAN`).
+- Updated all dataset documentation with `@section Metadata` blocks.
+- `R CMD check --as-cran`: 0 errors, 0 warnings, 0 notes.
+
 # dataSDA 0.2.2
 
 ## New datasets (17 added, 105 total)
@@ -60,7 +125,7 @@ Nineteen new datasets from Billard & Diday (2020) *Clustering Methodology for Sy
 - `county_income_gender.hist` — 12 counties with gendered income histograms + sample sizes (Table 6-16).
 - `joggers.mix` — 10 jogger groups with pulse rate intervals + running time histograms (Table 2-5).
 - `census.mix` — 10 census regions with 6 mixed-type variables: histograms, distributions, multi-valued sets, and intervals (Table 7-23).
-- `mtcars.mix` — 5 car groups with 7 interval + 4 modal variables (from ggESDA).
+- `mtcars.mix` — 5 car groups with 7 interval + 4 modal variables (from ggInterval).
 
 # dataSDA 0.2.0
 
@@ -74,7 +139,7 @@ Thirteen new datasets extracted from R packages and the Billard & Diday (2006) t
 - `uscrime.int` — 46 US states with 102 interval-valued crime statistics (from RSDA).
 - `hardwood.hist` — 5 hardwood tree species with 4 histogram-valued climate variables (from RSDA).
 - `synthetic_clusters.int` — 125 observations in 5 clusters with 6 interval variables (from symbolicDA).
-- `environment.mix` — 14 EPA state groups with mixed interval/modal environmental data (from ggESDA).
+- `environment.mix` — 14 EPA state groups with mixed interval/modal environmental data (from ggInterval).
 
 ### From Billard & Diday (2006) textbook tables
 - `weight_age.hist` — 7 age groups with histogram-valued weight distributions (Table 3.10).

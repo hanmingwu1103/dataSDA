@@ -190,9 +190,6 @@
 #' @references
 #' Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
 #' Normal and Skew-Normal distributions. \emph{J. Appl. Stat.}, 39(1), 3-20.
-#'
-#' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-#' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
 #' @examples
 #' data(china_temp.int)
 #' @section Metadata:
@@ -1039,8 +1036,12 @@
 #'
 #' @usage data(abalone.iGAP)
 #' @references
-#' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-#' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
+#' Nash, W. J., Sellers, T. L., Talbot, S. R., Cawthorn, A. J., and Ford, W. B.
+#' (1994). The Population Biology of Abalone (\emph{Haliotis} species) in
+#' Tasmania. Sea Fisheries Division, Technical Report No. 48.
+#'
+#' UCI Machine Learning Repository.
+#' \url{https://archive.ics.uci.edu/ml/datasets/Abalone}
 #' @examples
 #' data(abalone.iGAP)
 #' @section Metadata:
@@ -1077,8 +1078,12 @@
 #'
 #' @usage data(abalone.int)
 #' @references
-#' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-#' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
+#' Nash, W. J., Sellers, T. L., Talbot, S. R., Cawthorn, A. J., and Ford, W. B.
+#' (1994). The Population Biology of Abalone (\emph{Haliotis} species) in
+#' Tasmania. Sea Fisheries Division, Technical Report No. 48.
+#'
+#' UCI Machine Learning Repository.
+#' \url{https://archive.ics.uci.edu/ml/datasets/Abalone}
 #' @examples
 #' data(abalone.int)
 #' @section Metadata:
@@ -1114,8 +1119,10 @@
 #'
 #' @usage data(face.iGAP)
 #' @references
-#' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-#' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
+#' Leroy, B., Chouakria, A., Herlin, I., and Diday, E. (1996). Approche
+#' geometrique et classification pour la reconnaissance de visage. In
+#' \emph{Reconnaissance des Formes et Intelligence Artificielle (RFIA)},
+#' 548--557.
 #' @examples
 #' data(face.iGAP)
 #' @section Metadata:
@@ -1293,7 +1300,8 @@
 #' @usage data(bats.int)
 #' @references
 #' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-#' symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
+#' symbolic data with matrix visualization.
+#' \emph{Computational Statistics & Data Analysis}, 79, 14--29.
 #' @examples
 #' data(bats.int)
 #' @section Metadata:
@@ -2346,8 +2354,9 @@
 #'
 #' @usage data(environment.mix)
 #' @references
-#' Sun, Y. and Billard, L. (2020). Symbolic data analysis with the
-#' ggESDA package. \emph{Journal of Statistical Software}.
+#' Jiang, B.-S. and Wu, H.-M. (2025). ggInterval: an R package for
+#' visualizing interval-valued data using ggplot2. R package version 0.2.5.
+#' \url{https://CRAN.R-project.org/package=ggInterval}
 #' @examples
 #' data(environment.mix)
 #' @section Metadata:
@@ -2359,7 +2368,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets mixed interval modal
-#' @source Extracted from ggESDA package (\code{Environment}).
+#' @source Extracted from the ggInterval package (\code{Environment}).
 "environment.mix"
 
 ## ---------------------------------------------------------------------------
@@ -3372,7 +3381,7 @@
 #' Henderson, R. and Velleman, P. (1981). Building multiple regression
 #' models interactively. \emph{Biometrics}, 37, 391--411.
 #'
-#' Original data from the ggESDA R package (\code{mtcars.i} dataset).
+#' Original data from the ggInterval R package (\code{mtcars.i} dataset).
 #' @examples
 #' data(mtcars.mix)
 #' @section Metadata:
@@ -3384,7 +3393,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets mixed interval modal
-#' @source ggESDA R package (\code{mtcars.i} dataset).
+#' @source ggInterval R package (\code{mtcars.i} dataset).
 "mtcars.mix"
 
 ## ---------------------------------------------------------------------------
@@ -3749,7 +3758,7 @@
 #' 258(3), 1118--1130.
 #'
 #' Data from the QualAr Portuguese air quality monitoring network
-#' (\url{https://qualar.apambiente.pt/}).
+#' (\samp{https://qualar.apambiente.pt/}).
 #' @examples
 #' data(lisbon_air_quality.int)
 #' @section Metadata:
