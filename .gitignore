@@ -13,3 +13,5 @@ vignettes/*.html
 .claude/
 bak/
 .positai
+
+inst/doc/
