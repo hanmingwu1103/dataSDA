@@ -1,6 +1,7 @@
 ---
 title: "Introduction to dataSDA"
-subtitle: "Datasets and Basic Statistics for Symbolic Data Analysis"
+subtitle: "Supplementary material for ``dataSDA: datasets and basic statistics for
+symbolic data analysis in R''"
 author: "Po-Wei Chen, Chun-houh Chen and Han-Ming Wu*"
 date: "June 11, 2026"
 output:
@@ -99,10 +100,10 @@ types <- sapply(data_names, classify_type, USE.NAMES = FALSE)
 type_tbl <- as.data.frame(table(Type = types), stringsAsFactors = FALSE)
 type_tbl <- type_tbl[order(-type_tbl$Freq), ]
 names(type_tbl)[2] <- "Datasets"
-kable(type_tbl,
-  row.names = FALSE,
-  caption = "Dataset counts by type"
-)
+#kable(type_tbl,
+#  row.names = FALSE,
+#  caption = "Dataset counts by type"
+#)
 ```
 
 
@@ -120,7 +121,7 @@ The package provides functions organized into the following categories:
 | Uncertainty & variability | `int_entropy`, `int_cv`, `int_dispersion`, `int_imprecision`, `int_granularity`, `int_uniformity`, `int_information_content` | 7 |
 | Distance measures | `int_dist`, `int_dist_matrix`, `int_pairwise_dist`, `int_dist_all` | 4 |
 | Histogram statistics | `hist_mean`, `hist_var`, `hist_cov`, `hist_cor` | 4 |
-| Utilities | `clean_colnames`, `RSDA_format`, `set_variable_format`, `read_symbolic_csv`, `write_symbolic_csv` | 5 |
+| Utilities | `clean_colnames`, `RSDA_format`, `set_variable_format`, `read_symbolic_csv`, `write_symbolic_csv`, `check_zero_width_intervals` | 6 |
 
 
 # Data Formats and Conversion
@@ -813,7 +814,9 @@ The `ggInterval` package provides specialized plots for symbolic data including 
 ```{r eda-indeximage, eval = has_ggInterval, fig.width = 8, fig.height = 5}
 library(ggInterval)
 library(ggplot2)
-ggInterval_indexImage(iris_int[, 2:5], plotAll = TRUE, full_strip = FALSE)
+ggInterval_indexImage(iris_int[, 2:5], plotAll = TRUE, full_strip = FALSE, 
+                      column_condition = FALSE) + 
+  scale_colour_distiller(palette = "Spectral")
 
 
 ```
@@ -828,8 +831,7 @@ ggInterval_PCA(iris_int[, 2:5])
 
 ```{r eda-radar, eval = has_ggInterval, fig.width = 7, fig.height = 7}
 data(environment.mix)
-env_int <- environment.mix[, 5:17]
-ggInterval_radarplot(env_int,
+ggInterval_radarplot(environment.mix,
   plotPartial = c(4, 6),
   showLegend = FALSE, addText = FALSE
 )
@@ -1534,4 +1536,4 @@ We welcome contributions of high-quality datasets for symbolic data analysis. Su
 
 # Citation
 
-Po-Wei Chen, Chun-houh Chen, Han-Ming Wu (2026), dataSDA: datasets and basic statistics for symbolic data analysis in R (v0.2.5). Journal of Applied Statistics.
+Po-Wei Chen, Chun-houh Chen, Han-Ming Wu (2026), dataSDA: datasets and basic statistics for symbolic data analysis in R (v0.2.6). Journal of Applied Statistics.

@@ -2330,13 +2330,17 @@
 #' and 17 variables of mixed types: interval-valued environmental measurements
 #' and modal-valued (distributional) categorical variables.
 #'
-#' @format A symbolic data frame (\code{symbolic_tbl}) with 14 observations and
-#' 17 variables:
+#' @format A symbolic data frame (\code{symbolic_tbl}, of class
+#' \code{c("symbolic_tbl", "tbl_df", "tbl", "data.frame")}) with 14
+#' observations and 17 variables. The first four are modal-valued
+#' (\code{symbolic_modal}) variables and the remaining thirteen are
+#' interval-valued (\code{symbolic_interval}) variables. This matches the
+#' structure of \code{ggInterval::Environment}.
 #' \itemize{
-#'     \item \code{URBANICITY}: Modal-valued urbanicity distribution (character).
-#'     \item \code{INCOMELEVEL}: Modal-valued income level distribution (character).
-#'     \item \code{EDUCATION}: Modal-valued education distribution (character).
-#'     \item \code{REGIONDEVELOPME}: Modal-valued regional development distribution (character).
+#'     \item \code{URBANICITY}: Modal-valued urbanicity distribution (modal).
+#'     \item \code{INCOMELEVEL}: Modal-valued income level distribution (modal).
+#'     \item \code{EDUCATION}: Modal-valued education distribution (modal).
+#'     \item \code{REGIONDEVELOPME}: Modal-valued regional development distribution (modal).
 #'     \item \code{CONTROL}: Environmental control index range (interval).
 #'     \item \code{SATISFY}: Satisfaction index range (interval).
 #'     \item \code{INDIVIDUAL}: Individual concern index range (interval).
