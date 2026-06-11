@@ -1,8 +1,8 @@
 Package: dataSDA
 Type: Package
 Title: Datasets and Basic Statistics for Symbolic Data Analysis
-Version: 0.2.5
-Date: 2026-03-14
+Version: 0.2.6
+Date: 2026-06-11
 Authors@R: c(
     person("Po-Wei", "Chen", email = "randy310162@gmail.com", role = "aut"),
     person("Chun-houh", "Chen", email = "cchen@stat.sinica.edu.tw", role = "aut"),
@@ -20,4 +20,4 @@ Suggests: testthat (>= 2.1.0), knitr, rmarkdown, ggInterval, ggplot2,
 VignetteBuilder: knitr
 Imports: magrittr, tidyr, dplyr, RSDA, HistDAWass, methods
 NeedsCompilation: no
-Packaged: 2026-02-10 12:30:00 UTC; user
+Packaged: 2026-06-11 12:30:00 UTC; user
