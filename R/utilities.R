@@ -1051,7 +1051,8 @@ search_data <- function(...) {
 #'
 #' @usage aggregate_to_symbolic(x, type = "int", group_by = "kmeans",
 #'   stratify_var = NULL, K = 5, interval = "range",
-#'   quantile_probs = c(0.05, 0.95), bins = 10, nK = NULL)
+#'   quantile_probs = c(0.05, 0.95), bins = 10, nK = NULL,
+#'   zero_width = c("remove", "regenerate", "adjust"), epsilon = 1e-07)
 #'
 #' @param x A data.frame with n rows and p columns. May contain non-numeric
 #'   columns used for grouping or stratification; only numeric columns are
@@ -1086,6 +1087,25 @@ search_data <- function(...) {
 #'   Default is 10.
 #' @param nK Number of observations to sample per group when
 #'   \code{group_by = "resampling"}. Default is \code{floor(n / K)}.
+#' @param zero_width How to handle zero-width intervals (\code{min == max})
+#'   produced when \code{type = "int"}. Such degenerate intervals break
+#'   downstream tools that divide by interval width (e.g.
+#'   \code{ggInterval::ggInterval_indexImage()}). One of:
+#'   \describe{
+#'     \item{\code{"remove"}}{(default) Drop every concept (row) that contains
+#'       at least one zero-width interval.}
+#'     \item{\code{"regenerate"}}{Re-run the aggregation (re-clustering or
+#'       re-sampling) until no zero-width interval remains. Only effective for
+#'       stochastic \code{group_by} (\code{"kmeans"}, \code{"resampling"});
+#'       for deterministic grouping (a variable or \code{"hclust"}) the result
+#'       cannot change, so an error is raised suggesting another option.}
+#'     \item{\code{"adjust"}}{Add a small amount \code{epsilon} to the upper
+#'       endpoint of each zero-width interval.}
+#'   }
+#'   Ignored when \code{type = "hist"}.
+#' @param epsilon Positive amount added to the upper endpoint of each
+#'   zero-width interval when \code{zero_width = "adjust"}. Default is
+#'   \code{1e-07}.
 #'
 #' @returns
 #' \itemize{
@@ -1157,7 +1177,10 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
                                   stratify_var = NULL, K = 5,
                                   interval = "range",
                                   quantile_probs = c(0.05, 0.95),
-                                  bins = 10, nK = NULL) {
+                                  bins = 10, nK = NULL,
+                                  zero_width = c("remove", "regenerate",
+                                                 "adjust"),
+                                  epsilon = 1e-07) {
   fn <- "aggregate_to_symbolic"
 
   # --- Input validation ---
@@ -1167,6 +1190,11 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
     stop(fn, ": 'x' must have at least one row.", call. = FALSE)
   type <- match.arg(type, c("int", "hist"))
   interval <- match.arg(interval, c("range", "quantile"))
+  zero_width <- match.arg(zero_width)
+
+  if (!is.numeric(epsilon) || length(epsilon) != 1L || is.na(epsilon) ||
+      epsilon <= 0)
+    stop(fn, ": 'epsilon' must be a single positive number.", call. = FALSE)
 
   if (!is.numeric(K) || length(K) != 1L || K < 1)
     stop(fn, ": 'K' must be a positive integer.", call. = FALSE)
@@ -1250,13 +1278,13 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
   if (is.null(stratify_col)) {
     .agg_dispatch(x, num_cols, type, group_mode, group_col,
                   K, interval, quantile_probs, global_breaks, nK,
-                  label_name)
+                  label_name, zero_width, epsilon)
   } else {
     strata <- split(x, x[[stratify_col]])
     parts <- lapply(names(strata), function(s) {
       res <- .agg_dispatch(strata[[s]], num_cols, type, group_mode, group_col,
                            K, interval, quantile_probs, global_breaks, nK,
-                           label_name)
+                           label_name, zero_width, epsilon)
       if (type == "int") {
         res[[label_name]] <- paste0(s, ".", res[[label_name]])
       } else {
@@ -1297,18 +1325,98 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
 # Dispatch to resampling or group-based aggregation
 .agg_dispatch <- function(data, num_cols, type, group_mode, group_col,
                           K, interval, quantile_probs, global_breaks, nK,
-                          label_name) {
+                          label_name, zero_width = "remove", epsilon = 1e-07) {
+  # --- Histogram path (zero-width handling does not apply) ---
+  if (type == "hist") {
+    if (group_mode == "resampling") {
+      return(.agg_resampling_hist(data, num_cols, K, nK, global_breaks))
+    }
+    groups <- .agg_assign_groups(data, num_cols, group_mode, group_col, K)
+    return(.agg_to_hist(data, num_cols, groups, global_breaks))
+  }
+
+  # --- Interval path: build min/max matrices, then handle zero-width ---
+  build <- function() {
+    .agg_int_matrices(data, num_cols, group_mode, group_col, K,
+                      interval, quantile_probs, nK)
+  }
+  if (zero_width == "regenerate") {
+    m <- .agg_regenerate(build, group_mode)
+  } else {
+    m <- .agg_apply_zero_width(build(), num_cols, zero_width, epsilon)
+  }
+  .agg_make_symbolic_tbl(m$lo, m$hi, num_cols, m$labels, label_name)
+}
+
+# Build interval min/max matrices (grouped or resampling), returning a list
+# with components lo, hi (K-by-p matrices) and labels (length-K concept names).
+.agg_int_matrices <- function(data, num_cols, group_mode, group_col, K,
+                              interval, quantile_probs, nK) {
   if (group_mode == "resampling") {
-    return(.agg_resampling(data, num_cols, type, K, nK,
-                           interval, quantile_probs, global_breaks,
-                           label_name))
+    return(.agg_int_matrices_resampling(data, num_cols, K, nK,
+                                        interval, quantile_probs))
   }
   groups <- .agg_assign_groups(data, num_cols, group_mode, group_col, K)
-  if (type == "int") {
-    .agg_to_int(data, num_cols, groups, interval, quantile_probs, label_name)
-  } else {
-    .agg_to_hist(data, num_cols, groups, global_breaks)
+  .agg_int_matrices_grouped(data, num_cols, groups, interval, quantile_probs)
+}
+
+# Detect, report, and handle zero-width intervals (min == max) in the
+# interval min/max matrices according to 'zero_width'. Returns the (possibly
+# modified) list of matrices/labels. A zero-width interval breaks downstream
+# tools that divide by interval width (e.g. ggInterval::ggInterval_indexImage).
+.agg_apply_zero_width <- function(m, num_cols, zero_width, epsilon) {
+  degenerate <- m$hi == m$lo
+  if (!any(degenerate, na.rm = TRUE)) return(m)
+  degenerate[is.na(degenerate)] <- FALSE
+
+  affected_vars <- num_cols[apply(degenerate, 2L, any)]
+
+  if (zero_width == "adjust") {
+    m$hi[degenerate] <- m$hi[degenerate] + epsilon
+    warning("aggregate_to_symbolic: zero-width intervals (min == max) in ",
+            "variable(s): ", paste(affected_vars, collapse = ", "),
+            "; upper endpoints adjusted by epsilon = ", format(epsilon, scientific = TRUE),
+            ".", call. = FALSE)
+    return(m)
   }
+
+  # zero_width == "remove": drop concepts (rows) with any zero-width interval
+  row_has_zw <- apply(degenerate, 1L, any)
+  if (all(row_has_zw)) {
+    stop("aggregate_to_symbolic: every concept contains a zero-width interval; ",
+         "nothing remains after removal. Try zero_width = 'adjust' or ",
+         "'regenerate', or adjust the grouping parameters.", call. = FALSE)
+  }
+  removed <- m$labels[row_has_zw]
+  keep <- !row_has_zw
+  m$lo <- m$lo[keep, , drop = FALSE]
+  m$hi <- m$hi[keep, , drop = FALSE]
+  m$labels <- m$labels[keep]
+  warning("aggregate_to_symbolic: removed ", sum(row_has_zw), " concept(s) ",
+          "with zero-width intervals (", paste(removed, collapse = ", "),
+          ") arising from variable(s): ",
+          paste(affected_vars, collapse = ", "), ".", call. = FALSE)
+  m
+}
+
+# Re-run interval aggregation until no zero-width interval remains.
+# Deterministic grouping ("variable"/"hclust") cannot change between runs,
+# so it is attempted only once before failing with a helpful message.
+.agg_regenerate <- function(build, group_mode, max_attempts = 100L) {
+  deterministic <- group_mode %in% c("variable", "hclust")
+  attempts <- if (deterministic) 1L else max_attempts
+  for (i in seq_len(attempts)) {
+    m <- build()
+    if (!any(m$hi == m$lo, na.rm = TRUE)) return(m)
+  }
+  extra <- if (deterministic) {
+    paste0(" ('", group_mode, "' grouping is deterministic, so regeneration ",
+           "cannot change the result)")
+  } else ""
+  stop("aggregate_to_symbolic: could not produce interval data free of ",
+       "zero-width intervals after ", attempts, " regeneration attempt(s)",
+       extra, ". Try zero_width = 'adjust' or 'remove', or adjust 'K' / ",
+       "'quantile_probs'.", call. = FALSE)
 }
 
 # Assign group labels via categorical variable or clustering
@@ -1340,9 +1448,10 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
   groups
 }
 
-# Aggregate to interval data (symbolic_tbl in RSDA format)
-.agg_to_int <- function(data, num_cols, groups, interval, quantile_probs,
-                        label_name) {
+# Build interval min/max matrices for group-based aggregation.
+# Returns list(lo, hi, labels); zero-width handling is applied by the caller.
+.agg_int_matrices_grouped <- function(data, num_cols, groups, interval,
+                                      quantile_probs) {
   valid <- !is.na(groups)
   data <- data[valid, , drop = FALSE]
   groups <- groups[valid]
@@ -1368,28 +1477,7 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
     }
   }
 
-  # Single consolidated warning about degenerate output. A zero-width interval
-  # (min == max) breaks downstream tools (e.g. ggInterval::ggInterval_indexImage,
-  # which divides by interval width). The per-variable check catches both
-  # multi-member groups with identical values on a variable and singleton
-  # clusters (which collapse on every variable).
-  degenerate <- hi_mat == lo_mat
-  if (any(degenerate, na.rm = TRUE)) {
-    affected_vars <- num_cols[apply(degenerate, 2L, any, na.rm = TRUE)]
-    collapsed <- group_levels[apply(degenerate, 1L, all, na.rm = TRUE)]
-    msg <- paste0("aggregate_to_symbolic: zero-width intervals (min == max) ",
-                  "produced for variable(s): ",
-                  paste(affected_vars, collapse = ", "), ".")
-    if (length(collapsed) > 0L)
-      msg <- paste0(msg, " Concept(s) degenerate on every variable: ",
-                    paste(collapsed, collapse = ", "),
-                    " (e.g. single-member clusters).")
-    msg <- paste0(msg, " These may break downstream tools; consider ",
-                  "reducing 'K' or merging small groups.")
-    warning(msg, call. = FALSE)
-  }
-
-  .agg_make_symbolic_tbl(lo_mat, hi_mat, num_cols, group_levels, label_name)
+  list(lo = lo_mat, hi = hi_mat, labels = group_levels)
 }
 
 # Aggregate to histogram data (MatH from HistDAWass)
@@ -1418,37 +1506,41 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
                    varnames = num_cols)
 }
 
-# Resampling-based aggregation: draw K samples of nK rows each
-.agg_resampling <- function(data, num_cols, type, K, nK,
-                            interval, quantile_probs, global_breaks,
-                            label_name) {
+# Build interval min/max matrices for resampling aggregation: draw K samples
+# of nK rows each. Returns list(lo, hi, labels); zero-width handling is applied
+# by the caller (so "regenerate" can redraw fresh samples).
+.agg_int_matrices_resampling <- function(data, num_cols, K, nK,
+                                         interval, quantile_probs) {
   n <- nrow(data)
   p <- length(num_cols)
   row_labels <- paste0("sample_", seq_len(K))
 
-  if (type == "int") {
-    lo_mat <- matrix(NA_real_, nrow = K, ncol = p)
-    hi_mat <- matrix(NA_real_, nrow = K, ncol = p)
-    for (k in seq_len(K)) {
-      idx <- sample(n, nK, replace = TRUE)
-      for (j in seq_len(p)) {
-        vals <- data[[num_cols[j]]][idx]
-        if (interval == "range") {
-          lo_mat[k, j] <- min(vals, na.rm = TRUE)
-          hi_mat[k, j] <- max(vals, na.rm = TRUE)
-        } else {
-          lo_mat[k, j] <- quantile(vals, probs = quantile_probs[1],
-                                   na.rm = TRUE)
-          hi_mat[k, j] <- quantile(vals, probs = quantile_probs[2],
-                                   na.rm = TRUE)
-        }
+  lo_mat <- matrix(NA_real_, nrow = K, ncol = p)
+  hi_mat <- matrix(NA_real_, nrow = K, ncol = p)
+  for (k in seq_len(K)) {
+    idx <- sample(n, nK, replace = TRUE)
+    for (j in seq_len(p)) {
+      vals <- data[[num_cols[j]]][idx]
+      if (interval == "range") {
+        lo_mat[k, j] <- min(vals, na.rm = TRUE)
+        hi_mat[k, j] <- max(vals, na.rm = TRUE)
+      } else {
+        lo_mat[k, j] <- quantile(vals, probs = quantile_probs[1],
+                                 na.rm = TRUE)
+        hi_mat[k, j] <- quantile(vals, probs = quantile_probs[2],
+                                 na.rm = TRUE)
       }
     }
-    return(.agg_make_symbolic_tbl(lo_mat, hi_mat, num_cols,
-                                  row_labels, label_name))
   }
+  list(lo = lo_mat, hi = hi_mat, labels = row_labels)
+}
 
-  # type == "hist"
+# Resampling-based histogram aggregation: draw K samples of nK rows each.
+.agg_resampling_hist <- function(data, num_cols, K, nK, global_breaks) {
+  n <- nrow(data)
+  p <- length(num_cols)
+  row_labels <- paste0("sample_", seq_len(K))
+
   dist_list <- vector("list", K * p)
   idx <- 1L
   for (k in seq_len(K)) {

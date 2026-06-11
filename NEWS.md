@@ -1,13 +1,30 @@
 # dataSDA 0.2.6
 
-## Improvements
+## New features
 
-- `aggregate_to_symbolic(type = "int")` now warns when it produces zero-width
-  intervals (`min == max`). Such degenerate intervals break downstream tools
+- `check_zero_width_intervals()` checks interval-valued data for zero-width
+  intervals (`min == max`). It accepts both MM format (a `data.frame` with
+  paired `_min`/`_max` columns) and RSDA format (a `symbolic_tbl` with
+  `symbolic_interval` columns; non-interval columns are ignored). It returns
+  (invisibly) a logical scalar carrying a `"flagged"` `[n, p]` matrix of
+  degenerate cells and a `"variables"` vector of affected variables, and
+  warns by default when any are found. Useful for screening data before
+  passing it to downstream tools that divide by interval width (e.g.
+  `ggInterval::ggInterval_indexImage()`). A `tol` argument allows near-zero
+  widths to be flagged.
+
+- `aggregate_to_symbolic(type = "int")` gains a `zero_width` argument
+  controlling how zero-width intervals (`min == max`) in the aggregated output
+  are handled: `"remove"` (default) drops every concept containing a
+  zero-width interval; `"regenerate"` re-runs the aggregation (re-clustering or
+  re-sampling) until none remain (effective only for stochastic `group_by`
+  such as `"kmeans"`/`"resampling"`); and `"adjust"` adds a small `epsilon`
+  (default `1e-07`) to the upper endpoint of each zero-width interval. A
+  companion `epsilon` argument sets the adjustment amount. When zero-width
+  intervals are produced, a single warning names the affected variables and
+  the action taken. Such degenerate intervals otherwise break downstream tools
   such as `ggInterval::ggInterval_indexImage()` (which divides by interval
-  width). A single warning names the affected variables and any concept that
-  collapsed on every variable (e.g. a single-member cluster), and suggests
-  reducing `K` or merging small groups.
+  width).
 
 # dataSDA 0.2.5
 
