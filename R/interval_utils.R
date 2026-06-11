@@ -155,6 +155,125 @@ Interval_to_FV <- function(idata) {
 }
 
 
+# --- Diagnostic functions -----------------------------------------------------
+
+#' Check for Zero-Width Intervals
+#'
+#' @name check_zero_width_intervals
+#' @aliases check_zero_width_intervals
+#' @description Checks whether interval-valued data contains any zero-width
+#' intervals (\code{min == max}). Such degenerate intervals break downstream
+#' tools that divide by interval width (e.g.
+#' \code{ggInterval::ggInterval_indexImage()}). The input may be supplied either
+#' in MM format (a \code{data.frame} with paired \code{_min}/\code{_max} columns)
+#' or in RSDA format (a \code{symbolic_tbl} with \code{symbolic_interval}
+#' columns).
+#' @usage check_zero_width_intervals(data, tol = 0, warn = TRUE)
+#' @param data Interval-valued data, in one of two accepted formats:
+#' \itemize{
+#'   \item a \code{data.frame} in MM format with paired \code{_min}/\code{_max}
+#'   columns, or
+#'   \item a \code{symbolic_tbl} (RSDA format) with \code{symbolic_interval}
+#'   columns. Non-interval columns (e.g. set/modal variables) are ignored.
+#' }
+#' @param tol Non-negative numeric tolerance. An interval is flagged when
+#' \code{abs(max - min) <= tol}. Defaults to \code{0} (exact \code{min == max}).
+#' @param warn Logical; if \code{TRUE} (default) a single warning naming the
+#' affected variables is emitted when zero-width intervals are found.
+#' @returns Invisibly, a logical scalar: \code{TRUE} if any zero-width interval
+#' is present, otherwise \code{FALSE}. The returned value carries two attributes:
+#' \code{"flagged"}, a logical \code{[n, p]} matrix marking each zero-width cell
+#' (rows = concepts, columns = interval variables), and \code{"variables"}, the
+#' names of variables containing at least one zero-width interval.
+#' @examples
+#' # MM format (paired _min/_max columns)
+#' data(mushroom.int.mm)
+#' check_zero_width_intervals(mushroom.int.mm)
+#'
+#' # RSDA format (symbolic_tbl)
+#' data(mushroom.int)
+#' check_zero_width_intervals(mushroom.int)
+#' @export
+check_zero_width_intervals <- function(data, tol = 0, warn = TRUE){
+  .check_data_frame(data, "check_zero_width_intervals")
+  if (!is.numeric(tol) || length(tol) != 1 || is.na(tol) || tol < 0) {
+    stop("check_zero_width_intervals: 'tol' must be a single non-negative number.",
+         call. = FALSE)
+  }
+  .check_logical(warn, "warn", "check_zero_width_intervals")
+
+  if (inherits(data, "symbolic_tbl")) {
+    flagged <- .zero_width_flagged_symbolic_tbl(data, tol)
+  } else {
+    flagged <- .zero_width_flagged_mm(data, tol)
+  }
+
+  base_names <- colnames(flagged)
+  affected_vars <- base_names[apply(flagged, 2L, any, na.rm = TRUE)]
+  any_flagged <- length(affected_vars) > 0
+
+  if (any_flagged && warn) {
+    warning("check_zero_width_intervals: zero-width intervals (min == max) ",
+            "found in variable(s): ", paste(affected_vars, collapse = ", "), ".",
+            call. = FALSE)
+  }
+
+  attr(any_flagged, "flagged") <- flagged
+  attr(any_flagged, "variables") <- affected_vars
+  invisible(any_flagged)
+}
+
+
+# Build the [n, p] zero-width flag matrix from MM-format data
+# (paired _min/_max columns).
+.zero_width_flagged_mm <- function(data, tol) {
+  col_names <- names(data)
+  min_cols <- grep("_[Mm]in$", col_names, value = TRUE)
+  if (length(min_cols) == 0) {
+    stop("check_zero_width_intervals: no '_min' columns found in 'data'.",
+         call. = FALSE)
+  }
+
+  base_names <- sub("_[Mm]in$", "", min_cols)
+  p <- length(base_names)
+  flagged <- matrix(FALSE, nrow = nrow(data), ncol = p,
+                    dimnames = list(rownames(data), base_names))
+
+  for (j in seq_len(p)) {
+    max_col <- col_names[grepl(paste0("^", base_names[j], "_[Mm]ax$"), col_names)]
+    if (length(max_col) != 1) {
+      stop("check_zero_width_intervals: no matching '_max' column for '",
+           min_cols[j], "'.", call. = FALSE)
+    }
+    lo <- as.numeric(data[[min_cols[j]]])
+    hi <- as.numeric(data[[max_col]])
+    flagged[, j] <- abs(hi - lo) <= tol
+  }
+  flagged
+}
+
+
+# Build the [n, p] zero-width flag matrix from RSDA-format data
+# (symbolic_tbl). Only symbolic_interval / complex columns are considered.
+.zero_width_flagged_symbolic_tbl <- function(data, tol) {
+  int_cols <- vapply(data, function(col) {
+    inherits(col, "symbolic_interval") || mode(col) == "complex"
+  }, logical(1))
+  if (!any(int_cols)) {
+    stop("check_zero_width_intervals: no interval (symbolic_interval) columns ",
+         "found in 'data'.", call. = FALSE)
+  }
+
+  idata <- symbolic_tbl_to_idata(data[, int_cols, drop = FALSE])
+  lo <- idata[, , 1]
+  hi <- idata[, , 2]
+  flagged <- abs(hi - lo) <= tol
+  dim(flagged) <- dim(idata)[1:2]
+  dimnames(flagged) <- dimnames(idata)[1:2]
+  flagged
+}
+
+
 # --- Format preparation functions ---------------------------------------------
 
 #' clean_colnames

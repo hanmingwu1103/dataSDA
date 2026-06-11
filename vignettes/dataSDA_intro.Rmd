@@ -41,7 +41,7 @@ has_ggInterval <- requireNamespace("ggInterval", quietly = TRUE) && not_cran
 
 # Introduction
 
-The `dataSDA` package (v0.2.5) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>.
+The `dataSDA` package (v0.2.6) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>.
 
 
 The package includes **114 datasets** spanning seven types of symbolic data. Each dataset name uses a suffix that indicates its type:
@@ -789,7 +789,7 @@ This section demonstrates how `dataSDA` datasets can be used for benchmarking sy
 
 ### Aggregating classical data to symbolic data
 
-The `aggregate_to_symbolic()` function converts a classical data frame into interval-valued or histogram-valued symbolic data via grouping (clustering, resampling, or a categorical variable).
+The `aggregate_to_symbolic()` function converts a classical data frame into interval-valued or histogram-valued symbolic data via grouping (clustering, resampling, or a categorical variable). Here we stratify by `Species` and form 10 k-means clusters within each, giving up to 30 interval-valued concepts. The `zero_width = "remove"` option drops any concept that collapses to a zero-width interval (`min == max`, e.g. a singleton cluster), since such degenerate intervals break width-based plots such as the index image below.
 
 ```{r eda-aggregate}
 set.seed(42)
@@ -798,44 +798,30 @@ iris_int <- aggregate_to_symbolic(
   type = "int",
   group_by = "kmeans",
   stratify_var = "Species",
-  K = 10
+  K = 10,
+  zero_width = "remove"
 )
 iris_int
 ```
 
 ### Visualization with ggInterval
 
-The `ggInterval` package provides specialized plots for symbolic data including index image plots, PCA biplots, and radar plots. The following examples require `ggInterval` to be installed. Note: with 30 observations the index image and PCA plots may take several minutes to render.
-
-```{r eda-gginterval-setup, eval = has_ggInterval, message = FALSE}
-library(ggInterval)
-library(ggplot2)
-
-# Keep only interval columns (drop the 'sample' label column).
-# Fix zero-width intervals from singleton clusters.
-iris_int_num <- iris_int[, sapply(iris_int, inherits, "symbolic_interval")]
-for (v in colnames(iris_int_num)) {
-  cv <- unclass(iris_int_num[[v]])
-  w <- Im(cv) - Re(cv)
-  fix <- which(w == 0)
-  if (length(fix) > 0) {
-    cv[fix] <- complex(real = Re(cv[fix]) - 1e-6, imaginary = Im(cv[fix]) + 1e-6)
-    class(cv) <- c("symbolic_interval", "vctrs_vctr")
-    iris_int_num[[v]] <- cv
-  }
-}
-```
+The `ggInterval` package provides specialized plots for symbolic data including index image plots, PCA biplots, and radar plots. The following examples require `ggInterval` to be installed. Note: with around 30 observations the index image and PCA plots may take several minutes to render.
 
 **Index image plot** -- a heatmap of all interval variables:
 
 ```{r eda-indeximage, eval = has_ggInterval, fig.width = 8, fig.height = 5}
-ggInterval_indexImage(iris_int_num, plotAll = TRUE)
+library(ggInterval)
+library(ggplot2)
+ggInterval_indexImage(iris_int[, 2:5], plotAll = TRUE, full_strip = FALSE)
+
+
 ```
 
 **PCA biplot** -- principal component analysis for interval data:
 
 ```{r eda-pca, eval = has_ggInterval, fig.width = 6, fig.height = 5}
-ggInterval_PCA(iris_int_num)
+ggInterval_PCA(iris_int[, 2:5])
 ```
 
 **Radar plot** -- multivariate comparison of interval columns from `environment.mix` (observations 4 and 6):

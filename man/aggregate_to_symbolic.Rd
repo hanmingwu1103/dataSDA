@@ -6,7 +6,8 @@
 \usage{
 aggregate_to_symbolic(x, type = "int", group_by = "kmeans",
   stratify_var = NULL, K = 5, interval = "range",
-  quantile_probs = c(0.05, 0.95), bins = 10, nK = NULL)
+  quantile_probs = c(0.05, 0.95), bins = 10, nK = NULL,
+  zero_width = c("remove", "regenerate", "adjust"), epsilon = 1e-07)
 }
 \arguments{
 \item{x}{A data.frame with n rows and p columns. May contain non-numeric
@@ -50,6 +51,27 @@ Default is 10.}
 
 \item{nK}{Number of observations to sample per group when
 \code{group_by = "resampling"}. Default is \code{floor(n / K)}.}
+
+\item{zero_width}{How to handle zero-width intervals (\code{min == max})
+produced when \code{type = "int"}. Such degenerate intervals break
+downstream tools that divide by interval width (e.g.
+\code{ggInterval::ggInterval_indexImage()}). One of:
+\describe{
+  \item{\code{"remove"}}{(default) Drop every concept (row) that contains
+    at least one zero-width interval.}
+  \item{\code{"regenerate"}}{Re-run the aggregation (re-clustering or
+    re-sampling) until no zero-width interval remains. Only effective for
+    stochastic \code{group_by} (\code{"kmeans"}, \code{"resampling"});
+    for deterministic grouping (a variable or \code{"hclust"}) the result
+    cannot change, so an error is raised suggesting another option.}
+  \item{\code{"adjust"}}{Add a small amount \code{epsilon} to the upper
+    endpoint of each zero-width interval.}
+}
+Ignored when \code{type = "hist"}.}
+
+\item{epsilon}{Positive amount added to the upper endpoint of each
+zero-width interval when \code{zero_width = "adjust"}. Default is
+\code{1e-07}.}
 }
 \value{
 \itemize{
