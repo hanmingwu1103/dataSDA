@@ -7,7 +7,7 @@
 aggregate_to_symbolic(x, type = "int", group_by = "kmeans",
   stratify_var = NULL, K = 5, interval = "range",
   quantile_probs = c(0.05, 0.95), bins = 10, nK = NULL,
-  zero_width = c("remove", "regenerate", "adjust"), epsilon = 1e-07)
+  zero_width = c("keep", "remove", "regenerate", "adjust"), epsilon = 1e-07)
 }
 \arguments{
 \item{x}{A data.frame with n rows and p columns. May contain non-numeric
@@ -57,7 +57,10 @@ produced when \code{type = "int"}. Such degenerate intervals break
 downstream tools that divide by interval width (e.g.
 \code{ggInterval::ggInterval_indexImage()}). One of:
 \describe{
-  \item{\code{"remove"}}{(default) Drop every concept (row) that contains
+  \item{\code{"keep"}}{(default) Leave the aggregated output unchanged;
+    zero-width intervals are returned as-is and no action is taken. Use
+    \code{\link{check_zero_width_intervals}} to screen the result.}
+  \item{\code{"remove"}}{Drop every concept (row) that contains
     at least one zero-width interval.}
   \item{\code{"regenerate"}}{Re-run the aggregation (re-clustering or
     re-sampling) until no zero-width interval remains. Only effective for
