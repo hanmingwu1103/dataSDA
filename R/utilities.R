@@ -1052,7 +1052,7 @@ search_data <- function(...) {
 #' @usage aggregate_to_symbolic(x, type = "int", group_by = "kmeans",
 #'   stratify_var = NULL, K = 5, interval = "range",
 #'   quantile_probs = c(0.05, 0.95), bins = 10, nK = NULL,
-#'   zero_width = c("remove", "regenerate", "adjust"), epsilon = 1e-07)
+#'   zero_width = c("keep", "remove", "regenerate", "adjust"), epsilon = 1e-07)
 #'
 #' @param x A data.frame with n rows and p columns. May contain non-numeric
 #'   columns used for grouping or stratification; only numeric columns are
@@ -1092,7 +1092,10 @@ search_data <- function(...) {
 #'   downstream tools that divide by interval width (e.g.
 #'   \code{ggInterval::ggInterval_indexImage()}). One of:
 #'   \describe{
-#'     \item{\code{"remove"}}{(default) Drop every concept (row) that contains
+#'     \item{\code{"keep"}}{(default) Leave the aggregated output unchanged;
+#'       zero-width intervals are returned as-is and no action is taken. Use
+#'       \code{\link{check_zero_width_intervals}} to screen the result.}
+#'     \item{\code{"remove"}}{Drop every concept (row) that contains
 #'       at least one zero-width interval.}
 #'     \item{\code{"regenerate"}}{Re-run the aggregation (re-clustering or
 #'       re-sampling) until no zero-width interval remains. Only effective for
@@ -1178,8 +1181,8 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
                                   interval = "range",
                                   quantile_probs = c(0.05, 0.95),
                                   bins = 10, nK = NULL,
-                                  zero_width = c("remove", "regenerate",
-                                                 "adjust"),
+                                  zero_width = c("keep", "remove",
+                                                 "regenerate", "adjust"),
                                   epsilon = 1e-07) {
   fn <- "aggregate_to_symbolic"
 
@@ -1325,7 +1328,7 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
 # Dispatch to resampling or group-based aggregation
 .agg_dispatch <- function(data, num_cols, type, group_mode, group_col,
                           K, interval, quantile_probs, global_breaks, nK,
-                          label_name, zero_width = "remove", epsilon = 1e-07) {
+                          label_name, zero_width = "keep", epsilon = 1e-07) {
   # --- Histogram path (zero-width handling does not apply) ---
   if (type == "hist") {
     if (group_mode == "resampling") {
@@ -1365,6 +1368,8 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
 # modified) list of matrices/labels. A zero-width interval breaks downstream
 # tools that divide by interval width (e.g. ggInterval::ggInterval_indexImage).
 .agg_apply_zero_width <- function(m, num_cols, zero_width, epsilon) {
+  # "keep": leave the output untouched (zero-width intervals are returned as-is)
+  if (zero_width == "keep") return(m)
   degenerate <- m$hi == m$lo
   if (!any(degenerate, na.rm = TRUE)) return(m)
   degenerate[is.na(degenerate)] <- FALSE

@@ -10,10 +10,35 @@ make_zw_df <- function() {
   )
 }
 
+test_that("zero_width = 'keep' (default) leaves zero-width intervals untouched", {
+  df <- make_zw_df()
+  # The default is "keep": no concepts dropped, no modification, no warning.
+  expect_silent(
+    res <- aggregate_to_symbolic(df, type = "int", group_by = "g")
+  )
+  expect_equal(nrow(res), 2L)
+  expect_setequal(as.character(res$g), c("a", "b"))
+  # group "a" on v1 is constant (== 7) -> a zero-width interval is retained
+  a_v1 <- unclass(res$v1)[as.character(res$g) == "a"]
+  expect_equal(Re(a_v1), 7)
+  expect_equal(Im(a_v1), 7)
+  expect_true(any(check_zero_width_intervals(res, warn = FALSE)))
+})
+
+test_that("explicit zero_width = 'keep' matches the default behaviour", {
+  df <- make_zw_df()
+  expect_silent(
+    res <- aggregate_to_symbolic(df, type = "int", group_by = "g",
+                                 zero_width = "keep")
+  )
+  expect_equal(nrow(res), 2L)
+})
+
 test_that("zero_width = 'remove' drops concepts with zero-width intervals", {
   df <- make_zw_df()
   res <- suppressWarnings(
-    aggregate_to_symbolic(df, type = "int", group_by = "g")  # default = remove
+    aggregate_to_symbolic(df, type = "int", group_by = "g",
+                          zero_width = "remove")
   )
   expect_equal(nrow(res), 1L)
   expect_equal(as.character(res$g), "b")

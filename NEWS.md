@@ -15,16 +15,17 @@
 
 - `aggregate_to_symbolic(type = "int")` gains a `zero_width` argument
   controlling how zero-width intervals (`min == max`) in the aggregated output
-  are handled: `"remove"` (default) drops every concept containing a
-  zero-width interval; `"regenerate"` re-runs the aggregation (re-clustering or
-  re-sampling) until none remain (effective only for stochastic `group_by`
-  such as `"kmeans"`/`"resampling"`); and `"adjust"` adds a small `epsilon`
-  (default `1e-07`) to the upper endpoint of each zero-width interval. A
-  companion `epsilon` argument sets the adjustment amount. When zero-width
-  intervals are produced, a single warning names the affected variables and
-  the action taken. Such degenerate intervals otherwise break downstream tools
-  such as `ggInterval::ggInterval_indexImage()` (which divides by interval
-  width).
+  are handled: `"keep"` (default) leaves the output untouched, returning any
+  zero-width intervals as-is without warning; `"remove"` drops every concept
+  containing a zero-width interval; `"regenerate"` re-runs the aggregation
+  (re-clustering or re-sampling) until none remain (effective only for
+  stochastic `group_by` such as `"kmeans"`/`"resampling"`); and `"adjust"`
+  adds a small `epsilon` (default `1e-07`) to the upper endpoint of each
+  zero-width interval. A companion `epsilon` argument sets the adjustment
+  amount. For `"remove"` and `"adjust"`, a single warning names the affected
+  variables and the action taken. Such degenerate intervals otherwise break
+  downstream tools such as `ggInterval::ggInterval_indexImage()` (which divides
+  by interval width); use `check_zero_width_intervals()` to screen for them.
 
 # dataSDA 0.2.5
 
