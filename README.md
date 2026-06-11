@@ -4,7 +4,7 @@
 
 [![R](https://img.shields.io/badge/R-%3E%3D%204.0.0-blue)](https://www.r-project.org/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/version-0.2.5-green.svg)](https://github.com/hanmingwu1103/dataSDA/releases/tag/v0.2.5)
+[![Version](https://img.shields.io/badge/version-0.2.6-green.svg)](https://github.com/hanmingwu1103/dataSDA/releases/tag/v0.2.6)
 
 ## Overview
 
@@ -25,10 +25,10 @@ Download the latest release from the [Releases](https://github.com/hanmingwu1103
 
 ```r
 # Source package (all platforms)
-install.packages("dataSDA_0.2.5.tar.gz", repos = NULL, type = "source")
+install.packages("dataSDA_0.2.6.tar.gz", repos = NULL, type = "source")
 
 # Binary package (Windows)
-install.packages("dataSDA_0.2.5.zip", repos = NULL, type = "win.binary")
+install.packages("dataSDA_0.2.6.zip", repos = NULL, type = "win.binary")
 ```
 
 ## Features
