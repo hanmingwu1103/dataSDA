@@ -19,3 +19,7 @@
 ^vignettes/dataSDA_intro_files$
 ^bak$
 ^\.positai$
+^Examples$
+^test\.R$
+^\.RData$
+^\.Rhistory$

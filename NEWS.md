@@ -1,4 +1,4 @@
-# dataSDA 0.2.6 (development)
+# dataSDA 0.2.6
 
 ## Improvements
 
