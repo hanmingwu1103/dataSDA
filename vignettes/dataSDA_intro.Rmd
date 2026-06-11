@@ -1,7 +1,6 @@
 ---
 title: "Introduction to dataSDA"
-subtitle: "Supplementary material for ``dataSDA: datasets and basic statistics for
-symbolic data analysis in R''"
+subtitle: "Supplementary material for dataSDA: datasets and basic statistics for symbolic data analysis in R"
 author: "Po-Wei Chen, Chun-houh Chen and Han-Ming Wu*"
 date: "June 11, 2026"
 output:
