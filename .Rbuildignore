@@ -17,3 +17,5 @@
 ^dataSDA\.Rcheck$
 ^vignettes/dataSDA_intro\.html$
 ^vignettes/dataSDA_intro_files$
+^bak$
+^\.positai$

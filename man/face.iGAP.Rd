@@ -40,8 +40,10 @@ Contains 6 distance measurements between facial landmarks.
 data(face.iGAP)
 }
 \references{
-Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-symbolic data with matrix visualization. \emph{CSDA}, 79, 14-29.
+Leroy, B., Chouakria, A., Herlin, I., and Diday, E. (1996). Approche
+geometrique et classification pour la reconnaissance de visage. In
+\emph{Reconnaissance des Formes et Intelligence Artificielle (RFIA)},
+548--557.
 }
 \keyword{datasets}
 \keyword{iGAP}

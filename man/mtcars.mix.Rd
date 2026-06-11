@@ -22,7 +22,7 @@ A symbolic data frame (\code{symbolic_tbl}) with 5 observations
 }
 }
 \source{
-ggESDA R package (\code{mtcars.i} dataset).
+ggInterval R package (\code{mtcars.i} dataset).
 }
 \usage{
 data(mtcars.mix)
@@ -50,7 +50,7 @@ data(mtcars.mix)
 Henderson, R. and Velleman, P. (1981). Building multiple regression
 models interactively. \emph{Biometrics}, 37, 391--411.
 
-Original data from the ggESDA R package (\code{mtcars.i} dataset).
+Original data from the ggInterval R package (\code{mtcars.i} dataset).
 }
 \keyword{datasets}
 \keyword{interval}

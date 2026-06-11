@@ -16,10 +16,13 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+not_cran <- identical(Sys.getenv("NOT_CRAN"), "true")
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   echo = TRUE,
+  eval = not_cran,
   warning = FALSE,
   message = FALSE,
   out.width = "100%",
@@ -30,7 +33,6 @@ library(dataSDA)
 library(RSDA)
 library(HistDAWass)
 
-not_cran <- identical(Sys.getenv("NOT_CRAN"), "true")
 has_symbolicDA <- requireNamespace("symbolicDA", quietly = TRUE)
 has_MAINT <- requireNamespace("MAINT.Data", quietly = TRUE)
 has_e1071 <- requireNamespace("e1071", quietly = TRUE)
@@ -697,7 +699,7 @@ data.frame(Method = all_methods,
            row.names = NULL)
 ```
 
-All four methods yield a negative association between Cholesterol and Hemoglobin. Following Irpino and Verde (2015, Eqs. 30--32), the BG, BD, and B correlations all use the Bertrand-Goupil standard deviation in the denominator, so their values are similar (around ???0.20 to ???0.22). Only L2W uses its own Wasserstein-based variance, which produces a different correlation.
+All four methods yield a negative association between Cholesterol and Hemoglobin. Following Irpino and Verde (2015, Eqs. 30--32), the BG, BD, and B correlations all use the Bertrand-Goupil standard deviation in the denominator, so their values are similar (around -0.20 to -0.22). Only L2W uses its own Wasserstein-based variance, which produces a different correlation.
 
 ```{r fig.width=7, fig.height=4}
 par(mfrow = c(1, 2), mar = c(4, 5, 3, 1), las = 1)

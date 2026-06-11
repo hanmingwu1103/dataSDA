@@ -48,8 +48,8 @@
 #' 
 #' Verde, R., & Irpino, A. (2008). A new interval data distance based on the Wasserstein metric.
 #' 
-#' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued symbolic data with 
-#' matrix visualization. \emph{CSDA}, 79, 14-29.
+#' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued symbolic data with
+#' matrix visualization. \emph{Computational Statistics & Data Analysis}, 79, 14--29.
 #' @author Han-Ming Wu
 #' @seealso int_dist_matrix int_dist_all int_pairwise_dist
 #' @examples

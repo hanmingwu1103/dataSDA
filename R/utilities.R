@@ -1368,6 +1368,27 @@ aggregate_to_symbolic <- function(x, type = "int", group_by = "kmeans",
     }
   }
 
+  # Single consolidated warning about degenerate output. A zero-width interval
+  # (min == max) breaks downstream tools (e.g. ggInterval::ggInterval_indexImage,
+  # which divides by interval width). The per-variable check catches both
+  # multi-member groups with identical values on a variable and singleton
+  # clusters (which collapse on every variable).
+  degenerate <- hi_mat == lo_mat
+  if (any(degenerate, na.rm = TRUE)) {
+    affected_vars <- num_cols[apply(degenerate, 2L, any, na.rm = TRUE)]
+    collapsed <- group_levels[apply(degenerate, 1L, all, na.rm = TRUE)]
+    msg <- paste0("aggregate_to_symbolic: zero-width intervals (min == max) ",
+                  "produced for variable(s): ",
+                  paste(affected_vars, collapse = ", "), ".")
+    if (length(collapsed) > 0L)
+      msg <- paste0(msg, " Concept(s) degenerate on every variable: ",
+                    paste(collapsed, collapse = ", "),
+                    " (e.g. single-member clusters).")
+    msg <- paste0(msg, " These may break downstream tools; consider ",
+                  "reducing 'K' or merging small groups.")
+    warning(msg, call. = FALSE)
+  }
+
   .agg_make_symbolic_tbl(lo_mat, hi_mat, num_cols, group_levels, label_name)
 }
 
