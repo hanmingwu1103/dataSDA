@@ -7,7 +7,7 @@ Authors@R: c(
     person("Po-Wei", "Chen", email = "randy310162@gmail.com", role = "aut"),
     person("Chun-houh", "Chen", email = "cchen@stat.sinica.edu.tw", role = "aut"),
     person("Han-Ming", "Wu", email = "wuhm@g.nccu.edu.tw", role = "cre"))
-Description: Collects a diverse range of symbolic data and offers a comprehensive set of functions that facilitate the conversion of traditional data into the symbolic data format.
+Description: Provides benchmark datasets and foundational tools for Symbolic Data Analysis (SDA). The package includes functions for constructing symbolic data objects from classical data, converting among different interval-valued data formats, managing interval-valued, histogram-valued, modal-valued, and multi-valued data, and performing basic descriptive statistics. It is designed to support teaching, methodological research, and the development of SDA techniques.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
