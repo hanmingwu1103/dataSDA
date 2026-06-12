@@ -10,8 +10,8 @@ This release adds:
   `_min`/`_max` columns) and RSDA format (`symbolic_tbl` objects).
 * A new `zero_width` argument to `aggregate_to_symbolic(type = "int")` that
   controls how zero-width intervals in the aggregated output are handled
-  ("remove", "regenerate", or "adjust"), together with a companion `epsilon`
-  argument.
+  ("keep" (default, leaves the output unchanged), "remove", "regenerate", or
+  "adjust"), together with a companion `epsilon` argument.
 
 See NEWS.md for the full list of changes.
 
@@ -25,7 +25,9 @@ See NEWS.md for the full list of changes.
 
 0 errors | 0 warnings | 0 notes
 
-R CMD check --as-cran passed cleanly with Status: OK.
+R CMD check --as-cran passed cleanly with Status: OK on the local
+environment above. The package's testthat suite (562 tests) passes with no
+failures; 14 tests are skipped on CRAN as they depend on Suggests packages.
 
 ## Reverse dependencies
 
