@@ -40,6 +40,10 @@
 #' }
 #'
 #' @usage data(lackinfo.int)
+#' @references
+#' Garcia-Garcia, J. (2022). \emph{IntervalQuestionStat: Tools to Deal with
+#' Interval-Valued Responses in Questionnaires}. R package.
+#' \doi{10.32614/CRAN.package.IntervalQuestionStat}.
 #' @format A data frame with 50 observations and 8 variables:
 #' \itemize{
 #'     \item \code{id}: Identification number.
@@ -62,7 +66,9 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Regression
 #' }
 #' @keywords datasets interval
-#' @source \url{https://CRAN.R-project.org/package=IntervalQuestionStat}
+#' @source \code{IntervalQuestionStat::lackinfo}; responses were collected
+#' from 50 University of Oviedo students during the 2020/2021 academic year,
+#' as documented by the upstream package.
 "lackinfo.int"
 
 #' @name ohtemp.int
@@ -73,6 +79,10 @@
 #' temperatures from January 1, 1988 to December 31, 2018.
 #'
 #' @usage data(ohtemp.int)
+#' @references
+#' Bean, B. (2025). \emph{intkrige: A Numerical Implementation of
+#' Interval-Valued Kriging}. R package.
+#' \doi{10.32614/CRAN.package.intkrige}.
 #' @format A data frame with 161 rows and 7 variables:
 #' \itemize{
 #'     \item \code{ID}: Global Historical Climatological Network (GHCN) station identifier.
@@ -94,7 +104,8 @@
 #'   \strong{Analytical tasks} \tab Regression, Spatial analysis
 #' }
 #' @keywords datasets interval
-#' @source \url{https://CRAN.R-project.org/package=intkrige}
+#' @source \code{intkrige::ohtemp}, derived from NOAA Global Historical
+#' Climatology Network station records for January 1, 1988--December 31, 2018.
 "ohtemp.int"
 
 #' @name soccer_bivar.int
@@ -114,7 +125,8 @@
 #' @references
 #' Lima Neto, E. A., Cordeiro, G. and De Carvalho, F.A.T. (2011).
 #' Bivariate symbolic regression models for interval-valued variables.
-#' \emph{Journal of Statistical Computation and Simulation}, 81, 1727-1744.
+#' \emph{Journal of Statistical Computation and Simulation}, 81, 1727--1744.
+#' \doi{10.1080/00949655.2010.500470}.
 #' @examples
 #' data(soccer_bivar.int)
 #' @section Metadata:
@@ -126,7 +138,8 @@
 #'   \strong{Analytical tasks} \tab Regression
 #' }
 #' @keywords datasets interval regression
-#' @source \url{https://CRAN.R-project.org/package=iRegression}
+#' @source French soccer interval data distributed with the
+#' \pkg{iRegression} package and analyzed by Lima Neto et al. (2011).
 "soccer_bivar.int"
 
 #' @name cars.int
@@ -147,9 +160,10 @@
 #'
 #' @usage data(cars.int)
 #' @references
-#' Duarte Silva, A.P., Brito, P., Filzmoser, P. and Dias, J.G. (2021).
+#' Duarte Silva, A. P., Brito, P., Filzmoser, P. and Dias, J. G. (2021).
 #' MAINT.Data: Modelling and Analysing Interval Data in R.
-#' \emph{R Journal}, 13(2).
+#' \emph{The R Journal}, 13(2), 336--364.
+#' \doi{10.32614/RJ-2021-074}.
 #' @examples
 #' data(cars.int)
 #' @section Metadata:
@@ -161,7 +175,8 @@
 #'   \strong{Analytical tasks} \tab Classification
 #' }
 #' @keywords datasets interval classification
-#' @source \url{https://CRAN.R-project.org/package=MAINT.Data}
+#' @source \code{MAINT.Data::Cars}, containing interval specifications for
+#' 27 car models in four classes.
 "cars.int"
 
 #' @name china_temp.int
@@ -188,8 +203,9 @@
 #'
 #' @usage data(china_temp.int)
 #' @references
-#' Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
-#' Normal and Skew-Normal distributions. \emph{J. Appl. Stat.}, 39(1), 3-20.
+#' Brito, P. and Duarte Silva, A. P. (2012). Modelling interval data with
+#' Normal and Skew-Normal distributions. \emph{Journal of Applied Statistics},
+#' 39(1), 3--20. \doi{10.1080/02664763.2011.575125}.
 #' @examples
 #' data(china_temp.int)
 #' @section Metadata:
@@ -201,7 +217,8 @@
 #'   \strong{Analytical tasks} \tab Clustering
 #' }
 #' @keywords datasets interval clustering
-#' @source \url{https://CRAN.R-project.org/package=MAINT.Data}
+#' @source \code{MAINT.Data::ChinaTemp}, derived from the Long-Term
+#' Instrumental Climatic Database of the People's Republic of China.
 "china_temp.int"
 
 #' @name loans_by_purpose.int
@@ -219,6 +236,13 @@
 #' }
 #'
 #' @usage data(loans_by_purpose.int)
+#' @references
+#' Duarte Silva, A. P., Brito, P., Filzmoser, P. and Dias, J. G. (2021).
+#' MAINT.Data: Modelling and Analysing Interval Data in R. \emph{The R
+#' Journal}, 13(2), 336--364. \doi{10.32614/RJ-2021-074}.
+#'
+#' The underlying loan records were distributed as the Lending Club Loan
+#' Data on Kaggle.
 #' @examples
 #' data(loans_by_purpose.int)
 #' @section Metadata:
@@ -230,7 +254,11 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets interval
-#' @source \url{https://CRAN.R-project.org/package=MAINT.Data}
+#' @source Derived from \code{MAINT.Data::LoansbyPurpose_minmaxDt}, which
+#' aggregates the Lending Club Loan Data by loan purpose using minima and
+#' maxima. The underlying Lending Club Loan Data were distributed through
+#' the Kaggle Data Science platform; the original upstream URL is no longer
+#' active.
 "loans_by_purpose.int"
 
 #' @name nycflights.int
@@ -250,8 +278,9 @@
 #'
 #' @usage data(nycflights.int)
 #' @references
-#' Duarte Silva, A.P., Brito, P., Filzmoser, P. and Dias, J.G. (2021).
-#' MAINT.Data: Modelling and Analysing Interval Data in R. \emph{R Journal}, 13(2).
+#' Duarte Silva, A. P., Brito, P., Filzmoser, P. and Dias, J. G. (2021).
+#' MAINT.Data: Modelling and Analysing Interval Data in R. \emph{The R
+#' Journal}, 13(2), 336--364. \doi{10.32614/RJ-2021-074}.
 #' @examples
 #' data(nycflights.int)
 #' @section Metadata:
@@ -263,7 +292,9 @@
 #'   \strong{Analytical tasks} \tab Regression, Descriptive statistics
 #' }
 #' @keywords datasets interval
-#' @source \url{https://CRAN.R-project.org/package=MAINT.Data}
+#' @source Derived from \code{MAINT.Data::FlightsIdt}. The upstream object
+#' removes incomplete rows from \pkg{nycflights13} and aggregates flights by
+#' month and carrier using the 0.05 and 0.95 quantiles.
 "nycflights.int"
 
 ## ---------------------------------------------------------------------------
@@ -334,6 +365,7 @@
 #'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
 #' }
 #' @keywords datasets interval
+#' @source Billard and Diday (2006), Table 3.2.
 "mushroom.int"
 
 #' @name age_cholesterol_weight.int
@@ -365,6 +397,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Regression
 #' }
 #' @keywords datasets interval
+#' @source Billard and Diday (2006).
 "age_cholesterol_weight.int"
 
 #' @name airline_flights.hist
@@ -407,6 +440,7 @@
 #'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
 #' }
 #' @keywords datasets histogram
+#' @source Billard and Diday (2006), Table 2.7.
 "airline_flights.hist"
 
 #' @name airline_flights2.modal
@@ -440,6 +474,7 @@
 #'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
 #' }
 #' @keywords datasets modal
+#' @source Billard and Diday (2006), Table 2.7.
 "airline_flights2.modal"
 
 #' @name baseball.int
@@ -469,6 +504,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets interval
+#' @source Billard and Diday (2006).
 "baseball.int"
 
 #' @name bird.mix
@@ -498,6 +534,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets interval
+#' @source Billard and Diday (2006), Table 2.5.
 "bird.mix"
 
 #' @name blood_pressure.int
@@ -528,6 +565,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Regression
 #' }
 #' @keywords datasets interval
+#' @source Billard and Diday (2006).
 "blood_pressure.int"
 
 #' @name car.int
@@ -559,6 +597,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets interval
+#' @source Billard and Diday (2006).
 "car.int"
 
 #' @name crime.modal
@@ -593,6 +632,7 @@
 #'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
 #' }
 #' @keywords datasets modal
+#' @source Billard and Diday (2006).
 "crime.modal"
 
 #' @name crime2.modal
@@ -624,6 +664,7 @@
 #'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
 #' }
 #' @keywords datasets modal
+#' @source Billard and Diday (2006).
 "crime2.modal"
 
 #' @name finance.int
@@ -658,6 +699,7 @@
 #'   \strong{Analytical tasks} \tab PCA
 #' }
 #' @keywords datasets interval PCA
+#' @source Billard and Diday (2006), Table 5.2.
 "finance.int"
 
 #' @name fuel_consumption.modal
@@ -689,6 +731,7 @@
 #'   \strong{Analytical tasks} \tab Regression
 #' }
 #' @keywords datasets modal regression
+#' @source Billard and Diday (2006), Table 3.7.
 "fuel_consumption.modal"
 
 #' @name health_insurance.mix
@@ -747,6 +790,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Aggregation
 #' }
 #' @keywords datasets mixed symbolic
+#' @source Billard and Diday (2006), Tables 2.1--2.2.
 "health_insurance.mix"
 
 #' @name health_insurance2.modal
@@ -781,6 +825,7 @@
 #'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
 #' }
 #' @keywords datasets modal
+#' @source Billard and Diday (2006), Table 2.2b.
 "health_insurance2.modal"
 
 #' @name hierarchy
@@ -815,6 +860,7 @@
 #'   \strong{Analytical tasks} \tab Aggregation, Descriptive statistics
 #' }
 #' @keywords datasets hierarchical
+#' @source Billard and Diday (2006), Table 2.15.
 "hierarchy"
 
 #' @name hierarchy.int
@@ -847,6 +893,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Regression
 #' }
 #' @keywords datasets interval
+#' @source Billard and Diday (2006), Table 2.15.
 "hierarchy.int"
 
 #' @name horses.int
@@ -885,6 +932,7 @@
 #'   \strong{Analytical tasks} \tab Clustering
 #' }
 #' @keywords datasets interval clustering
+#' @source Billard and Diday (2006), Table 7.14.
 "horses.int"
 
 #' @name occupations.modal
@@ -917,6 +965,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets modal
+#' @source Billard and Diday (2006).
 "occupations.modal"
 
 #' @name occupations2.modal
@@ -947,6 +996,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets modal
+#' @source Billard and Diday (2006).
 "occupations2.modal"
 
 #' @name profession.int
@@ -978,6 +1028,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Classification
 #' }
 #' @keywords datasets interval
+#' @source Billard and Diday (2006).
 "profession.int"
 
 #' @name veterinary.int
@@ -1008,6 +1059,8 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets interval
+#' @source Distributed as \code{RSDA::VeterinaryData}; the RSDA
+#' documentation attributes the data to Billard and Diday (2006).
 "veterinary.int"
 
 ## ---------------------------------------------------------------------------
@@ -1040,8 +1093,7 @@
 #' (1994). The Population Biology of Abalone (\emph{Haliotis} species) in
 #' Tasmania. Sea Fisheries Division, Technical Report No. 48.
 #'
-#' UCI Machine Learning Repository.
-#' \url{https://archive.ics.uci.edu/ml/datasets/Abalone}
+#' UCI Machine Learning Repository. \doi{10.24432/C55C7W}.
 #' @examples
 #' data(abalone.iGAP)
 #' @section Metadata:
@@ -1053,7 +1105,9 @@
 #'   \strong{Analytical tasks} \tab Clustering, Visualization
 #' }
 #' @keywords datasets interval iGAP
-#' @source UCI Machine Learning Repository.
+#' @source Derived from \code{MAINT.Data::AbaloneIdt}, which aggregates the
+#' UCI Abalone microdata by sex and age group. UCI Machine Learning
+#' Repository, \doi{10.24432/C55C7W}.
 "abalone.iGAP"
 
 #' @name abalone.int
@@ -1082,8 +1136,7 @@
 #' (1994). The Population Biology of Abalone (\emph{Haliotis} species) in
 #' Tasmania. Sea Fisheries Division, Technical Report No. 48.
 #'
-#' UCI Machine Learning Repository.
-#' \url{https://archive.ics.uci.edu/ml/datasets/Abalone}
+#' UCI Machine Learning Repository. \doi{10.24432/C55C7W}.
 #' @examples
 #' data(abalone.int)
 #' @section Metadata:
@@ -1095,7 +1148,9 @@
 #'   \strong{Analytical tasks} \tab Clustering, Visualization
 #' }
 #' @keywords datasets interval
-#' @source UCI Machine Learning Repository.
+#' @source Derived from \code{MAINT.Data::AbaloneIdt}, which aggregates the
+#' UCI Abalone microdata by sex and age group. UCI Machine Learning
+#' Repository, \doi{10.24432/C55C7W}.
 "abalone.int"
 
 #' @name face.iGAP
@@ -1134,6 +1189,8 @@
 #'   \strong{Analytical tasks} \tab Classification, Visualization
 #' }
 #' @keywords datasets interval iGAP
+#' @source Derived from \code{RSDA::facedata}, which is attributed to Leroy
+#' et al. (1996), and represented here in iGAP interval-string format.
 "face.iGAP"
 
 
@@ -1186,6 +1243,8 @@
 #'   \strong{Analytical tasks} \tab Clustering
 #' }
 #' @keywords datasets interval clustering
+#' @source Diday and Noirhomme-Fraiture (2008), Table 13.7; also distributed
+#' as \code{RSDA::oils}.
 "oils.int"
 
 ## ---------------------------------------------------------------------------
@@ -1229,6 +1288,7 @@
 #'   \strong{Analytical tasks} \tab PCA
 #' }
 #' @keywords datasets interval PCA
+#' @source Billard and Diday (2006), Table 2.24, p. 63.
 "teams.int"
 
 ## ---------------------------------------------------------------------------
@@ -1270,6 +1330,7 @@
 #'   \strong{Analytical tasks} \tab Clustering
 #' }
 #' @keywords datasets interval clustering
+#' @source Billard and Diday (2006), Table 2.25, p. 64.
 "tennis.int"
 
 ## ---------------------------------------------------------------------------
@@ -1299,9 +1360,10 @@
 #'
 #' @usage data(bats.int)
 #' @references
-#' Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-#' symbolic data with matrix visualization.
-#' \emph{Computational Statistics & Data Analysis}, 79, 14--29.
+#' Kao, C.-H., Nakano, J., Shieh, S.-H., Tien, Y.-J., Wu, H.-M., Yang, C.-K.
+#' and Chen, C.-H. (2014). Exploratory data analysis of interval-valued
+#' symbolic data with matrix visualization. \emph{Computational Statistics
+#' & Data Analysis}, 79, 14--29. \doi{10.1016/j.csda.2014.04.012}.
 #' @examples
 #' data(bats.int)
 #' @section Metadata:
@@ -1313,6 +1375,7 @@
 #'   \strong{Analytical tasks} \tab Clustering, Visualization
 #' }
 #' @keywords datasets interval clustering visualization
+#' @source The interval-valued bat data analyzed by Kao et al. (2014).
 "bats.int"
 
 ## ---------------------------------------------------------------------------
@@ -1357,6 +1420,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets interval
+#' @source Billard and Diday (2006), Tables 2.3--2.4.
 "credit_card.int"
 
 ## ---------------------------------------------------------------------------
@@ -1395,6 +1459,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets distribution
+#' @source Billard and Diday (2006), Table 2.8.
 "energy_consumption.distr"
 
 ## ---------------------------------------------------------------------------
@@ -1431,6 +1496,7 @@
 #'   \strong{Analytical tasks} \tab PCA
 #' }
 #' @keywords datasets interval PCA
+#' @source Billard and Diday (2006), Table 5.1, p. 146.
 "trivial_intervals.int"
 
 ## ---------------------------------------------------------------------------
@@ -1468,6 +1534,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets mixed interval categorical
+#' @source Diday and Noirhomme-Fraiture (2008), Table 1.2, p. 6.
 "bird_species.mix"
 
 ## ---------------------------------------------------------------------------
@@ -1501,7 +1568,8 @@
 #' @usage data(temperature_city.int)
 #' @references
 #' Verde, R. and Irpino, A. (2008). A new interval data distance based on
-#' the Wasserstein metric. \emph{Proc. COMPSTAT 2008}, pp. 705-712.
+#' the Wasserstein metric. \emph{Proc. COMPSTAT 2008}, pp. 705--712.
+#' \doi{10.1007/978-3-540-78246-9_83}.
 #' @examples
 #' data(temperature_city.int)
 #' @section Metadata:
@@ -1513,6 +1581,8 @@
 #'   \strong{Analytical tasks} \tab Clustering
 #' }
 #' @keywords datasets interval clustering distance
+#' @source Interval-valued city-temperature data analyzed by Verde and
+#' Irpino (2008).
 "temperature_city.int"
 
 ## ---------------------------------------------------------------------------
@@ -1552,6 +1622,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets mixed interval histogram categorical
+#' @source Billard and Diday (2006), Table 2.19.
 "bird_species_extended.mix"
 
 ## ---------------------------------------------------------------------------
@@ -1596,6 +1667,7 @@
 #'   \strong{Analytical tasks} \tab Discriminant analysis, Classification
 #' }
 #' @keywords datasets interval discriminant
+#' @source Diday and Noirhomme-Fraiture (2008), Table 18.1.
 "employment.int"
 
 ## ---------------------------------------------------------------------------
@@ -1634,6 +1706,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets mixed interval modal multi-valued
+#' @source Diday and Noirhomme-Fraiture (2008), Table 1.21, p. 19.
 "town_services.mix"
 
 ## ---------------------------------------------------------------------------
@@ -1671,6 +1744,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets interval
+#' @source Diday and Noirhomme-Fraiture (2008), Table 1.9, p. 13.
 "world_cup.int"
 
 ## ---------------------------------------------------------------------------
@@ -1712,6 +1786,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets fuzzy symbolic
+#' @source Diday and Noirhomme-Fraiture (2008), Tables 1.14--1.16.
 "mushroom_fuzzy.mix"
 
 ## ---------------------------------------------------------------------------
@@ -1750,6 +1825,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets symbolic model
+#' @source Billard and Diday (2006), Table 2.9.
 "bank_rates"
 
 ## ---------------------------------------------------------------------------
@@ -1784,6 +1860,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets histogram
+#' @source Billard and Diday (2006), Table 2.20.
 "lung_cancer.hist"
 
 ## ---------------------------------------------------------------------------
@@ -1820,6 +1897,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets interval
+#' @source Billard and Diday (2006), Table 2.21.
 "acid_rain.int"
 
 ## ---------------------------------------------------------------------------
@@ -1858,9 +1936,10 @@
 #'
 #' @usage data(freshwater_fish.int)
 #' @references
-#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Andrade de Sa, J. N., Ferreira, M. R. P. and de Carvalho, F. A. T. (2025).
 #' Kernel clustering with automatic variable weighting for interval data.
-#' \emph{Neurocomputing}, 617, 128954.
+#' \emph{Neurocomputing}, 650, 130849.
+#' \doi{10.1016/j.neucom.2025.130849}.
 #' @examples
 #' data(freshwater_fish.int)
 #' @section Metadata:
@@ -1898,9 +1977,10 @@
 #'
 #' @usage data(fungi.int)
 #' @references
-#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Andrade de Sa, J. N., Ferreira, M. R. P. and de Carvalho, F. A. T. (2025).
 #' Kernel clustering with automatic variable weighting for interval data.
-#' \emph{Neurocomputing}, 617, 128954.
+#' \emph{Neurocomputing}, 650, 130849.
+#' \doi{10.1016/j.neucom.2025.130849}.
 #' @examples
 #' data(fungi.int)
 #' @section Metadata:
@@ -1938,9 +2018,10 @@
 #'
 #' @usage data(iris.int)
 #' @references
-#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Andrade de Sa, J. N., Ferreira, M. R. P. and de Carvalho, F. A. T. (2025).
 #' Kernel clustering with automatic variable weighting for interval data.
-#' \emph{Neurocomputing}, 617, 128954.
+#' \emph{Neurocomputing}, 650, 130849.
+#' \doi{10.1016/j.neucom.2025.130849}.
 #' @examples
 #' data(iris.int)
 #' @section Metadata:
@@ -1976,9 +2057,10 @@
 #'
 #' @usage data(water_flow.int)
 #' @references
-#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Andrade de Sa, J. N., Ferreira, M. R. P. and de Carvalho, F. A. T. (2025).
 #' Kernel clustering with automatic variable weighting for interval data.
-#' \emph{Neurocomputing}, 617, 128954.
+#' \emph{Neurocomputing}, 650, 130849.
+#' \doi{10.1016/j.neucom.2025.130849}.
 #' @examples
 #' data(water_flow.int)
 #' @section Metadata:
@@ -2013,9 +2095,10 @@
 #'
 #' @usage data(wine.int)
 #' @references
-#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Andrade de Sa, J. N., Ferreira, M. R. P. and de Carvalho, F. A. T. (2025).
 #' Kernel clustering with automatic variable weighting for interval data.
-#' \emph{Neurocomputing}, 617, 128954.
+#' \emph{Neurocomputing}, 650, 130849.
+#' \doi{10.1016/j.neucom.2025.130849}.
 #' @examples
 #' data(wine.int)
 #' @section Metadata:
@@ -2057,9 +2140,10 @@
 #'
 #' @usage data(car_models.int)
 #' @references
-#' Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+#' Andrade de Sa, J. N., Ferreira, M. R. P. and de Carvalho, F. A. T. (2025).
 #' Kernel clustering with automatic variable weighting for interval data.
-#' \emph{Neurocomputing}, 617, 128954.
+#' \emph{Neurocomputing}, 650, 130849.
+#' \doi{10.1016/j.neucom.2025.130849}.
 #' @examples
 #' data(car_models.int)
 #' @section Metadata:
@@ -2100,9 +2184,10 @@
 #'
 #' @usage data(hdi_gender.int)
 #' @references
-#' Alcacer, A., Barrel, A., Groenen, P. J. F. and Grana, M. (2023).
-#' Ordinal classification for interval-valued data and ordinal data.
-#' \emph{Expert Systems with Applications}, 238, 121825.
+#' Alcacer, A., Martinez-Garcia, M. and Epifanio, I. (2024).
+#' Ordinal classification for interval-valued data and interval-valued
+#' functional data. \emph{Expert Systems with Applications}, 238, 122277.
+#' \doi{10.1016/j.eswa.2023.122277}.
 #' @examples
 #' data(hdi_gender.int)
 #' @section Metadata:
@@ -2143,8 +2228,8 @@
 #'
 #' @usage data(cardiological.int)
 #' @references
-#' Rodriguez, O. (2000). Classification et modeles lineaires en analyse
-#' des donnees symboliques. Doctoral Thesis, Universite Paris IX-Dauphine.
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester.
 #' @examples
 #' data(cardiological.int)
 #' @section Metadata:
@@ -2156,7 +2241,8 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets interval
-#' @source Extracted from RSDA package (\code{cardiologicalv2}).
+#' @source Extracted from \code{RSDA::cardiologicalv2}; the RSDA
+#' documentation attributes the data to Billard and Diday (2006).
 "cardiological.int"
 
 ## ---------------------------------------------------------------------------
@@ -2230,8 +2316,10 @@
 #'
 #' @usage data(uscrime.int)
 #' @references
-#' Rodriguez, O. (2000). Classification et modeles lineaires en analyse
-#' des donnees symboliques. Doctoral Thesis, Universite Paris IX-Dauphine.
+#' Rodriguez, O. (2013). A generalization of Centre and Range method for
+#' fitting a linear regression model to symbolic interval data. In the
+#' proceedings of the 14th Conference of the International Federation of
+#' Classification Societies (IFCS 2013).
 #' @examples
 #' data(uscrime.int)
 #' @section Metadata:
@@ -2243,7 +2331,7 @@
 #'   \strong{Analytical tasks} \tab Regression, Clustering
 #' }
 #' @keywords datasets interval crime
-#' @source Extracted from RSDA package (\code{uscrime_int}).
+#' @source Extracted from \code{RSDA::uscrime_intv2}.
 "uscrime.int"
 
 ## ---------------------------------------------------------------------------
@@ -2267,9 +2355,8 @@
 #'
 #' @usage data(hardwood.hist)
 #' @references
-#' Brito, P. (2007). Modelling and Analysing Interval Data.
-#' In V. Esposito Vinzi et al. (Eds.), \emph{New Developments in Classification
-#' and Data Analysis}, pp. 197-208. Springer.
+#' Brito, P. and Dias, S. (2022). \emph{Analysis of Distributional Data}.
+#' CRC Press.
 #' @examples
 #' data(hardwood.hist)
 #' @section Metadata:
@@ -2281,7 +2368,9 @@
 #'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
 #' }
 #' @keywords datasets histogram
-#' @source Extracted from RSDA package (\code{hardwoodBrito}).
+#' @source Extracted from \code{RSDA::hardwoodBrito}; the dataset and its
+#' distributional principal-component analysis are described by Brito and
+#' Dias (2022).
 "hardwood.hist"
 
 ## ---------------------------------------------------------------------------
@@ -2303,8 +2392,9 @@
 #'
 #' @usage data(synthetic_clusters.int)
 #' @references
-#' Dudek, A. and Pelka, M. (2022). \emph{symbolicDA}: Analysis of Symbolic
-#' Data. R package.
+#' Dudek, A., Pelka, M., Wilk, J. and Walesiak, M. \emph{symbolicDA:
+#' Analysis of Symbolic Data}. R package.
+#' \doi{10.32614/CRAN.package.symbolicDA}.
 #' @examples
 #' data(synthetic_clusters.int)
 #' @section Metadata:
@@ -2316,7 +2406,7 @@
 #'   \strong{Analytical tasks} \tab Clustering
 #' }
 #' @keywords datasets interval clustering synthetic
-#' @source Extracted from symbolicDA package (\code{data_symbolic}).
+#' @source Artificial benchmark data from \code{symbolicDA::data_symbolic}.
 "synthetic_clusters.int"
 
 ## ---------------------------------------------------------------------------
@@ -2358,9 +2448,9 @@
 #'
 #' @usage data(environment.mix)
 #' @references
-#' Jiang, B.-S. and Wu, H.-M. (2025). ggInterval: an R package for
-#' visualizing interval-valued data using ggplot2. R package version 0.2.5.
-#' \url{https://CRAN.R-project.org/package=ggInterval}
+#' Jiang, B.-S. and Wu, H.-M. (2026). \emph{ggInterval: Visualizing
+#' Interval-Valued Data Using ggplot2}. R package.
+#' \doi{10.32614/CRAN.package.ggInterval}.
 #' @examples
 #' data(environment.mix)
 #' @section Metadata:
@@ -2372,7 +2462,8 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets mixed interval modal
-#' @source Extracted from the ggInterval package (\code{Environment}).
+#' @source Extracted from \code{ggInterval::Environment}. The upstream
+#' package documentation does not identify a more original data provider.
 "environment.mix"
 
 ## ---------------------------------------------------------------------------
@@ -2777,11 +2868,9 @@
 #'
 #' @usage data(loans_by_risk.int)
 #' @references
-#' Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
-#' Normal and Skew-Normal distributions. \emph{Journal of Applied Statistics},
-#' 39(1), 3--20.
-#'
-#' Original data from the MAINT.Data R package.
+#' Duarte Silva, A. P., Brito, P., Filzmoser, P. and Dias, J. G. (2021).
+#' MAINT.Data: Modelling and Analysing Interval Data in R. \emph{The R
+#' Journal}, 13(2), 336--364. \doi{10.32614/RJ-2021-074}.
 #' @examples
 #' data(loans_by_risk.int)
 #' @section Metadata:
@@ -2793,7 +2882,9 @@
 #'   \strong{Analytical tasks} \tab Classification, Clustering
 #' }
 #' @keywords datasets interval finance
-#' @source MAINT.Data R package (\code{LoansbyRisk_minmax} dataset).
+#' @source Derived from \code{MAINT.Data::LoansbyRiskLvs_minmaxDt}, based on the
+#' Lending Club Loan Data distributed through the Kaggle Data Science
+#' platform; the original upstream URL is no longer active.
 "loans_by_risk.int"
 
 ## ---------------------------------------------------------------------------
@@ -2817,11 +2908,10 @@
 #'
 #' @usage data(polish_voivodships.int)
 #' @references
-#' Dudek, A. and Pelka, M. (2022). \emph{symbolicDA: Analysis of Symbolic
-#' Data}. R package.
-#'
-#' Walesiak, M. and Dudek, A. (2020). \emph{clusterSim: Searching for
-#' Optimal Clustering Procedure for a Data Set}. R package.
+#' Walesiak, M. and Dudek, A. (2020). The choice of variable normalization
+#' method in cluster analysis. In K. S. Soliman (Ed.), \emph{Education
+#' Excellence and Innovation Management: A 2025 Vision to Sustain Economic
+#' Development During Global Challenges}, 325--340.
 #' @examples
 #' data(polish_voivodships.int)
 #' @section Metadata:
@@ -2833,7 +2923,9 @@
 #'   \strong{Analytical tasks} \tab Clustering
 #' }
 #' @keywords datasets interval socioeconomic
-#' @source clusterSim R package (\code{data_pathtinger} dataset).
+#' @source \code{clusterSim::data_symbolic_interval_polish_voivodships}.
+#' The data were aggregated by voivodship from the Polish Central Statistical
+#' Office Local Data Bank for 2016.
 "polish_voivodships.int"
 
 ## ---------------------------------------------------------------------------
@@ -3087,11 +3179,8 @@
 #'
 #' @usage data(age_pyramids.hist)
 #' @references
-#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-#' symbolic variables: A new metric-based approach.
-#' \emph{Advances in Data Analysis and Classification}, 9(2), 143--175.
-#'
-#' Original data from the HistDAWass R package (\code{Age_Pyramids_2014}).
+#' U.S. Census Bureau (2014). International population estimates and
+#' projections by age and sex.
 #' @examples
 #' data(age_pyramids.hist)
 #' @section Metadata:
@@ -3103,7 +3192,8 @@
 #'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
 #' }
 #' @keywords datasets histogram demographics
-#' @source HistDAWass R package (\code{Age_Pyramids_2014} dataset).
+#' @source \code{HistDAWass::Age_Pyramids_2014}; the upstream documentation
+#' identifies the U.S. Census Bureau as the original source.
 "age_pyramids.hist"
 
 ## ---------------------------------------------------------------------------
@@ -3113,11 +3203,11 @@
 #' @name ozone.hist
 #' @title Ozone Air Quality Histogram-Valued Dataset
 #' @description
-#' Histogram-valued dataset of 84 daily observations with 4 weather-related
-#' histogram variables. Each histogram has 10 equal-probability (decile) bins
-#' summarizing hourly measurements within each day.
+#' Histogram-valued dataset for 84 U.S. air-quality monitoring stations with
+#' 4 weather-related histogram variables. Each histogram has 10
+#' equal-probability (decile) bins.
 #'
-#' @format A data frame with 84 observations (days) and 4 histogram-valued
+#' @format A data frame with 84 observations (stations) and 4 histogram-valued
 #' variables:
 #' \itemize{
 #'     \item \code{Ozone.Conc.ppb}: Histogram of ozone concentration (ppb).
@@ -3129,12 +3219,8 @@
 #'
 #' @usage data(ozone.hist)
 #' @references
-#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-#' symbolic variables: A new metric-based approach.
-#' \emph{Advances in Data Analysis and Classification}, 9(2), 143--175.
-#'
-#' Original data from the HistDAWass R package (\code{OzoneH} dataset),
-#' reduced from 100 quantile bins to 10 decile bins.
+#' U.S. Environmental Protection Agency. Clean Air Status and Trends Network
+#' (CASTNET) ozone and associated meteorological data.
 #' @examples
 #' data(ozone.hist)
 #' @section Metadata:
@@ -3146,7 +3232,9 @@
 #'   \strong{Analytical tasks} \tab Regression, Clustering
 #' }
 #' @keywords datasets histogram weather environment
-#' @source HistDAWass R package (\code{OzoneH} dataset).
+#' @source Derived from \code{HistDAWass::OzoneH}, which documents 84 U.S.
+#' monitoring stations and identifies EPA CASTNET/metdata as the source. The
+#' original 100 quantile bins were reduced to 10 decile bins here.
 "ozone.hist"
 
 ## ---------------------------------------------------------------------------
@@ -3172,11 +3260,9 @@
 #'
 #' @usage data(french_agriculture.hist)
 #' @references
-#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-#' symbolic variables: A new metric-based approach.
-#' \emph{Advances in Data Analysis and Classification}, 9(2), 143--175.
-#'
-#' Original data from the HistDAWass R package (\code{Agronomique} dataset).
+#' Verde, R., Irpino, A. and Desbois, D. (2014). How to cope with modelling
+#' and privacy concerns? A regression model and a visualization tool for
+#' aggregated data. Conference of European Statistics Stakeholders, Rome.
 #' @examples
 #' data(french_agriculture.hist)
 #' @section Metadata:
@@ -3188,7 +3274,8 @@
 #'   \strong{Analytical tasks} \tab Regression, Clustering
 #' }
 #' @keywords datasets histogram agriculture economics
-#' @source HistDAWass R package (\code{Agronomique} dataset).
+#' @source \code{HistDAWass::Agronomique}; provenance follows the source
+#' cited in the upstream package documentation.
 "french_agriculture.hist"
 
 ## ---------------------------------------------------------------------------
@@ -3429,14 +3516,12 @@
 #'
 #' @usage data(utsnow.int)
 #' @references
-#' Schmoyer, R. L. (1993). Permutation tests for correlation in regression
-#' errors. \emph{Journal of the American Statistical Association}, 89(428),
-#' 1507--1516.
+#' Bean, B., Sun, Y. and Maguire, M. (2022). Interval-valued kriging for
+#' geostatistical mapping with imprecise inputs. \emph{International Journal
+#' of Approximate Reasoning}, 140, 31--51.
+#' \doi{10.1016/j.ijar.2021.10.003}.
 #'
-#' Bean, B., Sun, Y., and Maguire, M. (2022). Interval-valued kriging models
-#' for geostatistical mapping with uncertain inputs.
-#'
-#' Original data from the intkrige R package (\code{utsnow} dataset).
+#' Bean, B., Maguire, M. and Sun, Y. (2018). \emph{Utah Snow Load Study}.
 #' @examples
 #' data(utsnow.int)
 #' @section Metadata:
@@ -3448,7 +3533,8 @@
 #'   \strong{Analytical tasks} \tab Regression, Spatial analysis
 #' }
 #' @keywords datasets interval
-#' @source intkrige R package (\code{utsnow} dataset).
+#' @source \code{intkrige::utsnow}; the upstream documentation identifies
+#' the 415 locations as data from the 2018 Utah Snow Load Study.
 "utsnow.int"
 
 ## ---------------------------------------------------------------------------
@@ -3475,7 +3561,7 @@
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis: Conceptual
 #' Statistics and Data Mining}. Wiley, Chichester.
 #'
-#' Original data from the RSDA R package (\code{Lynne1} dataset).
+#' Original data from the RSDA R package (\code{lynne1} dataset).
 #' @examples
 #' data(lynne1.int)
 #' @section Metadata:
@@ -3487,7 +3573,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Regression
 #' }
 #' @keywords datasets interval
-#' @source RSDA R package (\code{Lynne1} dataset).
+#' @source \code{RSDA::lynne1}.
 "lynne1.int"
 
 ## ---------------------------------------------------------------------------
@@ -3512,12 +3598,9 @@
 #'
 #' @usage data(loans_by_risk_quantile.int)
 #' @references
-#' Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
-#' Normal and Skew-Normal distributions. \emph{Journal of Applied Statistics},
-#' 39(1), 3--20.
-#'
-#' Original data from the MAINT.Data R package
-#' (\code{LoansbyRiskLvs_qntlDt} dataset).
+#' Duarte Silva, A. P., Brito, P., Filzmoser, P. and Dias, J. G. (2021).
+#' MAINT.Data: Modelling and Analysing Interval Data in R. \emph{The R
+#' Journal}, 13(2), 336--364. \doi{10.32614/RJ-2021-074}.
 #' @examples
 #' data(loans_by_risk_quantile.int)
 #' @section Metadata:
@@ -3529,7 +3612,9 @@
 #'   \strong{Analytical tasks} \tab Classification, Clustering
 #' }
 #' @keywords datasets interval
-#' @source MAINT.Data R package (\code{LoansbyRiskLvs_qntlDt} dataset).
+#' @source Derived from \code{MAINT.Data::LoansbyRiskLvs_qntlDt}, based on
+#' the Lending Club Loan Data distributed through the Kaggle Data Science
+#' platform; the original upstream URL is no longer active.
 "loans_by_risk_quantile.int"
 
 ## ---------------------------------------------------------------------------
@@ -3539,20 +3624,17 @@
 #' @name judge1.int
 #' @title Judge 1 Interval-Valued Ratings
 #' @description
-#' Interval-valued ratings from Judge 1 for 6 regions on 4 variables.
-#' From a study of generalized principal component analysis for
-#' interval-valued data (GPCSIV).
+#' Simulated interval-valued agricultural-product grades assigned by Judge 1
+#' for 6 regions on 4 variables, distributed with the GPCSIV package.
 #'
 #' @format A symbolic data frame (\code{symbolic_tbl}) with 6 observations
 #' and 4 interval-valued variables (V1--V4).
 #'
 #' @usage data(judge1.int)
 #' @references
-#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
-#' to symbolic histogram variables. \emph{Advances in Data Analysis and
-#' Classification}, 6(2), 147--159.
-#'
-#' Original data from the GPCSIV R package (\code{Judge1} dataset).
+#' Makosso-Kallyth, S. (2013). Analysis of m sets of symbolic interval
+#' variables. \emph{Revue des Nouvelles Technologies de l'Information},
+#' RNTI-E-25, 97--108.
 #' @examples
 #' data(judge1.int)
 #' @section Metadata:
@@ -3564,26 +3646,23 @@
 #'   \strong{Analytical tasks} \tab PCA
 #' }
 #' @keywords datasets interval
-#' @source GPCSIV R package (\code{Judge1} dataset).
+#' @source Simulated data distributed as \code{GPCSIV::Judge1}.
 "judge1.int"
 
 #' @name judge2.int
 #' @title Judge 2 Interval-Valued Ratings
 #' @description
-#' Interval-valued ratings from Judge 2 for 6 regions on 4 variables.
-#' From a study of generalized principal component analysis for
-#' interval-valued data (GPCSIV).
+#' Simulated interval-valued agricultural-product grades assigned by Judge 2
+#' for 6 regions on 4 variables, distributed with the GPCSIV package.
 #'
 #' @format A symbolic data frame (\code{symbolic_tbl}) with 6 observations
 #' and 4 interval-valued variables (V1--V4).
 #'
 #' @usage data(judge2.int)
 #' @references
-#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
-#' to symbolic histogram variables. \emph{Advances in Data Analysis and
-#' Classification}, 6(2), 147--159.
-#'
-#' Original data from the GPCSIV R package (\code{Judge2} dataset).
+#' Makosso-Kallyth, S. (2013). Analysis of m sets of symbolic interval
+#' variables. \emph{Revue des Nouvelles Technologies de l'Information},
+#' RNTI-E-25, 97--108.
 #' @examples
 #' data(judge2.int)
 #' @section Metadata:
@@ -3595,26 +3674,23 @@
 #'   \strong{Analytical tasks} \tab PCA
 #' }
 #' @keywords datasets interval
-#' @source GPCSIV R package (\code{Judge2} dataset).
+#' @source Simulated data distributed as \code{GPCSIV::Judge2}.
 "judge2.int"
 
 #' @name judge3.int
 #' @title Judge 3 Interval-Valued Ratings
 #' @description
-#' Interval-valued ratings from Judge 3 for 6 regions on 4 variables.
-#' From a study of generalized principal component analysis for
-#' interval-valued data (GPCSIV).
+#' Simulated interval-valued agricultural-product grades assigned by Judge 3
+#' for 6 regions on 4 variables, distributed with the GPCSIV package.
 #'
 #' @format A symbolic data frame (\code{symbolic_tbl}) with 6 observations
 #' and 4 interval-valued variables (V1--V4).
 #'
 #' @usage data(judge3.int)
 #' @references
-#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
-#' to symbolic histogram variables. \emph{Advances in Data Analysis and
-#' Classification}, 6(2), 147--159.
-#'
-#' Original data from the GPCSIV R package (\code{Judge3} dataset).
+#' Makosso-Kallyth, S. (2013). Analysis of m sets of symbolic interval
+#' variables. \emph{Revue des Nouvelles Technologies de l'Information},
+#' RNTI-E-25, 97--108.
 #' @examples
 #' data(judge3.int)
 #' @section Metadata:
@@ -3626,7 +3702,7 @@
 #'   \strong{Analytical tasks} \tab PCA
 #' }
 #' @keywords datasets interval
-#' @source GPCSIV R package (\code{Judge3} dataset).
+#' @source Simulated data distributed as \code{GPCSIV::Judge3}.
 "judge3.int"
 
 ## ---------------------------------------------------------------------------
@@ -3636,7 +3712,7 @@
 #' @name video1.int
 #' @title Video Platform User Engagement Intervals (Dataset 1)
 #' @description
-#' Interval-valued engagement metrics for 10 user groups on a video
+#' Simulated interval-valued engagement metrics for 10 user groups on a video
 #' platform. Variables represent ranges of visit, watch, like, comment,
 #' and share counts.
 #'
@@ -3646,11 +3722,9 @@
 #'
 #' @usage data(video1.int)
 #' @references
-#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
-#' to symbolic histogram variables. \emph{Advances in Data Analysis and
-#' Classification}, 6(2), 147--159.
-#'
-#' Original data from the GPCSIV R package (\code{video1} dataset).
+#' Makosso-Kallyth, S. (2013). Analysis of m sets of symbolic interval
+#' variables. \emph{Revue des Nouvelles Technologies de l'Information},
+#' RNTI-E-25, 97--108.
 #' @examples
 #' data(video1.int)
 #' @section Metadata:
@@ -3662,13 +3736,13 @@
 #'   \strong{Analytical tasks} \tab PCA
 #' }
 #' @keywords datasets interval
-#' @source GPCSIV R package (\code{video1} dataset).
+#' @source Simulated data distributed as \code{GPCSIV::video1}.
 "video1.int"
 
 #' @name video2.int
 #' @title Video Platform User Engagement Intervals (Dataset 2)
 #' @description
-#' Interval-valued engagement metrics for 10 user groups on a video
+#' Simulated interval-valued engagement metrics for 10 user groups on a video
 #' platform. Variables represent ranges of visit, watch, like, comment,
 #' and share counts.
 #'
@@ -3678,11 +3752,9 @@
 #'
 #' @usage data(video2.int)
 #' @references
-#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
-#' to symbolic histogram variables. \emph{Advances in Data Analysis and
-#' Classification}, 6(2), 147--159.
-#'
-#' Original data from the GPCSIV R package (\code{video2} dataset).
+#' Makosso-Kallyth, S. (2013). Analysis of m sets of symbolic interval
+#' variables. \emph{Revue des Nouvelles Technologies de l'Information},
+#' RNTI-E-25, 97--108.
 #' @examples
 #' data(video2.int)
 #' @section Metadata:
@@ -3694,13 +3766,13 @@
 #'   \strong{Analytical tasks} \tab PCA
 #' }
 #' @keywords datasets interval
-#' @source GPCSIV R package (\code{video2} dataset).
+#' @source Simulated data distributed as \code{GPCSIV::video2}.
 "video2.int"
 
 #' @name video3.int
 #' @title Video Platform User Engagement Intervals (Dataset 3)
 #' @description
-#' Interval-valued engagement metrics for 10 user groups on a video
+#' Simulated interval-valued engagement metrics for 10 user groups on a video
 #' platform. Variables represent ranges of visit, watch, like, comment,
 #' and share counts.
 #'
@@ -3710,11 +3782,9 @@
 #'
 #' @usage data(video3.int)
 #' @references
-#' Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
-#' to symbolic histogram variables. \emph{Advances in Data Analysis and
-#' Classification}, 6(2), 147--159.
-#'
-#' Original data from the GPCSIV R package (\code{video3} dataset).
+#' Makosso-Kallyth, S. (2013). Analysis of m sets of symbolic interval
+#' variables. \emph{Revue des Nouvelles Technologies de l'Information},
+#' RNTI-E-25, 97--108.
 #' @examples
 #' data(video3.int)
 #' @section Metadata:
@@ -3726,7 +3796,7 @@
 #'   \strong{Analytical tasks} \tab PCA
 #' }
 #' @keywords datasets interval
-#' @source GPCSIV R package (\code{video3} dataset).
+#' @source Simulated data distributed as \code{GPCSIV::video3}.
 "video3.int"
 
 ## ---------------------------------------------------------------------------
@@ -3757,12 +3827,11 @@
 #'
 #' @usage data(lisbon_air_quality.int)
 #' @references
-#' Dias, S. and Brito, P. (2017). Off the beaten track: A new linear model
-#' for interval data. \emph{European Journal of Operational Research},
-#' 258(3), 1118--1130.
-#'
-#' Data from the QualAr Portuguese air quality monitoring network
-#' (\samp{https://qualar.apambiente.pt/}).
+#' Loureiro, C. P., Oliveira, M. R., Brito, P. and Oliveira, L. (2025).
+#' Air Quality Data Analysis with Symbolic Principal Components. In
+#' \emph{New Frontiers in Statistics and Data Science -- SPE2023}, Springer
+#' Proceedings in Mathematics and Statistics, 469, 335--348.
+#' \doi{10.1007/978-3-031-68949-9_25}.
 #' @examples
 #' data(lisbon_air_quality.int)
 #' @section Metadata:
@@ -3774,7 +3843,10 @@
 #'   \strong{Analytical tasks} \tab Regression, Time series
 #' }
 #' @keywords datasets interval
-#' @source QualAr, Entrecampos station, Lisbon, Portugal.
+#' @source Hourly measurements from the QualAr Portuguese air-quality
+#' monitoring network, operated by the Portuguese Environment Agency, at the
+#' Entrecampos station in Lisbon, Portugal. Daily intervals were constructed
+#' from hourly measurements as described by Loureiro et al. (2025).
 "lisbon_air_quality.int"
 
 ## ---------------------------------------------------------------------------
@@ -3807,8 +3879,9 @@
 #'
 #' @usage data(polish_cars.mix)
 #' @references
-#' Dudek, A. and Pelka, M. (2012). \emph{symbolicDA: Analysis of Symbolic
-#' Data}. R package.
+#' Dudek, A., Pelka, M., Wilk, J. and Walesiak, M. \emph{symbolicDA:
+#' Analysis of Symbolic Data}. R package.
+#' \doi{10.32614/CRAN.package.symbolicDA}.
 #' @examples
 #' data(polish_cars.mix)
 #' @section Metadata:
@@ -3820,7 +3893,9 @@
 #'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
 #' }
 #' @keywords datasets mixed interval multinomial
-#' @source symbolicDA R package (\code{cars} dataset).
+#' @source \code{symbolicDA::cars}; the upstream documentation states that
+#' the data were collected from authorized Polish car-dealer websites for
+#' the Polish market in 2010.
 "polish_cars.mix"
 
 ## ---------------------------------------------------------------------------
@@ -3849,7 +3924,8 @@
 #' symbolic variables: a new metric-based approach. \emph{Advances in
 #' Data Analysis and Classification}, 9(2), 143--175.
 #'
-#' Original data from the HistDAWass R package (\code{BLOOD} dataset).
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+#' Conceptual Statistics and Data Mining}. Wiley, Chichester.
 #' @examples
 #' data(blood.hist)
 #' @section Metadata:
@@ -3861,7 +3937,8 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics, Clustering
 #' }
 #' @keywords datasets histogram
-#' @source HistDAWass R package (\code{BLOOD} dataset).
+#' @source \code{HistDAWass::BLOOD}; Irpino and Verde (2015) analyze the
+#' data and attribute them to Billard and Diday (2006).
 "blood.hist"
 
 ## ---------------------------------------------------------------------------
@@ -3886,11 +3963,9 @@
 #'
 #' @usage data(china_climate_month.hist)
 #' @references
-#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-#' symbolic variables: a new metric-based approach. \emph{Advances in
-#' Data Analysis and Classification}, 9(2), 143--175.
-#'
-#' Original data from the HistDAWass R package (\code{China_Month} dataset).
+#' Carbon Dioxide Information Analysis Center. \emph{Climate Databases of
+#' the People's Republic of China, 1841--1988}.
+#' \doi{10.3334/CDIAC/CLI.TR055}.
 #' @examples
 #' data(china_climate_month.hist)
 #' @section Metadata:
@@ -3902,7 +3977,8 @@
 #'   \strong{Analytical tasks} \tab Clustering
 #' }
 #' @keywords datasets histogram
-#' @source HistDAWass R package (\code{China_Month} dataset).
+#' @source Derived from \code{HistDAWass::China_Month}; the upstream source
+#' is the Climate Databases of the People's Republic of China, 1841--1988.
 "china_climate_month.hist"
 
 ## ---------------------------------------------------------------------------
@@ -3927,11 +4003,9 @@
 #'
 #' @usage data(china_climate_season.hist)
 #' @references
-#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-#' symbolic variables: a new metric-based approach. \emph{Advances in
-#' Data Analysis and Classification}, 9(2), 143--175.
-#'
-#' Original data from the HistDAWass R package (\code{China_Seas} dataset).
+#' Carbon Dioxide Information Analysis Center. \emph{Climate Databases of
+#' the People's Republic of China, 1841--1988}.
+#' \doi{10.3334/CDIAC/CLI.TR055}.
 #' @examples
 #' data(china_climate_season.hist)
 #' @section Metadata:
@@ -3943,7 +4017,8 @@
 #'   \strong{Analytical tasks} \tab Clustering
 #' }
 #' @keywords datasets histogram
-#' @source HistDAWass R package (\code{China_Seas} dataset).
+#' @source Derived from \code{HistDAWass::China_Seas}; the upstream source
+#' is the Climate Databases of the People's Republic of China, 1841--1988.
 "china_climate_season.hist"
 
 ## ---------------------------------------------------------------------------
@@ -3954,8 +4029,8 @@
 #' @title Exchange Rate Returns Histogram Time Series
 #' @description
 #' Histogram-valued time series of 108 monthly observations of daily
-#' exchange rate returns. Each observation is a histogram distribution
-#' of intra-month daily returns.
+#' dollar/yen exchange-rate returns. Each observation is a histogram
+#' distribution of intra-month daily returns.
 #'
 #' @format A data frame with 108 observations and 1 histogram-valued
 #' variable:
@@ -3966,11 +4041,8 @@
 #'
 #' @usage data(exchange_rate_returns.hist)
 #' @references
-#' Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-#' symbolic variables: a new metric-based approach. \emph{Advances in
-#' Data Analysis and Classification}, 9(2), 143--175.
-#'
-#' Original data from the HistDAWass R package (\code{RetHTS} dataset).
+#' Irpino, A. \emph{HistDAWass: Histogram-Valued Data Analysis}.
+#' R package. \doi{10.32614/CRAN.package.HistDAWass}.
 #' @examples
 #' data(exchange_rate_returns.hist)
 #' @section Metadata:
@@ -3982,7 +4054,9 @@
 #'   \strong{Analytical tasks} \tab Time series, Descriptive statistics
 #' }
 #' @keywords datasets histogram
-#' @source HistDAWass R package (\code{RetHTS} dataset).
+#' @source \code{HistDAWass::RetHTS}. The upstream package identifies the
+#' series as dollar/yen change-rate returns but does not state the original
+#' data provider.
 "exchange_rate_returns.hist"
 
 ## ---------------------------------------------------------------------------
@@ -3994,7 +4068,7 @@
 #' @description
 #' Mixed symbolic dataset of 10 observations with hierarchical categorical
 #' variables, conditional histogram variables, and an interval-valued
-#' variable. From Table 6.20 of Billard and Diday (2007).
+#' variable. From Table 6.20 of Billard and Diday (2006).
 #'
 #' @format A symbolic data frame (\code{symbolic_tbl}) with 10 observations
 #' and 7 variables:
@@ -4010,7 +4084,7 @@
 #'
 #' @usage data(hierarchy.hist)
 #' @references
-#' Billard, L. and Diday, E. (2007). \emph{Symbolic Data Analysis:
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 6.20.
 #' @examples
 #' data(hierarchy.hist)
@@ -4023,7 +4097,7 @@
 #'   \strong{Analytical tasks} \tab Descriptive statistics
 #' }
 #' @keywords datasets mixed histogram interval
-#' @source Billard, L. and Diday, E. (2007), Table 6.20.
+#' @source Billard, L. and Diday, E. (2006), Table 6.20.
 "hierarchy.hist"
 
 ## ---------------------------------------------------------------------------
@@ -4036,7 +4110,7 @@
 #' Mixed symbolic dataset of 20 bird observations with histogram-valued
 #' feather density and body size, categorical tone, and distribution-valued
 #' shade (fuzzy taxonomy). From Tables 6.9 and 6.14 of Billard and Diday
-#' (2007).
+#' (2006).
 #'
 #' @format A data frame with 20 observations and 4 variables:
 #' \itemize{
@@ -4049,7 +4123,7 @@
 #'
 #' @usage data(bird_color_taxonomy.hist)
 #' @references
-#' Billard, L. and Diday, E. (2007). \emph{Symbolic Data Analysis:
+#' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
 #' Conceptual Statistics and Data Mining}. Wiley, Chichester. Tables 6.9
 #' and 6.14.
 #' @examples
@@ -4063,7 +4137,7 @@
 #'   \strong{Analytical tasks} \tab Clustering, Descriptive statistics
 #' }
 #' @keywords datasets mixed histogram distribution
-#' @source Billard, L. and Diday, E. (2007), Tables 6.9/6.14.
+#' @source Billard, L. and Diday, E. (2006), Tables 6.9 and 6.14.
 "bird_color_taxonomy.hist"
 
 ## ===========================================================================
@@ -4083,9 +4157,10 @@
 #' @title S&P 500 Daily High/Low Interval Time Series
 #' @description
 #' Daily high and low prices of the S&P 500 index from January 2, 2004 to
-#' December 30, 2005 (504 trading days). This dataset is a benchmark for
-#' interval time series forecasting, matching the period used in the
-#' foundational work by Arroyo, Gonzalez-Rivera and Mate (2011).
+#' December 30, 2005 (504 trading days). The independently downloaded Yahoo
+#' Finance series is provided as a benchmark for interval time-series
+#' forecasting; it is not the same sample as Arroyo, Gonzalez-Rivera and
+#' Mate (2011).
 #'
 #' @details
 #' The S&P 500 is a market-capitalization-weighted index of 500 leading
@@ -4109,8 +4184,9 @@
 #' \emph{Handbook of Empirical Economics and Finance}, pp. 247--280.
 #' Chapman and Hall/CRC.
 #'
-#' @source Yahoo Finance, ticker \code{^GSPC}. Downloaded via the
-#' \pkg{quantmod} package.
+#' @source Yahoo Finance, ticker \code{^GSPC}, January 2, 2004--December 30,
+#' 2005. The Yahoo \code{Low} and \code{High} fields were retained after
+#' download via \pkg{quantmod}; the original retrieval date was not recorded.
 #' @examples
 #' data(sp500.its)
 #' head(sp500.its)
@@ -4137,16 +4213,14 @@
 #' @title Dow Jones Industrial Average Daily High/Low Interval Time Series
 #' @description
 #' Daily high and low prices of the Dow Jones Industrial Average (DJIA) from
-#' January 2, 2004 to December 30, 2005 (504 trading days). This dataset
-#' matches the period used in the foundational interval time series work by
-#' Arroyo, Gonzalez-Rivera and Mate (2011).
+#' January 2, 2004 to December 30, 2005 (504 trading days), independently
+#' downloaded from Yahoo Finance for use as an interval time-series benchmark.
 #'
 #' @details
 #' The DJIA is a price-weighted index of 30 prominent companies listed on
 #' stock exchanges in the United States. Each observation represents a
 #' trading day with the daily low and high prices forming an interval. This
-#' dataset has been used alongside the S&P 500 to compare interval
-#' forecasting methods.
+#' interval.
 #'
 #' @usage data(djia.its)
 #' @format A data frame with 504 observations and 3 variables:
@@ -4156,14 +4230,9 @@
 #'     \item \code{high}: Daily high price of the DJIA.
 #' }
 #'
-#' @references
-#' Arroyo, J., Gonzalez-Rivera, G. and Mate, C. (2011). Forecasting with
-#' interval and histogram data: Some financial applications. In
-#' \emph{Handbook of Empirical Economics and Finance}, pp. 247--280.
-#' Chapman and Hall/CRC.
-#'
-#' @source Yahoo Finance, ticker \code{^DJI}. Downloaded via the
-#' \pkg{quantmod} package.
+#' @source Yahoo Finance, ticker \code{^DJI}, January 2, 2004--December 30,
+#' 2005. The Yahoo \code{Low} and \code{High} fields were retained after
+#' download via \pkg{quantmod}; the original retrieval date was not recorded.
 #' @examples
 #' data(djia.its)
 #' head(djia.its)
@@ -4190,9 +4259,10 @@
 #' @title IBOVESPA Daily High/Low Interval Time Series
 #' @description
 #' Daily high and low values of the Brazilian IBOVESPA stock market index
-#' from January 3, 2000 to December 28, 2012 (3216 trading days). This
-#' dataset matches the period used by Maciel, Ballini and Gomide (2016) for
-#' evolving granular analytics for interval time series forecasting.
+#' from January 3, 2000 to December 28, 2012 (3216 trading days). It covers
+#' the period studied by Maciel, Ballini and Gomide (2016), but this object
+#' was independently downloaded from Yahoo Finance; the article reports
+#' Bloomberg as its data source.
 #'
 #' @details
 #' The IBOVESPA (Indice Bovespa) is the benchmark index of the Brazilian
@@ -4214,9 +4284,11 @@
 #' Maciel, L., Ballini, R. and Gomide, F. (2016). Evolving granular
 #' analytics for interval time series forecasting. \emph{Granular Computing},
 #' \strong{1}(4), 213--224.
+#' \doi{10.1007/s41066-016-0016-3}.
 #'
-#' @source Yahoo Finance, ticker \code{^BVSP}. Downloaded via the
-#' \pkg{quantmod} package.
+#' @source Yahoo Finance, ticker \code{^BVSP}, January 3, 2000--December 28,
+#' 2012. The Yahoo \code{Low} and \code{High} fields were retained after
+#' download via \pkg{quantmod}; the original retrieval date was not recorded.
 #' @examples
 #' data(ibovespa.its)
 #' head(ibovespa.its)
@@ -4245,9 +4317,8 @@
 #' @description
 #' Daily high and low prices of WTI (West Texas Intermediate) crude oil
 #' futures from January 2, 2003 to December 30, 2011 (2261 trading days).
-#' This dataset matches the period used by Yang, Han, Hong and Wang (2016)
-#' for analyzing crisis impacts on crude oil prices using interval time
-#' series modelling.
+#' Yang, Han, Hong and Wang (2016) provide a related interval time-series
+#' application; this object was independently downloaded from Yahoo Finance.
 #'
 #' @details
 #' WTI crude oil is a benchmark for oil prices in the Americas. This
@@ -4269,9 +4340,12 @@
 #' Yang, W., Han, A., Hong, Y. and Wang, S. (2016). Analysis of crisis
 #' impact on crude oil prices: A new approach with interval time series
 #' modelling. \emph{Quantitative Finance}, \strong{16}(12), 1917--1928.
+#' \doi{10.1080/14697688.2016.1211795}.
 #'
-#' @source Yahoo Finance, ticker \code{CL=F}. Downloaded via the
-#' \pkg{quantmod} package.
+#' @source Yahoo Finance, continuous WTI crude-oil futures ticker
+#' \code{CL=F}, January 2, 2003--December 30, 2011. The Yahoo \code{Low} and
+#' \code{High} fields were retained after download via \pkg{quantmod}; the
+#' original retrieval date was not recorded.
 #' @examples
 #' data(crude_oil_wti.its)
 #' head(crude_oil_wti.its)
@@ -4323,9 +4397,12 @@
 #' de Carvalho, F. A. T. and Martos, G. (2022). Modeling interval trendlines:
 #' Symbolic singular spectrum analysis for interval time series. \emph{Journal
 #' of Forecasting}, \strong{41}(1), 167--180.
+#' \doi{10.1002/for.2801}.
 #'
-#' @source Yahoo Finance, ticker \code{^MERV}. Downloaded via the
-#' \pkg{quantmod} package and aggregated from daily to weekly.
+#' @source Yahoo Finance, ticker \code{^MERV}, January 1, 2016--September 30,
+#' 2020. Downloaded via \pkg{quantmod} and aggregated by week using the
+#' minimum daily low and maximum daily high; the original retrieval date was
+#' not recorded.
 #' @examples
 #' data(merval.its)
 #' head(merval.its)
@@ -4353,9 +4430,9 @@
 #' @title Petrobras Stock Daily High/Low Interval Time Series
 #' @description
 #' Daily high and low stock prices of Petrobras (ADR traded on NYSE) from
-#' January 3, 2005 to December 29, 2006 (503 trading days). This dataset
-#' matches the period used by Maia, de Carvalho and Ludermir (2008) in
-#' their work on forecasting models for interval-valued time series.
+#' January 3, 2005 to December 29, 2006 (503 trading days). Maia, de Carvalho
+#' and Ludermir (2008) provide related interval time-series methodology; this
+#' object is specifically the independently downloaded NYSE Petrobras ADR.
 #'
 #' @details
 #' Petrobras (Petroleo Brasileiro S.A.) is the Brazilian multinational
@@ -4377,9 +4454,12 @@
 #' Maia, A. L. S., de Carvalho, F. A. T. and Ludermir, T. B. (2008).
 #' Forecasting models for interval-valued time series. \emph{Neurocomputing},
 #' \strong{71}(16--18), 3344--3352.
+#' \doi{10.1016/j.neucom.2008.02.022}.
 #'
-#' @source Yahoo Finance, ticker \code{PBR}. Downloaded via the
-#' \pkg{quantmod} package.
+#' @source Yahoo Finance, NYSE ADR ticker \code{PBR}, January 3,
+#' 2005--December 29, 2006. The Yahoo \code{Low} and \code{High} fields were
+#' retained after download via \pkg{quantmod}; the original retrieval date
+#' was not recorded.
 #' @examples
 #' data(petrobras.its)
 #' head(petrobras.its)
@@ -4433,9 +4513,12 @@
 #' Arroyo, J., Espinola, R. and Mate, C. (2011). Different approaches to
 #' forecast interval time series: A comparison in finance. \emph{Computational
 #' Economics}, \strong{37}(2), 169--191.
+#' \doi{10.1007/s10614-010-9230-2}.
 #'
-#' @source Yahoo Finance, ticker \code{EURUSD=X}. Downloaded via the
-#' \pkg{quantmod} package.
+#' @source Yahoo Finance, ticker \code{EURUSD=X}, January 1,
+#' 2004--December 30, 2005. The Yahoo \code{Low} and \code{High} fields were
+#' retained after download via \pkg{quantmod}; the original retrieval date
+#' was not recorded.
 #' @examples
 #' data(euro_usd.its)
 #' head(euro_usd.its)
@@ -4465,8 +4548,9 @@
 #' @description
 #' Daily high and low values of the Shanghai Stock Exchange Composite Index
 #' (SSE Composite) from January 2, 2019 to December 30, 2022 (970 trading
-#' days). This dataset matches the period used by Yang, Zhang and Wang
-#' (2025) for interval time series forecasting.
+#' days). Yang, Zhang and Wang (2026) provide a related interval
+#' autoregressive application; this object was independently downloaded from
+#' Yahoo Finance.
 #'
 #' @details
 #' The SSE Composite Index is the most commonly used indicator to reflect
@@ -4485,12 +4569,15 @@
 #' }
 #'
 #' @references
-#' Yang, W., Zhang, S. and Wang, S. (2025). On smooth transition interval
-#' autoregressive models. \emph{Journal of Forecasting}, \strong{44}(2),
-#' 310--332.
+#' Yang, K., Zhang, G. and Wang, D. (2026). On smooth transition interval
+#' autoregressive models. \emph{Journal of Business & Economic Statistics},
+#' \strong{44}(2), 613--625.
+#' \doi{10.1080/07350015.2025.2546455}.
 #'
-#' @source Yahoo Finance, ticker \code{000001.SS}. Downloaded via the
-#' \pkg{quantmod} package.
+#' @source Yahoo Finance, ticker \code{000001.SS}, January 2,
+#' 2019--December 30, 2022. The Yahoo \code{Low} and \code{High} fields were
+#' retained after download via \pkg{quantmod}; the original retrieval date
+#' was not recorded.
 #' @examples
 #' data(shanghai_stock.its)
 #' head(shanghai_stock.its)
@@ -4558,7 +4645,8 @@
 #'
 #' Teles, P. and Brito, P. (2015). Modeling interval time series with
 #' space-time processes. \emph{Communications in Statistics -- Theory and
-#' Methods}, \strong{44}(17), 3599--3619.
+#' Methods}, \strong{44}(17), 3599--3627.
+#' \doi{10.1080/03610926.2013.782200}.
 #'
 #' @source Derived from the \code{wind} dataset in the \pkg{gstat} R
 #' package (originally from Haslett and Raftery, 1989). Daily data

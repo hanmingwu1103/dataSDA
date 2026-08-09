@@ -13,6 +13,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 7 observations and 4 variables:
     \item \code{n}: Number of individuals in the age group (numeric).
 }
 }
+\source{
+Billard and Diday (2006).
+}
 \usage{
 data(age_cholesterol_weight.int)
 }

@@ -14,7 +14,8 @@ mean relative humidity, snow days, dominant wind direction, mean wind
 speed, dominant wind frequency, extreme max/min temperature.
 }
 \source{
-HistDAWass R package (\code{China_Seas} dataset).
+Derived from \code{HistDAWass::China_Seas}; the upstream source
+is the Climate Databases of the People's Republic of China, 1841--1988.
 }
 \usage{
 data(china_climate_season.hist)
@@ -40,11 +41,9 @@ bins from the original HistDAWass distributions.
 data(china_climate_season.hist)
 }
 \references{
-Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-symbolic variables: a new metric-based approach. \emph{Advances in
-Data Analysis and Classification}, 9(2), 143--175.
-
-Original data from the HistDAWass R package (\code{China_Seas} dataset).
+Carbon Dioxide Information Analysis Center. \emph{Climate Databases of
+the People's Republic of China, 1841--1988}.
+\doi{10.3334/CDIAC/CLI.TR055}.
 }
 \keyword{datasets}
 \keyword{histogram}

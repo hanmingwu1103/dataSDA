@@ -1,3 +1,10 @@
+# dataSDA 0.2.7
+
+## Documentation fixes
+
+- Corrected or fixed the references, citations, and sources of the datasets.
+- Clarified dataset provenance without changing any packaged data objects.
+
 # dataSDA 0.2.6
 
 ## New features
@@ -85,7 +92,7 @@ Also added `mushroom.int.mm` (interval multi-modal format of mushroom data).
 
 ## New datasets (17 added, 105 total)
 
-Seventeen new datasets from R packages (intkrige, RSDA, MAINT.Data, GPCSIV, HistDAWass, symbolicDA), the Billard & Diday (2007) textbook, and the QualAr Portuguese air quality network:
+Seventeen new datasets from R packages (intkrige, RSDA, MAINT.Data, GPCSIV, HistDAWass, symbolicDA), the Billard & Diday (2006) textbook, and the QualAr Portuguese air quality network:
 
 ### Interval-valued (12)
 - `utsnow.int` — 415 Utah weather stations with snow load prediction intervals plus coordinates/elevation (from intkrige).
@@ -108,7 +115,7 @@ Seventeen new datasets from R packages (intkrige, RSDA, MAINT.Data, GPCSIV, Hist
 ### Mixed symbolic (1)
 - `polish_cars.mix` — 30 Polish car models with 9 interval + 3 multinomial variables (from symbolicDA).
 
-### From Billard & Diday (2007) textbook (2)
+### From Billard & Diday (2006) textbook (2)
 - `hierarchy.hist` — 10 observations with hierarchical categories, conditional histograms, and cholesterol interval (Table 6.20).
 - `bird_color_taxonomy.hist` — 20 birds with density/size histograms, tone, and fuzzy shade taxonomy (Tables 6.9/6.14).
 
@@ -133,7 +140,7 @@ Nineteen new datasets from Billard & Diday (2020) *Clustering Methodology for Sy
 - `state_income.hist` — 6 US states with 4 income distribution histograms (Table 7-18).
 - `simulated.hist` — 5 simulated observations with 2 histogram variables (Table 7-26).
 - `age_pyramids.hist` — 229 countries with 3 age pyramid histograms (from HistDAWass).
-- `ozone.hist` — 84 daily observations with 4 weather histograms (from HistDAWass).
+- `ozone.hist` — 84 monitoring stations with 4 weather histograms (from HistDAWass).
 - `french_agriculture.hist` — 22 French regions with 4 agricultural histograms (from HistDAWass).
 
 ### Distribution-valued (1)
@@ -180,7 +187,7 @@ Seven new interval-valued benchmark datasets from recent SDA papers (2020-2025):
 - `water_flow.int` — 316 water flow sensor readings with 47 interval features, 2 classes (Andrade et al., 2025).
 - `wine.int` — 33 wine samples with 9 chemical/physical property variables, 2 classes (Andrade et al., 2025).
 - `car_models.int` — 33 Italian car models with 8 specification variables, 4 categories (Andrade et al., 2025).
-- `hdi_gender.int` — 183 countries with 2 World Bank gender indicator intervals and ordinal HDI classification (Alcacer et al., 2023).
+- `hdi_gender.int` — 183 countries with 2 World Bank gender indicator intervals and ordinal HDI classification (Alcacer et al., 2024).
 
 # dataSDA 0.1.8
 

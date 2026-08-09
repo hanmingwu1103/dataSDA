@@ -18,6 +18,10 @@ January through June are included:
     \item \code{jun_l}, \code{jun_u}: June temperature range.
 }
 }
+\source{
+Interval-valued city-temperature data analyzed by Verde and
+Irpino (2008).
+}
 \usage{
 data(temperature_city.int)
 }
@@ -46,7 +50,8 @@ data(temperature_city.int)
 }
 \references{
 Verde, R. and Irpino, A. (2008). A new interval data distance based on
-the Wasserstein metric. \emph{Proc. COMPSTAT 2008}, pp. 705-712.
+the Wasserstein metric. \emph{Proc. COMPSTAT 2008}, pp. 705--712.
+\doi{10.1007/978-3-540-78246-9_83}.
 }
 \keyword{clustering}
 \keyword{datasets}

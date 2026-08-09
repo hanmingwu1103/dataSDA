@@ -13,8 +13,10 @@ A data frame with 248 observations and 3 variables:
 }
 }
 \source{
-Yahoo Finance, ticker \code{^MERV}. Downloaded via the
-\pkg{quantmod} package and aggregated from daily to weekly.
+Yahoo Finance, ticker \code{^MERV}, January 1, 2016--September 30,
+2020. Downloaded via \pkg{quantmod} and aggregated by week using the
+minimum daily low and maximum daily high; the original retrieval date was
+not recorded.
 }
 \usage{
 data(merval.its)
@@ -57,6 +59,7 @@ legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
 de Carvalho, F. A. T. and Martos, G. (2022). Modeling interval trendlines:
 Symbolic singular spectrum analysis for interval time series. \emph{Journal
 of Forecasting}, \strong{41}(1), 167--180.
+\doi{10.1002/for.2801}.
 }
 \keyword{datasets}
 \keyword{finance}

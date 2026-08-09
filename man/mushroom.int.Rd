@@ -14,6 +14,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 23 observations and 5 variables
     \item \code{Edibility}: Edibility code (U = Unknown, Y = Yes, N = No, T = Toxic; character).
 }
 }
+\source{
+Billard and Diday (2006), Table 3.2.
+}
 \usage{
 data(mushroom.int)
 }

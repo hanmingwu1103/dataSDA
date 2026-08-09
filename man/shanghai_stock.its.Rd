@@ -13,8 +13,10 @@ A data frame with 970 observations and 3 variables:
 }
 }
 \source{
-Yahoo Finance, ticker \code{000001.SS}. Downloaded via the
-\pkg{quantmod} package.
+Yahoo Finance, ticker \code{000001.SS}, January 2,
+2019--December 30, 2022. The Yahoo \code{Low} and \code{High} fields were
+retained after download via \pkg{quantmod}; the original retrieval date
+was not recorded.
 }
 \usage{
 data(shanghai_stock.its)
@@ -22,8 +24,9 @@ data(shanghai_stock.its)
 \description{
 Daily high and low values of the Shanghai Stock Exchange Composite Index
 (SSE Composite) from January 2, 2019 to December 30, 2022 (970 trading
-days). This dataset matches the period used by Yang, Zhang and Wang
-(2025) for interval time series forecasting.
+days). Yang, Zhang and Wang (2026) provide a related interval
+autoregressive application; this object was independently downloaded from
+Yahoo Finance.
 }
 \details{
 The SSE Composite Index is the most commonly used indicator to reflect
@@ -54,9 +57,10 @@ lines(shanghai_stock.its$date, shanghai_stock.its$low, col = "blue")
 legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
 }
 \references{
-Yang, W., Zhang, S. and Wang, S. (2025). On smooth transition interval
-autoregressive models. \emph{Journal of Forecasting}, \strong{44}(2),
-310--332.
+Yang, K., Zhang, G. and Wang, D. (2026). On smooth transition interval
+autoregressive models. \emph{Journal of Business & Economic Statistics},
+\strong{44}(2), 613--625.
+\doi{10.1080/07350015.2025.2546455}.
 }
 \keyword{datasets}
 \keyword{finance}

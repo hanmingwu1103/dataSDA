@@ -16,6 +16,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 6 observations and
     \item \code{Cholesterol}: Modal distribution over cholesterol bins (mg/dL).
 }
 }
+\source{
+Billard and Diday (2006), Table 2.2b.
+}
 \usage{
 data(health_insurance2.modal)
 }

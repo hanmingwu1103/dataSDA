@@ -1,17 +1,10 @@
 ## Submission summary
 
-This is a minor update of the existing CRAN package dataSDA (current CRAN
-version 0.2.5), submitted as version 0.2.6.
+This is a maintenance update of the existing CRAN package dataSDA (current
+CRAN version 0.2.6), submitted as version 0.2.7.
 
-This release adds:
-
-* `check_zero_width_intervals()`, a diagnostic that flags zero-width intervals
-  (min == max) in interval-valued data, accepting both MM format (paired
-  `_min`/`_max` columns) and RSDA format (`symbolic_tbl` objects).
-* A new `zero_width` argument to `aggregate_to_symbolic(type = "int")` that
-  controls how zero-width intervals in the aggregated output are handled
-  ("keep" (default, leaves the output unchanged), "remove", "regenerate", or
-  "adjust"), together with a companion `epsilon` argument.
+This release corrects or fixes the references, citations, and sources of the
+datasets. No packaged data objects or function behavior were changed.
 
 See NEWS.md for the full list of changes.
 
@@ -26,8 +19,8 @@ See NEWS.md for the full list of changes.
 0 errors | 0 warnings | 0 notes
 
 R CMD check --as-cran passed cleanly with Status: OK on the local
-environment above. The package's testthat suite (562 tests) passes with no
-failures; 14 tests are skipped on CRAN as they depend on Suggests packages.
+environment above. The package's testthat suite (586 tests) passes with no
+failures, warnings, or skips.
 
 ## Reverse dependencies
 

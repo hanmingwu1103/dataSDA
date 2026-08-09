@@ -15,6 +15,10 @@ in \code{_l}/\code{_u} Min-Max pairs, plus a label):
     \item \code{saponification_value_l}, \code{saponification_value_u}: Saponification value range.
 }
 }
+\source{
+Diday and Noirhomme-Fraiture (2008), Table 13.7; also distributed
+as \code{RSDA::oils}.
+}
 \usage{
 data(oils.int)
 }

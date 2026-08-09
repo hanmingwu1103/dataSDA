@@ -15,7 +15,8 @@ A data frame with 44 observations and 5 interval-valued variables:
 }
 }
 \source{
-Extracted from RSDA package (\code{cardiologicalv2}).
+Extracted from \code{RSDA::cardiologicalv2}; the RSDA
+documentation attributes the data to Billard and Diday (2006).
 }
 \usage{
 data(cardiological.int)
@@ -40,8 +41,8 @@ measurements.
 data(cardiological.int)
 }
 \references{
-Rodriguez, O. (2000). Classification et modeles lineaires en analyse
-des donnees symboliques. Doctoral Thesis, Universite Paris IX-Dauphine.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+Conceptual Statistics and Data Mining}. Wiley, Chichester.
 }
 \keyword{datasets}
 \keyword{interval}

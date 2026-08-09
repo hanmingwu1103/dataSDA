@@ -15,6 +15,9 @@ A data frame with 20 observations and 6 variables:
     \item \code{X5}: Numeric predictor for group c (numeric; NA for non-c).
 }
 }
+\source{
+Billard and Diday (2006), Table 2.15.
+}
 \usage{
 data(hierarchy)
 }

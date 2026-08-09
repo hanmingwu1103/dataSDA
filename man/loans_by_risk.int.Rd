@@ -17,7 +17,9 @@ and 5 variables:
 Row names are A1--A5, B1--B5, ..., G1--G5.
 }
 \source{
-MAINT.Data R package (\code{LoansbyRisk_minmax} dataset).
+Derived from \code{MAINT.Data::LoansbyRiskLvs_minmaxDt}, based on the
+Lending Club Loan Data distributed through the Kaggle Data Science
+platform; the original upstream URL is no longer active.
 }
 \usage{
 data(loans_by_risk.int)
@@ -42,11 +44,9 @@ risk level (A through G, 5 groups each). Each group is described by
 data(loans_by_risk.int)
 }
 \references{
-Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
-Normal and Skew-Normal distributions. \emph{Journal of Applied Statistics},
-39(1), 3--20.
-
-Original data from the MAINT.Data R package.
+Duarte Silva, A. P., Brito, P., Filzmoser, P. and Dias, J. G. (2021).
+MAINT.Data: Modelling and Analysing Interval Data in R. \emph{The R
+Journal}, 13(2), 336--364. \doi{10.32614/RJ-2021-074}.
 }
 \keyword{datasets}
 \keyword{finance}

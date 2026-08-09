@@ -13,6 +13,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 10 observations and 3 variables
           (gas, oil, electric, other).
 }
 }
+\source{
+Billard and Diday (2006), Table 3.7.
+}
 \usage{
 data(fuel_consumption.modal)
 }

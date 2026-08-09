@@ -13,8 +13,10 @@ A data frame with 2261 observations and 3 variables:
 }
 }
 \source{
-Yahoo Finance, ticker \code{CL=F}. Downloaded via the
-\pkg{quantmod} package.
+Yahoo Finance, continuous WTI crude-oil futures ticker
+\code{CL=F}, January 2, 2003--December 30, 2011. The Yahoo \code{Low} and
+\code{High} fields were retained after download via \pkg{quantmod}; the
+original retrieval date was not recorded.
 }
 \usage{
 data(crude_oil_wti.its)
@@ -22,9 +24,8 @@ data(crude_oil_wti.its)
 \description{
 Daily high and low prices of WTI (West Texas Intermediate) crude oil
 futures from January 2, 2003 to December 30, 2011 (2261 trading days).
-This dataset matches the period used by Yang, Han, Hong and Wang (2016)
-for analyzing crisis impacts on crude oil prices using interval time
-series modelling.
+Yang, Han, Hong and Wang (2016) provide a related interval time-series
+application; this object was independently downloaded from Yahoo Finance.
 }
 \details{
 WTI crude oil is a benchmark for oil prices in the Americas. This
@@ -58,6 +59,7 @@ legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
 Yang, W., Han, A., Hong, Y. and Wang, S. (2016). Analysis of crisis
 impact on crude oil prices: A new approach with interval time series
 modelling. \emph{Quantitative Finance}, \strong{16}(12), 1917--1928.
+\doi{10.1080/14697688.2016.1211795}.
 }
 \keyword{commodities}
 \keyword{datasets}

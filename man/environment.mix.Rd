@@ -32,7 +32,8 @@ structure of \code{ggInterval::Environment}.
 }
 }
 \source{
-Extracted from the ggInterval package (\code{Environment}).
+Extracted from \code{ggInterval::Environment}. The upstream
+package documentation does not identify a more original data provider.
 }
 \usage{
 data(environment.mix)
@@ -57,9 +58,9 @@ and modal-valued (distributional) categorical variables.
 data(environment.mix)
 }
 \references{
-Jiang, B.-S. and Wu, H.-M. (2025). ggInterval: an R package for
-visualizing interval-valued data using ggplot2. R package version 0.2.5.
-\url{https://CRAN.R-project.org/package=ggInterval}
+Jiang, B.-S. and Wu, H.-M. (2026). \emph{ggInterval: Visualizing
+Interval-Valued Data Using ggplot2}. R package.
+\doi{10.32614/CRAN.package.ggInterval}.
 }
 \keyword{datasets}
 \keyword{interval}

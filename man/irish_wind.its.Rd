@@ -76,7 +76,8 @@ Statistics)}, \strong{38}(1), 1--50.
 
 Teles, P. and Brito, P. (2015). Modeling interval time series with
 space-time processes. \emph{Communications in Statistics -- Theory and
-Methods}, \strong{44}(17), 3599--3619.
+Methods}, \strong{44}(17), 3599--3627.
+\doi{10.1080/03610926.2013.782200}.
 }
 \keyword{datasets}
 \keyword{interval}

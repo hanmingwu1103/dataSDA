@@ -14,7 +14,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 18 observations
 Row names are voivodship names (e.g., Dolnoslaskie, Lubelskie).
 }
 \source{
-clusterSim R package (\code{data_pathtinger} dataset).
+\code{clusterSim::data_symbolic_interval_polish_voivodships}.
+The data were aggregated by voivodship from the Polish Central Statistical
+Office Local Data Bank for 2016.
 }
 \usage{
 data(polish_voivodships.int)
@@ -39,11 +41,10 @@ economic characteristics at the county (powiat) level.
 data(polish_voivodships.int)
 }
 \references{
-Dudek, A. and Pelka, M. (2022). \emph{symbolicDA: Analysis of Symbolic
-Data}. R package.
-
-Walesiak, M. and Dudek, A. (2020). \emph{clusterSim: Searching for
-Optimal Clustering Procedure for a Data Set}. R package.
+Walesiak, M. and Dudek, A. (2020). The choice of variable normalization
+method in cluster analysis. In K. S. Soliman (Ed.), \emph{Education
+Excellence and Innovation Management: A 2025 Vision to Sustain Economic
+Development During Global Challenges}, 325--340.
 }
 \keyword{datasets}
 \keyword{interval}

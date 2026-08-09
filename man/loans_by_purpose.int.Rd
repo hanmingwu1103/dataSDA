@@ -14,7 +14,11 @@ A data frame with 14 observations and 4 interval-valued variables:
 }
 }
 \source{
-\url{https://CRAN.R-project.org/package=MAINT.Data}
+Derived from \code{MAINT.Data::LoansbyPurpose_minmaxDt}, which
+aggregates the Lending Club Loan Data by loan purpose using minima and
+maxima. The underlying Lending Club Loan Data were distributed through
+the Kaggle Data Science platform; the original upstream URL is no longer
+active.
 }
 \usage{
 data(loans_by_purpose.int)
@@ -36,6 +40,14 @@ Original microdata contains 887,383 loan records from Kaggle.
 
 \examples{
 data(loans_by_purpose.int)
+}
+\references{
+Duarte Silva, A. P., Brito, P., Filzmoser, P. and Dias, J. G. (2021).
+MAINT.Data: Modelling and Analysing Interval Data in R. \emph{The R
+Journal}, 13(2), 336--364. \doi{10.32614/RJ-2021-074}.
+
+The underlying loan records were distributed as the Lending Club Loan
+Data on Kaggle.
 }
 \keyword{datasets}
 \keyword{interval}

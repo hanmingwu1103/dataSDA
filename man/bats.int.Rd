@@ -15,6 +15,9 @@ in \code{_l}/\code{_u} Min-Max pairs, plus a label):
     \item \code{forearm_l}, \code{forearm_u}: Forearm length range (mm).
 }
 }
+\source{
+The interval-valued bat data analyzed by Kao et al. (2014).
+}
 \usage{
 data(bats.int)
 }
@@ -42,9 +45,10 @@ City-Block, L1, L2, etc.) for interval data.
 data(bats.int)
 }
 \references{
-Kao, C.-H. et al. (2014). Exploratory data analysis of interval-valued
-symbolic data with matrix visualization.
-\emph{Computational Statistics & Data Analysis}, 79, 14--29.
+Kao, C.-H., Nakano, J., Shieh, S.-H., Tien, Y.-J., Wu, H.-M., Yang, C.-K.
+and Chen, C.-H. (2014). Exploratory data analysis of interval-valued
+symbolic data with matrix visualization. \emph{Computational Statistics
+& Data Analysis}, 79, 14--29. \doi{10.1016/j.csda.2014.04.012}.
 }
 \keyword{clustering}
 \keyword{datasets}

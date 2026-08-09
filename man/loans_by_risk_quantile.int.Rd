@@ -15,7 +15,9 @@ and 4 variables:
 }
 }
 \source{
-MAINT.Data R package (\code{LoansbyRiskLvs_qntlDt} dataset).
+Derived from \code{MAINT.Data::LoansbyRiskLvs_qntlDt}, based on
+the Lending Club Loan Data distributed through the Kaggle Data Science
+platform; the original upstream URL is no longer active.
 }
 \usage{
 data(loans_by_risk_quantile.int)
@@ -40,12 +42,9 @@ each financial variable within each risk subgrade.
 data(loans_by_risk_quantile.int)
 }
 \references{
-Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
-Normal and Skew-Normal distributions. \emph{Journal of Applied Statistics},
-39(1), 3--20.
-
-Original data from the MAINT.Data R package
-(\code{LoansbyRiskLvs_qntlDt} dataset).
+Duarte Silva, A. P., Brito, P., Filzmoser, P. and Dias, J. G. (2021).
+MAINT.Data: Modelling and Analysing Interval Data in R. \emph{The R
+Journal}, 13(2), 336--364. \doi{10.32614/RJ-2021-074}.
 }
 \keyword{datasets}
 \keyword{interval}

@@ -16,7 +16,8 @@ and 5 variables:
 }
 }
 \source{
-intkrige R package (\code{utsnow} dataset).
+\code{intkrige::utsnow}; the upstream documentation identifies
+the 415 locations as data from the 2018 Utah Snow Load Study.
 }
 \usage{
 data(utsnow.int)
@@ -43,14 +44,12 @@ elevation.
 data(utsnow.int)
 }
 \references{
-Schmoyer, R. L. (1993). Permutation tests for correlation in regression
-errors. \emph{Journal of the American Statistical Association}, 89(428),
-1507--1516.
+Bean, B., Sun, Y. and Maguire, M. (2022). Interval-valued kriging for
+geostatistical mapping with imprecise inputs. \emph{International Journal
+of Approximate Reasoning}, 140, 31--51.
+\doi{10.1016/j.ijar.2021.10.003}.
 
-Bean, B., Sun, Y., and Maguire, M. (2022). Interval-valued kriging models
-for geostatistical mapping with uncertain inputs.
-
-Original data from the intkrige R package (\code{utsnow} dataset).
+Bean, B., Maguire, M. and Sun, Y. (2018). \emph{Utah Snow Load Study}.
 }
 \keyword{datasets}
 \keyword{interval}

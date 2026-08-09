@@ -13,15 +13,17 @@ variable:
 }
 }
 \source{
-HistDAWass R package (\code{RetHTS} dataset).
+\code{HistDAWass::RetHTS}. The upstream package identifies the
+series as dollar/yen change-rate returns but does not state the original
+data provider.
 }
 \usage{
 data(exchange_rate_returns.hist)
 }
 \description{
 Histogram-valued time series of 108 monthly observations of daily
-exchange rate returns. Each observation is a histogram distribution
-of intra-month daily returns.
+dollar/yen exchange-rate returns. Each observation is a histogram
+distribution of intra-month daily returns.
 }
 \section{Metadata}{
 
@@ -38,11 +40,8 @@ of intra-month daily returns.
 data(exchange_rate_returns.hist)
 }
 \references{
-Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-symbolic variables: a new metric-based approach. \emph{Advances in
-Data Analysis and Classification}, 9(2), 143--175.
-
-Original data from the HistDAWass R package (\code{RetHTS} dataset).
+Irpino, A. \emph{HistDAWass: Histogram-Valued Data Analysis}.
+R package. \doi{10.32614/CRAN.package.HistDAWass}.
 }
 \keyword{datasets}
 \keyword{histogram}

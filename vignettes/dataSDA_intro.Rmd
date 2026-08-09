@@ -41,7 +41,7 @@ has_ggInterval <- requireNamespace("ggInterval", quietly = TRUE) && not_cran
 
 # Introduction
 
-The `dataSDA` package (v0.2.6) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>.
+The `dataSDA` package (v0.2.7) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>.
 
 
 The package includes **114 datasets** spanning seven types of symbolic data. Each dataset name uses a suffix that indicates its type:
@@ -1535,4 +1535,4 @@ We welcome contributions of high-quality datasets for symbolic data analysis. Su
 
 # Citation
 
-Po-Wei Chen, Chun-houh Chen, Han-Ming Wu (2026), dataSDA: datasets and basic statistics for symbolic data analysis in R (v0.2.6). Journal of Applied Statistics.
+Po-Wei Chen, Chun-houh Chen, Han-Ming Wu (2026), dataSDA: datasets and basic statistics for symbolic data analysis in R (v0.2.7). Journal of Applied Statistics.

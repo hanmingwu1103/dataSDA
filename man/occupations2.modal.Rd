@@ -13,6 +13,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 9 observations and 4 variables:
     \item \code{n}: Sample size (numeric).
 }
 }
+\source{
+Billard and Diday (2006).
+}
 \usage{
 data(occupations2.modal)
 }

@@ -15,6 +15,9 @@ A data frame with 3 observations (Paris, Lyon, Toulouse) and 8 columns:
     \item \code{specialty}: Specialty code (multi-valued, character).
 }
 }
+\source{
+Diday and Noirhomme-Fraiture (2008), Table 1.21, p. 19.
+}
 \usage{
 data(town_services.mix)
 }

@@ -18,6 +18,9 @@ A data frame with 4 observations (Mushroom1--Mushroom4) and 9 variables:
     \item \code{cap_colour}: Cap colour (character).
 }
 }
+\source{
+Diday and Noirhomme-Fraiture (2008), Tables 1.14--1.16.
+}
 \usage{
 data(mushroom_fuzzy.mix)
 }

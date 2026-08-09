@@ -15,7 +15,8 @@ A symbolic data frame (\code{symbolic_tbl}) with 899 observations and 5 variable
 }
 }
 \source{
-\url{https://CRAN.R-project.org/package=MAINT.Data}
+\code{MAINT.Data::ChinaTemp}, derived from the Long-Term
+Instrumental Climatic Database of the People's Republic of China.
 }
 \usage{
 data(china_temp.int)
@@ -46,8 +47,9 @@ MLE and MANOVA.
 data(china_temp.int)
 }
 \references{
-Brito, P. and Duarte Silva, A.P. (2012). Modelling interval data with
-Normal and Skew-Normal distributions. \emph{J. Appl. Stat.}, 39(1), 3-20.
+Brito, P. and Duarte Silva, A. P. (2012). Modelling interval data with
+Normal and Skew-Normal distributions. \emph{Journal of Applied Statistics},
+39(1), 3--20. \doi{10.1080/02664763.2011.575125}.
 }
 \keyword{clustering}
 \keyword{datasets}

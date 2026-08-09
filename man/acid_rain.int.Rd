@@ -14,6 +14,9 @@ A data frame with 2 observations and 5 variables in Min-Max format:
           (kg/hectares).
 }
 }
+\source{
+Billard and Diday (2006), Table 2.21.
+}
 \usage{
 data(acid_rain.int)
 }

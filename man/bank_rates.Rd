@@ -15,6 +15,9 @@ A data frame with 4 observations (Bank1--Bank4) and 6 variables:
     \item \code{phi2_known}: Whether phi2 is known (logical; NA if order < 2).
 }
 }
+\source{
+Billard and Diday (2006), Table 2.9.
+}
 \usage{
 data(bank_rates)
 }

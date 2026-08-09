@@ -13,7 +13,8 @@ A data frame with 20 rows and 3 interval-valued variables:
 }
 }
 \source{
-\url{https://CRAN.R-project.org/package=iRegression}
+French soccer interval data distributed with the
+\pkg{iRegression} package and analyzed by Lima Neto et al. (2011).
 }
 \usage{
 data(soccer_bivar.int)
@@ -39,7 +40,8 @@ data(soccer_bivar.int)
 \references{
 Lima Neto, E. A., Cordeiro, G. and De Carvalho, F.A.T. (2011).
 Bivariate symbolic regression models for interval-valued variables.
-\emph{Journal of Statistical Computation and Simulation}, 81, 1727-1744.
+\emph{Journal of Statistical Computation and Simulation}, 81, 1727--1744.
+\doi{10.1080/00949655.2010.500470}.
 }
 \keyword{datasets}
 \keyword{interval}

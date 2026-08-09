@@ -14,6 +14,9 @@ A data frame with 2 observations and 8 variables:
     \item \code{cov_weight_height}: Covariance between weight and height (numeric).
 }
 }
+\source{
+Diday and Noirhomme-Fraiture (2008), Table 1.9, p. 13.
+}
 \usage{
 data(world_cup.int)
 }

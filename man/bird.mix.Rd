@@ -11,6 +11,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 20 observations and 2 variables
     \item \code{Size}: Body size range (cm, interval).
 }
 }
+\source{
+Billard and Diday (2006), Table 2.5.
+}
 \usage{
 data(bird.mix)
 }

@@ -14,6 +14,9 @@ in \code{_l}/\code{_u} Min-Max pairs, plus a label):
     \item \code{speed_l}, \code{speed_u}: Speed range -- time to run 100 yards (seconds).
 }
 }
+\source{
+Billard and Diday (2006), Table 2.24, p. 63.
+}
 \usage{
 data(teams.int)
 }

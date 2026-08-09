@@ -12,6 +12,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 19 observations and 3 variables
     \item \code{Pattern}: Team performance pattern code (character).
 }
 }
+\source{
+Billard and Diday (2006).
+}
 \usage{
 data(baseball.int)
 }

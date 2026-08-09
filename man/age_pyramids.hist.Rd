@@ -16,7 +16,8 @@ histogram-valued variables:
 Row names are country names (e.g., WORLD, Afghanistan, Albania).
 }
 \source{
-HistDAWass R package (\code{Age_Pyramids_2014} dataset).
+\code{HistDAWass::Age_Pyramids_2014}; the upstream documentation
+identifies the U.S. Census Bureau as the original source.
 }
 \usage{
 data(age_pyramids.hist)
@@ -41,11 +42,8 @@ representing the distribution of the population across age groups.
 data(age_pyramids.hist)
 }
 \references{
-Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-symbolic variables: A new metric-based approach.
-\emph{Advances in Data Analysis and Classification}, 9(2), 143--175.
-
-Original data from the HistDAWass R package (\code{Age_Pyramids_2014}).
+U.S. Census Bureau (2014). International population estimates and
+projections by age and sex.
 }
 \keyword{datasets}
 \keyword{demographics}

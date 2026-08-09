@@ -12,6 +12,9 @@ A data frame with 5 observations and 3 variables:
     \item \code{sd}: Standard deviation.
 }
 }
+\source{
+Billard and Diday (2006), Table 2.8.
+}
 \usage{
 data(energy_consumption.distr)
 }

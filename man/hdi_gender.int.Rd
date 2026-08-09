@@ -44,9 +44,10 @@ parliaments.
 data(hdi_gender.int)
 }
 \references{
-Alcacer, A., Barrel, A., Groenen, P. J. F. and Grana, M. (2023).
-Ordinal classification for interval-valued data and ordinal data.
-\emph{Expert Systems with Applications}, 238, 121825.
+Alcacer, A., Martinez-Garcia, M. and Epifanio, I. (2024).
+Ordinal classification for interval-valued data and interval-valued
+functional data. \emph{Expert Systems with Applications}, 238, 122277.
+\doi{10.1016/j.eswa.2023.122277}.
 }
 \keyword{datasets}
 \keyword{interval}

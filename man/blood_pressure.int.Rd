@@ -13,6 +13,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 15 observations and
     \item \code{Diastolic_Pressure}: Diastolic blood pressure range (mmHg, interval).
 }
 }
+\source{
+Billard and Diday (2006).
+}
 \usage{
 data(blood_pressure.int)
 }

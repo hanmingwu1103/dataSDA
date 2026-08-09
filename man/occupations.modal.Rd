@@ -14,6 +14,9 @@ A data frame with 9 observations and 11 columns:
     \item \code{n}: Sample size (integer).
 }
 }
+\source{
+Billard and Diday (2006).
+}
 \usage{
 data(occupations.modal)
 }

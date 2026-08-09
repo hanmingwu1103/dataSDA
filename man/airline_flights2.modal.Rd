@@ -16,6 +16,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 16 observations and
     \item \code{WeatherDelay}: Modal distribution over weather delay bins.
 }
 }
+\source{
+Billard and Diday (2006), Table 2.7.
+}
 \usage{
 data(airline_flights2.modal)
 }

@@ -15,7 +15,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 142 observations and 5 variable
 }
 }
 \source{
-\url{https://CRAN.R-project.org/package=MAINT.Data}
+Derived from \code{MAINT.Data::FlightsIdt}. The upstream object
+removes incomplete rows from \pkg{nycflights13} and aggregates flights by
+month and carrier using the 0.05 and 0.95 quantiles.
 }
 \usage{
 data(nycflights.int)
@@ -39,8 +41,9 @@ from the nycflights13 package, aggregated by month and carrier.
 data(nycflights.int)
 }
 \references{
-Duarte Silva, A.P., Brito, P., Filzmoser, P. and Dias, J.G. (2021).
-MAINT.Data: Modelling and Analysing Interval Data in R. \emph{R Journal}, 13(2).
+Duarte Silva, A. P., Brito, P., Filzmoser, P. and Dias, J. G. (2021).
+MAINT.Data: Modelling and Analysing Interval Data in R. \emph{The R
+Journal}, 13(2), 336--364. \doi{10.32614/RJ-2021-074}.
 }
 \keyword{datasets}
 \keyword{interval}

@@ -5,7 +5,7 @@
 \alias{ozone.hist}
 \title{Ozone Air Quality Histogram-Valued Dataset}
 \format{
-A data frame with 84 observations (days) and 4 histogram-valued
+A data frame with 84 observations (stations) and 4 histogram-valued
 variables:
 \itemize{
     \item \code{Ozone.Conc.ppb}: Histogram of ozone concentration (ppb).
@@ -16,15 +16,17 @@ variables:
 Row names are I1 through I84.
 }
 \source{
-HistDAWass R package (\code{OzoneH} dataset).
+Derived from \code{HistDAWass::OzoneH}, which documents 84 U.S.
+monitoring stations and identifies EPA CASTNET/metdata as the source. The
+original 100 quantile bins were reduced to 10 decile bins here.
 }
 \usage{
 data(ozone.hist)
 }
 \description{
-Histogram-valued dataset of 84 daily observations with 4 weather-related
-histogram variables. Each histogram has 10 equal-probability (decile) bins
-summarizing hourly measurements within each day.
+Histogram-valued dataset for 84 U.S. air-quality monitoring stations with
+4 weather-related histogram variables. Each histogram has 10
+equal-probability (decile) bins.
 }
 \section{Metadata}{
 
@@ -41,12 +43,8 @@ summarizing hourly measurements within each day.
 data(ozone.hist)
 }
 \references{
-Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-symbolic variables: A new metric-based approach.
-\emph{Advances in Data Analysis and Classification}, 9(2), 143--175.
-
-Original data from the HistDAWass R package (\code{OzoneH} dataset),
-reduced from 100 quantile bins to 10 decile bins.
+U.S. Environmental Protection Agency. Clean Air Status and Trends Network
+(CASTNET) ozone and associated meteorological data.
 }
 \keyword{datasets}
 \keyword{environment}

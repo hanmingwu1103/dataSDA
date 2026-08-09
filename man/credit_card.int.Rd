@@ -16,6 +16,9 @@ in \code{_l}/\code{_u} Min-Max pairs, plus a label):
     \item \code{clothes_l}, \code{clothes_u}: Clothes expenditure range (USD).
 }
 }
+\source{
+Billard and Diday (2006), Tables 2.3--2.4.
+}
 \usage{
 data(credit_card.int)
 }

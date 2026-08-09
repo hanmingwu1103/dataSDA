@@ -13,17 +13,19 @@ A data frame with 503 observations and 3 variables:
 }
 }
 \source{
-Yahoo Finance, ticker \code{PBR}. Downloaded via the
-\pkg{quantmod} package.
+Yahoo Finance, NYSE ADR ticker \code{PBR}, January 3,
+2005--December 29, 2006. The Yahoo \code{Low} and \code{High} fields were
+retained after download via \pkg{quantmod}; the original retrieval date
+was not recorded.
 }
 \usage{
 data(petrobras.its)
 }
 \description{
 Daily high and low stock prices of Petrobras (ADR traded on NYSE) from
-January 3, 2005 to December 29, 2006 (503 trading days). This dataset
-matches the period used by Maia, de Carvalho and Ludermir (2008) in
-their work on forecasting models for interval-valued time series.
+January 3, 2005 to December 29, 2006 (503 trading days). Maia, de Carvalho
+and Ludermir (2008) provide related interval time-series methodology; this
+object is specifically the independently downloaded NYSE Petrobras ADR.
 }
 \details{
 Petrobras (Petroleo Brasileiro S.A.) is the Brazilian multinational
@@ -57,6 +59,7 @@ legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
 Maia, A. L. S., de Carvalho, F. A. T. and Ludermir, T. B. (2008).
 Forecasting models for interval-valued time series. \emph{Neurocomputing},
 \strong{71}(16--18), 3344--3352.
+\doi{10.1016/j.neucom.2008.02.022}.
 }
 \keyword{datasets}
 \keyword{finance}

@@ -20,7 +20,7 @@ A symbolic data frame (\code{symbolic_tbl}) with 46 observations and
 Plus 90 additional interval-valued socio-economic and demographic variables.
 }
 \source{
-Extracted from RSDA package (\code{uscrime_int}).
+Extracted from \code{RSDA::uscrime_intv2}.
 }
 \usage{
 data(uscrime.int)
@@ -45,8 +45,10 @@ Originally from the RSDA package.
 data(uscrime.int)
 }
 \references{
-Rodriguez, O. (2000). Classification et modeles lineaires en analyse
-des donnees symboliques. Doctoral Thesis, Universite Paris IX-Dauphine.
+Rodriguez, O. (2013). A generalization of Centre and Range method for
+fitting a linear regression model to symbolic interval data. In the
+proceedings of the 14th Conference of the International Federation of
+Classification Societies (IFCS 2013).
 }
 \keyword{crime}
 \keyword{datasets}

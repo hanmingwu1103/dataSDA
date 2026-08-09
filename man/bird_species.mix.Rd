@@ -14,6 +14,9 @@ A data frame with 3 observations (Swallow, Ostrich, Penguin) and
     \item \code{migration}: Migratory behavior (TRUE/FALSE, logical).
 }
 }
+\source{
+Diday and Noirhomme-Fraiture (2008), Table 1.2, p. 6.
+}
 \usage{
 data(bird_species.mix)
 }

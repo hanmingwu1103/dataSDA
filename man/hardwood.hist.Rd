@@ -14,7 +14,9 @@ A data frame with 5 observations and 4 histogram-valued variables:
 }
 }
 \source{
-Extracted from RSDA package (\code{hardwoodBrito}).
+Extracted from \code{RSDA::hardwoodBrito}; the dataset and its
+distributional principal-component analysis are described by Brito and
+Dias (2022).
 }
 \usage{
 data(hardwood.hist)
@@ -39,9 +41,8 @@ southeastern United States. Each observation represents a species with
 data(hardwood.hist)
 }
 \references{
-Brito, P. (2007). Modelling and Analysing Interval Data.
-In V. Esposito Vinzi et al. (Eds.), \emph{New Developments in Classification
-and Data Analysis}, pp. 197-208. Springer.
+Brito, P. and Dias, S. (2022). \emph{Analysis of Distributional Data}.
+CRC Press.
 }
 \keyword{datasets}
 \keyword{histogram}
