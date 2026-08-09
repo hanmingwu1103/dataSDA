@@ -19,7 +19,9 @@ A data frame with 24 observations (e.g., F-10-12, M-4-6) and
 Row names encode Sex-AgeGroup (e.g., F-10-12 = Female age 10--12).
 }
 \source{
-UCI Machine Learning Repository.
+Derived from \code{MAINT.Data::AbaloneIdt}, which aggregates the
+UCI Abalone microdata by sex and age group. UCI Machine Learning
+Repository, \doi{10.24432/C55C7W}.
 }
 \usage{
 data(abalone.iGAP)
@@ -48,8 +50,7 @@ Nash, W. J., Sellers, T. L., Talbot, S. R., Cawthorn, A. J., and Ford, W. B.
 (1994). The Population Biology of Abalone (\emph{Haliotis} species) in
 Tasmania. Sea Fisheries Division, Technical Report No. 48.
 
-UCI Machine Learning Repository.
-\url{https://archive.ics.uci.edu/ml/datasets/Abalone}
+UCI Machine Learning Repository. \doi{10.24432/C55C7W}.
 }
 \keyword{datasets}
 \keyword{iGAP}

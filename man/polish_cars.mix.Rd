@@ -23,7 +23,9 @@ and 12 variables:
 }
 }
 \source{
-symbolicDA R package (\code{cars} dataset).
+\code{symbolicDA::cars}; the upstream documentation states that
+the data were collected from authorized Polish car-dealer websites for
+the Polish market in 2010.
 }
 \usage{
 data(polish_cars.mix)
@@ -48,8 +50,9 @@ categorical variables.
 data(polish_cars.mix)
 }
 \references{
-Dudek, A. and Pelka, M. (2012). \emph{symbolicDA: Analysis of Symbolic
-Data}. R package.
+Dudek, A., Pelka, M., Wilk, J. and Walesiak, M. \emph{symbolicDA:
+Analysis of Symbolic Data}. R package.
+\doi{10.32614/CRAN.package.symbolicDA}.
 }
 \keyword{datasets}
 \keyword{interval}

@@ -15,6 +15,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 20 observations and 6 variables
     \item \code{X5}: Predictor range for group c (interval; NA for non-c).
 }
 }
+\source{
+Billard and Diday (2006), Table 2.15.
+}
 \usage{
 data(hierarchy.int)
 }

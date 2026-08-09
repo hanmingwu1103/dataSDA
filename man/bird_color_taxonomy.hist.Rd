@@ -15,7 +15,7 @@ A data frame with 20 observations and 4 variables:
 }
 }
 \source{
-Billard, L. and Diday, E. (2007), Tables 6.9/6.14.
+Billard, L. and Diday, E. (2006), Tables 6.9 and 6.14.
 }
 \usage{
 data(bird_color_taxonomy.hist)
@@ -24,7 +24,7 @@ data(bird_color_taxonomy.hist)
 Mixed symbolic dataset of 20 bird observations with histogram-valued
 feather density and body size, categorical tone, and distribution-valued
 shade (fuzzy taxonomy). From Tables 6.9 and 6.14 of Billard and Diday
-(2007).
+(2006).
 }
 \section{Metadata}{
 
@@ -41,7 +41,7 @@ shade (fuzzy taxonomy). From Tables 6.9 and 6.14 of Billard and Diday
 data(bird_color_taxonomy.hist)
 }
 \references{
-Billard, L. and Diday, E. (2007). \emph{Symbolic Data Analysis:
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
 Conceptual Statistics and Data Mining}. Wiley, Chichester. Tables 6.9
 and 6.14.
 }

@@ -12,6 +12,9 @@ A data frame with 2 observations and 2 variables:
           as a weighted set string (e.g., "\{0, 0.77; 1, 0.08; 2, 0.15\}").
 }
 }
+\source{
+Billard and Diday (2006), Table 2.20.
+}
 \usage{
 data(lung_cancer.hist)
 }

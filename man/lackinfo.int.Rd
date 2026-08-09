@@ -18,7 +18,9 @@ A data frame with 50 observations and 8 variables:
 }
 }
 \source{
-\url{https://CRAN.R-project.org/package=IntervalQuestionStat}
+\code{IntervalQuestionStat::lackinfo}; responses were collected
+from 50 University of Oviedo students during the 2020/2021 academic year,
+as documented by the upstream package.
 }
 \usage{
 data(lackinfo.int)
@@ -59,6 +61,11 @@ The 5 items measuring perception of lack of information are:
 
 \examples{
 data(lackinfo.int)
+}
+\references{
+Garcia-Garcia, J. (2022). \emph{IntervalQuestionStat: Tools to Deal with
+Interval-Valued Responses in Questionnaires}. R package.
+\doi{10.32614/CRAN.package.IntervalQuestionStat}.
 }
 \keyword{datasets}
 \keyword{interval}

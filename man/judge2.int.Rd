@@ -9,15 +9,14 @@ A symbolic data frame (\code{symbolic_tbl}) with 6 observations
 and 4 interval-valued variables (V1--V4).
 }
 \source{
-GPCSIV R package (\code{Judge2} dataset).
+Simulated data distributed as \code{GPCSIV::Judge2}.
 }
 \usage{
 data(judge2.int)
 }
 \description{
-Interval-valued ratings from Judge 2 for 6 regions on 4 variables.
-From a study of generalized principal component analysis for
-interval-valued data (GPCSIV).
+Simulated interval-valued agricultural-product grades assigned by Judge 2
+for 6 regions on 4 variables, distributed with the GPCSIV package.
 }
 \section{Metadata}{
 
@@ -34,11 +33,9 @@ interval-valued data (GPCSIV).
 data(judge2.int)
 }
 \references{
-Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
-to symbolic histogram variables. \emph{Advances in Data Analysis and
-Classification}, 6(2), 147--159.
-
-Original data from the GPCSIV R package (\code{Judge2} dataset).
+Makosso-Kallyth, S. (2013). Analysis of m sets of symbolic interval
+variables. \emph{Revue des Nouvelles Technologies de l'Information},
+RNTI-E-25, 97--108.
 }
 \keyword{datasets}
 \keyword{interval}

@@ -26,3 +26,4 @@
 ^cran-comments\.md$
 ^data-raw$
 ^docs$
+^00check\.log$

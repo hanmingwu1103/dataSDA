@@ -22,6 +22,9 @@ A data frame with 16 observations (Airline1--Airline16) and
           Weather delay distribution (2 bins).
 }
 }
+\source{
+Billard and Diday (2006), Table 2.7.
+}
 \usage{
 data(airline_flights.hist)
 }

@@ -17,7 +17,8 @@ A data frame with 161 rows and 7 variables:
 }
 }
 \source{
-\url{https://CRAN.R-project.org/package=intkrige}
+\code{intkrige::ohtemp}, derived from NOAA Global Historical
+Climatology Network station records for January 1, 1988--December 31, 2018.
 }
 \usage{
 data(ohtemp.int)
@@ -40,6 +41,11 @@ temperatures from January 1, 1988 to December 31, 2018.
 
 \examples{
 data(ohtemp.int)
+}
+\references{
+Bean, B. (2025). \emph{intkrige: A Numerical Implementation of
+Interval-Valued Kriging}. R package.
+\doi{10.32614/CRAN.package.intkrige}.
 }
 \keyword{datasets}
 \keyword{interval}

@@ -12,7 +12,7 @@ A symbolic data frame (\code{symbolic_tbl}) with 125 observations and 7 variable
 }
 }
 \source{
-Extracted from symbolicDA package (\code{data_symbolic}).
+Artificial benchmark data from \code{symbolicDA::data_symbolic}.
 }
 \usage{
 data(synthetic_clusters.int)
@@ -37,8 +37,9 @@ Designed for benchmarking interval data clustering algorithms.
 data(synthetic_clusters.int)
 }
 \references{
-Dudek, A. and Pelka, M. (2022). \emph{symbolicDA}: Analysis of Symbolic
-Data. R package.
+Dudek, A., Pelka, M., Wilk, J. and Walesiak, M. \emph{symbolicDA:
+Analysis of Symbolic Data}. R package.
+\doi{10.32614/CRAN.package.symbolicDA}.
 }
 \keyword{clustering}
 \keyword{datasets}

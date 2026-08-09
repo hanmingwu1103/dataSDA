@@ -14,6 +14,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 15 observations and
     \item \code{Age}: Modal distribution over age groups (<20, >=20).
 }
 }
+\source{
+Billard and Diday (2006).
+}
 \usage{
 data(crime2.modal)
 }

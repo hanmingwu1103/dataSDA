@@ -13,17 +13,19 @@ A data frame with 504 observations and 3 variables:
 }
 }
 \source{
-Yahoo Finance, ticker \code{^GSPC}. Downloaded via the
-\pkg{quantmod} package.
+Yahoo Finance, ticker \code{^GSPC}, January 2, 2004--December 30,
+2005. The Yahoo \code{Low} and \code{High} fields were retained after
+download via \pkg{quantmod}; the original retrieval date was not recorded.
 }
 \usage{
 data(sp500.its)
 }
 \description{
 Daily high and low prices of the S&P 500 index from January 2, 2004 to
-December 30, 2005 (504 trading days). This dataset is a benchmark for
-interval time series forecasting, matching the period used in the
-foundational work by Arroyo, Gonzalez-Rivera and Mate (2011).
+December 30, 2005 (504 trading days). The independently downloaded Yahoo
+Finance series is provided as a benchmark for interval time-series
+forecasting; it is not the same sample as Arroyo, Gonzalez-Rivera and
+Mate (2011).
 }
 \details{
 The S&P 500 is a market-capitalization-weighted index of 500 leading

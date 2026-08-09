@@ -39,6 +39,9 @@ A data frame with 51 observations and 30 variables (Y1--Y30):
     \item \code{Y30}: Count variable (integer).
 }
 }
+\source{
+Billard and Diday (2006), Tables 2.1--2.2.
+}
 \usage{
 data(health_insurance.mix)
 }

@@ -10,13 +10,13 @@ and 5 interval-valued variables (V1--V5): number of visits, watches,
 likes, comments, and shares.
 }
 \source{
-GPCSIV R package (\code{video1} dataset).
+Simulated data distributed as \code{GPCSIV::video1}.
 }
 \usage{
 data(video1.int)
 }
 \description{
-Interval-valued engagement metrics for 10 user groups on a video
+Simulated interval-valued engagement metrics for 10 user groups on a video
 platform. Variables represent ranges of visit, watch, like, comment,
 and share counts.
 }
@@ -35,11 +35,9 @@ and share counts.
 data(video1.int)
 }
 \references{
-Makosso-Kallyth, S. and Diday, E. (2012). Adaptation of interval PCA
-to symbolic histogram variables. \emph{Advances in Data Analysis and
-Classification}, 6(2), 147--159.
-
-Original data from the GPCSIV R package (\code{video1} dataset).
+Makosso-Kallyth, S. (2013). Analysis of m sets of symbolic interval
+variables. \emph{Revue des Nouvelles Technologies de l'Information},
+RNTI-E-25, 97--108.
 }
 \keyword{datasets}
 \keyword{interval}

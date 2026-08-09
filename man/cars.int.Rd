@@ -15,7 +15,8 @@ A symbolic data frame (\code{symbolic_tbl}) with 27 observations and 5 variables
 }
 }
 \source{
-\url{https://CRAN.R-project.org/package=MAINT.Data}
+\code{MAINT.Data::Cars}, containing interval specifications for
+27 car models in four classes.
 }
 \usage{
 data(cars.int)
@@ -40,9 +41,10 @@ EngineCapacity, TopSpeed and Acceleration intervals.
 data(cars.int)
 }
 \references{
-Duarte Silva, A.P., Brito, P., Filzmoser, P. and Dias, J.G. (2021).
+Duarte Silva, A. P., Brito, P., Filzmoser, P. and Dias, J. G. (2021).
 MAINT.Data: Modelling and Analysing Interval Data in R.
-\emph{R Journal}, 13(2).
+\emph{The R Journal}, 13(2), 336--364.
+\doi{10.32614/RJ-2021-074}.
 }
 \keyword{classification}
 \keyword{datasets}

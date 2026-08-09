@@ -13,17 +13,19 @@ A data frame with 3216 observations and 3 variables:
 }
 }
 \source{
-Yahoo Finance, ticker \code{^BVSP}. Downloaded via the
-\pkg{quantmod} package.
+Yahoo Finance, ticker \code{^BVSP}, January 3, 2000--December 28,
+2012. The Yahoo \code{Low} and \code{High} fields were retained after
+download via \pkg{quantmod}; the original retrieval date was not recorded.
 }
 \usage{
 data(ibovespa.its)
 }
 \description{
 Daily high and low values of the Brazilian IBOVESPA stock market index
-from January 3, 2000 to December 28, 2012 (3216 trading days). This
-dataset matches the period used by Maciel, Ballini and Gomide (2016) for
-evolving granular analytics for interval time series forecasting.
+from January 3, 2000 to December 28, 2012 (3216 trading days). It covers
+the period studied by Maciel, Ballini and Gomide (2016), but this object
+was independently downloaded from Yahoo Finance; the article reports
+Bloomberg as its data source.
 }
 \details{
 The IBOVESPA (Indice Bovespa) is the benchmark index of the Brazilian
@@ -57,6 +59,7 @@ legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
 Maciel, L., Ballini, R. and Gomide, F. (2016). Evolving granular
 analytics for interval time series forecasting. \emph{Granular Computing},
 \strong{1}(4), 213--224.
+\doi{10.1007/s41066-016-0016-3}.
 }
 \keyword{datasets}
 \keyword{finance}

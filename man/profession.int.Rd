@@ -13,6 +13,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 15 observations and 4 variables
     \item \code{Duration}: Working duration range (hours per week, interval).
 }
 }
+\source{
+Billard and Diday (2006).
+}
 \usage{
 data(profession.int)
 }

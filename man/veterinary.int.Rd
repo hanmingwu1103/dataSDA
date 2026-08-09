@@ -12,6 +12,10 @@ A symbolic data frame (\code{symbolic_tbl}) with 10 observations and 3 variables
     \item \code{Weight}: Weight range (kg, interval).
 }
 }
+\source{
+Distributed as \code{RSDA::VeterinaryData}; the RSDA
+documentation attributes the data to Billard and Diday (2006).
+}
 \usage{
 data(veterinary.int)
 }

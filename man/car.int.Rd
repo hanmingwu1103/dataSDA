@@ -14,6 +14,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 8 observations and 5 variables:
     \item \code{Cylinder_Capacity}: Engine cylinder capacity range (cc, interval).
 }
 }
+\source{
+Billard and Diday (2006).
+}
 \usage{
 data(car.int)
 }

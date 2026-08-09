@@ -13,24 +13,23 @@ A data frame with 504 observations and 3 variables:
 }
 }
 \source{
-Yahoo Finance, ticker \code{^DJI}. Downloaded via the
-\pkg{quantmod} package.
+Yahoo Finance, ticker \code{^DJI}, January 2, 2004--December 30,
+2005. The Yahoo \code{Low} and \code{High} fields were retained after
+download via \pkg{quantmod}; the original retrieval date was not recorded.
 }
 \usage{
 data(djia.its)
 }
 \description{
 Daily high and low prices of the Dow Jones Industrial Average (DJIA) from
-January 2, 2004 to December 30, 2005 (504 trading days). This dataset
-matches the period used in the foundational interval time series work by
-Arroyo, Gonzalez-Rivera and Mate (2011).
+January 2, 2004 to December 30, 2005 (504 trading days), independently
+downloaded from Yahoo Finance for use as an interval time-series benchmark.
 }
 \details{
 The DJIA is a price-weighted index of 30 prominent companies listed on
 stock exchanges in the United States. Each observation represents a
 trading day with the daily low and high prices forming an interval. This
-dataset has been used alongside the S&P 500 to compare interval
-forecasting methods.
+interval.
 }
 \section{Metadata}{
 
@@ -50,12 +49,6 @@ plot(djia.its$date, djia.its$high, type = "l", col = "red",
      ylab = "Price", xlab = "Date", main = "DJIA Daily High/Low")
 lines(djia.its$date, djia.its$low, col = "blue")
 legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
-}
-\references{
-Arroyo, J., Gonzalez-Rivera, G. and Mate, C. (2011). Forecasting with
-interval and histogram data: Some financial applications. In
-\emph{Handbook of Empirical Economics and Finance}, pp. 247--280.
-Chapman and Hall/CRC.
 }
 \keyword{datasets}
 \keyword{finance}

@@ -14,7 +14,8 @@ variables:
 }
 }
 \source{
-HistDAWass R package (\code{BLOOD} dataset).
+\code{HistDAWass::BLOOD}; Irpino and Verde (2015) analyze the
+data and attribute them to Billard and Diday (2006).
 }
 \usage{
 data(blood.hist)
@@ -44,7 +45,8 @@ Irpino, A. and Verde, R. (2015). Basic statistics for distributional
 symbolic variables: a new metric-based approach. \emph{Advances in
 Data Analysis and Classification}, 9(2), 143--175.
 
-Original data from the HistDAWass R package (\code{BLOOD} dataset).
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
+Conceptual Statistics and Data Mining}. Wiley, Chichester.
 }
 \keyword{datasets}
 \keyword{histogram}

@@ -16,6 +16,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 14 observations and 7 variables
     \item \code{n}: Number of entities in the sector (numeric).
 }
 }
+\source{
+Billard and Diday (2006), Table 5.2.
+}
 \usage{
 data(finance.int)
 }

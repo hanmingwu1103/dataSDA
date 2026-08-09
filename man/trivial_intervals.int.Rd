@@ -13,6 +13,9 @@ variables in \code{_l}/\code{_u} Min-Max pairs):
     \item \code{y3_l}, \code{y3_u}: Third interval variable.
 }
 }
+\source{
+Billard and Diday (2006), Table 5.1, p. 146.
+}
 \usage{
 data(trivial_intervals.int)
 }

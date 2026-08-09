@@ -18,7 +18,7 @@ and 7 variables:
 }
 }
 \source{
-Billard, L. and Diday, E. (2007), Table 6.20.
+Billard, L. and Diday, E. (2006), Table 6.20.
 }
 \usage{
 data(hierarchy.hist)
@@ -26,7 +26,7 @@ data(hierarchy.hist)
 \description{
 Mixed symbolic dataset of 10 observations with hierarchical categorical
 variables, conditional histogram variables, and an interval-valued
-variable. From Table 6.20 of Billard and Diday (2007).
+variable. From Table 6.20 of Billard and Diday (2006).
 }
 \section{Metadata}{
 
@@ -43,7 +43,7 @@ variable. From Table 6.20 of Billard and Diday (2007).
 data(hierarchy.hist)
 }
 \references{
-Billard, L. and Diday, E. (2007). \emph{Symbolic Data Analysis:
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
 Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 6.20.
 }
 \keyword{datasets}

@@ -21,6 +21,9 @@ in \code{_l}/\code{_u} Min-Max pairs, plus a group label and class):
     \item \code{class}: Group classification (numeric).
 }
 }
+\source{
+Diday and Noirhomme-Fraiture (2008), Table 18.1.
+}
 \usage{
 data(employment.int)
 }

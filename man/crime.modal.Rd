@@ -16,6 +16,9 @@ columns representing 3 modal variables in wide format:
           Distribution over age groups (2 bins).
 }
 }
+\source{
+Billard and Diday (2006).
+}
 \usage{
 data(crime.modal)
 }

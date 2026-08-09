@@ -15,7 +15,7 @@ and 4 variables:
 }
 }
 \source{
-RSDA R package (\code{Lynne1} dataset).
+\code{RSDA::lynne1}.
 }
 \usage{
 data(lynne1.int)
@@ -42,7 +42,7 @@ data(lynne1.int)
 Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis: Conceptual
 Statistics and Data Mining}. Wiley, Chichester.
 
-Original data from the RSDA R package (\code{Lynne1} dataset).
+Original data from the RSDA R package (\code{lynne1} dataset).
 }
 \keyword{datasets}
 \keyword{interval}

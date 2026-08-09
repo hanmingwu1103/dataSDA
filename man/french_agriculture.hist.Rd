@@ -16,7 +16,8 @@ histogram-valued variables:
 Row names are French region names (e.g., Ile-de-France, Picardie).
 }
 \source{
-HistDAWass R package (\code{Agronomique} dataset).
+\code{HistDAWass::Agronomique}; provenance follows the source
+cited in the upstream package documentation.
 }
 \usage{
 data(french_agriculture.hist)
@@ -41,11 +42,9 @@ describes the distribution of farm-level values within a region.
 data(french_agriculture.hist)
 }
 \references{
-Irpino, A. and Verde, R. (2015). Basic statistics for distributional
-symbolic variables: A new metric-based approach.
-\emph{Advances in Data Analysis and Classification}, 9(2), 143--175.
-
-Original data from the HistDAWass R package (\code{Agronomique} dataset).
+Verde, R., Irpino, A. and Desbois, D. (2014). How to cope with modelling
+and privacy concerns? A regression model and a visualization tool for
+aggregated data. Conference of European Statistics Stakeholders, Rome.
 }
 \keyword{agriculture}
 \keyword{datasets}

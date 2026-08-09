@@ -16,6 +16,9 @@ A data frame with 3 observations and 6 variables:
     \item \code{migratory}: Migratory behavior (Yes/No, character).
 }
 }
+\source{
+Billard and Diday (2006), Table 2.19.
+}
 \usage{
 data(bird_species_extended.mix)
 }

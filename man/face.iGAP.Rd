@@ -17,6 +17,10 @@ format (comma-separated \code{"min,max"} strings):
 }
 Row names encode individual and replication (e.g., FRA1, FRA2, FRA3).
 }
+\source{
+Derived from \code{RSDA::facedata}, which is attributed to Leroy
+et al. (1996), and represented here in iGAP interval-string format.
+}
 \usage{
 data(face.iGAP)
 }

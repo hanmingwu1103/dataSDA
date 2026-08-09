@@ -19,7 +19,10 @@ A symbolic data frame (\code{symbolic_tbl}) with 1096 observations
 }
 }
 \source{
-QualAr, Entrecampos station, Lisbon, Portugal.
+Hourly measurements from the QualAr Portuguese air-quality
+monitoring network, operated by the Portuguese Environment Agency, at the
+Entrecampos station in Lisbon, Portugal. Daily intervals were constructed
+from hourly measurements as described by Loureiro et al. (2025).
 }
 \usage{
 data(lisbon_air_quality.int)
@@ -46,12 +49,11 @@ interpolation.
 data(lisbon_air_quality.int)
 }
 \references{
-Dias, S. and Brito, P. (2017). Off the beaten track: A new linear model
-for interval data. \emph{European Journal of Operational Research},
-258(3), 1118--1130.
-
-Data from the QualAr Portuguese air quality monitoring network
-(\samp{https://qualar.apambiente.pt/}).
+Loureiro, C. P., Oliveira, M. R., Brito, P. and Oliveira, L. (2025).
+Air Quality Data Analysis with Symbolic Principal Components. In
+\emph{New Frontiers in Statistics and Data Science -- SPE2023}, Springer
+Proceedings in Mathematics and Statistics, 469, 335--348.
+\doi{10.1007/978-3-031-68949-9_25}.
 }
 \keyword{datasets}
 \keyword{interval}

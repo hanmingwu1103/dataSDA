@@ -39,9 +39,10 @@ clustering with high-dimensional features.
 data(water_flow.int)
 }
 \references{
-Andrade, N. A., de Carvalho, F. A. T. and Pimentel, B. A. (2025).
+Andrade de Sa, J. N., Ferreira, M. R. P. and de Carvalho, F. A. T. (2025).
 Kernel clustering with automatic variable weighting for interval data.
-\emph{Neurocomputing}, 617, 128954.
+\emph{Neurocomputing}, 650, 130849.
+\doi{10.1016/j.neucom.2025.130849}.
 }
 \keyword{clustering}
 \keyword{datasets}

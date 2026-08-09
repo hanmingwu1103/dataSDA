@@ -13,8 +13,10 @@ A data frame with 520 observations and 3 variables:
 }
 }
 \source{
-Yahoo Finance, ticker \code{EURUSD=X}. Downloaded via the
-\pkg{quantmod} package.
+Yahoo Finance, ticker \code{EURUSD=X}, January 1,
+2004--December 30, 2005. The Yahoo \code{Low} and \code{High} fields were
+retained after download via \pkg{quantmod}; the original retrieval date
+was not recorded.
 }
 \usage{
 data(euro_usd.its)
@@ -58,6 +60,7 @@ legend("topleft", c("High", "Low"), col = c("red", "blue"), lty = 1)
 Arroyo, J., Espinola, R. and Mate, C. (2011). Different approaches to
 forecast interval time series: A comparison in finance. \emph{Computational
 Economics}, \strong{37}(2), 169--191.
+\doi{10.1007/s10614-010-9230-2}.
 }
 \keyword{datasets}
 \keyword{exchange}

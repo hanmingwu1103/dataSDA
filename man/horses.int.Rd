@@ -16,6 +16,9 @@ A symbolic data frame (\code{symbolic_tbl}) with 8 observations and 7 variables:
     \item \code{Fillies_Cost}: Cost of fillies range (currency units, interval).
 }
 }
+\source{
+Billard and Diday (2006), Table 7.14.
+}
 \usage{
 data(horses.int)
 }

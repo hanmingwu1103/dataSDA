@@ -14,6 +14,9 @@ in \code{_l}/\code{_u} Min-Max pairs, plus a label):
     \item \code{racket_tension_l}, \code{racket_tension_u}: Racket tension range.
 }
 }
+\source{
+Billard and Diday (2006), Table 2.25, p. 64.
+}
 \usage{
 data(tennis.int)
 }
