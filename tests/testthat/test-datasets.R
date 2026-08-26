@@ -3,7 +3,7 @@ dataset_names <- c(
   "mushroom.int.mm", "mushroom.int",
   "bird.mix", "baseball.int", "blood_pressure.int",
   "car.int", "cars.int", "china_temp.int",
-  "finance.int", "hierarchy.int", "horses.int",
+  "finance.int", "fungi.int", "hierarchy.int", "horses.int",
   "lackinfo.int", "loans_by_purpose.int",
   "nycflights.int", "ohtemp.int", "profession.int",
   "soccer_bivar.int", "veterinary.int",
@@ -34,7 +34,7 @@ test_that("all datasets have rows and columns > 0", {
 int_datasets <- c(
   "mushroom.int", "baseball.int", "blood_pressure.int",
   "car.int", "cars.int", "china_temp.int",
-  "finance.int", "hierarchy.int", "horses.int",
+  "finance.int", "fungi.int", "hierarchy.int", "horses.int",
   "lackinfo.int", "loans_by_purpose.int",
   "nycflights.int", "ohtemp.int", "profession.int",
   "soccer_bivar.int", "veterinary.int",
@@ -72,6 +72,21 @@ test_that("mushroom.int has complex columns", {
   modes <- sapply(mushroom.int, mode)
   expect_true(any(modes == "complex"),
               info = "mushroom.int should have complex-mode columns for intervals")
+})
+
+test_that("fungi.int has valid intervals and retains all observations", {
+  data(fungi.int)
+  interval_columns <- vapply(fungi.int, inherits, logical(1),
+                             what = "symbolic_interval")
+
+  expect_equal(dim(fungi.int), c(55L, 6L))
+  expect_equal(Re(as.complex(fungi.int$stipe_width[18])), 1)
+  expect_equal(Im(as.complex(fungi.int$stipe_width[18])), 5)
+  expect_true(all(vapply(
+    fungi.int[interval_columns],
+    function(x) all(Re(as.complex(x)) <= Im(as.complex(x))),
+    logical(1)
+  )))
 })
 
 test_that("abalone.iGAP contains comma-separated interval values", {

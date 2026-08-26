@@ -3,7 +3,13 @@
 ## Documentation fixes
 
 - Corrected or fixed the references, citations, and sources of the datasets.
-- Clarified dataset provenance without changing any packaged data objects.
+- Corrected the reversed `stipe_width` endpoints in observation 18 of
+  `fungi.int` from `[5, 1]` to `[1, 5]`. The source and corrected snapshots,
+  hashes, and correction record are retained in `data-raw/`; no observation
+  was deleted and no value was imputed.
+- Clarified dataset provenance and corrected the Neurocomputing reference to
+  Andrade de Sa, Ferreira, and de Carvalho (2025), volume 650, article 130849,
+  <doi:10.1016/j.neucom.2025.130849>.
 
 # dataSDA 0.2.6
 
