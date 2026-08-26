@@ -1965,6 +1965,10 @@
 #' 3 genera (Amanita, Agaricus, Boletus). Contains 5 interval-valued variables
 #' describing pileus and stipe dimensions and spore characteristics.
 #'
+#' The source data contained one \code{stipe_width} interval whose two recorded
+#' endpoints were reversed; we reordered the endpoints from [5, 1] to [1, 5]
+#' before analysis. No observation was deleted and no value was imputed.
+#'
 #' @format A data frame with 55 observations and 6 variables:
 #' \itemize{
 #'     \item \code{pileus_width}: Width of the pileus (cap).
