@@ -3,6 +3,7 @@
 ^doc$
 ^Meta$
 ^\.claude$
+^\.github$
 ^dataSDA$
 ^TimeSeries$
 ^application\.R$

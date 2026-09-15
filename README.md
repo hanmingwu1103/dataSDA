@@ -4,7 +4,7 @@
 
 [![R](https://img.shields.io/badge/R-%3E%3D%204.0.0-blue)](https://www.r-project.org/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/version-0.2.7-green.svg)](https://github.com/hanmingwu1103/dataSDA/releases)
+[![Version](https://img.shields.io/badge/version-0.2.7.1-green.svg)](https://github.com/hanmingwu1103/dataSDA/releases)
 
 ## Overview
 
@@ -16,7 +16,7 @@
 
 ```r
 # install.packages("devtools")
-devtools::install_github("hanmingwu1103/dataSDA")
+devtools::install_github("hanmingwu1103/dataSDA", ref = "v0.2.7.1")
 ```
 
 ### From source
@@ -25,13 +25,32 @@ Download the latest release from the [Releases](https://github.com/hanmingwu1103
 
 ```r
 # Source package (all platforms)
-install.packages("dataSDA_0.2.7.tar.gz", repos = NULL, type = "source")
+install.packages("dataSDA_0.2.7.1.tar.gz", repos = NULL, type = "source")
 
 # Binary package (Windows)
-install.packages("dataSDA_0.2.7.zip", repos = NULL, type = "win.binary")
+install.packages("dataSDA_0.2.7.1.zip", repos = NULL, type = "win.binary")
 ```
 
 ## Features
+
+### Extract histogram endpoints and proportions
+
+Version **0.2.7.1** is a small GitHub release adding `hist_extract()`; version
+**0.2.8** is reserved for the next planned CRAN release.
+
+```r
+library(dataSDA)
+data(blood.hist)
+bins <- hist_extract(blood.hist, variables = "Cholesterol")
+head(bins[c("concept", "variable", "bin", "lower", "upper", "proportion")])
+?hist_extract
+example(hist_extract)
+```
+
+The function supports histogram strings, numeric-bin modal columns, and
+discrete point masses. It retains stored proportions by default and provides
+optional normalization. See the [worked examples](Examples/hist_extract_examples.R)
+and [source-data notes](docs/hist_extract-notes.md).
 
 ### Descriptive Statistics
 

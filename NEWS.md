@@ -1,3 +1,17 @@
+# dataSDA 0.2.7.1
+
+GitHub maintenance release (2026-09-15). The next planned CRAN release is 0.2.8.
+
+- Added `hist_extract()` to extract numeric interval endpoints, bin proportions,
+  and endpoint closure from histogram strings and numeric-bin modal columns.
+  It supports mixed datasets, one-sided bins, and discrete point masses, with
+  optional normalization. Includes R help and examples for Sugnet's request.
+  Reversed source endpoints are preserved with a warning. This release also
+  accepts the legacy histogram separator in `joggers.mix`.
+
+- Fixed the vignette's dataset inventory to use the installed dataset index,
+  so it works with lazy-loaded data during package checking.
+
 # dataSDA 0.2.7
 
 ## Documentation fixes

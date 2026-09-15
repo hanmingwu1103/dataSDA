@@ -41,7 +41,7 @@ has_ggInterval <- requireNamespace("ggInterval", quietly = TRUE) && not_cran
 
 # Introduction
 
-The `dataSDA` package (v0.2.7) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>.
+The `dataSDA` package (v0.2.7.1) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>. Version 0.2.7.1 is a GitHub maintenance release; the next planned CRAN release is 0.2.8.
 
 
 The package includes **114 datasets** spanning seven types of symbolic data. Each dataset name uses a suffix that indicates its type:
@@ -58,14 +58,9 @@ The package includes **114 datasets** spanning seven types of symbolic data. Eac
 | **Total** | | **114** | |
 
 ```{r dataset-summary, echo = FALSE}
-# Use installed package data dir; fall back to source tree when building locally
-data_dir <- system.file("data", package = "dataSDA")
-if (!nzchar(data_dir) || length(list.files(data_dir, pattern = "[.]rda$")) == 0) {
-  data_dir <- file.path("..", "data")
-}
-
-data_files <- list.files(data_dir, pattern = "[.]rda$")
-data_names <- sub("[.]rda$", "", data_files)
+# Installed packages store lazy data in databases rather than individual .rda
+# files. Use R's dataset index so this also works during R CMD check.
+data_names <- unique(utils::data(package = "dataSDA")$results[, "Item"])
 
 classify_type <- function(name) {
   if (grepl("[.]its$", name)) {
