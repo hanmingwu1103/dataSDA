@@ -30,6 +30,8 @@ jobs:
           $version = ((Select-String -Path DESCRIPTION -Pattern '^Version:').Line -replace '^Version:\s*', '').Trim()
           if ($version -notmatch '^\d+(\.\d+){2,3}$') { throw 'Invalid package version.' }
           "version=$version" >> $env:GITHUB_OUTPUT
+          $out = Join-Path (Split-Path $env:GITHUB_WORKSPACE -Parent) 'release-artifacts'
+          "RELEASE_OUT=$out" >> $env:GITHUB_ENV
           $existing = gh release view "v$version" --json tagName 2>$null
           if ($LASTEXITCODE -eq 0) { throw "Release v$version already exists; refusing to replace it." }
           $global:LASTEXITCODE = 0
@@ -52,13 +54,14 @@ jobs:
           source('.github/scripts/build-release.R')
       - name: Preserve validation logs
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: release-build-logs
           path: |
-            ../release-artifacts/*.log
-            ../release-artifacts/dataSDA.Rcheck/00check.log
-            ../release-artifacts/validation-summary.txt
+            ${{ env.RELEASE_OUT }}/*.log
+            ${{ env.RELEASE_OUT }}/dataSDA.Rcheck/00check.log
+            ${{ env.RELEASE_OUT }}/validation-summary.txt
           if-no-files-found: ignore
       - name: Publish verified release assets
         shell: pwsh
