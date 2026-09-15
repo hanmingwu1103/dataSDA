@@ -1,0 +1,83 @@
+Extract Histogram Endpoints and Proportions
+
+Description:
+
+     Convert histogram strings or numeric-bin modal data to a long data
+     frame with one row per bin. This function also works when sourced
+     directly, using only base R, with datasets from dataSDA 0.2.7.
+
+Usage:
+
+     hist_extract(x, variables = NULL, normalize = FALSE)
+     
+Arguments:
+
+       x: A character vector of histogram strings, a 'symbolic_modal'
+          column, or a data frame (including a 'symbolic_tbl')
+          containing them.
+
+variables: Optional character vector of column names to extract from a
+          data frame. By default, numeric histogram columns are
+          detected; other columns are omitted. Explicitly selected
+          unsupported columns cause an error.
+
+normalize: Logical; divide each histogram's proportions by their sum?
+          Defaults to 'FALSE', preserving the stored values.
+
+Details:
+
+     Character histograms use the form '"{[0, 10), 0.4; [10, 20],
+     0.6}"'. Numeric point masses such as '"{0, 0.77; 1, 0.08; 2,
+     0.15}"' have equal lower and upper endpoints and both endpoints
+     closed. Signed numbers, scientific notation, and infinite
+     endpoints are supported. Modal columns are read from their stored
+     'var' and 'prop' components; numeric bin labels such as '"Flight
+     Time(<120)"', '"Flight Time([120, 220])"', and '"Flight
+     Time(>220)"' are supported. One-sided bins use infinite endpoints.
+     Categorical modalities have no numeric endpoints and are omitted
+     by automatic detection.
+
+     Stored proportions are bin masses, not densities or cumulative
+     probabilities. Rounded source proportions need not sum exactly to
+     one. No precision lost in the stored data can be recovered.
+     Normalization is optional and requires a positive total. Bins
+     remain in source order; zero-mass and zero-width bins, gaps, and
+     overlaps are preserved. This is an extractor, not a check that
+     bins form a non-overlapping partition. Reversed endpoints are
+     preserved with a warning (one occurs in 'hardwood.hist'); they are
+     not silently swapped. Malformed selected cells and nonfinite or
+     out-of-range proportions cause an informative error. The legacy
+     semicolon between an interval and its proportion in 'joggers.mix'
+     is accepted as an alternative to a comma.
+
+     Missing cells ('NA', blank strings, or 'NULL' modal cells) produce
+     one row with missing bin fields. Empty input produces a zero-row
+     result. A nonempty data frame with no detected histogram columns
+     causes an error.
+
+Value:
+
+     A plain data frame with columns 'observation' (original row
+     index), 'concept' (the input's 'concept' attribute, row names,
+     vector names, or row numbers), 'variable', 'bin' (within-cell
+     index), numeric 'lower', 'upper', and 'proportion', logical
+     'lower_closed' and 'upper_closed', and 'label' (the stored bin
+     label). For vector input the variable name is '"histogram"'.  Use
+     'observation' to join omitted metadata back to the result.
+
+Examples:
+
+     hist_extract("{[0, 10), 0.4; [10, 20], 0.6}")
+     data(blood.hist)
+     head(hist_extract(blood.hist, variables = "Cholesterol"))
+     data(iris_species.hist)
+     iris_bins <- hist_extract(iris_species.hist)
+     iris_bins$species <- iris_species.hist$species[iris_bins$observation]
+     head(iris_bins)
+     data(census.mix)
+     unique(hist_extract(census.mix)$variable)
+     data(airline_flights2.modal)
+     head(hist_extract(airline_flights2.modal, variables = "FlightTime"))
+     data(lung_cancer.hist)
+     hist_extract(lung_cancer.hist)
+     
