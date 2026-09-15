@@ -45,7 +45,7 @@ print(aggregate(proportion ~ observation, stored, sum))
 print(aggregate(proportion ~ observation, normalized, sum))
 # Normalization rescales stored masses; it cannot recover original precision.
 
-# 8. Extract all 25 datasets requested by Sugnet.
+# 8. Extract all 25 example datasets.
 # hardwood.hist contains [22.70, 14.40) in ANNT, observation 3: extraction
 # warns and preserves these reversed endpoints for inspection of the source.
 # WeatherDelay in airline_flights2.modal is categorical (No/Yes) and is omitted.

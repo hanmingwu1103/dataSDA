@@ -1,6 +1,9 @@
 Small GitHub maintenance release adding **`hist_extract()`**. Version **0.2.8**
 is reserved for the next planned CRAN release; 0.2.7.1 is not a CRAN submission.
 
+The 0.2.7.1 assets have been rebuilt to remove personal attribution from the
+examples and notes. The version number and package functionality are unchanged.
+
 ## New function
 
 Extract one row per histogram bin, including numeric lower and upper endpoints,
@@ -17,7 +20,7 @@ head(hist_extract(blood.hist, variables = "Cholesterol"))
 example(hist_extract)
 ```
 
-Worked examples cover all 25 datasets requested by Sugnet. The categorical
+Worked examples cover all 25 example datasets. The categorical
 No/Yes `WeatherDelay` column in `airline_flights2.modal` is omitted because it has
 no numeric interval endpoints. The reversed interval `[22.70, 14.40)` in
 `hardwood.hist` (ANNT, observation 3) is preserved with a warning. The legacy
@@ -50,3 +53,8 @@ and extraction tests and examples covering all 25 datasets. The source package
 includes a rendered vignette. Checks omit PDF-manual generation and vignette
 rebuilding; unavailable optional suggested packages are reported in the attached
 validation summary and build logs.
+
+For this documentation-only rebuild, package-wide tests/examples and vignette
+checks were not repeated. The workflow verifies that package code, data, help,
+and version match the previously checked release, then reruns the focused
+histogram tests and examples on the newly installed Windows binary.
