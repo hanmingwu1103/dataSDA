@@ -10,7 +10,6 @@ out <- normalizePath(out, winslash = '/')
 extra_lib <- Sys.getenv('DATASDA_EXTRA_LIB')
 if (nzchar(extra_lib)) .libPaths(c(extra_lib, .libPaths()))
 version <- read.dcf(file.path(root, 'DESCRIPTION'))[1L, 'Version']
-documentation_refresh <- identical(Sys.getenv('DATASDA_DOC_REFRESH'), 'true')
 stopifnot(grepl('^[0-9]+(\\.[0-9]+){2,3}$', version))
 lib <- file.path(out, 'source-library')
 dir.create(lib, showWarnings = FALSE)
@@ -42,9 +41,6 @@ if (!file.exists(binary_name)) {
 }
 stopifnot(file.exists(source_name), file.exists(binary_name))
 check_args <- c('CMD', 'check', '--no-manual', '--no-build-vignettes')
-if (documentation_refresh) {
-  check_args <- c(check_args, '--no-tests', '--no-examples', '--ignore-vignettes')
-}
 run(c(check_args, source_name), 'check.log')
 check_log <- readLines('dataSDA.Rcheck/00check.log')
 if (any(grepl(' \\*?ERROR|^Status:.*ERROR', check_log))) stop('Package check reported errors.')
@@ -61,6 +57,8 @@ verify <- c(
   'stopifnot("hist_extract" %in% getNamespaceExports("dataSDA"))',
   sprintf('testthat::test_file(%s, reporter = "summary", stop_on_failure = TRUE)',
           deparse(file.path(root, 'tests/testthat/test-hist_extract.R'))),
+  sprintf('testthat::test_file(%s, reporter = "summary", stop_on_failure = TRUE)',
+          deparse(file.path(root, 'tests/testthat/test-data-corrections.R'))),
   sprintf('source(%s)', deparse(file.path(root, 'Examples/hist_extract_examples.R'))),
   'example(hist_extract, package = "dataSDA", ask = FALSE)',
   'cat("PASS: installed Windows binary, all 25 datasets, and help examples.\\n")')
@@ -73,11 +71,9 @@ summary <- c(paste('dataSDA', version), R.version.string,
              grep('^Status:', check_log, value = TRUE),
              'Source package installation and Windows binary reinstallation passed.',
              'All 25 histogram datasets and the hist_extract help examples passed.',
+             'Hardwood correction and crime consistency regression tests passed.',
              'PDF manual and vignette rebuilding during check were disabled.',
              'The source build includes the rendered vignette.')
-if (documentation_refresh) summary <- c(summary,
-  'Documentation-only refresh: package-wide tests/examples and vignette checks skipped.',
-  'Focused histogram tests and examples were rerun on the installed Windows binary.')
 suggests <- strsplit(read.dcf(file.path(root, 'DESCRIPTION'))[1L, 'Suggests'], ',')[[1L]]
 suggests <- trimws(sub('\\s*\\(.*$', '', suggests))
 missing_suggests <- suggests[!vapply(suggests, requireNamespace, logical(1), quietly = TRUE)]
