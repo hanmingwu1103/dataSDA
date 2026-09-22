@@ -29,9 +29,9 @@ only base R and does not require loading the dataSDA namespace.
   values and has no numeric endpoints. Automatic selection omits it.
 - `lung_cancer.hist` contains discrete numeric point masses, represented in the
   output with equal endpoints and both endpoints closed.
-- `hardwood.hist`, observation 3, `ANNT`, bin 3 contains `[22.70, 14.40)`.
-  Extraction preserves this reversed interval and warns. No source dataset
-  was corrected as part of this change.
+- In 0.2.7.1, `hardwood.hist` observation 3, `ANNT`, bin 3 contained
+  `[22.70, 14.40)` and extraction warned. Version 0.2.7.2 corrects this to
+  `[22.70, 24.40)` following reported source-quantile verification.
 - `joggers.mix`, observation 9, uses `[6.5, 7.4); .5`. The parser accepts this
   legacy semicolon separator without altering endpoints or proportions.
   Overlaps elsewhere in the stored bins are also preserved.

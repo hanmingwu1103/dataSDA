@@ -26,6 +26,16 @@ Histogram-valued climate data for 5 hardwood tree species in the
 southeastern United States. Each observation represents a species with
 4 histogram-valued climate variables.
 }
+\details{
+Since version 0.2.7.2, the final upper endpoint of \code{ANNT} in observation
+3 is 24.4 rather than 14.4, giving the final bin \code{[22.70, 24.40)}.
+The erroneous 14.4 is also present in \code{RSDA::hardwoodBrito} version
+3.2.5. The correction follows source-data correspondence dated
+18 September 2026 reporting verification against the quantiles file
+supplied by a source author. The underlying microdata and the spreadsheet
+itself were not available for independent inspection. All other endpoints
+and all bin proportions are unchanged.
+}
 \section{Metadata}{
 
 \tabular{ll}{

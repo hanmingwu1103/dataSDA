@@ -9,7 +9,7 @@ Description:
 Usage:
 
      hist_extract(x, variables = NULL, normalize = FALSE)
-     
+
 Arguments:
 
        x: A character vector of histogram strings, a 'symbolic_modal'
@@ -44,11 +44,11 @@ Details:
      remain in source order; zero-mass and zero-width bins, gaps, and
      overlaps are preserved. This is an extractor, not a check that
      bins form a non-overlapping partition. Reversed endpoints are
-     preserved with a warning (one occurs in 'hardwood.hist'); they are
-     not silently swapped. Malformed selected cells and nonfinite or
-     out-of-range proportions cause an informative error. The legacy
-     semicolon between an interval and its proportion in 'joggers.mix'
-     is accepted as an alternative to a comma.
+     preserved with a warning; they are not silently swapped. Malformed
+     selected cells and nonfinite or out-of-range proportions cause an
+     informative error. The legacy semicolon between an interval and
+     its proportion in 'joggers.mix' is accepted as an alternative to a
+     comma.
 
      Missing cells ('NA', blank strings, or 'NULL' modal cells) produce
      one row with missing bin fields. Empty input produces a zero-row
@@ -80,4 +80,4 @@ Examples:
      head(hist_extract(airline_flights2.modal, variables = "FlightTime"))
      data(lung_cancer.hist)
      hist_extract(lung_cancer.hist)
-     
+

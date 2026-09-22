@@ -80,16 +80,8 @@ test_that("all 25 requested packaged datasets can be extracted", {
     e <- new.env()
     data(list = nm, package = "dataSDA", envir = e)
     x <- e[[nm]]
-    if (nm == "hardwood.hist") {
-      expect_warning(ans <- hist_extract(x), "reversed endpoints")
-      bad <- ans[which(ans$lower > ans$upper), ]
-      expect_equal(bad$lower, 22.7)
-      expect_equal(bad$upper, 14.4)
-      expect_equal(bad$observation, 3L)
-    } else {
-      ans <- hist_extract(x)
-      expect_true(all(ans$lower <= ans$upper, na.rm = TRUE), info = nm)
-    }
+    ans <- hist_extract(x)
+    expect_true(all(ans$lower <= ans$upper, na.rm = TRUE), info = nm)
     expect_true(nrow(ans) > 0, info = nm)
     expect_equal(sort(unique(ans$observation)), seq_len(nrow(x)), info = nm)
     # Every output cell retains exactly the source number of bins.

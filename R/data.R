@@ -619,6 +619,14 @@
 #' }
 #'
 #' @usage data(crime.modal)
+#' @details
+#' Two stored distributions have unresolved inconsistencies: gang10's crime
+#' proportions are 0.18, 0.15, and 0.77 (total 1.10), and gang14's gender
+#' proportions are 0.37 and 0.64 (total 1.01). These values also occur in
+#' \code{crime2.modal}. The correct entries have not been verified against
+#' the original source table. They are retained without automatic normalization;
+#' rescaling would not establish the intended source values. Take these
+#' inconsistencies into account before analyses requiring unit-sum probabilities.
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
@@ -651,6 +659,10 @@
 #' }
 #'
 #' @usage data(crime2.modal)
+#' @details
+#' The unresolved gang10 crime and gang14 gender inconsistencies in
+#' \code{\link{crime.modal}} are also present here. Stored values are retained
+#' without automatic normalization pending verification of the original table.
 #' @references
 #' Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
 #' @examples
@@ -2358,6 +2370,15 @@
 #' }
 #'
 #' @usage data(hardwood.hist)
+#' @details
+#' Since version 0.2.7.2, the final upper endpoint of \code{ANNT} in observation
+#' 3 is 24.4 rather than 14.4, giving the final bin \code{[22.70, 24.40)}.
+#' The erroneous 14.4 is also present in \code{RSDA::hardwoodBrito} version
+#' 3.2.5. The correction follows source-data correspondence dated
+#' 18 September 2026 reporting verification against the quantiles file
+#' supplied by a source author. The underlying microdata and the spreadsheet
+#' itself were not available for independent inspection. All other endpoints
+#' and all bin proportions are unchanged.
 #' @references
 #' Brito, P. and Dias, S. (2022). \emph{Analysis of Distributional Data}.
 #' CRC Press.

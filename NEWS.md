@@ -1,3 +1,19 @@
+# dataSDA 0.2.7.2
+
+GitHub maintenance release (2026-09-22). The next planned CRAN release is 0.2.8.
+
+- Corrected the last ANNT endpoint in observation 3 of `hardwood.hist` from
+  14.4 to 24.4. The erroneous value is also present in RSDA 3.2.5; source-data
+  correspondence reports verification of 24.4 against the source quantiles.
+  All other endpoints and all proportions are unchanged. The original
+  snapshot, correction record, and rebuild script are retained in `data-raw/`.
+- Documented unresolved non-unit totals in `crime.modal` and `crime2.modal`:
+  gang10 Crime totals 1.10 and gang14 Gender totals 1.01. These stored values
+  remain unchanged because source-verified replacements are unavailable.
+- Added regression checks for hardwood bin ordering and proportions, and
+  for agreement between the two crime representations and their known anomalies.
+- Updated histogram extraction examples and help to reflect corrected hardwood.
+
 # dataSDA 0.2.7.1
 
 GitHub maintenance release (2026-09-15). The next planned CRAN release is 0.2.8.

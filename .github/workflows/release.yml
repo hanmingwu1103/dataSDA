@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Read version and validate authorized documentation refresh
+      - name: Read package version and avoid replacing a release
         id: version
         shell: pwsh
         run: |
@@ -35,18 +35,7 @@ jobs:
           $out = Join-Path (Split-Path $env:GITHUB_WORKSPACE -Parent) 'release-artifacts'
           "RELEASE_OUT=$out" >> $env:GITHUB_ENV
           $existing = gh release view "v$version" --json tagName 2>$null
-          if ($LASTEXITCODE -eq 0) {
-            # This one-time refresh was requested for the existing 0.2.7.1 release.
-            $expected = '5275bed0c6554f2ac722acceafc96f559459bbce'
-            if ($version -ne '0.2.7.1') { throw "Release v$version already exists." }
-            $tag = gh api "repos/$env:GITHUB_REPOSITORY/git/ref/tags/v$version" | ConvertFrom-Json
-            if ($LASTEXITCODE -ne 0 -or $tag.object.type -ne 'commit' -or $tag.object.sha -ne $expected) { throw 'Existing tag changed; refusing an unexpected replacement.' }
-            git diff --quiet $expected HEAD -- R data man NAMESPACE DESCRIPTION
-            if ($LASTEXITCODE -ne 0) { throw 'Documentation refresh cannot change package code, datasets, help, or version.' }
-            "REFRESH_EXISTING=true" >> $env:GITHUB_ENV
-            "EXPECTED_TAG_COMMIT=$expected" >> $env:GITHUB_ENV
-            "DATASDA_DOC_REFRESH=true" >> $env:GITHUB_ENV
-          }
+          if ($LASTEXITCODE -eq 0) { throw "Release v$version already exists; refusing to replace it." }
           $global:LASTEXITCODE = 0
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -88,26 +77,13 @@ jobs:
           $hashFile = Join-Path $out 'SHA256SUMS.txt'
           $hashes | Set-Content -LiteralPath $hashFile -Encoding utf8
           $assets += $hashFile
-          if ($env:REFRESH_EXISTING -eq 'true') {
-            $tag = gh api "repos/$env:GITHUB_REPOSITORY/git/ref/tags/v$version" | ConvertFrom-Json
-            if ($LASTEXITCODE -ne 0 -or $tag.object.sha -ne $env:EXPECTED_TAG_COMMIT) { throw 'Tag changed while building; refusing replacement.' }
-            gh release edit "v$version" --draft=true
-            if ($LASTEXITCODE -ne 0) { throw 'Could not prepare the existing release for replacement.' }
-            gh release upload "v$version" @assets --clobber
-            if ($LASTEXITCODE -ne 0) { throw 'Could not replace the release assets.' }
-          } else {
-            gh release create "v$version" @assets --target $env:GITHUB_SHA --title "dataSDA $version" --notes-file .github/release-notes.md --draft
-            if ($LASTEXITCODE -ne 0) { throw 'Could not create the draft release.' }
-          }
+          gh release create "v$version" @assets --target $env:GITHUB_SHA --title "dataSDA $version" --notes-file .github/release-notes.md --draft
+          if ($LASTEXITCODE -ne 0) { throw 'Could not create the draft release.' }
           $release = gh release view "v$version" --json assets | ConvertFrom-Json
           foreach ($asset in $assets) {
             $name = [IO.Path]::GetFileName($asset)
             $remote = @($release.assets | Where-Object name -eq $name)
             if ($remote.Count -ne 1 -or $remote[0].size -ne (Get-Item -LiteralPath $asset).Length) { throw "Asset verification failed: $name" }
-          }
-          if ($env:REFRESH_EXISTING -eq 'true') {
-            git push origin "$($env:GITHUB_SHA):refs/tags/v$version" "--force-with-lease=refs/tags/v${version}:$($env:EXPECTED_TAG_COMMIT)"
-            if ($LASTEXITCODE -ne 0) { throw 'Could not update the tag to the cleaned source.' }
           }
           gh release edit "v$version" --target $env:GITHUB_SHA --title "dataSDA $version" --notes-file .github/release-notes.md --draft=false --latest
           if ($LASTEXITCODE -ne 0) { throw 'Could not publish the verified release.' }

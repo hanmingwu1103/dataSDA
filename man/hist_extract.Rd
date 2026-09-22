@@ -49,7 +49,7 @@ in the stored data can be recovered. Normalization is optional and requires
 a positive total. Bins remain in source order; zero-mass and zero-width bins,
 gaps, and overlaps are preserved. This is an extractor, not a check that bins
 form a non-overlapping partition. Reversed endpoints are preserved with a
-warning (one occurs in \code{hardwood.hist}); they are not silently swapped.
+warning; they are not silently swapped.
 Malformed selected cells and nonfinite or out-of-range proportions cause an
 informative error.
 The legacy semicolon between an interval and its proportion in

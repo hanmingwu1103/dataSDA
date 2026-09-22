@@ -1,60 +1,47 @@
-Small GitHub maintenance release adding **`hist_extract()`**. Version **0.2.8**
-is reserved for the next planned CRAN release; 0.2.7.1 is not a CRAN submission.
+GitHub maintenance release correcting one hardwood endpoint and documenting
+unresolved crime-data inconsistencies. Version 0.2.8 remains reserved for the
+next planned CRAN release; 0.2.7.2 is not a CRAN submission.
 
-The 0.2.7.1 assets have been rebuilt to remove personal attribution from the
-examples and notes. The version number and package functionality are unchanged.
+## Dataset findings
 
-## New function
+- **hardwood.hist:** corrected ANNT observation 3, final upper endpoint,
+  from **14.4 to 24.4**. The final bin is now `[22.70, 24.40)` with mass 0.1.
+  The erroneous 14.4 is also present in RSDA 3.2.5. Source-data correspondence
+  dated 18 September 2026 reports verification of 24.4 against the source
+  quantiles file; that spreadsheet and the microdata were not available for
+  independent inspection. All other endpoints and proportions are unchanged.
+- **crime.modal / crime2.modal:** documented gang10 Crime (total **1.10**) and
+  gang14 Gender (total **1.01**) in both help pages. The correct replacements
+  could not be verified against the original table. These data are unchanged;
+  no proportions were guessed or automatically normalized.
+- Added regression tests for hardwood bin ordering and unit masses, agreement
+  of the two crime representations, and their known non-unit totals.
+- Updated extraction examples and documentation for the corrected hardwood.
 
-Extract one row per histogram bin, including numeric lower and upper endpoints,
-the associated proportion, observation and variable identifiers, and endpoint
-closure. Supports histogram strings, numeric-bin modal columns, mixed datasets,
-and discrete point masses. Proportions are preserved unless normalization is
-explicitly requested.
+The archived hardwood object, reproducible correction script, correction record,
+and detailed evidence assessment are in `data-raw/` in the tagged repository.
 
-```r
-library(dataSDA)
-data(blood.hist)
-head(hist_extract(blood.hist, variables = "Cholesterol"))
-?hist_extract
-example(hist_extract)
-```
-
-Worked examples cover all 25 example datasets. The categorical
-No/Yes `WeatherDelay` column in `airline_flights2.modal` is omitted because it has
-no numeric interval endpoints. The reversed interval `[22.70, 14.40)` in
-`hardwood.hist` (ANNT, observation 3) is preserved with a warning. The legacy
-semicolon in `joggers.mix` is supported. Missing observations remain identifiable.
-
-## Downloads and installation
-
-- **dataSDA_0.2.7.1.tar.gz**: R source package for all platforms.
-- **dataSDA_0.2.7.1.zip**: installed Windows binary, built with R 4.6.1.
-- **hist_extract_examples.R** and **hist_extract_help.txt**: examples and readable help.
-- **validation-summary.txt** and **SHA256SUMS.txt**: check summary and asset checksums.
-
-After downloading, install the appropriate file (package dependencies must
-already be installed):
+## Installation
 
 ```r
-# Windows, R 4.6.x:
-install.packages("dataSDA_0.2.7.1.zip", repos = NULL, type = "win.binary")
+# Windows, R 4.6.x; dependencies must already be installed:
+install.packages("dataSDA_0.2.7.2.zip", repos = NULL, type = "win.binary")
 
-# Source, including macOS and Linux:
-install.packages("dataSDA_0.2.7.1.tar.gz", repos = NULL, type = "source")
+# Source, all platforms:
+install.packages("dataSDA_0.2.7.2.tar.gz", repos = NULL, type = "source")
+
+# Tagged source with dependencies:
+remotes::install_github("hanmingwu1103/dataSDA@v0.2.7.2")
 ```
 
-Alternatively, install the tagged source and its dependencies with
-`remotes::install_github("hanmingwu1103/dataSDA@v0.2.7.1")`.
+## Validation and assets
 
-Both packages are built from the tagged commit. Publication requires a successful
-source installation, package check without errors, Windows binary reinstallation,
-and extraction tests and examples covering all 25 datasets. The source package
-includes a rendered vignette. Checks omit PDF-manual generation and vignette
-rebuilding; unavailable optional suggested packages are reported in the attached
-validation summary and build logs.
+Publication requires source installation and package checking without errors,
+followed by reinstallation of the Windows binary and histogram extraction and
+dataset-correction tests. Package-wide tests and examples run for this release.
+The source build includes a rendered vignette. Checks omit PDF-manual generation
+and vignette rebuilding. Optional missing suggestions and the check status are
+recorded in `validation-summary.txt`.
 
-For this documentation-only rebuild, package-wide tests/examples and vignette
-checks were not repeated. The workflow verifies that package code, data, help,
-and version match the previously checked release, then reruns the focused
-histogram tests and examples on the newly installed Windows binary.
+Assets include the source tarball, Windows binary, histogram examples and readable
+help, validation summary, and SHA256 checksums.

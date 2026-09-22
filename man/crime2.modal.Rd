@@ -24,6 +24,11 @@ data(crime2.modal)
 Modal-valued version of the crime demographics dataset.
 See \code{\link{crime.modal}} for the wide-format version.
 }
+\details{
+The unresolved gang10 crime and gang14 gender inconsistencies in
+\code{\link{crime.modal}} are also present here. Stored values are retained
+without automatic normalization pending verification of the original table.
+}
 \section{Metadata}{
 
 \tabular{ll}{

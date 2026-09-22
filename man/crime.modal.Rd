@@ -27,6 +27,15 @@ Modal-valued dataset of 15 gangs described by probability distributions
 over crime type, gender, and age group. This is the wide (flat table)
 format; see \code{\link{crime2.modal}} for the modal-valued version.
 }
+\details{
+Two stored distributions have unresolved inconsistencies: gang10's crime
+proportions are 0.18, 0.15, and 0.77 (total 1.10), and gang14's gender
+proportions are 0.37 and 0.64 (total 1.01). These values also occur in
+\code{crime2.modal}. The correct entries have not been verified against
+the original source table. They are retained without automatic normalization;
+rescaling would not establish the intended source values. Take these
+inconsistencies into account before analyses requiring unit-sum probabilities.
+}
 \section{Metadata}{
 
 \tabular{ll}{

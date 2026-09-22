@@ -46,8 +46,8 @@ print(aggregate(proportion ~ observation, normalized, sum))
 # Normalization rescales stored masses; it cannot recover original precision.
 
 # 8. Extract all 25 example datasets.
-# hardwood.hist contains [22.70, 14.40) in ANNT, observation 3: extraction
-# warns and preserves these reversed endpoints for inspection of the source.
+# Since 0.2.7.2, hardwood.hist ANNT observation 3 ends at 24.40, correcting
+# the upstream 14.40 typo using reported source-quantile verification.
 # WeatherDelay in airline_flights2.modal is categorical (No/Yes) and is omitted.
 dataset_names <- c(
   "age_pyramids.hist", "airline_flights2.modal", "blood.hist", "census.mix",
