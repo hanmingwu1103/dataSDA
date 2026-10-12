@@ -27,3 +27,17 @@ test_that("crime representations agree and unresolved anomalies stay explicit", 
   expect_equal(unname(unlist(crime.modal[10, 1:3])), c(.18, .15, .77))
   expect_equal(unname(unlist(crime.modal[14, 4:5])), c(.37, .64))
 })
+
+test_that("soccer_bivar.int pairs height and age endpoints correctly", {
+  data(soccer_bivar.int)
+  t1 <- as.complex(soccer_bivar.int$t1)
+  t2 <- as.complex(soccer_bivar.int$t2)
+  expect_equal(dim(soccer_bivar.int), c(20L, 3L))
+  expect_true(all(Re(t1) <= Im(t1)))
+  expect_true(all(Re(t2) <= Im(t2)))
+  # Height (cm) and age (years) ranges from iRegression soccer.bivar
+  expect_equal(range(c(Re(t1), Im(t1))), c(162, 197))
+  expect_equal(range(c(Re(t2), Im(t2))), c(18, 37))
+  expect_equal(t1[1], complex(real = 164, imaginary = 192))
+  expect_equal(t2[1], complex(real = 21, imaginary = 35))
+})

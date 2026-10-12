@@ -1,3 +1,5 @@
+# Publishes v<DESCRIPTION Version> when a commit touching this file reaches
+# master, or on manual dispatch. An existing release is never replaced.
 name: Build and publish R package release
 
 on:

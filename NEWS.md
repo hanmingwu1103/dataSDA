@@ -1,3 +1,15 @@
+# dataSDA 0.2.7.3
+
+GitHub maintenance release (2026-10-12). The next planned CRAN release is 0.2.8.
+
+- Corrected `soccer_bivar.int`, whose `t1` and `t2` intervals had been built
+  as `[height min, age min]` and `[height max, age max]`. They are now
+  `t1 = [height min, height max]` and `t2 = [age min, age max]`, matching
+  `soccer.bivar` in iRegression 1.2 for all 20 teams. No value was altered;
+  only the endpoint pairing changed. The original snapshot, correction record,
+  and rebuild script are retained in `data-raw/`.
+- Added a regression test for the soccer endpoint pairing and value ranges.
+
 # dataSDA 0.2.7.2
 
 GitHub maintenance release (2026-09-22). The next planned CRAN release is 0.2.8.

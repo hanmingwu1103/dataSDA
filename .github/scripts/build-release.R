@@ -71,7 +71,7 @@ summary <- c(paste('dataSDA', version), R.version.string,
              grep('^Status:', check_log, value = TRUE),
              'Source package installation and Windows binary reinstallation passed.',
              'All 25 histogram datasets and the hist_extract help examples passed.',
-             'Hardwood correction and crime consistency regression tests passed.',
+             'Hardwood, soccer, and crime dataset-correction regression tests passed.',
              'PDF manual and vignette rebuilding during check were disabled.',
              'The source build includes the rendered vignette.')
 suggests <- strsplit(read.dcf(file.path(root, 'DESCRIPTION'))[1L, 'Suggests'], ',')[[1L]]

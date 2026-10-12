@@ -23,6 +23,15 @@ data(soccer_bivar.int)
 Interval-valued data for 20 teams from the French premier soccer championship.
 Contains ranges of Weight (response), Height and Age (explanatory variables).
 }
+\details{
+Since version 0.2.7.3, \code{t1} is the height interval
+\code{[t1Min, t1Max]} and \code{t2} is the age interval
+\code{[t2Min, t2Max]} of \code{soccer.bivar} in \pkg{iRegression}.
+Earlier versions mis-paired the source columns, storing
+\code{[height min, age min]} in \code{t1} and
+\code{[height max, age max]} in \code{t2}. No values were changed; only
+the endpoint pairing was corrected.
+}
 \section{Metadata}{
 
 \tabular{ll}{

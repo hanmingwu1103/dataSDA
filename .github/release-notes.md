@@ -1,37 +1,38 @@
-GitHub maintenance release correcting one hardwood endpoint and documenting
-unresolved crime-data inconsistencies. Version 0.2.8 remains reserved for the
-next planned CRAN release; 0.2.7.2 is not a CRAN submission.
+GitHub maintenance release correcting the interval pairing in
+`soccer_bivar.int`. Version 0.2.8 remains reserved for the next planned CRAN
+release; 0.2.7.3 is not a CRAN submission.
 
 ## Dataset findings
 
-- **hardwood.hist:** corrected ANNT observation 3, final upper endpoint,
-  from **14.4 to 24.4**. The final bin is now `[22.70, 24.40)` with mass 0.1.
-  The erroneous 14.4 is also present in RSDA 3.2.5. Source-data correspondence
-  dated 18 September 2026 reports verification of 24.4 against the source
-  quantiles file; that spreadsheet and the microdata were not available for
-  independent inspection. All other endpoints and proportions are unchanged.
-- **crime.modal / crime2.modal:** documented gang10 Crime (total **1.10**) and
-  gang14 Gender (total **1.01**) in both help pages. The correct replacements
-  could not be verified against the original table. These data are unchanged;
-  no proportions were guessed or automatically normalized.
-- Added regression tests for hardwood bin ordering and unit masses, agreement
-  of the two crime representations, and their known non-unit totals.
-- Updated extraction examples and documentation for the corrected hardwood.
+- **soccer_bivar.int:** the explanatory intervals were mis-paired. `t1` had
+  been stored as `[height min, age min]` and `t2` as `[height max, age max]`
+  (team 1: `t1 = [164, 21]`, `t2 = [192, 35]`). They are now
+  `t1 = [height min, height max]` (162--197 cm) and
+  `t2 = [age min, age max]` (18--37 years), e.g. team 1:
+  `t1 = [164, 192]`, `t2 = [21, 35]`. The source, `soccer.bivar` in
+  iRegression 1.2, orders its columns `yMin, t1Min, t2Min, yMax, t1Max, t2Max`;
+  all 20 rows now match it exactly. No value was altered or imputed; only the
+  endpoint pairing changed. `y` (weight) was already correct.
+- Added a regression test for the soccer endpoint pairing and value ranges.
+- The help page documents the correction.
 
-The archived hardwood object, reproducible correction script, correction record,
-and detailed evidence assessment are in `data-raw/` in the tagged repository.
+**Note:** results computed from `soccer_bivar.int` with earlier versions used
+the mis-paired intervals and should be recomputed.
+
+The archived soccer object, reproducible correction script, correction record,
+and evidence are in `data-raw/` in the tagged repository.
 
 ## Installation
 
 ```r
 # Windows, R 4.6.x; dependencies must already be installed:
-install.packages("dataSDA_0.2.7.2.zip", repos = NULL, type = "win.binary")
+install.packages("dataSDA_0.2.7.3.zip", repos = NULL, type = "win.binary")
 
 # Source, all platforms:
-install.packages("dataSDA_0.2.7.2.tar.gz", repos = NULL, type = "source")
+install.packages("dataSDA_0.2.7.3.tar.gz", repos = NULL, type = "source")
 
 # Tagged source with dependencies:
-remotes::install_github("hanmingwu1103/dataSDA@v0.2.7.2")
+remotes::install_github("hanmingwu1103/dataSDA@v0.2.7.3")
 ```
 
 ## Validation and assets

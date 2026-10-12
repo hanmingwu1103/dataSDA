@@ -122,6 +122,14 @@
 #' }
 #'
 #' @usage data(soccer_bivar.int)
+#' @details
+#' Since version 0.2.7.3, \code{t1} is the height interval
+#' \code{[t1Min, t1Max]} and \code{t2} is the age interval
+#' \code{[t2Min, t2Max]} of \code{soccer.bivar} in \pkg{iRegression}.
+#' Earlier versions mis-paired the source columns, storing
+#' \code{[height min, age min]} in \code{t1} and
+#' \code{[height max, age max]} in \code{t2}. No values were changed; only
+#' the endpoint pairing was corrected.
 #' @references
 #' Lima Neto, E. A., Cordeiro, G. and De Carvalho, F.A.T. (2011).
 #' Bivariate symbolic regression models for interval-valued variables.
