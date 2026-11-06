@@ -2,6 +2,11 @@
 
 Maintenance release (2026-11-06), prepared for CRAN submission.
 
+- Rebuilt after CRAN pretest feedback, retaining version 0.2.7.4. Replaced
+  three relative README file links with absolute HTTPS links to the tagged
+  GitHub repository, fixing the invalid-file-URI NOTE on Windows and Debian
+  R-devel. The linked examples and notes are intentionally excluded from
+  the source archive.
 - Corrected the pileus cap width of `bernardii` to `[7, 16]` and
   `subrutilescens` to `[6, 14]` in both `mushroom.int.mm` and `mushroom.int`.
   Previously, `bernardii` was `[7, 6]` in the min/max data and `[6, 7]` in

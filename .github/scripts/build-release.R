@@ -14,6 +14,14 @@ pandoc_dir <- Sys.getenv('RSTUDIO_PANDOC')
 if (nzchar(pandoc_dir)) {
   Sys.setenv(PATH = paste(pandoc_dir, Sys.getenv('PATH'), sep = .Platform$path.sep))
 }
+if (cran_check) {
+  Sys.setenv(`_R_CHECK_CRAN_INCOMING_` = 'true',
+             `_R_CHECK_CRAN_INCOMING_REMOTE_` = 'true',
+             `_R_CHECK_CRAN_INCOMING_CHECK_FILE_URIS_` = 'true')
+  if (!requireNamespace('xml2', quietly = TRUE) || !nzchar(Sys.which('pandoc'))) {
+    stop('Full CRAN checks require xml2 and Pandoc to inspect README URLs.')
+  }
+}
 version <- read.dcf(file.path(root, 'DESCRIPTION'))[1L, 'Version']
 stopifnot(grepl('^[0-9]+(\\.[0-9]+){2,3}$', version))
 lib <- file.path(out, 'source-library')
@@ -69,6 +77,9 @@ cat(tail(readLines('check.log', warn = FALSE), 30L), sep = '\n')
 if (check_status != 0L) stop('Package check failed; see ', file.path(out, 'check.log'))
 if (any(grepl('^Status:.*(ERROR|WARNING)', check_log))) {
   stop('Package check reported errors or warnings.')
+}
+if (cran_check && !any(grepl('^Status: OK$', check_log))) {
+  stop('CRAN release preparation requires zero errors, warnings, and notes.')
 }
 
 # Verify the distributed Windows binary by installing into a separate library.

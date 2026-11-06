@@ -16,7 +16,7 @@
 
 ```r
 # install.packages("devtools")
-devtools::install_github("hanmingwu1103/dataSDA", ref = "v0.2.7.4")
+devtools::install_github("hanmingwu1103/dataSDA")
 ```
 
 ### From source
@@ -36,10 +36,11 @@ install.packages("dataSDA_0.2.7.4.zip", repos = NULL, type = "win.binary")
 ### Extract histogram endpoints and proportions
 
 Version **0.2.7.4** corrects two cap-width intervals and eight species names in
-`mushroom.int.mm` and `mushroom.int`, preserving the original row order. It is
+`mushroom.int.mm` and `mushroom.int`, preserving the original row order. This
+rebuilt package also fixes the README links flagged by CRAN pretests. It is
 prepared for CRAN submission and includes the earlier soccer and hardwood
 corrections and `hist_extract()` introduced in 0.2.7.1. See the
-[mushroom conversion example](Examples/mushroom_conversion.R) for creating an
+[mushroom conversion example](https://github.com/hanmingwu1103/dataSDA/blob/v0.2.7.4/Examples/mushroom_conversion.R) for creating an
 RSDA symbolic tibble from min/max data.
 
 ```r
@@ -53,8 +54,8 @@ example(hist_extract)
 
 The function supports histogram strings, numeric-bin modal columns, and
 discrete point masses. It retains stored proportions by default and provides
-optional normalization. See the [worked examples](Examples/hist_extract_examples.R)
-and [source-data notes](docs/hist_extract-notes.md).
+optional normalization. See the [worked examples](https://github.com/hanmingwu1103/dataSDA/blob/v0.2.7.4/Examples/hist_extract_examples.R)
+and [source-data notes](https://github.com/hanmingwu1103/dataSDA/blob/v0.2.7.4/docs/hist_extract-notes.md).
 
 ### Descriptive Statistics
 

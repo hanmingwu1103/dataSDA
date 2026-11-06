@@ -1,3 +1,10 @@
+## CRAN pretest correction (6 November 2026)
+
+Version remains **0.2.7.4**. The source and Windows packages have been rebuilt
+to replace three relative README links reported by CRAN with verified HTTPS
+links. The package code and datasets are unchanged from the first 0.2.7.4 build.
+Use the current attached packages for the corrected build.
+
 This maintenance release corrects the mushroom datasets and prepares version
 0.2.7.4 for CRAN submission.
 
@@ -37,19 +44,20 @@ remotes::install_github("hanmingwu1103/dataSDA@v0.2.7.4")
 
 ## Validation and assets
 
-The attached packages were built and verified locally on Windows 11 with
-R 4.6.1. The exact attached source archive passed `R CMD check --as-cran`
-with **0 errors, 0 warnings, and 0 notes**, including incoming feasibility,
-examples, tests, vignette rebuilding, and PDF and HTML manual checks.
-All declared Imports and Suggests were available.
+The same rebuilt source archive passed full `R CMD check --as-cran` on
+Windows with R 4.6.1 and R-devel (2026-11-05 r90840):
+**0 errors, 0 warnings, and 0 notes** in both checks. CRAN incoming and remote
+checks, including the additional README file-URI check, were explicitly
+enabled with xml2 and Pandoc available. All suggested dependencies were
+available; examples, tests, vignette rebuilding, and PDF/HTML manuals passed.
 
-The complete installed-package suite with `NOT_CRAN=true` passed all
-**1,089 assertions in 239 test blocks**, without failures, errors, warnings,
-or skips. The Windows binary was reinstalled in a separate library and
-passed the dataset-correction checks, mushroom symbolic-tibble conversion,
-and all 25 histogram examples. The source includes the rendered vignette.
+The original three invalid file URIs were reproduced with the R-devel
+checker and are absent from this build. All 25 audited URLs passed.
+The Windows binary passed all **1,089 assertions in 239 test blocks** with
+no failures, errors, warnings, or skips, plus the mushroom conversion example.
 
-Assets include the source package, Windows binary, mushroom conversion
-example, histogram examples and help, CRAN check log, submission notes,
-validation summary, and SHA256 checksums. The source package is ready for
-CRAN submission; it has not been uploaded to CRAN.
+Assets include the source package, Windows binary, examples, complete check
+logs, URL and archive audits, CRAN resubmission notes, and SHA256 checksums.
+`CRAN-check.log` is a compatibility copy of `R-release-00check.log`.
+The corrected archive is prepared for CRAN resubmission and has not yet
+been resubmitted to CRAN.

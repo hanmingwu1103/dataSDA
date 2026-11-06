@@ -41,7 +41,7 @@ has_ggInterval <- requireNamespace("ggInterval", quietly = TRUE) && not_cran
 
 # Introduction
 
-The `dataSDA` package (v0.2.7.4) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>. Version 0.2.7.4 corrects the mushroom datasets and is prepared for CRAN submission.
+The `dataSDA` package (v0.2.7.4) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>. This rebuilt version retains 0.2.7.4, includes the mushroom corrections, and fixes the README links reported by CRAN pretests.
 
 
 The package includes **114 datasets** spanning seven types of symbolic data. Each dataset name uses a suffix that indicates its type:
