@@ -11,17 +11,23 @@ A symbolic data frame (\code{symbolic_tbl}) with 23 observations and 5 variables
     \item \code{Pileus.Cap.Width}: Pileus cap width range (cm, interval).
     \item \code{Stipe.Length}: Stipe length range (cm, interval).
     \item \code{Stipe.Thickness}: Stipe thickness range (cm, interval).
-    \item \code{Edibility}: Edibility code (U = Unknown, Y = Yes, N = No, T = Toxic; character).
+    \item \code{Edibility}: Edibility code (U = Unknown, Y = Yes, T = Toxic; character).
 }
 }
 \source{
-Billard and Diday (2006), Table 3.2.
+Billard and Diday (2006), Table 3.3; corrected as described in
+\code{\link{mushroom.int.mm}}.
 }
 \usage{
 data(mushroom.int)
 }
 \description{
 Interval-valued version of the mushroom dataset. See \code{\link{mushroom.int.mm}}.
+}
+\details{
+Contains the same corrected species names and interval endpoints as
+\code{mushroom.int.mm}. See that help page for the changes in version
+0.2.7.4, including the corrected \code{bernardii} interval \code{[7, 16]}.
 }
 \section{Metadata}{
 
@@ -38,7 +44,8 @@ Interval-valued version of the mushroom dataset. See \code{\link{mushroom.int.mm
 data(mushroom.int)
 }
 \references{
-Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley. Table 3.2.
+Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis}. Wiley.
+Table 3.3, p. 81. \doi{10.1002/9780470090183}.
 }
 \keyword{datasets}
 \keyword{interval}

@@ -2,7 +2,7 @@
 title: "Introduction to dataSDA"
 subtitle: "Supplementary material for dataSDA: datasets and basic statistics for symbolic data analysis in R"
 author: "Po-Wei Chen, Chun-houh Chen and Han-Ming Wu*"
-date: "June 11, 2026"
+date: "November 6, 2026"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -41,7 +41,7 @@ has_ggInterval <- requireNamespace("ggInterval", quietly = TRUE) && not_cran
 
 # Introduction
 
-The `dataSDA` package (v0.2.7.1) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>. Version 0.2.7.1 is a GitHub maintenance release; the next planned CRAN release is 0.2.8.
+The `dataSDA` package (v0.2.7.4) gathers various symbolic data tailored to different research themes and provides a comprehensive set of functions for reading, writing, converting, and analyzing symbolic data. The package is available on CRAN at <https://CRAN.R-project.org/package=dataSDA> and on GitHub at <https://github.com/hanmingwu1103/dataSDA>. Version 0.2.7.4 corrects the mushroom datasets and is prepared for CRAN submission.
 
 
 The package includes **114 datasets** spanning seven types of symbolic data. Each dataset name uses a suffix that indicates its type:

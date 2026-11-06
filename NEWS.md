@@ -1,3 +1,22 @@
+# dataSDA 0.2.7.4
+
+Maintenance release (2026-11-06), prepared for CRAN submission.
+
+- Corrected the pileus cap width of `bernardii` to `[7, 16]` and
+  `subrutilescens` to `[6, 14]` in both `mushroom.int.mm` and `mushroom.int`.
+  Previously, `bernardii` was `[7, 6]` in the min/max data and `[6, 7]` in
+  the symbolic data. Analyses using these measurements should be recomputed.
+- Updated eight mushroom species names following MykoWeb's California
+  species accounts, distinguishing spelling corrections from previously
+  misapplied names. Original observation order, other measurements, and
+  edibility codes are preserved; the original-to-current name mapping and
+  reproducible source snapshots are retained in `data-raw/`.
+- Corrected the mushroom reference to Billard and Diday (2006), Table 3.3,
+  and documented all eight columns of the min/max dataset.
+- Added exact-value and cross-format regression checks and a worked
+  symbolic-tibble conversion example. Thanks to Diogo Pinheiro for reporting
+  the errors and supplying the corrected data and source references.
+
 # dataSDA 0.2.7.3
 
 GitHub maintenance release (2026-10-12). The next planned CRAN release is 0.2.8.

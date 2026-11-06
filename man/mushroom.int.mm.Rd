@@ -3,19 +3,22 @@
 \docType{data}
 \name{mushroom.int.mm}
 \alias{mushroom.int.mm}
-\title{Mushroom Species Dataset (Original Format)}
+\title{Mushroom Species Dataset (Min/Max Format)}
 \format{
-A data frame with 23 observations and 5 variables:
+A data frame with 23 observations and 8 columns representing
+5 conceptual variables (species, 3 interval measurements, and edibility):
 \itemize{
-    \item \code{Species}: Mushroom species name.
-    \item \code{Pileus.Cap.Width}: Pileus cap width range (cm).
-    \item \code{Stipe.Length}: Stipe length range (cm).
-    \item \code{Stipe.Thickness}: Stipe thickness range (cm).
-    \item \code{Edibility}: Edibility code (U/Y/N/T).
+    \item \code{Species}: Mushroom species name (character).
+    \item \code{Pileus.Cap.Width_min}, \code{Pileus.Cap.Width_max}: Minimum and maximum cap width (cm).
+    \item \code{Stipe.Length_min}, \code{Stipe.Length_max}: Minimum and maximum stipe length (cm).
+    \item \code{Stipe.Thickness_min}, \code{Stipe.Thickness_max}: Minimum and maximum stipe thickness (cm).
+    \item \code{Edibility}: Edibility code (U = Unknown, Y = Yes, T = Toxic; character).
 }
 }
 \source{
-Billard, L. and Diday, E. (2006), Table 3.2.
+Billard, L. and Diday, E. (2006), Table 3.3, with corrections
+checked against MykoWeb's California Fungi species accounts on
+6 November 2026: \url{https://www.mykoweb.com/CAF/species_index.html}.
 }
 \usage{
 data(mushroom.int.mm)
@@ -27,6 +30,21 @@ with 3 morphological measurements from the Fungi of California Species.
 \details{
 Classic SDA dataset used for descriptive statistics, histogram
 construction, and clustering of interval-valued data.
+Since version 0.2.7.4, the pileus cap width is \code{[7, 16]} for
+\code{bernardii} and \code{[6, 14]} for \code{subrutilescens}, following
+the MykoWeb species accounts. The former was previously \code{[7, 6]}
+here and \code{[6, 7]} in \code{mushroom.int}.
+
+Eight original names have been corrected or updated to reflect the
+California species accounts: \code{arvenis} to \code{fissuratus},
+\code{benesi} to \code{benesii}, \code{califorinus} to \code{californicus},
+\code{cupreo-brunneus} to \code{incultorum}, \code{diminutives} to
+\code{diminutivus}, \code{fuseo-fibrillosus} to \code{brunneofibrillosus},
+\code{praeclaresquamosus} to \code{deardorffensis}, and \code{silvicola}
+to \code{sylvicola}. These include historical misapplications of names,
+not only spelling corrections. Original row order, other measurements,
+and edibility codes are preserved. Thanks to Diogo Pinheiro for the report
+and corrected data.
 }
 \section{Metadata}{
 
@@ -44,7 +62,8 @@ data(mushroom.int.mm)
 }
 \references{
 Billard, L. and Diday, E. (2006). \emph{Symbolic Data Analysis:
-Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 3.2.
+Conceptual Statistics and Data Mining}. Wiley, Chichester. Table 3.3,
+p. 81. \doi{10.1002/9780470090183}.
 }
 \keyword{datasets}
 \keyword{interval}

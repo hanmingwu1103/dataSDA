@@ -4,7 +4,7 @@
 
 [![R](https://img.shields.io/badge/R-%3E%3D%204.0.0-blue)](https://www.r-project.org/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/version-0.2.7.3-green.svg)](https://github.com/hanmingwu1103/dataSDA/releases)
+[![Version](https://img.shields.io/badge/version-0.2.7.4-green.svg)](https://github.com/hanmingwu1103/dataSDA/releases)
 
 ## Overview
 
@@ -16,7 +16,7 @@
 
 ```r
 # install.packages("devtools")
-devtools::install_github("hanmingwu1103/dataSDA", ref = "v0.2.7.3")
+devtools::install_github("hanmingwu1103/dataSDA", ref = "v0.2.7.4")
 ```
 
 ### From source
@@ -25,18 +25,22 @@ Download the latest release from the [Releases](https://github.com/hanmingwu1103
 
 ```r
 # Source package (all platforms)
-install.packages("dataSDA_0.2.7.3.tar.gz", repos = NULL, type = "source")
+install.packages("dataSDA_0.2.7.4.tar.gz", repos = NULL, type = "source")
 
 # Binary package (Windows)
-install.packages("dataSDA_0.2.7.3.zip", repos = NULL, type = "win.binary")
+install.packages("dataSDA_0.2.7.4.zip", repos = NULL, type = "win.binary")
 ```
 
 ## Features
 
 ### Extract histogram endpoints and proportions
 
-Version **0.2.7.3** corrects the mis-paired height and age intervals in `soccer_bivar.int`. Version 0.2.7.2 corrected the hardwood endpoint and documented unresolved crime proportions. It includes `hist_extract()` introduced in 0.2.7.1; version
-**0.2.8** is reserved for the next planned CRAN release.
+Version **0.2.7.4** corrects two cap-width intervals and eight species names in
+`mushroom.int.mm` and `mushroom.int`, preserving the original row order. It is
+prepared for CRAN submission and includes the earlier soccer and hardwood
+corrections and `hist_extract()` introduced in 0.2.7.1. See the
+[mushroom conversion example](Examples/mushroom_conversion.R) for creating an
+RSDA symbolic tibble from min/max data.
 
 ```r
 library(dataSDA)

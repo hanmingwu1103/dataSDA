@@ -1,0 +1,75 @@
+Mushroom dataset correction for dataSDA 0.2.7.4
+Reviewed: 2026-11-06
+Contributor: Diogo Pinheiro
+
+Original dataset reference:
+Billard, L. and Diday, E. (2006). Symbolic Data Analysis: Conceptual
+Statistics and Data Mining. Wiley, Table 3.3, p. 81. The 23 Agaricus species
+measurements originate from the Fungi of California species descriptions.
+
+Correction evidence supplied by the contributor:
+- mushroom.minmax.RData, containing the data.frame mushroom.minmax.
+- Mushroom_Dataset.pdf, describing updated species names and cap-width values.
+The private correspondence and email addresses are not included here.
+SHA-256 checksums of the supplied evidence:
+mushroom.minmax.RData:
+A63DE09BCBA265116EBF588FEC6D9D2140FA1863DC7F0F6A44F7521A2A63A206
+Mushroom_Dataset.pdf:
+355297E81DE0A59DE12669E2124C190721C67236A07FC7784E02FC284F1D0E30
+
+Snapshots:
+- mushroom_raw_snapshot.R archives both package objects before this correction.
+- mushroom_corrected_snapshot.R is a plain-text dput of the contributor's
+  mushroom.minmax object, including its alphabetical row order.
+- mushroom.int.R rebuilds both public package objects using only base R.
+
+Species name mapping (old -> corrected):
+arvenis -> fissuratus
+benesi -> benesii
+califorinus -> californicus
+cupreo-brunneus -> incultorum
+diminutives -> diminutivus
+fuseo-fibrillosus -> brunneofibrillosus
+praeclaresquamosus -> deardorffensis
+silvicola -> sylvicola
+
+The benesii, californicus, diminutivus, and sylvicola changes correct spelling.
+The other four changes update names historically misapplied to the California
+material; they are not general claims of taxonomic synonymy. In particular,
+arvenis is a misspelling of arvensis and fuseo-fibrillosus is a
+misspelling/variant of fuscofibrillosus. The original three measurements for
+each renamed row match the respective current California description.
+
+Primary-source verification, accessed 2026-11-06:
+The Fungi of California, Michael Wood and Fred Stevens (MykoWeb).
+Each page supports the corresponding corrected name or cap-width endpoint.
+https://www.mykoweb.com/CAF/species/Agaricus_bernardii.html
+https://www.mykoweb.com/CAF/species/Agaricus_subrutilescens.html
+https://www.mykoweb.com/CAF/species/Agaricus_benesii.html
+https://www.mykoweb.com/CAF/species/Agaricus_californicus.html
+https://www.mykoweb.com/CAF/species/Agaricus_diminutivus.html
+https://www.mykoweb.com/CAF/species/Agaricus_sylvicola.html
+https://www.mykoweb.com/CAF/species/Agaricus_fissuratus.html
+https://www.mykoweb.com/CAF/species/Agaricus_incultorum.html
+https://www.mykoweb.com/CAF/species/Agaricus_brunneofibrillosus.html
+https://www.mykoweb.com/CAF/species/Agaricus_deardorffensis.html
+The book table itself contains the two erroneous cap-width bounds and cites
+the Fungi of California Species Index as its source. Its correct reference is
+Table 3.3, p. 81 (not Table 3.2 as in earlier package documentation).
+
+Numeric corrections (cap width, cm):
+- bernardii: [7, 6] in mushroom.int.mm and [6, 7] in mushroom.int
+  are both replaced by [7, 16]. The old symbolic interval had the erroneous
+  endpoints ordered, so checking lower <= upper alone would miss the error.
+- subrutilescens: [6, 12] becomes [6, 14] in both representations.
+All other measurements and all edibility codes are unchanged.
+
+Compatibility:
+The package retains the original row positions, row names, concept identifiers,
+public object names, column names, and classes. Updated species names are matched
+back to these row positions rather than adopting the attachment's sorted order.
+The 8-column min/max table and 5-column symbolic table share the same endpoints.
+The separate four-specimen Amanita dataset mushroom_fuzzy.mix is unaffected.
+
+Rebuild from the dataSDA package root:
+Rscript --vanilla data-raw/mushroom.int.R

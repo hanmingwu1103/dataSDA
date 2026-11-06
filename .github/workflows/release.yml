@@ -1,4 +1,4 @@
-# Publishes v<DESCRIPTION Version> when a commit touching this file reaches
+# Publishes v<DESCRIPTION Version> (0.2.7.4: mushroom corrections) when this file reaches
 # master, or on manual dispatch. An existing release is never replaced.
 name: Build and publish R package release
 
@@ -74,7 +74,7 @@ jobs:
         run: |
           $version = $env:RELEASE_VERSION
           $out = Join-Path (Split-Path $env:GITHUB_WORKSPACE -Parent) 'release-artifacts'
-          $assets = @("dataSDA_$version.tar.gz", "dataSDA_$version.zip", 'hist_extract_examples.R', 'hist_extract_help.txt', 'validation-summary.txt') | ForEach-Object { Join-Path $out $_ }
+          $assets = @("dataSDA_$version.tar.gz", "dataSDA_$version.zip", 'hist_extract_examples.R', 'hist_extract_help.txt', 'mushroom_conversion.R', 'validation-summary.txt') | ForEach-Object { Join-Path $out $_ }
           $hashes = $assets | ForEach-Object { $hash = Get-FileHash -LiteralPath $_ -Algorithm SHA256; "$($hash.Hash.ToLower())  $([IO.Path]::GetFileName($_))" }
           $hashFile = Join-Path $out 'SHA256SUMS.txt'
           $hashes | Set-Content -LiteralPath $hashFile -Encoding utf8

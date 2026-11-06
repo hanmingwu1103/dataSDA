@@ -1,48 +1,55 @@
-GitHub maintenance release correcting the interval pairing in
-`soccer_bivar.int`. Version 0.2.8 remains reserved for the next planned CRAN
-release; 0.2.7.3 is not a CRAN submission.
+This maintenance release corrects the mushroom datasets and prepares version
+0.2.7.4 for CRAN submission.
 
-## Dataset findings
+## Dataset corrections
 
-- **soccer_bivar.int:** the explanatory intervals were mis-paired. `t1` had
-  been stored as `[height min, age min]` and `t2` as `[height max, age max]`
-  (team 1: `t1 = [164, 21]`, `t2 = [192, 35]`). They are now
-  `t1 = [height min, height max]` (162--197 cm) and
-  `t2 = [age min, age max]` (18--37 years), e.g. team 1:
-  `t1 = [164, 192]`, `t2 = [21, 35]`. The source, `soccer.bivar` in
-  iRegression 1.2, orders its columns `yMin, t1Min, t2Min, yMax, t1Max, t2Max`;
-  all 20 rows now match it exactly. No value was altered or imputed; only the
-  endpoint pairing changed. `y` (weight) was already correct.
-- Added a regression test for the soccer endpoint pairing and value ranges.
-- The help page documents the correction.
+- Both `mushroom.int.mm` and `mushroom.int` now contain cap-width intervals
+  `[7, 16]` for `bernardii` and `[6, 14]` for `subrutilescens`.
+  Earlier versions stored `bernardii` as `[7, 6]` in min/max format and
+  `[6, 7]` in symbolic format. Recompute analyses using these measurements.
+- Eight species names follow the verified MykoWeb California species
+  accounts: four spelling fixes and four updates to historically misapplied
+  names. The original observation order, remaining measurements, edibility
+  codes, public object names, and column types are preserved.
+- Help pages document these changes, correctly cite Billard and Diday
+  (2006), Table 3.3, p. 81, and describe the eight min/max columns.
+- Source snapshots, the original-to-current name mapping, source references,
+  and the reproducible rebuild script are retained in `data-raw/`.
 
-**Note:** results computed from `soccer_bivar.int` with earlier versions used
-the mis-paired intervals and should be recomputed.
+Thanks to Diogo Pinheiro for reporting the errors and providing the corrected
+data and references. The separate `mushroom_fuzzy.mix` dataset is unaffected.
 
-The archived soccer object, reproducible correction script, correction record,
-and evidence are in `data-raw/` in the tagged repository.
+This release also includes `hist_extract()` and the hardwood and soccer
+corrections introduced in versions 0.2.7.1 through 0.2.7.3.
 
 ## Installation
 
 ```r
 # Windows, R 4.6.x; dependencies must already be installed:
-install.packages("dataSDA_0.2.7.3.zip", repos = NULL, type = "win.binary")
+install.packages("dataSDA_0.2.7.4.zip", repos = NULL, type = "win.binary")
 
 # Source, all platforms:
-install.packages("dataSDA_0.2.7.3.tar.gz", repos = NULL, type = "source")
+install.packages("dataSDA_0.2.7.4.tar.gz", repos = NULL, type = "source")
 
 # Tagged source with dependencies:
-remotes::install_github("hanmingwu1103/dataSDA@v0.2.7.3")
+remotes::install_github("hanmingwu1103/dataSDA@v0.2.7.4")
 ```
 
 ## Validation and assets
 
-Publication requires source installation and package checking without errors,
-followed by reinstallation of the Windows binary and histogram extraction and
-dataset-correction tests. Package-wide tests and examples run for this release.
-The source build includes a rendered vignette. Checks omit PDF-manual generation
-and vignette rebuilding. Optional missing suggestions and the check status are
-recorded in `validation-summary.txt`.
+The attached packages were built and verified locally on Windows 11 with
+R 4.6.1. The exact attached source archive passed `R CMD check --as-cran`
+with **0 errors, 0 warnings, and 0 notes**, including incoming feasibility,
+examples, tests, vignette rebuilding, and PDF and HTML manual checks.
+All declared Imports and Suggests were available.
 
-Assets include the source tarball, Windows binary, histogram examples and readable
-help, validation summary, and SHA256 checksums.
+The complete installed-package suite with `NOT_CRAN=true` passed all
+**1,089 assertions in 239 test blocks**, without failures, errors, warnings,
+or skips. The Windows binary was reinstalled in a separate library and
+passed the dataset-correction checks, mushroom symbolic-tibble conversion,
+and all 25 histogram examples. The source includes the rendered vignette.
+
+Assets include the source package, Windows binary, mushroom conversion
+example, histogram examples and help, CRAN check log, submission notes,
+validation summary, and SHA256 checksums. The source package is ready for
+CRAN submission; it has not been uploaded to CRAN.

@@ -1,7 +1,8 @@
 # Histogram extraction in dataSDA 0.2.7.1
 
 `hist_extract()` is exported in `NAMESPACE` and included in the GitHub
-maintenance release 0.2.7.1. The next planned CRAN release is 0.2.8.
+maintenance release 0.2.7.1. It is also included in version 0.2.7.4,
+prepared for CRAN submission.
 
 With version 0.2.7.1 installed, use `library(dataSDA)`, `?hist_extract`, and
 `example(hist_extract)` directly.
